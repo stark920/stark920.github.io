@@ -84,81 +84,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 參數傳遞方式 Call by what?</title>
-    <url>/2021/11/17/JScallby/</url>
-    <content><![CDATA[<p><img data-src="/images/js-callby.png"></p>
-<span id="more"></span> 
-<p>在探討參數傳遞的機制前，先了解一點基本的計算機觀念，電腦中的資料需要有個空間存放起來，才能被拿出來操作（運算），這存放的地方就是『記憶體』，平常會聽到電腦的記憶體有 4G、8G…等，資料不會一次佈滿整個記憶體空間，記憶體會切成許多小區塊（位置）來使用，一般在探討時會用類似 <code>0x01</code>、<code>0x02</code>… 這樣的方法來表示記憶體位置（並非實際記憶體使用位置）。</p>
-<hr>
-<h2 id="💎-資料型別"><a href="#💎-資料型別" class="headerlink" title="💎 資料型別"></a>💎 資料型別</h2><p>JavaScript 的資料型別分成<code>原始型別</code>和<code>物件型別</code>兩類，兩種型別的傳遞方式有所不同，下個段落繼續說明：</p>
-<ul>
-<li>原始型別（Primitives）：string, number, boolean, null, undefined, symbol</li>
-<li>物件型別（Object）：object, array, function…等都屬於物件型別</li>
-</ul>
-<blockquote>
-<p>詳細說明可以參考我的另一篇文章： <a href="https://stark920.github.io/2021/11/19/JScoercion">[JS] 深入了解型別與轉型</a></p>
-</blockquote>
-<hr>
-<h2 id="💎-差異比較"><a href="#💎-差異比較" class="headerlink" title="💎 差異比較"></a>💎 差異比較</h2><h3 id="🔸-比較運算"><a href="#🔸-比較運算" class="headerlink" title="🔸 比較運算"></a>🔸 比較運算</h3><ul>
-<li><p>先看一段簡單的程式碼，使用 <code>基本型別</code> 做相等的比較運算</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = 1;</span><br><span class="line">let b = 1;</span><br><span class="line">console.log(a === b); // true</span><br></pre></td></tr></table></figure>
-<p>沒意外的結果是 true，記憶體的使用會像下圖：<br><img data-src="https://static.coderbridge.com/img/stark920/8f804e92af4d4299bb01a03c1c0db8fe.png"></p>
-<center><small>在一個記憶體存放值，變數名稱 a 指向這個值的記憶體位置</small></center></li>
-<li><p>接著改成 <code>物件型別</code> 進行比較</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let obj1 = &#123;a: 1&#125;;</span><br><span class="line">let obj2 = &#123;a: 1&#125;;</span><br><span class="line">console.log(a === b); // false</span><br></pre></td></tr></table></figure>
-<p>結果卻變成 false 了，此時記憶體的使用情況變成下圖：<br><img data-src="https://static.coderbridge.com/img/stark920/cfd22c95b0984e4f8100cba3475126b5.png"></p>
-<center><small>變數裡面存放了一個指向物件實體的記憶體位置，所以這兩個變數的內容實際是不同的記憶體位置，比較的結果是不相等</small></center></li>
-</ul>
-<hr>
-<h3 id="🔸-拷貝變數"><a href="#🔸-拷貝變數" class="headerlink" title="🔸 拷貝變數"></a>🔸 拷貝變數</h3><ul>
-<li><p><code>基本型別</code> 範例程式：將 c 的資料賦予到變數 d，再改變 c 的值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let c = 1;</span><br><span class="line">let d = c;</span><br><span class="line">c = 2;</span><br><span class="line"></span><br><span class="line">console.log(c); // 2</span><br><span class="line">console.log(d); // 1</span><br></pre></td></tr></table></figure>
-<p>c 的值修改之後， d 沒有同時變動，由此可知 c 的值被『複製』給 d 了，兩個變數指向不同的記憶體位置，這時候記憶體的變化如下圖：</p>
-<p><img data-src="https://static.coderbridge.com/img/stark920/31c26d8272ee4121861f06dac62773c2.png"></p>
-</li>
-<li><p>使用 <code>物件型別</code> 來做相同的操作</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let obj1 = &#123;a: 1&#125;;</span><br><span class="line">let obj2 = obj1;</span><br><span class="line">obj1.a = 2;</span><br><span class="line"></span><br><span class="line">console.log(obj1); // &#123;a: 2&#125;</span><br><span class="line">console.log(obj2); // &#123;a: 2&#125;</span><br><span class="line">console.log(obj1 === obj2); // true</span><br></pre></td></tr></table></figure>
-<p>修改第一個物件變數的內容，第二個物件變數也跟著變動了，表示兩個物件變數都指向同一個記憶體位置，用比較運算也得到相等的結果，如下圖：</p>
-<p><img data-src="https://static.coderbridge.com/img/stark920/e290304dab504fc2918d0e2fac624498.png"></p>
-</li>
-</ul>
-<hr>
-<h2 id="💎-段落小結"><a href="#💎-段落小結" class="headerlink" title="💎 段落小結"></a>💎 段落小結</h2><ul>
-<li><p><code>基本型別</code>是純粹的『值』，這個值是靜態的、不可變的（immutable），在傳遞時會以新的記憶體空間來存放新的（或複製來的）資料，這種參數傳遞模式通常被稱為<code>傳值（call by value）</code>。</p>
-</li>
-<li><p><code>物件型別</code>的資料是動態的、可變的（mutable），變數內會存放一個記憶體位置指向物件的本體，就像是這個物件的經紀人一樣；因此，做賦值運算時只會取得這個記憶體位置，而不是物件實體，這種複製方式又稱為淺拷貝，而參數傳遞模式通常被稱為<code>傳參考（call by reference）</code>。</p>
-</li>
-</ul>
-<blockquote>
-<p>延伸閱讀： <a href="https://medium.com/andy-blog/%E9%97%9C%E6%96%BCjs%E4%B8%AD%E7%9A%84%E6%B7%BA%E6%8B%B7%E8%B2%9D-shallow-copy-%E4%BB%A5%E5%8F%8A%E6%B7%B1%E6%8B%B7%E8%B2%9D-deep-copy-5f5bbe96c122">Andy - 關於JS中的淺拷貝(shallow copy)以及深拷貝(deep copy)</a></p>
-</blockquote>
-<hr>
-<h2 id="💎-Call-by-sharing"><a href="#💎-Call-by-sharing" class="headerlink" title="💎 Call by sharing?"></a>💎 Call by sharing?</h2><ul>
-<li><p>如果仔細看會發現上一個段落名稱是<code>段落小結</code>，沒錯，事情還沒結束！接著來看下面這段程式碼，並想想結果會印出什麼？</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function share(obj) &#123;</span><br><span class="line">  obj.a = 2;</span><br><span class="line">  obj = &#123; b: 3 &#125;;</span><br><span class="line">  return obj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let objA = &#123; a: 1 &#125;;</span><br><span class="line">let objB = share(objA);</span><br><span class="line"></span><br><span class="line">console.log(objA); // &#123; a: 2 &#125;</span><br><span class="line">console.log(objB); // &#123; b: 3 &#125;</span><br></pre></td></tr></table></figure>
-<p>以物件傳參考的邏輯來看，objA 裡面存的記憶體位置會傳入函式，在 <code>obj.a = 2</code> 這段也確實透過傳入的位址成功修改 objA 物件內的值。</p>
-<p>到了 <code>obj = &#123; b: 3 &#125;</code> 這段卻沒有改變原始的物件（objA)，而是以傳值的方式進行，新增了一個記憶體位置存放物件，再透過 return 回傳給 objB。</p>
-<p><code>函式</code>會依傳入的參數型別有所不同（基本型別傳值、物件型別傳參考），但是對參數做<code>賦值運算時（=）</code>，就會<code>指向新的記憶體位置</code>，這種模式常被稱為 <code>call by sharing</code>。</p>
-</li>
-</ul>
-<hr>
-<h2 id="💎-總結"><a href="#💎-總結" class="headerlink" title="💎 總結"></a>💎 總結</h2><ul>
-<li>JavaScript 並沒有正式文件去定義該怎麼稱呼這些資料傳遞方式，無論是 call by value、reference 或 sharing，亦或是要說 call by 還是 pass by 其實並沒有這麼重要，最重要的是了解 JavaScript 在處理資料時有什麼不同的機制，讓我們在撰寫時不要踩坑，才是實際又有幫助的。</li>
-</ul>
-<blockquote>
-<p>參考資料： <a href="https://blog.techbridge.cc/2018/06/23/javascript-call-by-value-or-reference/">Huli - 深入探討 JavaScript 中的參數傳遞：call by value 還是 reference？</a></p>
-</blockquote>
-<hr>
-<p>以上是我對這參數傳遞的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝！</p>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[JS] 深入了解型別與轉型</title>
     <url>/2021/11/19/JScoercion/</url>
     <content><![CDATA[<p><img data-src="/images/js-coercion.png"></p>
@@ -391,6 +316,81 @@
 <blockquote>
 <p>參考文章<br>1、<a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a><br>2、<a href="https://eddychang.me/es6-tdz">理解ES6中的暫時死區(TDZ)</a></p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 參數傳遞方式 Call by what?</title>
+    <url>/2021/11/17/JScallby/</url>
+    <content><![CDATA[<p><img data-src="/images/js-callby.png"></p>
+<span id="more"></span> 
+<p>在探討參數傳遞的機制前，先了解一點基本的計算機觀念，電腦中的資料需要有個空間存放起來，才能被拿出來操作（運算），這存放的地方就是『記憶體』，平常會聽到電腦的記憶體有 4G、8G…等，資料不會一次佈滿整個記憶體空間，記憶體會切成許多小區塊（位置）來使用，一般在探討時會用類似 <code>0x01</code>、<code>0x02</code>… 這樣的方法來表示記憶體位置（並非實際記憶體使用位置）。</p>
+<hr>
+<h2 id="💎-資料型別"><a href="#💎-資料型別" class="headerlink" title="💎 資料型別"></a>💎 資料型別</h2><p>JavaScript 的資料型別分成<code>原始型別</code>和<code>物件型別</code>兩類，兩種型別的傳遞方式有所不同，下個段落繼續說明：</p>
+<ul>
+<li>原始型別（Primitives）：string, number, boolean, null, undefined, symbol</li>
+<li>物件型別（Object）：object, array, function…等都屬於物件型別</li>
+</ul>
+<blockquote>
+<p>詳細說明可以參考我的另一篇文章： <a href="https://stark920.github.io/2021/11/19/JScoercion">[JS] 深入了解型別與轉型</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-差異比較"><a href="#💎-差異比較" class="headerlink" title="💎 差異比較"></a>💎 差異比較</h2><h3 id="🔸-比較運算"><a href="#🔸-比較運算" class="headerlink" title="🔸 比較運算"></a>🔸 比較運算</h3><ul>
+<li><p>先看一段簡單的程式碼，使用 <code>基本型別</code> 做相等的比較運算</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = 1;</span><br><span class="line">let b = 1;</span><br><span class="line">console.log(a === b); // true</span><br></pre></td></tr></table></figure>
+<p>沒意外的結果是 true，記憶體的使用會像下圖：<br><img data-src="https://static.coderbridge.com/img/stark920/8f804e92af4d4299bb01a03c1c0db8fe.png"></p>
+<center><small>在一個記憶體存放值，變數名稱 a 指向這個值的記憶體位置</small></center></li>
+<li><p>接著改成 <code>物件型別</code> 進行比較</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let obj1 = &#123;a: 1&#125;;</span><br><span class="line">let obj2 = &#123;a: 1&#125;;</span><br><span class="line">console.log(a === b); // false</span><br></pre></td></tr></table></figure>
+<p>結果卻變成 false 了，此時記憶體的使用情況變成下圖：<br><img data-src="https://static.coderbridge.com/img/stark920/cfd22c95b0984e4f8100cba3475126b5.png"></p>
+<center><small>變數裡面存放了一個指向物件實體的記憶體位置，所以這兩個變數的內容實際是不同的記憶體位置，比較的結果是不相等</small></center></li>
+</ul>
+<hr>
+<h3 id="🔸-拷貝變數"><a href="#🔸-拷貝變數" class="headerlink" title="🔸 拷貝變數"></a>🔸 拷貝變數</h3><ul>
+<li><p><code>基本型別</code> 範例程式：將 c 的資料賦予到變數 d，再改變 c 的值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let c = 1;</span><br><span class="line">let d = c;</span><br><span class="line">c = 2;</span><br><span class="line"></span><br><span class="line">console.log(c); // 2</span><br><span class="line">console.log(d); // 1</span><br></pre></td></tr></table></figure>
+<p>c 的值修改之後， d 沒有同時變動，由此可知 c 的值被『複製』給 d 了，兩個變數指向不同的記憶體位置，這時候記憶體的變化如下圖：</p>
+<p><img data-src="https://static.coderbridge.com/img/stark920/31c26d8272ee4121861f06dac62773c2.png"></p>
+</li>
+<li><p>使用 <code>物件型別</code> 來做相同的操作</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let obj1 = &#123;a: 1&#125;;</span><br><span class="line">let obj2 = obj1;</span><br><span class="line">obj1.a = 2;</span><br><span class="line"></span><br><span class="line">console.log(obj1); // &#123;a: 2&#125;</span><br><span class="line">console.log(obj2); // &#123;a: 2&#125;</span><br><span class="line">console.log(obj1 === obj2); // true</span><br></pre></td></tr></table></figure>
+<p>修改第一個物件變數的內容，第二個物件變數也跟著變動了，表示兩個物件變數都指向同一個記憶體位置，用比較運算也得到相等的結果，如下圖：</p>
+<p><img data-src="https://static.coderbridge.com/img/stark920/e290304dab504fc2918d0e2fac624498.png"></p>
+</li>
+</ul>
+<hr>
+<h2 id="💎-段落小結"><a href="#💎-段落小結" class="headerlink" title="💎 段落小結"></a>💎 段落小結</h2><ul>
+<li><p><code>基本型別</code>是純粹的『值』，這個值是靜態的、不可變的（immutable），在傳遞時會以新的記憶體空間來存放新的（或複製來的）資料，這種參數傳遞模式通常被稱為<code>傳值（call by value）</code>。</p>
+</li>
+<li><p><code>物件型別</code>的資料是動態的、可變的（mutable），變數內會存放一個記憶體位置指向物件的本體，就像是這個物件的經紀人一樣；因此，做賦值運算時只會取得這個記憶體位置，而不是物件實體，這種複製方式又稱為淺拷貝，而參數傳遞模式通常被稱為<code>傳參考（call by reference）</code>。</p>
+</li>
+</ul>
+<blockquote>
+<p>延伸閱讀： <a href="https://medium.com/andy-blog/%E9%97%9C%E6%96%BCjs%E4%B8%AD%E7%9A%84%E6%B7%BA%E6%8B%B7%E8%B2%9D-shallow-copy-%E4%BB%A5%E5%8F%8A%E6%B7%B1%E6%8B%B7%E8%B2%9D-deep-copy-5f5bbe96c122">Andy - 關於JS中的淺拷貝(shallow copy)以及深拷貝(deep copy)</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-Call-by-sharing"><a href="#💎-Call-by-sharing" class="headerlink" title="💎 Call by sharing?"></a>💎 Call by sharing?</h2><ul>
+<li><p>如果仔細看會發現上一個段落名稱是<code>段落小結</code>，沒錯，事情還沒結束！接著來看下面這段程式碼，並想想結果會印出什麼？</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function share(obj) &#123;</span><br><span class="line">  obj.a = 2;</span><br><span class="line">  obj = &#123; b: 3 &#125;;</span><br><span class="line">  return obj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let objA = &#123; a: 1 &#125;;</span><br><span class="line">let objB = share(objA);</span><br><span class="line"></span><br><span class="line">console.log(objA); // &#123; a: 2 &#125;</span><br><span class="line">console.log(objB); // &#123; b: 3 &#125;</span><br></pre></td></tr></table></figure>
+<p>以物件傳參考的邏輯來看，objA 裡面存的記憶體位置會傳入函式，在 <code>obj.a = 2</code> 這段也確實透過傳入的位址成功修改 objA 物件內的值。</p>
+<p>到了 <code>obj = &#123; b: 3 &#125;</code> 這段卻沒有改變原始的物件（objA)，而是以傳值的方式進行，新增了一個記憶體位置存放物件，再透過 return 回傳給 objB。</p>
+<p><code>函式</code>會依傳入的參數型別有所不同（基本型別傳值、物件型別傳參考），但是對參數做<code>賦值運算時（=）</code>，就會<code>指向新的記憶體位置</code>，這種模式常被稱為 <code>call by sharing</code>。</p>
+</li>
+</ul>
+<hr>
+<h2 id="💎-總結"><a href="#💎-總結" class="headerlink" title="💎 總結"></a>💎 總結</h2><ul>
+<li>JavaScript 並沒有正式文件去定義該怎麼稱呼這些資料傳遞方式，無論是 call by value、reference 或 sharing，亦或是要說 call by 還是 pass by 其實並沒有這麼重要，最重要的是了解 JavaScript 在處理資料時有什麼不同的機制，讓我們在撰寫時不要踩坑，才是實際又有幫助的。</li>
+</ul>
+<blockquote>
+<p>參考資料： <a href="https://blog.techbridge.cc/2018/06/23/javascript-call-by-value-or-reference/">Huli - 深入探討 JavaScript 中的參數傳遞：call by value 還是 reference？</a></p>
+</blockquote>
+<hr>
+<p>以上是我對這參數傳遞的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝！</p>
 ]]></content>
       <categories>
         <category>JavaScript - Basic</category>
@@ -687,83 +687,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] undefined 和 null 的差異</title>
-    <url>/2021/11/18/JSundefined/</url>
-    <content><![CDATA[<p><img data-src="/images/js-null.png"></p>
-<span id="more"></span> 
-<p>undefined 是 JavaScript 的特有物之一，新手入門時，常會對 undefined 和 null 這兩個型別產生疑問，以下逐步解說。</p>
-<hr>
-<h2 id="💎-null"><a href="#💎-null" class="headerlink" title="💎 null"></a>💎 null</h2><ul>
-<li><p><code>null</code> 表示一個空值（沒有值），是各種程式語言中常見的型別，如果有後端資料庫的相關經驗，在設計 SQL 資料表時，可以在非必要欄位設定『允許 null』，當資料建立起來的時候，這些沒填的欄位就會塞入 null 來表示空值。</p>
-</li>
-<li><p>JS 中的 <code>null</code> 是一種<code>原始型別</code>，可以賦予變數的值為 null 來表示他是<code>空值</code>，當看到 null 時，我們可以知道這是人為賦予的空值，不是系統自動產生的。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = null; // 不要包引號，會變成字串</span><br><span class="line">console.log(a); // null</span><br></pre></td></tr></table></figure></li>
-<li><p>JS 裡的 null 還有一些特色：</p>
-<ul>
-<li>檢查型別（typeof）的設計失誤（因影響久遠，此錯誤不會修正），正確是 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof null); // object</span><br></pre></td></tr></table></figure></li>
-<li>null 雖然代表著空值，轉型成字串時會照字面上的英文轉。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(null + &#x27;&#x27;); // &#x27;null&#x27;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>參考資料： <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/null">MDN-null</a>、<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/typeof">MDN-typeof</a></p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="💎-undefined"><a href="#💎-undefined" class="headerlink" title="💎 undefined"></a>💎 undefined</h2><ul>
-<li>undefined 從字面上可以理解成『未定義』，表示這個變數並沒有被賦予任何的值，跟已經被賦予空值（null）代表著不一樣的資料狀態，比起 null，undefined 更容易跟 not defined 搞混：<ul>
-<li><code>undefined</code> 是變數<code>已被宣告</code>且<code>未賦值</code>，屬於<code>原始型別</code>之一。</li>
-<li><code>not defined</code> 是變數<code>未被宣告</code>，不屬於原始型別，是程式<code>執行時的錯誤訊息（runtime error）</code>。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a;</span><br><span class="line"></span><br><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(typeof a); // undefined</span><br><span class="line">console.log(b); // ReferenceError: b is not defined</span><br><span class="line">console.log(typeof b); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-null-undefined"><a href="#💎-null-undefined" class="headerlink" title="💎 null == undefined ?"></a>💎 null == undefined ?</h2><ul>
-<li>看完前面的段落，可以知道 undefined 和 null 意義上是完全不同，接著來比較看看：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined == null); // true</span><br></pre></td></tr></table></figure>
-不是說好不一樣的嗎？<br>可能是轉型在作亂，改用嚴格比較（===）看看。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined === null); // false</span><br></pre></td></tr></table></figure>
-果然是轉型搞的鬼，但是為什麼 undefined 和 null 轉型後會相等？下個段落繼續說明。</li>
-</ul>
-<hr>
-<h2 id="💎-truthy-amp-falsy"><a href="#💎-truthy-amp-falsy" class="headerlink" title="💎 truthy &amp; falsy"></a>💎 truthy &amp; falsy</h2><ul>
-<li><p>JavaScript 中的各種值都可以被轉換成布林值（Boolean），轉換後為 true 的值稱為 <code>truthy</code>，反之則稱為 <code>falsy</code>，除了以下所列的值屬於 falsy 值，其他都是 truthy 值。<br>（完整的圖表可以參考 <a href="https://dorey.github.io/JavaScript-Equality-Table/">JS Comparison Table</a>）</p>
-<ul>
-<li>false</li>
-<li>0</li>
-<li>-0</li>
-<li>0n (BigInt)</li>
-<li>“” (空字串，包含 <code>單引號</code>、<code>反引號</code>)</li>
-<li>null</li>
-<li>undefined</li>
-<li>NaN</li>
-<li>document.all (正常不會用到)</li>
-</ul>
-</li>
-<li><p>由上可知，<code>null</code>和<code>undefined</code>都是<code>falsy</code>值，在做一般相等的比較時，都會被轉成 false，所以得到的結果是 true。</p>
-</li>
-<li><p>truthy 和 falsy 的運用：檢查資料是否存在時可以運用轉成布林值的方法減少程式碼撰寫長度。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 原始寫法：</span><br><span class="line">if (arr[0] === undefined) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 轉型為布林值</span><br><span class="line">if (!arr[0]) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>參考資料： <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">MDN-Falsy</a>、<a href="https://dorey.github.io/JavaScript-Equality-Table/">dorey-JS Comparison Table</a></p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="💎-null-和-undefined-出現時機"><a href="#💎-null-和-undefined-出現時機" class="headerlink" title="💎 null 和 undefined 出現時機"></a>💎 null 和 undefined 出現時機</h2><p>除了未賦值的 undefined 和自己定義的 null 外，還有什麼時候會出現呢？</p>
-<ul>
-<li><code>null</code>：會出現在 BOM(Browser Object Model)中不存在的資料，例如：document.querySelector、localStorage、 sessionStorage…等，不存在時會得到 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">localStorage.getItem(&#x27;a&#x27;); // null</span><br><span class="line">sessionStorage.getItem(&#x27;a&#x27;); // null</span><br></pre></td></tr></table></figure></li>
-<li><code>undefined</code>：取用不存在 JS 程式碼中或是未賦值的資料會得到 undefined。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">let obj = &#123;&#125;;</span><br><span class="line">console.log(arr[1]); // undefined</span><br><span class="line">console.log(obj.a); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<p>以上是我對這兩個型別的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝觀看！</p>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[JS] 變數宣告方式：let、const、var</title>
     <url>/2021/11/16/JSvariable/</url>
     <content><![CDATA[<p><img data-src="/images/js-variables.png"></p>
@@ -899,18 +822,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 搞懂 Promise、Async、Await</title>
-    <url>/2022/03/17/async/</url>
-    <content><![CDATA[<p>WIP…</p>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[Node.JS] 建立伺服器、掌握基本知識</title>
     <url>/2022/02/22/nodejs1/</url>
     <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
@@ -1025,6 +936,95 @@
       </categories>
       <tags>
         <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] undefined 和 null 的差異</title>
+    <url>/2021/11/18/JSundefined/</url>
+    <content><![CDATA[<p><img data-src="/images/js-null.png"></p>
+<span id="more"></span> 
+<p>undefined 是 JavaScript 的特有物之一，新手入門時，常會對 undefined 和 null 這兩個型別產生疑問，以下逐步解說。</p>
+<hr>
+<h2 id="💎-null"><a href="#💎-null" class="headerlink" title="💎 null"></a>💎 null</h2><ul>
+<li><p><code>null</code> 表示一個空值（沒有值），是各種程式語言中常見的型別，如果有後端資料庫的相關經驗，在設計 SQL 資料表時，可以在非必要欄位設定『允許 null』，當資料建立起來的時候，這些沒填的欄位就會塞入 null 來表示空值。</p>
+</li>
+<li><p>JS 中的 <code>null</code> 是一種<code>原始型別</code>，可以賦予變數的值為 null 來表示他是<code>空值</code>，當看到 null 時，我們可以知道這是人為賦予的空值，不是系統自動產生的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = null; // 不要包引號，會變成字串</span><br><span class="line">console.log(a); // null</span><br></pre></td></tr></table></figure></li>
+<li><p>JS 裡的 null 還有一些特色：</p>
+<ul>
+<li>檢查型別（typeof）的設計失誤（因影響久遠，此錯誤不會修正），正確是 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof null); // object</span><br></pre></td></tr></table></figure></li>
+<li>null 雖然代表著空值，轉型成字串時會照字面上的英文轉。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(null + &#x27;&#x27;); // &#x27;null&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>參考資料： <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/null">MDN-null</a>、<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/typeof">MDN-typeof</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="💎-undefined"><a href="#💎-undefined" class="headerlink" title="💎 undefined"></a>💎 undefined</h2><ul>
+<li>undefined 從字面上可以理解成『未定義』，表示這個變數並沒有被賦予任何的值，跟已經被賦予空值（null）代表著不一樣的資料狀態，比起 null，undefined 更容易跟 not defined 搞混：<ul>
+<li><code>undefined</code> 是變數<code>已被宣告</code>且<code>未賦值</code>，屬於<code>原始型別</code>之一。</li>
+<li><code>not defined</code> 是變數<code>未被宣告</code>，不屬於原始型別，是程式<code>執行時的錯誤訊息（runtime error）</code>。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a;</span><br><span class="line"></span><br><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(typeof a); // undefined</span><br><span class="line">console.log(b); // ReferenceError: b is not defined</span><br><span class="line">console.log(typeof b); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="💎-null-undefined"><a href="#💎-null-undefined" class="headerlink" title="💎 null == undefined ?"></a>💎 null == undefined ?</h2><ul>
+<li>看完前面的段落，可以知道 undefined 和 null 意義上是完全不同，接著來比較看看：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined == null); // true</span><br></pre></td></tr></table></figure>
+不是說好不一樣的嗎？<br>可能是轉型在作亂，改用嚴格比較（===）看看。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined === null); // false</span><br></pre></td></tr></table></figure>
+果然是轉型搞的鬼，但是為什麼 undefined 和 null 轉型後會相等？下個段落繼續說明。</li>
+</ul>
+<hr>
+<h2 id="💎-truthy-amp-falsy"><a href="#💎-truthy-amp-falsy" class="headerlink" title="💎 truthy &amp; falsy"></a>💎 truthy &amp; falsy</h2><ul>
+<li><p>JavaScript 中的各種值都可以被轉換成布林值（Boolean），轉換後為 true 的值稱為 <code>truthy</code>，反之則稱為 <code>falsy</code>，除了以下所列的值屬於 falsy 值，其他都是 truthy 值。<br>（完整的圖表可以參考 <a href="https://dorey.github.io/JavaScript-Equality-Table/">JS Comparison Table</a>）</p>
+<ul>
+<li>false</li>
+<li>0</li>
+<li>-0</li>
+<li>0n (BigInt)</li>
+<li>“” (空字串，包含 <code>單引號</code>、<code>反引號</code>)</li>
+<li>null</li>
+<li>undefined</li>
+<li>NaN</li>
+<li>document.all (正常不會用到)</li>
+</ul>
+</li>
+<li><p>由上可知，<code>null</code>和<code>undefined</code>都是<code>falsy</code>值，在做一般相等的比較時，都會被轉成 false，所以得到的結果是 true。</p>
+</li>
+<li><p>truthy 和 falsy 的運用：檢查資料是否存在時可以運用轉成布林值的方法減少程式碼撰寫長度。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 原始寫法：</span><br><span class="line">if (arr[0] === undefined) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 轉型為布林值</span><br><span class="line">if (!arr[0]) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考資料： <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">MDN-Falsy</a>、<a href="https://dorey.github.io/JavaScript-Equality-Table/">dorey-JS Comparison Table</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="💎-null-和-undefined-出現時機"><a href="#💎-null-和-undefined-出現時機" class="headerlink" title="💎 null 和 undefined 出現時機"></a>💎 null 和 undefined 出現時機</h2><p>除了未賦值的 undefined 和自己定義的 null 外，還有什麼時候會出現呢？</p>
+<ul>
+<li><code>null</code>：會出現在 BOM(Browser Object Model)中不存在的資料，例如：document.querySelector、localStorage、 sessionStorage…等，不存在時會得到 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">localStorage.getItem(&#x27;a&#x27;); // null</span><br><span class="line">sessionStorage.getItem(&#x27;a&#x27;); // null</span><br></pre></td></tr></table></figure></li>
+<li><code>undefined</code>：取用不存在 JS 程式碼中或是未賦值的資料會得到 undefined。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">let obj = &#123;&#125;;</span><br><span class="line">console.log(arr[1]); // undefined</span><br><span class="line">console.log(obj.a); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<p>以上是我對這兩個型別的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝觀看！</p>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 搞懂 Promise、Async、Await</title>
+    <url>/2022/03/17/async/</url>
+    <content><![CDATA[<p>WIP…</p>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -1159,84 +1159,6 @@
 </blockquote>
 <hr>
 <h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇的筆記已經完成所有方法的架構，下一篇完結篇就會補上所有的功能。</p>
-]]></content>
-      <categories>
-        <category>Node.js</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 打造 todolist api 3 - 完成所有功能</title>
-    <url>/2022/03/04/nodejs4/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span> 
-<p>前一篇已經把整個架構寫好，這次就直接照著架構補完所有功能！</p>
-<hr>
-<h2 id="💎-GET-取得待辦清單"><a href="#💎-GET-取得待辦清單" class="headerlink" title="💎 GET - 取得待辦清單"></a>💎 GET - 取得待辦清單</h2><p>在前端撰寫 todolist 的練習時，都會使用一個陣列變數來存放待辦資料，現在搭配後端，就由 Node.js 負責管理這個陣列變數。<br>GET 方法非常簡單，只要回傳這個存放待辦事項的變數即可。<br><code>目前的練習中，變數只是存放在伺服器執行環境的記憶體中，並沒有存成實體檔案（資料庫），當伺服器重啟時記憶體釋放，資料就會遺失</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 宣告用來存放待辦事項的陣列</span></span><br><span class="line"><span class="keyword">const</span> todos = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">            <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="comment">// 改成回傳待辦事項的變數 </span></span><br><span class="line">            <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>段落測試</strong><br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：GET（只要順利回傳空陣列就成功了）</p>
-</blockquote>
-<hr>
-<h2 id="💎-POST-新增一筆待辦"><a href="#💎-POST-新增一筆待辦" class="headerlink" title="💎 POST - 新增一筆待辦"></a>💎 POST - 新增一筆待辦</h2><p>在撰寫這段時，需要先規劃好一筆待辦事項會有哪些欄位，本次練習只放『標題』、『ID』就好，格式設計如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;吃飯&quot;</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;xxxxxxxxxxx&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>標題</strong><ul>
-<li>需要接收 <code>req</code> 傳來的資料，使用 node.js 的 req.on 方法來監聽資料接收的事件。</li>
-<li>封包大小有限，當傳送的資料大時就會被切成好幾個片段，接收端需要在收到所有的片段之後組合起來，才會取得完整可用的資料。</li>
-<li>要確保資料已經確實接收，分別使用 <code>req.on(&#39;data&#39;, function)</code> 來處理資料傳送中的行為，<code>req.on(&#39;end&#39;, function)</code> 處理接收完的行為。</li>
-<li>資料檢查：格式設計了使用 title 存放標題，如果傳入的資料不是 JSON 格式，或是沒有這個屬性都可能讓伺服器掛掉，所以需要先檢查是不是符合規範。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    <span class="comment">// 建立一個變數來接收傳入的資料</span></span><br><span class="line">    <span class="keyword">let</span> body = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="comment">// 當有資料傳入就加到 body 變數裡面</span></span><br><span class="line">    req.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">        body += chunk;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="comment">// 資料接收完才會執行</span></span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 取出 body 裡面的 title，如果沒有會得到 undefined</span></span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="comment">// 有 title 就加到陣列裡面，並且回傳全部待辦</span></span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title</span><br><span class="line">                &#125;);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            <span class="comment">// 沒 title 回傳錯誤</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>ID</strong><ul>
-<li>ID 需要是不會重複的數值，使用 UUID 套件來完成。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入 uuid 模組，請確認有無安裝該套件</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">v4</span>: uuidv4 &#125; = <span class="built_in">require</span>(<span class="string">&#x27;uuid&#x27;</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="comment">// 加入 ID</span></span><br><span class="line">                    <span class="attr">id</span>: uuidv4()</span><br><span class="line">                &#125;);</span><br><span class="line">            ...</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>防錯</strong><ul>
-<li>雖然前面已經針對 title 檢查，還是需要甚防有心人傳入奇怪的資料，可以使用 try…catch 來捕捉問題。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">    req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="string">&#x27;id&#x27;</span>: uuidv4()</span><br><span class="line">                &#125;)</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：POST（需要在 body 加入 JSON 資料）<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
-</blockquote>
-<hr>
-<h2 id="💎-DELETE-刪除全部待辦"><a href="#💎-DELETE-刪除全部待辦" class="headerlink" title="💎 DELETE - 刪除全部待辦"></a>💎 DELETE - 刪除全部待辦</h2><p>刪除全部非常簡單，只要把陣列清空就好，要注意的是陣列和物件都盡量避免賦值（=）操作，以方法操作為主，所以我在一開始宣告 todos 時是使用 const ，這樣就無法使用 <code>todos = []</code>，而是使用陣列方法 <code>todos.length = 0</code> 來清空陣列。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">    <span class="comment">// 陣列長度為 0 = 沒資料</span></span><br><span class="line">    todos.length = <span class="number">0</span>;</span><br><span class="line">    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：DELETE</p>
-</blockquote>
-<hr>
-<h2 id="💎-DELETE-刪除一筆待辦"><a href="#💎-DELETE-刪除一筆待辦" class="headerlink" title="💎 DELETE - 刪除一筆待辦"></a>💎 DELETE - 刪除一筆待辦</h2><ul>
-<li><strong>取得傳入的 ID</strong>：<br>前一篇文章有提到，把待辦的 ID 塞到網址後面的格式會是 <code>http://網域/路徑/參數</code>，使用 <code>req.url</code> 會得到 <code>/路徑/參數</code>，接著用字串方法 <code>split(&#39;/&#39;)</code> 切割成陣列，再使用 <code>pop()</code> 取得最後一筆資料就是參數了。</li>
-<li><strong>找出 ID 相符的資料</strong>：<br>使用 <code>findIndex</code> 方法來找出待辦事項的陣列中有沒有 ID 相符的資料，符合時會取得該筆資料的 <code>index</code>，沒有符合資料時會得到 <code>-1</code>。</li>
-<li><strong>刪除陣列資料</strong><br>成功取得指定資料在陣列中的 index 後就可以使用 <code>splice(index, 1)</code> 的方法刪除 1 筆資料，第一個參數是起始的索引位置，第二個參數是要往後刪除幾筆資料。</li>
-<li><strong>架構調整</strong><br>調整前：<code>確認網址開頭</code>(/todo/) &gt; <code>確認請求方法</code>（PATCH or DELETE）<br>調整後：<code>確認網址開頭</code>(/todo/) &gt; <code>確認 ID 是否存在</code> &gt; <code>確認請求方法</code>（PATCH or DELETE）<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">        <span class="comment">// 取得請求網址最後一段帶的 ID</span></span><br><span class="line">        <span class="keyword">let</span> id = req.url.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">        <span class="comment">// 找出 todos 裡面有沒有符合 id 的項目</span></span><br><span class="line">        <span class="keyword">let</span> index = todos.findIndex(<span class="function"><span class="params">el</span> =&gt;</span> el.id == id);</span><br><span class="line">        <span class="comment">// 先判斷有沒有指定 ID</span></span><br><span class="line">        <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method == <span class="string">&#x27;DELETE&#x27;</span>) &#123;</span><br><span class="line">                todos.splice(index, <span class="number">1</span>);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：DELETE</p>
-</blockquote>
-<hr>
-<h2 id="💎-PATCH-編輯一筆待辦"><a href="#💎-PATCH-編輯一筆待辦" class="headerlink" title="💎 PATCH - 編輯一筆待辦"></a>💎 PATCH - 編輯一筆待辦</h2><p>終於到了最後一步，也是集大成的一步，『路徑 ID』和『接收資料』都會用上，可以參考 <code>POST</code> 和 <code>DELETE(單筆)</code> 的寫法自行整合在一起，流程大致如下：</p>
-<ol>
-<li>檢查連結（url）</li>
-<li>檢查ID (url)</li>
-<li>檢查方法 (method)</li>
-<li>確認接收完資料 (req.on(end))</li>
-<li>偵錯 （try…catch）</li>
-<li>檢查接收的待辦資料（title）</li>
-<li>更新待辦資料（title）</li>
-<li>回傳待辦資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">                <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                    <span class="comment">// 修改對應 ID 的 title</span></span><br><span class="line">                    todos[index].title = title;</span><br><span class="line">                    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; </span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：PATCH<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
-</blockquote>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>寫到這邊，總算把所有功能完成，後續還有許多可以調整優化的（回傳詳細的錯誤訊息、模組化…等），就自行發揮吧！</p>
 ]]></content>
       <categories>
         <category>Node.js</category>
@@ -1701,6 +1623,84 @@
       <tags>
         <tag>Node.js</tag>
         <tag>NPM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Node.JS] 打造 todolist api 3 - 完成所有功能</title>
+    <url>/2022/03/04/nodejs4/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span> 
+<p>前一篇已經把整個架構寫好，這次就直接照著架構補完所有功能！</p>
+<hr>
+<h2 id="💎-GET-取得待辦清單"><a href="#💎-GET-取得待辦清單" class="headerlink" title="💎 GET - 取得待辦清單"></a>💎 GET - 取得待辦清單</h2><p>在前端撰寫 todolist 的練習時，都會使用一個陣列變數來存放待辦資料，現在搭配後端，就由 Node.js 負責管理這個陣列變數。<br>GET 方法非常簡單，只要回傳這個存放待辦事項的變數即可。<br><code>目前的練習中，變數只是存放在伺服器執行環境的記憶體中，並沒有存成實體檔案（資料庫），當伺服器重啟時記憶體釋放，資料就會遺失</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 宣告用來存放待辦事項的陣列</span></span><br><span class="line"><span class="keyword">const</span> todos = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">            <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="comment">// 改成回傳待辦事項的變數 </span></span><br><span class="line">            <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>段落測試</strong><br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：GET（只要順利回傳空陣列就成功了）</p>
+</blockquote>
+<hr>
+<h2 id="💎-POST-新增一筆待辦"><a href="#💎-POST-新增一筆待辦" class="headerlink" title="💎 POST - 新增一筆待辦"></a>💎 POST - 新增一筆待辦</h2><p>在撰寫這段時，需要先規劃好一筆待辦事項會有哪些欄位，本次練習只放『標題』、『ID』就好，格式設計如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;吃飯&quot;</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;xxxxxxxxxxx&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>標題</strong><ul>
+<li>需要接收 <code>req</code> 傳來的資料，使用 node.js 的 req.on 方法來監聽資料接收的事件。</li>
+<li>封包大小有限，當傳送的資料大時就會被切成好幾個片段，接收端需要在收到所有的片段之後組合起來，才會取得完整可用的資料。</li>
+<li>要確保資料已經確實接收，分別使用 <code>req.on(&#39;data&#39;, function)</code> 來處理資料傳送中的行為，<code>req.on(&#39;end&#39;, function)</code> 處理接收完的行為。</li>
+<li>資料檢查：格式設計了使用 title 存放標題，如果傳入的資料不是 JSON 格式，或是沒有這個屬性都可能讓伺服器掛掉，所以需要先檢查是不是符合規範。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    <span class="comment">// 建立一個變數來接收傳入的資料</span></span><br><span class="line">    <span class="keyword">let</span> body = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="comment">// 當有資料傳入就加到 body 變數裡面</span></span><br><span class="line">    req.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">        body += chunk;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="comment">// 資料接收完才會執行</span></span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 取出 body 裡面的 title，如果沒有會得到 undefined</span></span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="comment">// 有 title 就加到陣列裡面，並且回傳全部待辦</span></span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title</span><br><span class="line">                &#125;);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            <span class="comment">// 沒 title 回傳錯誤</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>ID</strong><ul>
+<li>ID 需要是不會重複的數值，使用 UUID 套件來完成。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入 uuid 模組，請確認有無安裝該套件</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">v4</span>: uuidv4 &#125; = <span class="built_in">require</span>(<span class="string">&#x27;uuid&#x27;</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="comment">// 加入 ID</span></span><br><span class="line">                    <span class="attr">id</span>: uuidv4()</span><br><span class="line">                &#125;);</span><br><span class="line">            ...</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>防錯</strong><ul>
+<li>雖然前面已經針對 title 檢查，還是需要甚防有心人傳入奇怪的資料，可以使用 try…catch 來捕捉問題。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">    req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="string">&#x27;id&#x27;</span>: uuidv4()</span><br><span class="line">                &#125;)</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：POST（需要在 body 加入 JSON 資料）<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
+</blockquote>
+<hr>
+<h2 id="💎-DELETE-刪除全部待辦"><a href="#💎-DELETE-刪除全部待辦" class="headerlink" title="💎 DELETE - 刪除全部待辦"></a>💎 DELETE - 刪除全部待辦</h2><p>刪除全部非常簡單，只要把陣列清空就好，要注意的是陣列和物件都盡量避免賦值（=）操作，以方法操作為主，所以我在一開始宣告 todos 時是使用 const ，這樣就無法使用 <code>todos = []</code>，而是使用陣列方法 <code>todos.length = 0</code> 來清空陣列。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">    <span class="comment">// 陣列長度為 0 = 沒資料</span></span><br><span class="line">    todos.length = <span class="number">0</span>;</span><br><span class="line">    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：DELETE</p>
+</blockquote>
+<hr>
+<h2 id="💎-DELETE-刪除一筆待辦"><a href="#💎-DELETE-刪除一筆待辦" class="headerlink" title="💎 DELETE - 刪除一筆待辦"></a>💎 DELETE - 刪除一筆待辦</h2><ul>
+<li><strong>取得傳入的 ID</strong>：<br>前一篇文章有提到，把待辦的 ID 塞到網址後面的格式會是 <code>http://網域/路徑/參數</code>，使用 <code>req.url</code> 會得到 <code>/路徑/參數</code>，接著用字串方法 <code>split(&#39;/&#39;)</code> 切割成陣列，再使用 <code>pop()</code> 取得最後一筆資料就是參數了。</li>
+<li><strong>找出 ID 相符的資料</strong>：<br>使用 <code>findIndex</code> 方法來找出待辦事項的陣列中有沒有 ID 相符的資料，符合時會取得該筆資料的 <code>index</code>，沒有符合資料時會得到 <code>-1</code>。</li>
+<li><strong>刪除陣列資料</strong><br>成功取得指定資料在陣列中的 index 後就可以使用 <code>splice(index, 1)</code> 的方法刪除 1 筆資料，第一個參數是起始的索引位置，第二個參數是要往後刪除幾筆資料。</li>
+<li><strong>架構調整</strong><br>調整前：<code>確認網址開頭</code>(/todo/) &gt; <code>確認請求方法</code>（PATCH or DELETE）<br>調整後：<code>確認網址開頭</code>(/todo/) &gt; <code>確認 ID 是否存在</code> &gt; <code>確認請求方法</code>（PATCH or DELETE）<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">        <span class="comment">// 取得請求網址最後一段帶的 ID</span></span><br><span class="line">        <span class="keyword">let</span> id = req.url.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">        <span class="comment">// 找出 todos 裡面有沒有符合 id 的項目</span></span><br><span class="line">        <span class="keyword">let</span> index = todos.findIndex(<span class="function"><span class="params">el</span> =&gt;</span> el.id == id);</span><br><span class="line">        <span class="comment">// 先判斷有沒有指定 ID</span></span><br><span class="line">        <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method == <span class="string">&#x27;DELETE&#x27;</span>) &#123;</span><br><span class="line">                todos.splice(index, <span class="number">1</span>);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：DELETE</p>
+</blockquote>
+<hr>
+<h2 id="💎-PATCH-編輯一筆待辦"><a href="#💎-PATCH-編輯一筆待辦" class="headerlink" title="💎 PATCH - 編輯一筆待辦"></a>💎 PATCH - 編輯一筆待辦</h2><p>終於到了最後一步，也是集大成的一步，『路徑 ID』和『接收資料』都會用上，可以參考 <code>POST</code> 和 <code>DELETE(單筆)</code> 的寫法自行整合在一起，流程大致如下：</p>
+<ol>
+<li>檢查連結（url）</li>
+<li>檢查ID (url)</li>
+<li>檢查方法 (method)</li>
+<li>確認接收完資料 (req.on(end))</li>
+<li>偵錯 （try…catch）</li>
+<li>檢查接收的待辦資料（title）</li>
+<li>更新待辦資料（title）</li>
+<li>回傳待辦資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">                <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                    <span class="comment">// 修改對應 ID 的 title</span></span><br><span class="line">                    todos[index].title = title;</span><br><span class="line">                    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; </span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：PATCH<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
+</blockquote>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>寫到這邊，總算把所有功能完成，後續還有許多可以調整優化的（回傳詳細的錯誤訊息、模組化…等），就自行發揮吧！</p>
+]]></content>
+      <categories>
+        <category>Node.js</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
       </tags>
   </entry>
 </search>
