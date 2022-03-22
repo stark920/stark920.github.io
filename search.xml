@@ -1,89 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>[心得] 六角學院 JS 工程師養成直播班 - 學習心得</title>
-    <url>/2021/12/21/EXPhexschoolJSlive/</url>
-    <content><![CDATA[<p><img data-src="/images/hexschool-livejs.png"></p>
-<span id="more"></span> 
-
-<p>過去參加過各種『ｏｏ電腦』的實體課程，也在各種平台買了很多線上課程，最近第一次參加了線上直播班課程，以下就來分享課程內容和學習心得。</p>
-<h2 id="💎-課程內容"><a href="#💎-課程內容" class="headerlink" title="💎 課程內容"></a>💎 課程內容</h2><ul>
-<li>課程名稱：JS 工程師養成直播班 - 2021秋季</li>
-<li>授課時間：每週直播一次約 2 小時，共 9 週</li>
-<li>授課內容：JavaScript 從零開始 -&gt; 串接 API 製作前、後台功能</li>
-<li>其他服務：<ul>
-<li>每日練習任務、每週主線任務，並有課程助教協助任務批改及建議</li>
-<li>週二加開主線任務講解直播</li>
-<li>週三、四不定期主題直播</li>
-<li>社群平台提供線上諮詢、履歷檢查…等，想問什麼就問什麼</li>
-</ul>
-</li>
-</ul>
-<h2 id="💎-課程比較"><a href="#💎-課程比較" class="headerlink" title="💎 課程比較"></a>💎 課程比較</h2><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">實體課程</th>
-<th align="center">線上課程</th>
-<th align="center">直播班</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">價格</td>
-<td align="center">高</td>
-<td align="center">低</td>
-<td align="center">中</td>
-</tr>
-<tr>
-<td align="center">課程編排</td>
-<td align="center">緊湊</td>
-<td align="center">考驗自制力</td>
-<td align="center">每週搭配練習循序漸進</td>
-</tr>
-<tr>
-<td align="center">課後服務</td>
-<td align="center">大概就完課證書？</td>
-<td align="center">透過課程平台與開課導師互動</td>
-<td align="center">有專屬社群和助教團可詢問</td>
-</tr>
-<tr>
-<td align="center">學員交流</td>
-<td align="center">很少</td>
-<td align="center">趨近０</td>
-<td align="center">校長、助教團 + 一堆同學互助</td>
-</tr>
-<tr>
-<td align="center">學習效率</td>
-<td align="center">需要天份，跟不上進度就GG</td>
-<td align="center">考驗自制力與學習能力</td>
-<td align="center">只要有網路就可以問到懂為止</td>
-</tr>
-</tbody></table>
-<h2 id="💎-學習心得"><a href="#💎-學習心得" class="headerlink" title="💎 學習心得"></a>💎 學習心得</h2><h3 id="個人背景"><a href="#個人背景" class="headerlink" title="個人背景"></a>個人背景</h3><p>我是剛退伍的職業軍人，過去負責維護單位機房、伺服器和網站…等等，有開發 ASP.NET 內部網站也自學撰寫 HTML、CSS、JS 一段時間，會選擇上這門課是過去一直都使用較舊的技術開發網站（沒有API、框架…等），想透過這堂課強化基礎能力，並了解前端工程師在實務上的工作。</p>
-<h3 id="課程心得"><a href="#課程心得" class="headerlink" title="課程心得"></a>課程心得</h3><p>六角學院的這堂直播課雖然課程規劃是從０開始，但是不得不佩服他們的專業，考量到上課的同學程度不同，安排了課後筆記、學員分組討論２個內容，雖然直播課的內容對我來說已經熟悉，但是這兩個內容讓我學到了不少。</p>
-<ul>
-<li><p>課後筆記：題目都是許多 JavaScript 需要釐清的基本觀念，撰寫筆記的過程需要閱讀大量相關文章，再歸納出自己的脈絡，嘗試寫成別人也能理解的文章，這個學習過程會比看一些 JS tricky 的影片更加有效。</p>
-</li>
-<li><p>學員分組討論：分組的同學中大家的程度不一樣，可以透過小組討論互相學習，也可以在檢視同學的問題時，充當偽助教試著去了解別人的程式碼並給予建議，如果有好的寫法也可以藉機學習新招式。</p>
-</li>
-</ul>
-<p>過去上的一些實體課程，通常到上完後也不會和同學有任何互動，即使有熱心的同學開群組，也只是分享一些教材，完課後也成了廢群，更不用說線上課程就只是自己看看影片，哪來的同學？</p>
-<p>六角學院有龐大的社群服務，雖然一開始真的有點摸不著頭緒（有舊的 udemy 課程、新的課程網站、Discord、Slack、Email信件、HackMD…），但是有把 Slack 當 FB、IG 在滑的校長、<del>被迫</del>輪班的助教群和大量的同學可以諮詢交流，這絕對是 CP 爆表的超值服務。</p>
-<p>除此之外，每週主線任務的提交平台，可以看到其他同學的作品，不用再擔心卡住時找不到 Code 可以參考，相同的程式從每個人手中寫出來都是不同的樣貌，除了學習該怎麼寫出功能，還可以學習如何寫出讓人容易看懂的程式碼。</p>
-<p>最後，要特別提的就是老師大力推廣的 Kata 挑戰，這是第一次遇到課程特別針對撰寫速度要求學生練習的，再結合社群分享，可以看到同學的各種騷操作，可以說速寫又是另一個世界了！</p>
-<p>如果看這篇文章的你，正打算轉職前端工程師，或是學習前端技能中卻找不到方向，都非常推薦來參加直播班，這不僅僅是一套學習課程，而是給你一個完整的學習環境。</p>
-<blockquote>
-<p>課程網站：<br><a href="https://www.hexschool.com/">六角學院</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Course Experience</category>
-      </categories>
-      <tags>
-        <tag>Experience</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[JS] 參數傳遞方式 Call by what?</title>
     <url>/2021/11/17/JScallby/</url>
     <content><![CDATA[<p><img data-src="/images/js-callby.png"></p>
@@ -351,158 +268,86 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 提昇（Hoisting）機制</title>
-    <url>/2021/11/23/JShoisting/</url>
-    <content><![CDATA[<p><img data-src="/images/js-hoisting.png"></p>
+    <title>[心得] 六角學院 JS 工程師養成直播班 - 學習心得</title>
+    <url>/2021/12/21/EXPhexschoolJSlive/</url>
+    <content><![CDATA[<p><img data-src="/images/hexschool-livejs.png"></p>
 <span id="more"></span> 
-<p>如果今天想要使用電腦，該怎麼做？</p>
-<p>你的答案很可能是，按下電腦開機鍵就好，但實際上得先有主機、滑鼠、鍵盤、螢幕、電源、作業系統…等軟、硬體環境，才有辦法使用電腦。</p>
-<p>JavaScript 雖然是直譯式語言（不需透過編譯器轉譯成可執行檔），但是『執行』之前，還是需要先把原本字元組成的程式碼編譯成執行環境（就像是上面提到的準備滑鼠、鍵盤…等等），而其中一個步驟就是先將 <code>變數</code> 和 <code>函數</code> 的名稱放入記憶體，這種行為在 ECMA 的文件中沒有明確定義專有名詞，一般會用 <code>提昇（Hoisting）</code>來稱呼。</p>
+
+<p>過去參加過各種『ｏｏ電腦』的實體課程，也在各種平台買了很多線上課程，最近第一次參加了線上直播班課程，以下就來分享課程內容和學習心得。</p>
+<h2 id="💎-課程內容"><a href="#💎-課程內容" class="headerlink" title="💎 課程內容"></a>💎 課程內容</h2><ul>
+<li>課程名稱：JS 工程師養成直播班 - 2021秋季</li>
+<li>授課時間：每週直播一次約 2 小時，共 9 週</li>
+<li>授課內容：JavaScript 從零開始 -&gt; 串接 API 製作前、後台功能</li>
+<li>其他服務：<ul>
+<li>每日練習任務、每週主線任務，並有課程助教協助任務批改及建議</li>
+<li>週二加開主線任務講解直播</li>
+<li>週三、四不定期主題直播</li>
+<li>社群平台提供線上諮詢、履歷檢查…等，想問什麼就問什麼</li>
+</ul>
+</li>
+</ul>
+<h2 id="💎-課程比較"><a href="#💎-課程比較" class="headerlink" title="💎 課程比較"></a>💎 課程比較</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">實體課程</th>
+<th align="center">線上課程</th>
+<th align="center">直播班</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">價格</td>
+<td align="center">高</td>
+<td align="center">低</td>
+<td align="center">中</td>
+</tr>
+<tr>
+<td align="center">課程編排</td>
+<td align="center">緊湊</td>
+<td align="center">考驗自制力</td>
+<td align="center">每週搭配練習循序漸進</td>
+</tr>
+<tr>
+<td align="center">課後服務</td>
+<td align="center">大概就完課證書？</td>
+<td align="center">透過課程平台與開課導師互動</td>
+<td align="center">有專屬社群和助教團可詢問</td>
+</tr>
+<tr>
+<td align="center">學員交流</td>
+<td align="center">很少</td>
+<td align="center">趨近０</td>
+<td align="center">校長、助教團 + 一堆同學互助</td>
+</tr>
+<tr>
+<td align="center">學習效率</td>
+<td align="center">需要天份，跟不上進度就GG</td>
+<td align="center">考驗自制力與學習能力</td>
+<td align="center">只要有網路就可以問到懂為止</td>
+</tr>
+</tbody></table>
+<h2 id="💎-學習心得"><a href="#💎-學習心得" class="headerlink" title="💎 學習心得"></a>💎 學習心得</h2><h3 id="個人背景"><a href="#個人背景" class="headerlink" title="個人背景"></a>個人背景</h3><p>我是剛退伍的職業軍人，過去負責維護單位機房、伺服器和網站…等等，有開發 ASP.NET 內部網站也自學撰寫 HTML、CSS、JS 一段時間，會選擇上這門課是過去一直都使用較舊的技術開發網站（沒有API、框架…等），想透過這堂課強化基礎能力，並了解前端工程師在實務上的工作。</p>
+<h3 id="課程心得"><a href="#課程心得" class="headerlink" title="課程心得"></a>課程心得</h3><p>六角學院的這堂直播課雖然課程規劃是從０開始，但是不得不佩服他們的專業，考量到上課的同學程度不同，安排了課後筆記、學員分組討論２個內容，雖然直播課的內容對我來說已經熟悉，但是這兩個內容讓我學到了不少。</p>
+<ul>
+<li><p>課後筆記：題目都是許多 JavaScript 需要釐清的基本觀念，撰寫筆記的過程需要閱讀大量相關文章，再歸納出自己的脈絡，嘗試寫成別人也能理解的文章，這個學習過程會比看一些 JS tricky 的影片更加有效。</p>
+</li>
+<li><p>學員分組討論：分組的同學中大家的程度不一樣，可以透過小組討論互相學習，也可以在檢視同學的問題時，充當偽助教試著去了解別人的程式碼並給予建議，如果有好的寫法也可以藉機學習新招式。</p>
+</li>
+</ul>
+<p>過去上的一些實體課程，通常到上完後也不會和同學有任何互動，即使有熱心的同學開群組，也只是分享一些教材，完課後也成了廢群，更不用說線上課程就只是自己看看影片，哪來的同學？</p>
+<p>六角學院有龐大的社群服務，雖然一開始真的有點摸不著頭緒（有舊的 udemy 課程、新的課程網站、Discord、Slack、Email信件、HackMD…），但是有把 Slack 當 FB、IG 在滑的校長、<del>被迫</del>輪班的助教群和大量的同學可以諮詢交流，這絕對是 CP 爆表的超值服務。</p>
+<p>除此之外，每週主線任務的提交平台，可以看到其他同學的作品，不用再擔心卡住時找不到 Code 可以參考，相同的程式從每個人手中寫出來都是不同的樣貌，除了學習該怎麼寫出功能，還可以學習如何寫出讓人容易看懂的程式碼。</p>
+<p>最後，要特別提的就是老師大力推廣的 Kata 挑戰，這是第一次遇到課程特別針對撰寫速度要求學生練習的，再結合社群分享，可以看到同學的各種騷操作，可以說速寫又是另一個世界了！</p>
+<p>如果看這篇文章的你，正打算轉職前端工程師，或是學習前端技能中卻找不到方向，都非常推薦來參加直播班，這不僅僅是一套學習課程，而是給你一個完整的學習環境。</p>
 <blockquote>
-<p>參考文章：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting">MDN - 提升（Hoisting）</a></p>
-</blockquote>
-<hr>
-<p>提昇（Hoisting）的方式會因為變數類型有所不同：</p>
-<h2 id="💎-var、function："><a href="#💎-var、function：" class="headerlink" title="💎 var、function："></a>💎 var、function：</h2><p>按照逐行執行的邏輯，下面前兩行程式碼會因為還沒有產生這個變數而出現錯誤，但實際上並不會出現任何錯誤。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(foo); // foo()&#123;return &#x27;Hello&#x27;;&#125;</span><br><span class="line"></span><br><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>從結果回推實際執行的順序會像下面這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(a);</span><br><span class="line">console.log(foo);</span><br></pre></td></tr></table></figure>
-
-<p>這次做小調整，改成賦予 a 變數一個值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">var a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
-
-<p>雖然沒有出現錯誤，但是 a 的值並沒有跟著被提昇，回推的執行順序會像下面這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a</span><br><span class="line">console.log(a); // undefined</span><br><span class="line">a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
-
-<p>再看下面這段程式碼，想想看結果是什麼：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b = 1;</span><br><span class="line">var b;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
-
-<p>如果不清楚運作 JavaScript 的運作機制，可能會認為答案是 <code>undefined</code>，覺得後者蓋掉前者，但答案其實是 <code>1</code>，回推後的實際執行會像是下面這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b;</span><br><span class="line">var b;</span><br><span class="line">b = 1;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
-
-<p>『重複宣告』加上『提昇機制』是不是讓人覺得很坑呢？</p>
-<h2 id="💎-let、const："><a href="#💎-let、const：" class="headerlink" title="💎 let、const："></a>💎 let、const：</h2><p>ES6 版本提供了 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，這兩種新的方式解決了 <code>var</code> 的許多奇怪問題。</p>
-<p>使用 <code>let</code> 和 <code>const</code> 宣告的變數名稱在 JavaScript 從『環境建立』一直執行到『變數實際存在的那一行程式碼』的這段期間，變數名稱都是無法被取用的，這段期間稱為 Temporal Dead Zone（TDZ），暫時性死區。</p>
-<p>這個機制就像是我買了對號座的票（宣告），這個位置的票就不能被其他人購買（不能重複宣告），但是在我坐上車位前（實際執行的那段程式碼），都無法在這個位置找到我（TDZ鎖定）。</p>
-<p>以下是使用 <code>let</code> 或 <code>const</code> 宣告的輸出結果：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(x); // x is not defined</span><br><span class="line">let x = 1;</span><br><span class="line">console.log(x); // 前面已經因為執行階段出錯終止，不會執行到這裡</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>參考文章<br>1、<a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a><br>2、<a href="https://eddychang.me/es6-tdz">理解ES6中的暫時死區(TDZ)</a></p>
+<p>課程網站：<br><a href="https://www.hexschool.com/">六角學院</a></p>
 </blockquote>
 ]]></content>
       <categories>
-        <category>JavaScript - Basic</category>
+        <category>Course Experience</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
-    <url>/2022/01/04/JSscope/</url>
-    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
-<span id="more"></span> 
-
-<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
-<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
-<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
-<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
-<p>接著就來看 JavaScript 如何去實現這些功能。</p>
-<hr>
-<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
-<p>  不同的宣告方式產生的全域變數也有差異：</p>
-<ul>
-<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
-<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
-<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
-<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
-<blockquote>
-<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
-</blockquote>
-<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
-<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
-<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
-<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
-<blockquote>
-<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
-</blockquote>
-<ul>
-<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
-<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
-<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
-</ul>
-<blockquote>
-<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[JS] 物件與 JSON 格式操作技巧</title>
-    <url>/2021/11/22/JSobject/</url>
-    <content><![CDATA[<p><img data-src="/images/js-json.png"></p>
-<span id="more"></span> 
-<p>物件操作和串接 API 是 JavaScript 在現代網頁開發中的精華，這篇就來介紹物件取值的基本方法和小技巧。</p>
-<h2 id="💎-物件（Object）"><a href="#💎-物件（Object）" class="headerlink" title="💎 物件（Object）"></a>💎 物件（Object）</h2><h3 id="🔸-基本結構，使用-來存放資料："><a href="#🔸-基本結構，使用-來存放資料：" class="headerlink" title="🔸 基本結構，使用{}來存放資料："></a>🔸 基本結構，使用<code>&#123;&#125;</code>來存放資料：</h3><p>(本篇文章不討論使用 create、new 和 prototype 的操作)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;&#125; // 空物件</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-內容結構是-key-value-pair-的格式："><a href="#🔸-內容結構是-key-value-pair-的格式：" class="headerlink" title="🔸 內容結構是 key/value pair 的格式："></a>🔸 內容結構是 key/value pair 的格式：</h3><ul>
-<li>前方的 key 在 JavaScript 中為物件的屬性（property）。</li>
-<li>後方的 value 可以是各種型別的值。<br>以下為一個物件範例，接下來的段落都使用這個物件來示範操作。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  a: function()&#123;return &#x27;a&#x27;&#125;,</span><br><span class="line">  b: null,</span><br><span class="line">  c: &#123;</span><br><span class="line">    d: [&#123;e: 2&#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  1: &#x27;bad&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="🔸-物件取值"><a href="#🔸-物件取值" class="headerlink" title="🔸 物件取值"></a>🔸 物件取值</h3></li>
-<li>方法１：<code>objectName.propertyName</code>，使用<code>.</code>加上屬性名稱來取值，如果是多層級的物件，就繼續往下使用<code>.</code>加屬性名稱，使用<code>.</code>時需要遵守變數名稱規範，不然會報錯。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.a); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj.a()); // &#x27;a&#x27;</span><br><span class="line">console.log(obj.c.d[0].e); // 2</span><br><span class="line">console.log(obj.1); // Uncaught SyntaxError: Unexpected number</span><br></pre></td></tr></table></figure></li>
-<li>方法２：<code>objectName[propertyName or 變數]</code><br>這種方法不受物件屬性名稱限制，並且可以帶入變數，但使用時須注意<code>[]</code>內若不是帶入變數，需要加上<code>&#39;&#39;（引號）</code>，否則找不到變數會報錯。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj[&#x27;a&#x27;]]); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj[a]); // ReferenceError: a is not defined</span><br><span class="line">console.log(obj[&#x27;c&#x27;].d[0][&#x27;e&#x27;]); // 2  (方式１、2混用)</span><br><span class="line">console.log(obj[&#x27;1&#x27;]); // &#x27;bad&#x27;</span><br><span class="line">let num = 1;</span><br><span class="line">console.log(obj[num]); // &#x27;bad&#x27;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="🔸-物件賦值"><a href="#🔸-物件賦值" class="headerlink" title="🔸 物件賦值"></a>🔸 物件賦值</h3><p>方法同取值，只要加上 <code>=</code> 就能賦值，也可以用新的屬性名稱來新增物件屬性；同樣也能用 <code>.</code> 和 <code>[]</code> 兩種方式操作。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">obj.a = 1; // 變更原有屬性 a 的值</span><br><span class="line">obj[&#x27;a&#x27;] = 2; // 變更原有屬性 a 的值</span><br><span class="line">obj.f = 0; // 原本沒有屬性 f ，新增屬性 f 且值為 0</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-物件取所有屬性"><a href="#🔸-物件取所有屬性" class="headerlink" title="🔸 物件取所有屬性"></a>🔸 物件取所有屬性</h3><p><code>Object.keys()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性名稱，且這個陣列會由小至大排序。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.keys(obj); // [&#x27;1&#x27;, &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-物件取所有屬性的值"><a href="#🔸-物件取所有屬性的值" class="headerlink" title="🔸 物件取所有屬性的值"></a>🔸 物件取所有屬性的值</h3><p><code>Object.values()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性值，且這個陣列會依照屬性名稱由小至大排序。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.values(obj); // [&#x27;bad&#x27;, ƒ, null, &#123;…&#125;]</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-物件轉陣列"><a href="#🔸-物件轉陣列" class="headerlink" title="🔸 物件轉陣列"></a>🔸 物件轉陣列</h3><p><code>Object.entries()</code> 方法會回傳一個陣列，並以二維陣列的方式列出該物件第一層（直屬於物件）的所有屬性和值。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.entries(obj); </span><br><span class="line">// [[&#x27;1&#x27;, &#x27;bad&#x27;],[&#x27;a&#x27;, ƒ], [&#x27;b&#x27;, null], [&#x27;c&#x27;, &#123;…&#125;]]</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-物件屬性檢查"><a href="#🔸-物件屬性檢查" class="headerlink" title="🔸 物件屬性檢查"></a>🔸 物件屬性檢查</h3><p>物件陣列的操作很常遇到，當物件資料不完整時，可能會造成執行中斷，這時候就需要先檢查物件的屬性是否存在：</p>
-<ul>
-<li><p>方法１：檢查該屬性是否為<code>undefined</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.x === undefined); // true</span><br></pre></td></tr></table></figure></li>
-<li><p>方法２：使用<code>hasOwnProperty()</code>方法檢查有沒有該屬性</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.hasOwnProperty(&#x27;x&#x27;)); // false</span><br></pre></td></tr></table></figure></li>
-<li><p>方法３：<strong>推薦</strong>使用<code>Optional chaining operator</code>，只要一個<code>?</code>就能判斷，並且繼續往下取值。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj?.x)); // undefined</span><br><span class="line">console.log(obj?.c?.d[0]?.e); // 2</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="💎-JSON（JavaScript-Object-Notation）"><a href="#💎-JSON（JavaScript-Object-Notation）" class="headerlink" title="💎 JSON（JavaScript Object Notation）"></a>💎 JSON（JavaScript Object Notation）</h2><p>JSON 是一種通用資料交換格式，許多程式語言都能夠解析並被廣泛使用，通常在串接 api 時都是以 JSON 格式為主，和 JavaScript 的 Object 同樣是 key/value pair 的格式，但是屬性名稱會用引號包起來，範例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;John&quot;,</span><br><span class="line">  &quot;sex&quot;: &quot;male&quot;,</span><br><span class="line">  &quot;age&quot;: 20</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-解析-JSON-格式資料"><a href="#🔸-解析-JSON-格式資料" class="headerlink" title="🔸 解析 JSON 格式資料"></a>🔸 解析 JSON 格式資料</h3><ul>
-<li><code>JSON 的型別是字串</code>，所以需要轉換成物件才能使用，JavaScript 中提供了<code>JSON.parse()</code>的方法來轉換成可以操作的物件。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let data = ...json file...</span><br><span class="line">console.log(JSON.parse(data)); Object&#123;...&#125;</span><br></pre></td></tr></table></figure></li>
-<li>過去實作 ajax 功能時使用的 XMLHttpRequest 取得的 json 資料都需要經過轉換才能使用，而現在常用的 <code>Fetch</code>、<code>Axios</code> 已經包裝成物件格式，<code>不需要再轉換</code>。</li>
-<li>JavaScript 也提供了<code>JSON.stringify()</code>的方法，可以將物件轉成 JSON 字串格式。</li>
-<li>localStorage、sessionStorage 存放資料為字串格式，如果要存放物件時需要先使用<code>JSON.stringify()</code>轉換存入，取出後再使用<code>JSON.parse()</code>轉回物件格式。</li>
-</ul>
-<blockquote>
-<p>參考資料：<br><a href="https://zh.wikipedia.org/wiki/JSON">Wiki-JSON</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">MDN-Object</a><br><a href="https://pjchender.blogspot.com/2016/01/javascriptobjectjson.html">JavaScript中物件(object)和JSON格式的轉換</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
+        <tag>Experience</tag>
       </tags>
   </entry>
   <entry>
@@ -687,6 +532,124 @@
       </tags>
   </entry>
   <entry>
+    <title>[JS] 物件與 JSON 格式操作技巧</title>
+    <url>/2021/11/22/JSobject/</url>
+    <content><![CDATA[<p><img data-src="/images/js-json.png"></p>
+<span id="more"></span> 
+<p>物件操作和串接 API 是 JavaScript 在現代網頁開發中的精華，這篇就來介紹物件取值的基本方法和小技巧。</p>
+<h2 id="💎-物件（Object）"><a href="#💎-物件（Object）" class="headerlink" title="💎 物件（Object）"></a>💎 物件（Object）</h2><h3 id="🔸-基本結構，使用-來存放資料："><a href="#🔸-基本結構，使用-來存放資料：" class="headerlink" title="🔸 基本結構，使用{}來存放資料："></a>🔸 基本結構，使用<code>&#123;&#125;</code>來存放資料：</h3><p>(本篇文章不討論使用 create、new 和 prototype 的操作)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;&#125; // 空物件</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-內容結構是-key-value-pair-的格式："><a href="#🔸-內容結構是-key-value-pair-的格式：" class="headerlink" title="🔸 內容結構是 key/value pair 的格式："></a>🔸 內容結構是 key/value pair 的格式：</h3><ul>
+<li>前方的 key 在 JavaScript 中為物件的屬性（property）。</li>
+<li>後方的 value 可以是各種型別的值。<br>以下為一個物件範例，接下來的段落都使用這個物件來示範操作。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  a: function()&#123;return &#x27;a&#x27;&#125;,</span><br><span class="line">  b: null,</span><br><span class="line">  c: &#123;</span><br><span class="line">    d: [&#123;e: 2&#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  1: &#x27;bad&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="🔸-物件取值"><a href="#🔸-物件取值" class="headerlink" title="🔸 物件取值"></a>🔸 物件取值</h3></li>
+<li>方法１：<code>objectName.propertyName</code>，使用<code>.</code>加上屬性名稱來取值，如果是多層級的物件，就繼續往下使用<code>.</code>加屬性名稱，使用<code>.</code>時需要遵守變數名稱規範，不然會報錯。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.a); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj.a()); // &#x27;a&#x27;</span><br><span class="line">console.log(obj.c.d[0].e); // 2</span><br><span class="line">console.log(obj.1); // Uncaught SyntaxError: Unexpected number</span><br></pre></td></tr></table></figure></li>
+<li>方法２：<code>objectName[propertyName or 變數]</code><br>這種方法不受物件屬性名稱限制，並且可以帶入變數，但使用時須注意<code>[]</code>內若不是帶入變數，需要加上<code>&#39;&#39;（引號）</code>，否則找不到變數會報錯。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj[&#x27;a&#x27;]]); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj[a]); // ReferenceError: a is not defined</span><br><span class="line">console.log(obj[&#x27;c&#x27;].d[0][&#x27;e&#x27;]); // 2  (方式１、2混用)</span><br><span class="line">console.log(obj[&#x27;1&#x27;]); // &#x27;bad&#x27;</span><br><span class="line">let num = 1;</span><br><span class="line">console.log(obj[num]); // &#x27;bad&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🔸-物件賦值"><a href="#🔸-物件賦值" class="headerlink" title="🔸 物件賦值"></a>🔸 物件賦值</h3><p>方法同取值，只要加上 <code>=</code> 就能賦值，也可以用新的屬性名稱來新增物件屬性；同樣也能用 <code>.</code> 和 <code>[]</code> 兩種方式操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">obj.a = 1; // 變更原有屬性 a 的值</span><br><span class="line">obj[&#x27;a&#x27;] = 2; // 變更原有屬性 a 的值</span><br><span class="line">obj.f = 0; // 原本沒有屬性 f ，新增屬性 f 且值為 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-物件取所有屬性"><a href="#🔸-物件取所有屬性" class="headerlink" title="🔸 物件取所有屬性"></a>🔸 物件取所有屬性</h3><p><code>Object.keys()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性名稱，且這個陣列會由小至大排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.keys(obj); // [&#x27;1&#x27;, &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-物件取所有屬性的值"><a href="#🔸-物件取所有屬性的值" class="headerlink" title="🔸 物件取所有屬性的值"></a>🔸 物件取所有屬性的值</h3><p><code>Object.values()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性值，且這個陣列會依照屬性名稱由小至大排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.values(obj); // [&#x27;bad&#x27;, ƒ, null, &#123;…&#125;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-物件轉陣列"><a href="#🔸-物件轉陣列" class="headerlink" title="🔸 物件轉陣列"></a>🔸 物件轉陣列</h3><p><code>Object.entries()</code> 方法會回傳一個陣列，並以二維陣列的方式列出該物件第一層（直屬於物件）的所有屬性和值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.entries(obj); </span><br><span class="line">// [[&#x27;1&#x27;, &#x27;bad&#x27;],[&#x27;a&#x27;, ƒ], [&#x27;b&#x27;, null], [&#x27;c&#x27;, &#123;…&#125;]]</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-物件屬性檢查"><a href="#🔸-物件屬性檢查" class="headerlink" title="🔸 物件屬性檢查"></a>🔸 物件屬性檢查</h3><p>物件陣列的操作很常遇到，當物件資料不完整時，可能會造成執行中斷，這時候就需要先檢查物件的屬性是否存在：</p>
+<ul>
+<li><p>方法１：檢查該屬性是否為<code>undefined</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.x === undefined); // true</span><br></pre></td></tr></table></figure></li>
+<li><p>方法２：使用<code>hasOwnProperty()</code>方法檢查有沒有該屬性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.hasOwnProperty(&#x27;x&#x27;)); // false</span><br></pre></td></tr></table></figure></li>
+<li><p>方法３：<strong>推薦</strong>使用<code>Optional chaining operator</code>，只要一個<code>?</code>就能判斷，並且繼續往下取值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj?.x)); // undefined</span><br><span class="line">console.log(obj?.c?.d[0]?.e); // 2</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="💎-JSON（JavaScript-Object-Notation）"><a href="#💎-JSON（JavaScript-Object-Notation）" class="headerlink" title="💎 JSON（JavaScript Object Notation）"></a>💎 JSON（JavaScript Object Notation）</h2><p>JSON 是一種通用資料交換格式，許多程式語言都能夠解析並被廣泛使用，通常在串接 api 時都是以 JSON 格式為主，和 JavaScript 的 Object 同樣是 key/value pair 的格式，但是屬性名稱會用引號包起來，範例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;John&quot;,</span><br><span class="line">  &quot;sex&quot;: &quot;male&quot;,</span><br><span class="line">  &quot;age&quot;: 20</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-解析-JSON-格式資料"><a href="#🔸-解析-JSON-格式資料" class="headerlink" title="🔸 解析 JSON 格式資料"></a>🔸 解析 JSON 格式資料</h3><ul>
+<li><code>JSON 的型別是字串</code>，所以需要轉換成物件才能使用，JavaScript 中提供了<code>JSON.parse()</code>的方法來轉換成可以操作的物件。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let data = ...json file...</span><br><span class="line">console.log(JSON.parse(data)); Object&#123;...&#125;</span><br></pre></td></tr></table></figure></li>
+<li>過去實作 ajax 功能時使用的 XMLHttpRequest 取得的 json 資料都需要經過轉換才能使用，而現在常用的 <code>Fetch</code>、<code>Axios</code> 已經包裝成物件格式，<code>不需要再轉換</code>。</li>
+<li>JavaScript 也提供了<code>JSON.stringify()</code>的方法，可以將物件轉成 JSON 字串格式。</li>
+<li>localStorage、sessionStorage 存放資料為字串格式，如果要存放物件時需要先使用<code>JSON.stringify()</code>轉換存入，取出後再使用<code>JSON.parse()</code>轉回物件格式。</li>
+</ul>
+<blockquote>
+<p>參考資料：<br><a href="https://zh.wikipedia.org/wiki/JSON">Wiki-JSON</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">MDN-Object</a><br><a href="https://pjchender.blogspot.com/2016/01/javascriptobjectjson.html">JavaScript中物件(object)和JSON格式的轉換</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
+    <url>/2022/01/04/JSscope/</url>
+    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
+<span id="more"></span> 
+
+<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
+<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
+<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
+<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
+<p>接著就來看 JavaScript 如何去實現這些功能。</p>
+<hr>
+<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
+<p>  不同的宣告方式產生的全域變數也有差異：</p>
+<ul>
+<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
+<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
+<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
+<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
+<blockquote>
+<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
+</blockquote>
+<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
+<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
+<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
+<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
+<blockquote>
+<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
+</blockquote>
+<ul>
+<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
+<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
+<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
+</ul>
+<blockquote>
+<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 搞懂 Promise、Async、Await</title>
+    <url>/2022/03/17/async/</url>
+    <content><![CDATA[<p>WIP…</p>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[JS] undefined 和 null 的差異</title>
     <url>/2021/11/18/JSundefined/</url>
     <content><![CDATA[<p><img data-src="/images/js-null.png"></p>
@@ -764,150 +727,98 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 變數宣告方式：let、const、var</title>
-    <url>/2021/11/16/JSvariable/</url>
-    <content><![CDATA[<p><img data-src="/images/js-variables.png"></p>
-<span id="more"></span> 
-
-<p>JavaScript 過去只有 <code>var</code> 一種變數宣告方式，直到 2015 年發表的 ECMAScript 2015（ES2015），第 6 版，又被稱為 ECMAScript 6（通常簡稱為 ES6 ），才有 <code>let</code> 和 <code>const</code> 兩種新的變數宣告方式，這個版本有相當多的革新，現在常用的箭頭函式、樣板字串…等都包含在其中。</p>
-<blockquote>
-<p>參考資料： <a href="https://zh.wikipedia.org/wiki/ECMAScript">Wiki - ECMAScript</a></p>
-</blockquote>
+    <title>[Node.JS] 打造 todolist api 1 - 行前準備</title>
+    <url>/2022/02/24/nodejs2/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span>
+<p>上一篇文章完成了網頁伺服器服務的建置，這一次就更進一步的製作一個簡單的 todolist API，讓他有新增、修改、刪除的功能。</p>
 <hr>
-<h2 id="💎-Can-I-Use"><a href="#💎-Can-I-Use" class="headerlink" title="💎 Can I Use?"></a>💎 Can I Use?</h2><p>雖然 2015 年距今已經超過 6 年了，但是仍有些企業或公司在使用 IE 這類過時的瀏覽器，<code>let</code> 和 <code>const</code> 在 IE 11 只有部分支援、 IE 10 以下版本則是完全不支援，如有支援需求就需要搭配 Babel 來轉換成兼容的程式碼。</p>
-<blockquote>
-<p>參考資料： <a href="https://caniuse.com/">Can I Use</a></p>
-</blockquote>
-<hr>
-<h2 id="💎-變數宣告方式的差異"><a href="#💎-變數宣告方式的差異" class="headerlink" title="💎 變數宣告方式的差異"></a>💎 變數宣告方式的差異</h2><p><code>var</code> 規範較鬆，有許多小陷阱需要小心使用，<code>let</code> 和 <code>const</code> 有了進一步的規範，可以針對不同需求運用，使用上較安全，兩者間有５個主要的差異在下個段落逐一說明。：</p>
+<h2 id="💎-流程、架構規劃"><a href="#💎-流程、架構規劃" class="headerlink" title="💎 流程、架構規劃"></a>💎 流程、架構規劃</h2><p>六角學院的課程中都會以流程圖的方式，這對於循序漸進完成程式功能會非常有幫助，在完成第一個版本後就可以嘗試重構和模組化，下面是我整理出的結構，每個人在撰寫程式碼時的構思不盡相同，可以自行規劃。</p>
 <ul>
-<li>可否重複宣告</li>
-<li>可否重新賦值</li>
-<li>是否需要初始值</li>
-<li>作用域的範圍</li>
-<li>提昇（Hoisting）機制的差異</li>
+<li><code>工具</code><ul>
+<li>NPM/Yarn：套件管理工具</li>
+<li>UUID 套件：用來建立待辦事項的 id</li>
+<li>nodemon 套件：建立可即時更新的本地伺服器</li>
+<li>POSTMAN 軟體：模擬 http 請求，做功能測試</li>
+<li>Git/GitHub：版本控制</li>
+<li>代管平台（heroku）：api 服務上線</li>
+</ul>
+</li>
+<li><code>server</code>：啟用 api 的主要程式碼<ul>
+<li>http：使用 node.js 原生的模組</li>
+<li>headers：回傳 json 格式，開放跨域（CORS），提供 route 的五種請求方法</li>
+<li>port：要加入環境變數（process.env.PORT）</li>
+</ul>
+</li>
+<li><code>route</code>：依請求決定要執行的動作<ul>
+<li>OPTIONS：回應表頭就好</li>
+<li>GET：回應全部待辦</li>
+<li>POST：新增一筆待辦、回應全部待辦，需要檢查 body 內容</li>
+<li>DELETE<ul>
+<li>單筆：刪除一筆待辦、回應全部待辦，需要檢查 url 的 id</li>
+<li>全部：刪除全部待辦、回應全部待辦</li>
+</ul>
+</li>
+<li>PATCH：修改一筆待辦、回應全部待辦，需要檢查 url 的 id、body 內容</li>
+</ul>
+</li>
+<li><code>response</code>：回傳資料優化<ul>
+<li>success：回傳（無內容或待辦資料）</li>
+<li>false：回傳錯誤代碼及錯誤訊息</li>
+</ul>
+</li>
+<li><code>constants</code>：常用的常數<ul>
+<li>（視實際撰寫的重複使用狀況獨立出來）</li>
+</ul>
+</li>
 </ul>
 <hr>
-<h3 id="🔸-1、重複宣告"><a href="#🔸-1、重複宣告" class="headerlink" title="🔸 1、重複宣告"></a>🔸 1、重複宣告</h3><ul>
-<li><p><code>var</code> 可以重複宣告同一個變數名稱，後者會覆蓋前者，而且程式不會報錯，使用起來較危險，萬一不小心使用了相同的名稱，可能造成其他段落程式碼出錯。</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var a = 2;</span><br><span class="line">console.log(a); // 2</span><br></pre></td></tr></table></figure></li>
-<li><p><code>let</code> 和 <code>const</code> 不允許重複宣告，使用起來較安全。</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let b = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">// Uncaught SyntaxError: Identifier &#x27;b&#x27; has already been declared</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h3 id="🔸-2、重新賦值"><a href="#🔸-2、重新賦值" class="headerlink" title="🔸 2、重新賦值"></a>🔸 2、重新賦值</h3><ul>
-<li><p>如果不知道『常數』是什麼，可以先看一下維基百科的說明。</p>
-<blockquote>
-<p>摘錄自維基百科：<br>常數，又稱定數（Constant），是指一個數值固定不變的常量，例如圓周率，與之相反的是變數。</p>
-<p>參考資料： <a href="https://zh.wikipedia.org/wiki/%E5%B8%B8%E6%95%B0">Wiki - 常數</a>   </p>
+<h2 id="💎-建立專案環境"><a href="#💎-建立專案環境" class="headerlink" title="💎 建立專案環境"></a>💎 建立專案環境</h2><ol>
+<li>建立一個新專案資料夾。</li>
+<li>執行 <code>npm init</code> 指令來製作 package.json 檔案。</li>
+<li>執行 <code>npm i uuid</code> 來安裝 UUID 套件（後續待辦事項的編號使用）。<blockquote>
+<p><a href="https://zh.wikipedia.org/zh-tw/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">Wiki - UUID</a><br><a href="https://www.npmjs.com/package/uuid">npm - uuid</a></p>
 </blockquote>
 </li>
-<li><p>過去只有 <code>var</code> 時，如果想要宣告一個不能被變更的常數，通常會用全部大寫，加上 <code>_</code> 連接單字來標示，但是名稱只能幫助辨識，實際操作並不具有常數的限制。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var DO_NOT_TOUCH_ME = &#x27;X&#x27;;</span><br><span class="line">DO_NOT_TOUCH_ME = &#x27;我偏要改&#x27;;</span><br><span class="line">console.log(DO_NOT_TOUCH_ME); // 我偏要改</span><br></pre></td></tr></table></figure></li>
-<li><p>ES6 提供的 <code>const</code> 宣告方式可以實際的宣告一個常數，有了 <code>const</code> 之後不需要使用大寫格式命名來區別是不是常數，看宣告方式即可（視團隊開發時的規範而定）；而 <code>let</code> 則是和 <code>var</code> 一樣可以重新賦值。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const doNotTouchMe = &#x27;X&#x27;;</span><br><span class="line">doNotTouchMe = &#x27;我偏要碰&#x27;;</span><br><span class="line">// Uncaught TypeError: Assignment to constant variable.</span><br></pre></td></tr></table></figure></li>
-<li><p><code>const</code> 的使用時機：對 JS 新手來說，大概只會想到圓周率、太陽數量…等，在撰寫時遇到下列的情形都建議使用 <code>const</code> 宣告。</p>
+<li>在專案資料夾中建立一個 server.js 檔案。</li>
+<li>先參考官方範例在 server.js 內撰寫啟用伺服器的程式碼：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>段落測試：</p>
+<ol>
+<li>執行 <code>nodemon server.js</code> 測試是否有錯誤資訊（如果環境沒有 nodemon，請執行 <code>npm i -g nodemon</code> 全域安裝）</li>
+<li>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:8000</code>，確認是否正常顯示回傳的資料。</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="💎-伺服器設定調整"><a href="#💎-伺服器設定調整" class="headerlink" title="💎 伺服器設定調整"></a>💎 伺服器設定調整</h2><ol>
+<li><strong>修改預設 header</strong></li>
+</ol>
 <ul>
-<li><code>DOM</code>：使用 <code>querySelector</code> 這類方法取得的 DOM 如果被改變，容易造成邏輯混亂，維護困難。</li>
-<li><code>陣列</code>：使用陣列方法來操作，避免被 <code>=</code> 賦值給覆蓋掉。</li>
-<li><code>物件</code>：使用物件方法來操作，避免被 <code>=</code> 賦值給覆蓋掉。</li>
-<li><code>函式表示式</code>：避免被 <code>=</code> 賦值給覆蓋掉。</li>
+<li>todolist api 設計成回傳 json 檔，所以要把 <code>Content-Type</code> 改成 <code>application/json</code>。</li>
+<li>加入開放哪些 <code>Headers</code> 和 <code>Methods</code> 的設定。</li>
+<li>加入允許所有來源的跨域連線請求（<code>CORS</code>）。<blockquote>
+<p>跨域請求可以參考 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">MDN - CORS</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// header 獨立成一個常數</span></span><br><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>: <span class="string">&#x27;Content-Type, Authorization, Content-Length, X-Requested-With&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;PATCH, POST, GET, OPTIONS, DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改成使用變數</span></span><br><span class="line">    res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">    <span class="comment">// 修改成回傳 json 格式的內容</span></span><br><span class="line">    <span class="comment">// 此處需要注意，網路封包傳送的資料只有純字串，需要先轉換</span></span><br><span class="line">    res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">       <span class="string">&quot;test&quot;</span>: <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    &#125;));</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li><strong>修改預設 port</strong></li>
+</ol>
+<ul>
+<li>加入環境變數，佈署到代管服務才能正常運行。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; PORT = <span class="number">3000</span> &#125; = process.env;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
 </ul>
 <blockquote>
-<p><strong>延伸問題：</strong><br>使用 const 宣告的變數應該不能被變更才對，為什麼『陣列』和『物件』要使用 const 來宣告？<br><strong>Ans：</strong><br>變數裡面存放的陣列和物件並不是實體，而是指向實體的記憶體位置，就像是變數名稱存放了帝寶的地址，透過這個變數名稱的值能到達帝寶的實體位置，對大樓做變更操作。<br>詳細可以參考我的另一篇文章 <a href="https://stark920.github.io/2021/11/17/JScallby/">參數傳遞方式 Call by what?</a></p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h3 id="🔸-3、初始值"><a href="#🔸-3、初始值" class="headerlink" title="🔸 3、初始值"></a>🔸 3、初始值</h3><ul>
-<li>常數是不能更動的值，在一開始設定好值也是相當合理，因此 <code>const</code> 在宣告的時候一定要賦予值，<code>var</code> 和 <code>let</code> 則無此限制。  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const a;</span><br><span class="line">// Uncaught SyntaxError: Missing initializer in const declaration</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h3 id="🔸-4、作用域"><a href="#🔸-4、作用域" class="headerlink" title="🔸 4、作用域"></a>🔸 4、作用域</h3><ul>
-<li>作用域（Scope）是變數可以被使用的區域，也代表著在相同的作用域才會有重複命名的衝突問題，只要作用域不同就可以宣告相同名稱的變數。<ul>
-<li><code>var</code>：函式作用域，只在 function 間區隔作用域，範圍大，不好區分。</li>
-<li><code>let、const</code>：區塊作用域，在 {…}（大括弧）間區隔作用域，範圍小，容易區分。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>詳細說明可以參考我的另一篇文章： <a href="https://stark920.github.io/2022/01/04/JSscope">[JS] 作用域（Scope）與範圍鏈（Scope Chain）</a></p>
+<p>段落測試：<br>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:3000</code>，確認是否正常顯示回傳的資料。</p>
 </blockquote>
 <hr>
-<h3 id="🔸-5、提昇（Hoisting）"><a href="#🔸-5、提昇（Hoisting）" class="headerlink" title="🔸 5、提昇（Hoisting）"></a>🔸 5、提昇（Hoisting）</h3><ul>
-<li>JavaScript 在進入執行階段前會將文件中所有宣告的變數、函式（函式陳述式）提前到最上方，差異如下：<ul>
-<li><code>var</code>：變數提到最上方後<code>會實體化</code>（寫入記憶體，但尚未賦值），在實際執行到該行變數宣告的程式碼前<code>可以被取用</code>（取值結果為 undefined）。</li>
-<li><code>let、const</code>：變數提前到最上方後<code>不會實體化</code>，在實際執行到該行變數宣告的程式碼前<code>不可以取用</code>（取值結果為 執行階段錯誤），這段不能取用的期間又稱為<code>暫時性死區（TDZ）</code>。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>詳細說明可以參考我的另一篇文章： <a href="https://stark920.github.io/2021/11/23/JShoisting">[JS] 提昇（Hoisting）機制</a></p>
-</blockquote>
-<hr>
-<h2 id="💎-總結"><a href="#💎-總結" class="headerlink" title="💎 總結"></a>💎 總結</h2><p>整理後的變數宣告方式差異列表如下：</p>
-<table>
-<thead>
-<tr>
-<th align="center"><img width=100/></th>
-<th align="center">var<img width=100/></th>
-<th align="center">let<img width=100/></th>
-<th align="center">const<img width=100/></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">重複宣告</td>
-<td align="center">✅</td>
-<td align="center">❌</td>
-<td align="center">❌</td>
-</tr>
-<tr>
-<td align="center">重新賦值</td>
-<td align="center">✅</td>
-<td align="center">✅</td>
-<td align="center">❌</td>
-</tr>
-<tr>
-<td align="center">強制賦予初始值</td>
-<td align="center">❌</td>
-<td align="center">❌</td>
-<td align="center">✅</td>
-</tr>
-<tr>
-<td align="center">作用域</td>
-<td align="center">function</td>
-<td align="center">{ }</td>
-<td align="center">{ }</td>
-</tr>
-<tr>
-<td align="center">提升機制</td>
-<td align="center">可被取用</td>
-<td align="center">TDZ</td>
-<td align="center">TDZ</td>
-</tr>
-</tbody></table>
-<p>以上是我對變數型別的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝！</p>
-<blockquote>
-<p>參考資料： <a href="https://www.youtube.com/watch?v=FGdKdn_CnWo&ab_channel=%E5%85%AD%E8%A7%92%E5%AD%B8%E9%99%A2">六角學院－JavaScript 那個 let, const, var 到底差在哪？</a></p>
-</blockquote>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇文章已經完成基本的環境建立，並且整理出程式需要撰寫的內容，下一篇文章就可以依照這個結構逐步完成所有的功能。</p>
 ]]></content>
       <categories>
-        <category>JavaScript - Basic</category>
+        <category>Node.js</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[JS] 搞懂 Promise、Async、Await</title>
-    <url>/2022/03/17/async/</url>
-    <content><![CDATA[<p>WIP…</p>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
+        <tag>Node.js</tag>
       </tags>
   </entry>
   <entry>
@@ -1019,101 +930,6 @@
 </ul>
 <hr>
 <h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇的筆記記錄了如何使用 Node.js 本地建立伺服器、透過 Postman 檢查 Request &amp; Response，接下來會記錄如何製作一個簡單的 todolist api。</p>
-]]></content>
-      <categories>
-        <category>Node.js</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 打造 todolist api 1 - 行前準備</title>
-    <url>/2022/02/24/nodejs2/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span>
-<p>上一篇文章完成了網頁伺服器服務的建置，這一次就更進一步的製作一個簡單的 todolist API，讓他有新增、修改、刪除的功能。</p>
-<hr>
-<h2 id="💎-流程、架構規劃"><a href="#💎-流程、架構規劃" class="headerlink" title="💎 流程、架構規劃"></a>💎 流程、架構規劃</h2><p>六角學院的課程中都會以流程圖的方式，這對於循序漸進完成程式功能會非常有幫助，在完成第一個版本後就可以嘗試重構和模組化，下面是我整理出的結構，每個人在撰寫程式碼時的構思不盡相同，可以自行規劃。</p>
-<ul>
-<li><code>工具</code><ul>
-<li>NPM/Yarn：套件管理工具</li>
-<li>UUID 套件：用來建立待辦事項的 id</li>
-<li>nodemon 套件：建立可即時更新的本地伺服器</li>
-<li>POSTMAN 軟體：模擬 http 請求，做功能測試</li>
-<li>Git/GitHub：版本控制</li>
-<li>代管平台（heroku）：api 服務上線</li>
-</ul>
-</li>
-<li><code>server</code>：啟用 api 的主要程式碼<ul>
-<li>http：使用 node.js 原生的模組</li>
-<li>headers：回傳 json 格式，開放跨域（CORS），提供 route 的五種請求方法</li>
-<li>port：要加入環境變數（process.env.PORT）</li>
-</ul>
-</li>
-<li><code>route</code>：依請求決定要執行的動作<ul>
-<li>OPTIONS：回應表頭就好</li>
-<li>GET：回應全部待辦</li>
-<li>POST：新增一筆待辦、回應全部待辦，需要檢查 body 內容</li>
-<li>DELETE<ul>
-<li>單筆：刪除一筆待辦、回應全部待辦，需要檢查 url 的 id</li>
-<li>全部：刪除全部待辦、回應全部待辦</li>
-</ul>
-</li>
-<li>PATCH：修改一筆待辦、回應全部待辦，需要檢查 url 的 id、body 內容</li>
-</ul>
-</li>
-<li><code>response</code>：回傳資料優化<ul>
-<li>success：回傳（無內容或待辦資料）</li>
-<li>false：回傳錯誤代碼及錯誤訊息</li>
-</ul>
-</li>
-<li><code>constants</code>：常用的常數<ul>
-<li>（視實際撰寫的重複使用狀況獨立出來）</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-建立專案環境"><a href="#💎-建立專案環境" class="headerlink" title="💎 建立專案環境"></a>💎 建立專案環境</h2><ol>
-<li>建立一個新專案資料夾。</li>
-<li>執行 <code>npm init</code> 指令來製作 package.json 檔案。</li>
-<li>執行 <code>npm i uuid</code> 來安裝 UUID 套件（後續待辦事項的編號使用）。<blockquote>
-<p><a href="https://zh.wikipedia.org/zh-tw/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">Wiki - UUID</a><br><a href="https://www.npmjs.com/package/uuid">npm - uuid</a></p>
-</blockquote>
-</li>
-<li>在專案資料夾中建立一個 server.js 檔案。</li>
-<li>先參考官方範例在 server.js 內撰寫啟用伺服器的程式碼：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p>段落測試：</p>
-<ol>
-<li>執行 <code>nodemon server.js</code> 測試是否有錯誤資訊（如果環境沒有 nodemon，請執行 <code>npm i -g nodemon</code> 全域安裝）</li>
-<li>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:8000</code>，確認是否正常顯示回傳的資料。</li>
-</ol>
-</blockquote>
-<hr>
-<h2 id="💎-伺服器設定調整"><a href="#💎-伺服器設定調整" class="headerlink" title="💎 伺服器設定調整"></a>💎 伺服器設定調整</h2><ol>
-<li><strong>修改預設 header</strong></li>
-</ol>
-<ul>
-<li>todolist api 設計成回傳 json 檔，所以要把 <code>Content-Type</code> 改成 <code>application/json</code>。</li>
-<li>加入開放哪些 <code>Headers</code> 和 <code>Methods</code> 的設定。</li>
-<li>加入允許所有來源的跨域連線請求（<code>CORS</code>）。<blockquote>
-<p>跨域請求可以參考 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">MDN - CORS</a></p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// header 獨立成一個常數</span></span><br><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>: <span class="string">&#x27;Content-Type, Authorization, Content-Length, X-Requested-With&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;PATCH, POST, GET, OPTIONS, DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改成使用變數</span></span><br><span class="line">    res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">    <span class="comment">// 修改成回傳 json 格式的內容</span></span><br><span class="line">    <span class="comment">// 此處需要注意，網路封包傳送的資料只有純字串，需要先轉換</span></span><br><span class="line">    res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">       <span class="string">&quot;test&quot;</span>: <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    &#125;));</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<ol start="2">
-<li><strong>修改預設 port</strong></li>
-</ol>
-<ul>
-<li>加入環境變數，佈署到代管服務才能正常運行。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; PORT = <span class="number">3000</span> &#125; = process.env;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>段落測試：<br>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:3000</code>，確認是否正常顯示回傳的資料。</p>
-</blockquote>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇文章已經完成基本的環境建立，並且整理出程式需要撰寫的內容，下一篇文章就可以依照這個結構逐步完成所有的功能。</p>
 ]]></content>
       <categories>
         <category>Node.js</category>
@@ -1332,6 +1148,190 @@
       </categories>
       <tags>
         <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 提昇（Hoisting）機制</title>
+    <url>/2021/11/23/JShoisting/</url>
+    <content><![CDATA[<p><img data-src="/images/js-hoisting.png"></p>
+<span id="more"></span> 
+<p>如果今天想要使用電腦，該怎麼做？</p>
+<p>你的答案很可能是，按下電腦開機鍵就好，但實際上得先有主機、滑鼠、鍵盤、螢幕、電源、作業系統…等軟、硬體環境，才有辦法使用電腦。</p>
+<p>JavaScript 雖然是直譯式語言（不需透過編譯器轉譯成可執行檔），但是『執行』之前，還是需要先把原本字元組成的程式碼編譯成執行環境（就像是上面提到的準備滑鼠、鍵盤…等等），而其中一個步驟就是先將 <code>變數</code> 和 <code>函數</code> 的名稱放入記憶體，這種行為在 ECMA 的文件中沒有明確定義專有名詞，一般會用 <code>提昇（Hoisting）</code>來稱呼。</p>
+<blockquote>
+<p>參考文章：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting">MDN - 提升（Hoisting）</a></p>
+</blockquote>
+<hr>
+<p>提昇（Hoisting）的方式會因為變數類型有所不同：</p>
+<h2 id="💎-var、function："><a href="#💎-var、function：" class="headerlink" title="💎 var、function："></a>💎 var、function：</h2><p>按照逐行執行的邏輯，下面前兩行程式碼會因為還沒有產生這個變數而出現錯誤，但實際上並不會出現任何錯誤。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(foo); // foo()&#123;return &#x27;Hello&#x27;;&#125;</span><br><span class="line"></span><br><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>從結果回推實際執行的順序會像下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(a);</span><br><span class="line">console.log(foo);</span><br></pre></td></tr></table></figure>
+
+<p>這次做小調整，改成賦予 a 變數一個值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">var a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
+
+<p>雖然沒有出現錯誤，但是 a 的值並沒有跟著被提昇，回推的執行順序會像下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a</span><br><span class="line">console.log(a); // undefined</span><br><span class="line">a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
+
+<p>再看下面這段程式碼，想想看結果是什麼：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b = 1;</span><br><span class="line">var b;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p>如果不清楚運作 JavaScript 的運作機制，可能會認為答案是 <code>undefined</code>，覺得後者蓋掉前者，但答案其實是 <code>1</code>，回推後的實際執行會像是下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b;</span><br><span class="line">var b;</span><br><span class="line">b = 1;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p>『重複宣告』加上『提昇機制』是不是讓人覺得很坑呢？</p>
+<h2 id="💎-let、const："><a href="#💎-let、const：" class="headerlink" title="💎 let、const："></a>💎 let、const：</h2><p>ES6 版本提供了 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，這兩種新的方式解決了 <code>var</code> 的許多奇怪問題。</p>
+<p>使用 <code>let</code> 和 <code>const</code> 宣告的變數名稱在 JavaScript 從『環境建立』一直執行到『變數實際存在的那一行程式碼』的這段期間，變數名稱都是無法被取用的，這段期間稱為 Temporal Dead Zone（TDZ），暫時性死區。</p>
+<p>這個機制就像是我買了對號座的票（宣告），這個位置的票就不能被其他人購買（不能重複宣告），但是在我坐上車位前（實際執行的那段程式碼），都無法在這個位置找到我（TDZ鎖定）。</p>
+<p>以下是使用 <code>let</code> 或 <code>const</code> 宣告的輸出結果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(x); // x is not defined</span><br><span class="line">let x = 1;</span><br><span class="line">console.log(x); // 前面已經因為執行階段出錯終止，不會執行到這裡</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考文章<br>1、<a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a><br>2、<a href="https://eddychang.me/es6-tdz">理解ES6中的暫時死區(TDZ)</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 變數宣告方式：let、const、var</title>
+    <url>/2021/11/16/JSvariable/</url>
+    <content><![CDATA[<p><img data-src="/images/js-variables.png"></p>
+<span id="more"></span> 
+
+<p>JavaScript 過去只有 <code>var</code> 一種變數宣告方式，直到 2015 年發表的 ECMAScript 2015（ES2015），第 6 版，又被稱為 ECMAScript 6（通常簡稱為 ES6 ），才有 <code>let</code> 和 <code>const</code> 兩種新的變數宣告方式，這個版本有相當多的革新，現在常用的箭頭函式、樣板字串…等都包含在其中。</p>
+<blockquote>
+<p>參考資料： <a href="https://zh.wikipedia.org/wiki/ECMAScript">Wiki - ECMAScript</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-Can-I-Use"><a href="#💎-Can-I-Use" class="headerlink" title="💎 Can I Use?"></a>💎 Can I Use?</h2><p>雖然 2015 年距今已經超過 6 年了，但是仍有些企業或公司在使用 IE 這類過時的瀏覽器，<code>let</code> 和 <code>const</code> 在 IE 11 只有部分支援、 IE 10 以下版本則是完全不支援，如有支援需求就需要搭配 Babel 來轉換成兼容的程式碼。</p>
+<blockquote>
+<p>參考資料： <a href="https://caniuse.com/">Can I Use</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-變數宣告方式的差異"><a href="#💎-變數宣告方式的差異" class="headerlink" title="💎 變數宣告方式的差異"></a>💎 變數宣告方式的差異</h2><p><code>var</code> 規範較鬆，有許多小陷阱需要小心使用，<code>let</code> 和 <code>const</code> 有了進一步的規範，可以針對不同需求運用，使用上較安全，兩者間有５個主要的差異在下個段落逐一說明。：</p>
+<ul>
+<li>可否重複宣告</li>
+<li>可否重新賦值</li>
+<li>是否需要初始值</li>
+<li>作用域的範圍</li>
+<li>提昇（Hoisting）機制的差異</li>
+</ul>
+<hr>
+<h3 id="🔸-1、重複宣告"><a href="#🔸-1、重複宣告" class="headerlink" title="🔸 1、重複宣告"></a>🔸 1、重複宣告</h3><ul>
+<li><p><code>var</code> 可以重複宣告同一個變數名稱，後者會覆蓋前者，而且程式不會報錯，使用起來較危險，萬一不小心使用了相同的名稱，可能造成其他段落程式碼出錯。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var a = 2;</span><br><span class="line">console.log(a); // 2</span><br></pre></td></tr></table></figure></li>
+<li><p><code>let</code> 和 <code>const</code> 不允許重複宣告，使用起來較安全。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let b = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">// Uncaught SyntaxError: Identifier &#x27;b&#x27; has already been declared</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="🔸-2、重新賦值"><a href="#🔸-2、重新賦值" class="headerlink" title="🔸 2、重新賦值"></a>🔸 2、重新賦值</h3><ul>
+<li><p>如果不知道『常數』是什麼，可以先看一下維基百科的說明。</p>
+<blockquote>
+<p>摘錄自維基百科：<br>常數，又稱定數（Constant），是指一個數值固定不變的常量，例如圓周率，與之相反的是變數。</p>
+<p>參考資料： <a href="https://zh.wikipedia.org/wiki/%E5%B8%B8%E6%95%B0">Wiki - 常數</a>   </p>
+</blockquote>
+</li>
+<li><p>過去只有 <code>var</code> 時，如果想要宣告一個不能被變更的常數，通常會用全部大寫，加上 <code>_</code> 連接單字來標示，但是名稱只能幫助辨識，實際操作並不具有常數的限制。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var DO_NOT_TOUCH_ME = &#x27;X&#x27;;</span><br><span class="line">DO_NOT_TOUCH_ME = &#x27;我偏要改&#x27;;</span><br><span class="line">console.log(DO_NOT_TOUCH_ME); // 我偏要改</span><br></pre></td></tr></table></figure></li>
+<li><p>ES6 提供的 <code>const</code> 宣告方式可以實際的宣告一個常數，有了 <code>const</code> 之後不需要使用大寫格式命名來區別是不是常數，看宣告方式即可（視團隊開發時的規範而定）；而 <code>let</code> 則是和 <code>var</code> 一樣可以重新賦值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const doNotTouchMe = &#x27;X&#x27;;</span><br><span class="line">doNotTouchMe = &#x27;我偏要碰&#x27;;</span><br><span class="line">// Uncaught TypeError: Assignment to constant variable.</span><br></pre></td></tr></table></figure></li>
+<li><p><code>const</code> 的使用時機：對 JS 新手來說，大概只會想到圓周率、太陽數量…等，在撰寫時遇到下列的情形都建議使用 <code>const</code> 宣告。</p>
+<ul>
+<li><code>DOM</code>：使用 <code>querySelector</code> 這類方法取得的 DOM 如果被改變，容易造成邏輯混亂，維護困難。</li>
+<li><code>陣列</code>：使用陣列方法來操作，避免被 <code>=</code> 賦值給覆蓋掉。</li>
+<li><code>物件</code>：使用物件方法來操作，避免被 <code>=</code> 賦值給覆蓋掉。</li>
+<li><code>函式表示式</code>：避免被 <code>=</code> 賦值給覆蓋掉。</li>
+</ul>
+<blockquote>
+<p><strong>延伸問題：</strong><br>使用 const 宣告的變數應該不能被變更才對，為什麼『陣列』和『物件』要使用 const 來宣告？<br><strong>Ans：</strong><br>變數裡面存放的陣列和物件並不是實體，而是指向實體的記憶體位置，就像是變數名稱存放了帝寶的地址，透過這個變數名稱的值能到達帝寶的實體位置，對大樓做變更操作。<br>詳細可以參考我的另一篇文章 <a href="https://stark920.github.io/2021/11/17/JScallby/">參數傳遞方式 Call by what?</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="🔸-3、初始值"><a href="#🔸-3、初始值" class="headerlink" title="🔸 3、初始值"></a>🔸 3、初始值</h3><ul>
+<li>常數是不能更動的值，在一開始設定好值也是相當合理，因此 <code>const</code> 在宣告的時候一定要賦予值，<code>var</code> 和 <code>let</code> 則無此限制。  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const a;</span><br><span class="line">// Uncaught SyntaxError: Missing initializer in const declaration</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="🔸-4、作用域"><a href="#🔸-4、作用域" class="headerlink" title="🔸 4、作用域"></a>🔸 4、作用域</h3><ul>
+<li>作用域（Scope）是變數可以被使用的區域，也代表著在相同的作用域才會有重複命名的衝突問題，只要作用域不同就可以宣告相同名稱的變數。<ul>
+<li><code>var</code>：函式作用域，只在 function 間區隔作用域，範圍大，不好區分。</li>
+<li><code>let、const</code>：區塊作用域，在 {…}（大括弧）間區隔作用域，範圍小，容易區分。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>詳細說明可以參考我的另一篇文章： <a href="https://stark920.github.io/2022/01/04/JSscope">[JS] 作用域（Scope）與範圍鏈（Scope Chain）</a></p>
+</blockquote>
+<hr>
+<h3 id="🔸-5、提昇（Hoisting）"><a href="#🔸-5、提昇（Hoisting）" class="headerlink" title="🔸 5、提昇（Hoisting）"></a>🔸 5、提昇（Hoisting）</h3><ul>
+<li>JavaScript 在進入執行階段前會將文件中所有宣告的變數、函式（函式陳述式）提前到最上方，差異如下：<ul>
+<li><code>var</code>：變數提到最上方後<code>會實體化</code>（寫入記憶體，但尚未賦值），在實際執行到該行變數宣告的程式碼前<code>可以被取用</code>（取值結果為 undefined）。</li>
+<li><code>let、const</code>：變數提前到最上方後<code>不會實體化</code>，在實際執行到該行變數宣告的程式碼前<code>不可以取用</code>（取值結果為 執行階段錯誤），這段不能取用的期間又稱為<code>暫時性死區（TDZ）</code>。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>詳細說明可以參考我的另一篇文章： <a href="https://stark920.github.io/2021/11/23/JShoisting">[JS] 提昇（Hoisting）機制</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-總結"><a href="#💎-總結" class="headerlink" title="💎 總結"></a>💎 總結</h2><p>整理後的變數宣告方式差異列表如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><img width=100/></th>
+<th align="center">var<img width=100/></th>
+<th align="center">let<img width=100/></th>
+<th align="center">const<img width=100/></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">重複宣告</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+</tr>
+<tr>
+<td align="center">重新賦值</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+</tr>
+<tr>
+<td align="center">強制賦予初始值</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td align="center">作用域</td>
+<td align="center">function</td>
+<td align="center">{ }</td>
+<td align="center">{ }</td>
+</tr>
+<tr>
+<td align="center">提升機制</td>
+<td align="center">可被取用</td>
+<td align="center">TDZ</td>
+<td align="center">TDZ</td>
+</tr>
+</tbody></table>
+<p>以上是我對變數型別的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝！</p>
+<blockquote>
+<p>參考資料： <a href="https://www.youtube.com/watch?v=FGdKdn_CnWo&ab_channel=%E5%85%AD%E8%A7%92%E5%AD%B8%E9%99%A2">六角學院－JavaScript 那個 let, const, var 到底差在哪？</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
