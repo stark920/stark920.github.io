@@ -77,17 +77,21 @@
         </div>
         <div class="col-md-6">
           <!-- <img class="img-fluid" src="./assets/images/banner.webp" /> -->
-          <img
-            class="img-fluid"
-            srcset="
-              ./assets/images/banner480.webp 480w,
-              ./assets/images/banner.webp    800w
-            "
-            sizes="(max-width: 600px) 480px,
-            800px"
-            src="./assets/images/banner.webp"
-            alt="Polymer"
-          />
+          <picture>
+            <source
+              media="(max-width: 799px)"
+              srcset="./assets/images/banner480.webp"
+            />
+            <source
+              media="(min-width: 800px)"
+              srcset="./assets/images/banner.webp"
+            />
+            <img
+              class="img-fluid"
+              src="./assets/images/banner.webp"
+              alt="Polymer"
+            />
+          </picture>
         </div>
       </div>
       <div class="row mb-5">
