@@ -1,0 +1,57 @@
+body {
+    background-color: #1E1E1E;
+}
+header, footer {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.fullscreen {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+}
+.btn-alpha-light {
+    background-color: rgba(204, 204, 204, 0.35);
+}
+.btn-alpha-light:hover {
+    background-color: rgba(204, 204, 204, 0.65);
+}
+#map { 
+    height: 100vh;
+    width: 100%;
+}
+
+#select-city {
+    max-height: 100px;
+    overflow: scroll !important;
+}
+.alert-msg {
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+.slide-out {
+    opacity: 0;
+    animation: slideOut 3s 1;
+}
+@keyframes slideOut {
+    0% {
+      opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+      }
+    100% {
+      opacity: 0;
+    }
+}
+
+.leaflet-control-zoom.leaflet-bar.leaflet-control {
+    margin-top: 60px;
+}

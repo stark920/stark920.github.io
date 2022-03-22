@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JS] 提昇（Hoisting）機制">
+<meta property="og:url" content="https://stark920.github.io/2021/11/23/JShoisting/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://stark920.github.io/images/js-hoisting.png">
+<meta property="article:published_time" content="2021-11-23T15:08:22.000Z">
+<meta property="article:modified_time" content="2021-12-27T14:28:19.824Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stark920.github.io/images/js-hoisting.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2021/11/23/JShoisting/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2021/11/23/JShoisting/","path":"2021/11/23/JShoisting/","title":"[JS] 提昇（Hoisting）機制"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[JS] 提昇（Hoisting）機制 | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">18</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-var%E3%80%81function%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">💎 var、function：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-let%E3%80%81const%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">💎 let、const：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/03/17/async/" title="[JS] 搞懂 Promise、Async、Await" target="_blank">[JS] 搞懂 Promise、Async、Await</a>
+    </li>
+    <li>
+        <a href="/2022/03/06/nodejs6/" title="[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）" target="_blank">[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs5/" title="[Node.JS] 打造 todolist api 4 - 部署上線" target="_blank">[Node.JS] 打造 todolist api 4 - 部署上線</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs4/" title="[Node.JS] 打造 todolist api 3 - 完成所有功能" target="_blank">[Node.JS] 打造 todolist api 3 - 完成所有功能</a>
+    </li>
+    <li>
+        <a href="/2022/03/02/nodejs3/" title="[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構" target="_blank">[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2021/11/23/JShoisting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [JS] 提昇（Hoisting）機制
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-11-23 23:08:22" itemprop="dateCreated datePublished" datetime="2021-11-23T23:08:22+08:00">2021-11-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-12-27 22:28:19" itemprop="dateModified" datetime="2021-12-27T22:28:19+08:00">2021-12-27</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript-Basic/" itemprop="url" rel="index"><span itemprop="name">JavaScript - Basic</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="/images/js-hoisting.png"></p>
+<span id="more"></span> 
+<p>如果今天想要使用電腦，該怎麼做？</p>
+<p>你的答案很可能是，按下電腦開機鍵就好，但實際上得先有主機、滑鼠、鍵盤、螢幕、電源、作業系統…等軟、硬體環境，才有辦法使用電腦。</p>
+<p>JavaScript 雖然是直譯式語言（不需透過編譯器轉譯成可執行檔），但是『執行』之前，還是需要先把原本字元組成的程式碼編譯成執行環境（就像是上面提到的準備滑鼠、鍵盤…等等），而其中一個步驟就是先將 <code>變數</code> 和 <code>函數</code> 的名稱放入記憶體，這種行為在 ECMA 的文件中沒有明確定義專有名詞，一般會用 <code>提昇（Hoisting）</code>來稱呼。</p>
+<blockquote>
+<p>參考文章：<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting">MDN - 提升（Hoisting）</a></p>
+</blockquote>
+<hr>
+<p>提昇（Hoisting）的方式會因為變數類型有所不同：</p>
+<h2 id="💎-var、function："><a href="#💎-var、function：" class="headerlink" title="💎 var、function："></a>💎 var、function：</h2><p>按照逐行執行的邏輯，下面前兩行程式碼會因為還沒有產生這個變數而出現錯誤，但實際上並不會出現任何錯誤。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(foo); // foo()&#123;return &#x27;Hello&#x27;;&#125;</span><br><span class="line"></span><br><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>從結果回推實際執行的順序會像下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(a);</span><br><span class="line">console.log(foo);</span><br></pre></td></tr></table></figure>
+
+<p>這次做小調整，改成賦予 a 變數一個值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">var a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
+
+<p>雖然沒有出現錯誤，但是 a 的值並沒有跟著被提昇，回推的執行順序會像下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a</span><br><span class="line">console.log(a); // undefined</span><br><span class="line">a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
+
+<p>再看下面這段程式碼，想想看結果是什麼：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var b = 1;</span><br><span class="line">var b;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p>如果不清楚運作 JavaScript 的運作機制，可能會認為答案是 <code>undefined</code>，覺得後者蓋掉前者，但答案其實是 <code>1</code>，回推後的實際執行會像是下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">var b;</span><br><span class="line">b = 1;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p>『重複宣告』加上『提昇機制』是不是讓人覺得很坑呢？</p>
+<h2 id="💎-let、const："><a href="#💎-let、const：" class="headerlink" title="💎 let、const："></a>💎 let、const：</h2><p>ES6 版本提供了 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，這兩種新的方式解決了 <code>var</code> 的許多奇怪問題。</p>
+<p>使用 <code>let</code> 和 <code>const</code> 宣告的變數名稱在 JavaScript 從『環境建立』一直執行到『變數實際存在的那一行程式碼』的這段期間，變數名稱都是無法被取用的，這段期間稱為 Temporal Dead Zone（TDZ），暫時性死區。</p>
+<p>這個機制就像是我買了對號座的票（宣告），這個位置的票就不能被其他人購買（不能重複宣告），但是在我坐上車位前（實際執行的那段程式碼），都無法在這個位置找到我（TDZ鎖定）。</p>
+<p>以下是使用 <code>let</code> 或 <code>const</code> 宣告的輸出結果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(x); // x is not defined</span><br><span class="line">let x = 1;</span><br><span class="line">console.log(x); // 前面已經因為執行階段出錯終止，不會執行到這裡</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考文章<br>1、<a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a><br>2、<a target="_blank" rel="noopener" href="https://eddychang.me/es6-tdz">理解ES6中的暫時死區(TDZ)</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/22/JSobject/" rel="prev" title="[JS] 物件與 JSON 格式操作技巧">
+                  <i class="fa fa-chevron-left"></i> [JS] 物件與 JSON 格式操作技巧
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/12/21/EXPhexschoolJSlive/" rel="next" title="[心得] 六角學院 JS 工程師養成直播班 - 學習心得">
+                  [心得] 六角學院 JS 工程師養成直播班 - 學習心得 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-stark920-github-io","count":false,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

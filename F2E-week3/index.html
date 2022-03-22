@@ -1,0 +1,247 @@
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>台灣公車 e 點通</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css">
+    <link rel="stylesheet" href="all.css">
+  </head>
+  <body>
+    <div id="message-box" class="d-none position-fixed w-100 h-100 d-flex align-items-center justify-content-center p-4">
+        <div class="rounded-3 bg-light p-4">
+            <p>請選擇城市：</p>
+            <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
+                <button type="button" value="Hsinchu" class="btn m-1 btn-secondary">新竹</button>
+                <button type="button" value="MiaoliCounty" class="btn m-1 btn-secondary">苗栗</button>
+                <button type="button" value="ChanghuaCounty" class="btn m-1 btn-secondary">彰化</button>
+                <button type="button" value="NantouCounty" class="btn m-1 btn-secondary">南投</button>
+                <button type="button" value="YunlinCounty" class="btn m-1 btn-secondary">雲林</button>
+                <button type="button" value="Chiayi" class="btn m-1 btn-secondary">嘉義</button>
+                <button type="button" value="PingtungCounty" class="btn m-1 btn-secondary">屏東</button>
+                <button type="button" value="YilanCounty" class="btn m-1 btn-secondary">宜蘭</button>
+                <button type="button" value="HualienCounty" class="btn m-1 btn-secondary">花蓮</button>
+                <button type="button" value="TaitungCounty" class="btn m-1 btn-secondary">臺東</button>
+                <button type="button" value="PenghuCounty" class="btn m-1 btn-secondary">澎湖</button>
+                <button type="button" value="KinmenCounty" class="btn m-1 btn-secondary">金門</button>
+            </div>
+        </div>
+    </div>
+    <div class="w-100 h-100 d-flex flex-column">
+        <header class="container-fluid mx-auto">
+            <div class="row">
+                <nav class="navbar navbar-expand-lg navbar-light col-12 bg-white d-flex align-items-center justify-content-between">
+                    <a class="ms-2 d-flex text-dark text-decoration-none" href="https://stark920.github.io/F2E-week3/index.html">
+                        <img src="img/logo.png" alt="台灣公車 e 點通Logo" class="h-100 align-self-center">
+                        <span class="ms-2 align-self-center">
+                            <strong>台灣公車 e 點通</strong>
+                            <br>
+                            <small>Taiwan Bus+</small>
+                        </span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav justify-content-center flex-grow-1 mb-2 mb-lg-0">
+                            <li class="nav-item">
+                            <a class="nav-link text-reset px-4" href="#">附近站牌</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link text-reset px-4" href="#">路線規劃</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link text-reset px-4" href="#">站點查詢</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link text-reset px-4" href="#">收藏站牌</a>
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <span class="align-self-center">
+                                <span class="material-icons">language</span>
+                            </span>
+                            <span role="group" aria-label="Choose Language">
+                                <button type="button" class="btn">中文</button>
+                                |
+                                <button type="button" class="btn">English</button>
+                            </span>
+                        </div>
+                    </div>
+                </nav>
+            </div>  
+        </header>
+        <main id="main-index" class="flex-grow-1 container-fluid d-flex flex-column">
+            <div class="row h-75 flex-grow-1">
+                <div class="banner mx-auto position-relative overflow-hidden">
+                    <div class="d-flex position-absolute text-white" style="letter-spacing: 0.5rem; top: 40%; left: 10%; transform: translateY(-50%);">
+                        <span class="text-vertical-en fw-lighter fs-6" style=" letter-spacing: 0.25rem">TAIWAN BUS+</span>
+                        <span class="text-vertical-ch fw-light ms-3 fs-3">臺灣公車動態</span>
+                        <span class="position-relative text-vertical-ch ms-3 fs-3" style="top: 4rem">時刻查詢系統</span>
+                    </div>
+                </div>
+            </div>
+            <div id="quick-select-city" class="row flex-lg-grow-0 d-flex py-3 g-3 row-cols-2 flex-wrap row-cols-lg-6">
+                    <div class="col d-flex">
+                        <button type="button" value="Taipei" class="content-events-none w-100 bg-white border-0 rounded-3 py-3 d-flex flex-column justify-content-center align-items-center">
+                            <span class="material-icons fs-1">directions_bus</span>
+                            <p class="mt-2 mb-0">台北市／新北市</p>
+                            <small class="my-0">Taipei / New Taipei</small>
+                        </button>
+                    </div>
+                    <div class="col d-flex">
+                        <button type="button" value="Taoyuan" class="color-blue content-events-none w-100 bg-white border-0 rounded-3 py-3 d-flex flex-column justify-content-center align-items-center">
+                            <span class="material-icons fs-1">directions_bus</span>
+                            <p class="mt-2 mb-0">桃園市</p>
+                            <small>Taoyuan</small>
+                        </button>
+                    </div>
+                    <div class="col d-flex">
+                        <button type="button" value="Taichung" class="color-secondary content-events-none w-100 bg-white border-0 rounded-3 py-3 d-flex flex-column justify-content-center align-items-center">
+                            <span class="material-icons fs-1">directions_bus</span>
+                            <p class="mt-2 mb-0">台中市</p>
+                            <small>Taichung</small>
+                        </button>
+                    </div>
+                    <div class="col d-flex">
+                        <button type="button" value="Tainan" class="color-green content-events-none w-100 bg-white border-0 rounded-3 py-3 d-flex flex-column justify-content-center align-items-center">
+                            <span class="material-icons fs-1">directions_bus</span>
+                            <p class="mt-2 mb-0">台南市</p>
+                            <small>Tainan</small>
+                        </button>
+                    </div>
+                    <div class="col d-flex">
+                        <button type="button" value="Kaohsiung" class="color-bluegreen content-events-none w-100 bg-white border-0 rounded-3 py-3 d-flex flex-column justify-content-center align-items-center">
+                            <span class="material-icons fs-1">directions_bus</span>
+                            <p class="mt-2 mb-0">高雄市</p>
+                            <small>Kaohsiung</small>
+                        </button>
+                    </div>
+                    <div class="col d-flex">
+                        <button type="button" value="Other" class="color-darkblue content-events-none w-100 bg-white border-0 rounded-3 py-3 d-flex flex-column justify-content-center align-items-center">
+                            <span class="material-icons fs-1">directions_bus</span>
+                            <p class="mt-2 mb-0">其他地區</p>
+                            <small>Other City</small>
+                        </button>
+                    </div>
+            </div>
+        </main>
+        <main id="main-map" class="d-none flex-grow-1 container-fluid d-flex flex-column overflow-hidden">
+            <div class="row d-flex flex-column flex-fill">
+                <div class="d-flex justify-content-between align-items-center px-4 py-2">
+                    <span class="d-flex align-items-center">
+                        <span>選擇地區：</span>
+                        <select name="city" id="city-selector" class="btn">
+                            <option value="Taipei">台北／新北</option>
+                            <option value="Taoyuan">桃園</option>  
+                            <option value="Taichung">台中</option>
+                            <option value="Tainan">台南</option>
+                            <option value="Kaohsiung">高雄</option>  
+                            <option value="Hsinchu">新竹</option>  
+                            <option value="MiaoliCounty">苗栗</option>  
+                            <option value="ChanghuaCounty">彰化</option>  
+                            <option value="NantouCounty">南投</option>  
+                            <option value="YunlinCounty">雲林</option>  
+                            <option value="Chiayi">嘉義</option>  
+                            <option value="PingtungCounty">屏東</option>  
+                            <option value="YilanCounty">宜蘭</option>  
+                            <option value="HualienCounty">花蓮</option>  
+                            <option value="TaitungCounty">臺東</option>  
+                            <option value="PenghuCounty">澎湖</option>  
+                            <option value="KinmenCounty">金門</option>
+                        </select>
+                    </span>
+                    <span class=" d-none d-lg-block">
+                        <a href="https://www.taiwanbus.tw/" target="_blank" class="d-flex align-items-center ms-1 text-reset text-decoration-none text-dark">
+                            <span class="material-icons me-1">report_gmailerrorred</span>時刻表
+                        </a>
+                    </span>
+                    <span class="d-lg-none">
+                        <a href="#" class="d-flex align-items-center ms-1 text-reset text-decoration-none text-dark">
+                            <span class="material-icons me-1">map</span>地圖
+                        </a>
+                    </span>
+                </div>
+                <div id="map-box" class="flex-grow-1 overflow-hidden p-0 position-relative">
+                    <div id="menu" class="h-100 col-12 col-md-5 col-lg-4 bg-white position-absolute">
+                        <div id="bus-state-card" class="d-none d-flex flex-column h-100">
+                            <div id="close-state-card" class="align-self-start d-flex align-items-center content-events-none pointer p-2">
+                                <span class="material-icons fs-6">arrow_back_ios</span>
+                                <span>返回搜尋</span>
+                            </div>
+                            <div id="detail-title" class="my-2 text-center">
+                                <strong class="fs-2 d-block">RouteID</strong>
+                                <small>routename</small>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                <label class="btn btn-station-forward" for="btnradio1">
+                                    <small>往</small>
+                                    <strong>ａ點</strong>
+                                </label>
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                <label class="btn btn-station-forward" for="btnradio2">
+                                    <small>往</small>
+                                    <strong>b點</strong>
+                                </label>
+                              </div>
+                            <div id="bus-state-list">
+
+                            </div>
+                            <div id="updateState"">
+                                <div class="progress-bar w-100">
+                                    <div class="progress-line"></div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center p-3">
+                                    <span>X秒後更新</span>
+                                    <span class="d-flex align-items-center">
+                                        <span class="material-icons me-1">cached</span>
+                                        <span>立即更新</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bus-list-card" class="d-flex flex-column h-100">
+                            <div class="search-container m-3 position-relative">
+                                <input type="search" id="searchBox" class="rounded-3 py-1 px-2 w-100 border-0" placeholder="輸入公車路線關鍵字">
+                                <span class="material-icons position-absolute">search</span>
+                            </div>
+                            <div class="bus-list p-3">    
+                            </div>
+                            <div id="search-board" class="search-button-board d-flex flex-column p-4">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="map" class="w-100 h-100"></div>
+                </div>
+            </div>
+        </main>
+        <footer class="container-fluid mx-auto py-2 text-white text-center">
+            Copyright © 2021 台灣公車 e 點通 All rights reserved.
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

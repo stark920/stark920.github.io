@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JS] 物件與 JSON 格式操作技巧">
+<meta property="og:url" content="https://stark920.github.io/2021/11/22/JSobject/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://stark920.github.io/images/js-json.png">
+<meta property="article:published_time" content="2021-11-22T10:05:22.000Z">
+<meta property="article:modified_time" content="2021-12-27T14:55:18.696Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stark920.github.io/images/js-json.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2021/11/22/JSobject/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2021/11/22/JSobject/","path":"2021/11/22/JSobject/","title":"[JS] 物件與 JSON 格式操作技巧"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[JS] 物件與 JSON 格式操作技巧 | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">18</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%89%A9%E4%BB%B6%EF%BC%88Object%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">💎 物件（Object）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E5%9F%BA%E6%9C%AC%E7%B5%90%E6%A7%8B%EF%BC%8C%E4%BD%BF%E7%94%A8-%E4%BE%86%E5%AD%98%E6%94%BE%E8%B3%87%E6%96%99%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">🔸 基本結構，使用{}來存放資料：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E5%85%A7%E5%AE%B9%E7%B5%90%E6%A7%8B%E6%98%AF-key-value-pair-%E7%9A%84%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">🔸 內容結構是 key&#x2F;value pair 的格式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E7%89%A9%E4%BB%B6%E5%8F%96%E5%80%BC"><span class="nav-number">1.3.</span> <span class="nav-text">🔸 物件取值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E7%89%A9%E4%BB%B6%E8%B3%A6%E5%80%BC"><span class="nav-number">1.4.</span> <span class="nav-text">🔸 物件賦值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E7%89%A9%E4%BB%B6%E5%8F%96%E6%89%80%E6%9C%89%E5%B1%AC%E6%80%A7"><span class="nav-number">1.5.</span> <span class="nav-text">🔸 物件取所有屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E7%89%A9%E4%BB%B6%E5%8F%96%E6%89%80%E6%9C%89%E5%B1%AC%E6%80%A7%E7%9A%84%E5%80%BC"><span class="nav-number">1.6.</span> <span class="nav-text">🔸 物件取所有屬性的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E7%89%A9%E4%BB%B6%E8%BD%89%E9%99%A3%E5%88%97"><span class="nav-number">1.7.</span> <span class="nav-text">🔸 物件轉陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E7%89%A9%E4%BB%B6%E5%B1%AC%E6%80%A7%E6%AA%A2%E6%9F%A5"><span class="nav-number">1.8.</span> <span class="nav-text">🔸 物件屬性檢查</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-JSON%EF%BC%88JavaScript-Object-Notation%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">💎 JSON（JavaScript Object Notation）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E8%A7%A3%E6%9E%90-JSON-%E6%A0%BC%E5%BC%8F%E8%B3%87%E6%96%99"><span class="nav-number">2.1.</span> <span class="nav-text">🔸 解析 JSON 格式資料</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/03/17/async/" title="[JS] 搞懂 Promise、Async、Await" target="_blank">[JS] 搞懂 Promise、Async、Await</a>
+    </li>
+    <li>
+        <a href="/2022/03/06/nodejs6/" title="[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）" target="_blank">[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs5/" title="[Node.JS] 打造 todolist api 4 - 部署上線" target="_blank">[Node.JS] 打造 todolist api 4 - 部署上線</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs4/" title="[Node.JS] 打造 todolist api 3 - 完成所有功能" target="_blank">[Node.JS] 打造 todolist api 3 - 完成所有功能</a>
+    </li>
+    <li>
+        <a href="/2022/03/02/nodejs3/" title="[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構" target="_blank">[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2021/11/22/JSobject/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [JS] 物件與 JSON 格式操作技巧
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-11-22 18:05:22" itemprop="dateCreated datePublished" datetime="2021-11-22T18:05:22+08:00">2021-11-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2021-12-27 22:55:18" itemprop="dateModified" datetime="2021-12-27T22:55:18+08:00">2021-12-27</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript-Basic/" itemprop="url" rel="index"><span itemprop="name">JavaScript - Basic</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="/images/js-json.png"></p>
+<span id="more"></span> 
+<p>物件操作和串接 API 是 JavaScript 在現代網頁開發中的精華，這篇就來介紹物件取值的基本方法和小技巧。</p>
+<h2 id="💎-物件（Object）"><a href="#💎-物件（Object）" class="headerlink" title="💎 物件（Object）"></a>💎 物件（Object）</h2><h3 id="🔸-基本結構，使用-來存放資料："><a href="#🔸-基本結構，使用-來存放資料：" class="headerlink" title="🔸 基本結構，使用{}來存放資料："></a>🔸 基本結構，使用<code>&#123;&#125;</code>來存放資料：</h3><p>(本篇文章不討論使用 create、new 和 prototype 的操作)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;&#125; // 空物件</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-內容結構是-key-value-pair-的格式："><a href="#🔸-內容結構是-key-value-pair-的格式：" class="headerlink" title="🔸 內容結構是 key/value pair 的格式："></a>🔸 內容結構是 key/value pair 的格式：</h3><ul>
+<li>前方的 key 在 JavaScript 中為物件的屬性（property）。</li>
+<li>後方的 value 可以是各種型別的值。<br>以下為一個物件範例，接下來的段落都使用這個物件來示範操作。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  a: function()&#123;return &#x27;a&#x27;&#125;,</span><br><span class="line">  b: null,</span><br><span class="line">  c: &#123;</span><br><span class="line">    d: [&#123;e: 2&#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  1: &#x27;bad&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="🔸-物件取值"><a href="#🔸-物件取值" class="headerlink" title="🔸 物件取值"></a>🔸 物件取值</h3></li>
+<li>方法１：<code>objectName.propertyName</code>，使用<code>.</code>加上屬性名稱來取值，如果是多層級的物件，就繼續往下使用<code>.</code>加屬性名稱，使用<code>.</code>時需要遵守變數名稱規範，不然會報錯。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(obj.a); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj.a()); // &#x27;a&#x27;</span><br><span class="line">console.log(obj.c.d[0].e); // 2</span><br><span class="line">console.log(obj.1); // Uncaught SyntaxError: Unexpected number</span><br></pre></td></tr></table></figure></li>
+<li>方法２：<code>objectName[propertyName or 變數]</code><br>這種方法不受物件屬性名稱限制，並且可以帶入變數，但使用時須注意<code>[]</code>內若不是帶入變數，需要加上<code>&#39;&#39;（引號）</code>，否則找不到變數會報錯。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(obj[&#x27;a&#x27;]]); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj[a]); // ReferenceError: a is not defined</span><br><span class="line">console.log(obj[&#x27;c&#x27;].d[0][&#x27;e&#x27;]); // 2  (方式１、2混用)</span><br><span class="line">console.log(obj[&#x27;1&#x27;]); // &#x27;bad&#x27;</span><br><span class="line">let num = 1;</span><br><span class="line">console.log(obj[num]); // &#x27;bad&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🔸-物件賦值"><a href="#🔸-物件賦值" class="headerlink" title="🔸 物件賦值"></a>🔸 物件賦值</h3><p>方法同取值，只要加上 <code>=</code> 就能賦值，也可以用新的屬性名稱來新增物件屬性；同樣也能用 <code>.</code> 和 <code>[]</code> 兩種方式操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj.a = 1; // 變更原有屬性 a 的值</span><br><span class="line">obj[&#x27;a&#x27;] = 2; // 變更原有屬性 a 的值</span><br><span class="line">obj.f = 0; // 原本沒有屬性 f ，新增屬性 f 且值為 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-物件取所有屬性"><a href="#🔸-物件取所有屬性" class="headerlink" title="🔸 物件取所有屬性"></a>🔸 物件取所有屬性</h3><p><code>Object.keys()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性名稱，且這個陣列會由小至大排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.keys(obj); // [&#x27;1&#x27;, &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-物件取所有屬性的值"><a href="#🔸-物件取所有屬性的值" class="headerlink" title="🔸 物件取所有屬性的值"></a>🔸 物件取所有屬性的值</h3><p><code>Object.values()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性值，且這個陣列會依照屬性名稱由小至大排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.values(obj); // [&#x27;bad&#x27;, ƒ, null, &#123;…&#125;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-物件轉陣列"><a href="#🔸-物件轉陣列" class="headerlink" title="🔸 物件轉陣列"></a>🔸 物件轉陣列</h3><p><code>Object.entries()</code> 方法會回傳一個陣列，並以二維陣列的方式列出該物件第一層（直屬於物件）的所有屬性和值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object.entries(obj); </span><br><span class="line">// [[&#x27;1&#x27;, &#x27;bad&#x27;],[&#x27;a&#x27;, ƒ], [&#x27;b&#x27;, null], [&#x27;c&#x27;, &#123;…&#125;]]</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-物件屬性檢查"><a href="#🔸-物件屬性檢查" class="headerlink" title="🔸 物件屬性檢查"></a>🔸 物件屬性檢查</h3><p>物件陣列的操作很常遇到，當物件資料不完整時，可能會造成執行中斷，這時候就需要先檢查物件的屬性是否存在：</p>
+<ul>
+<li><p>方法１：檢查該屬性是否為<code>undefined</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(obj.x === undefined); // true</span><br></pre></td></tr></table></figure></li>
+<li><p>方法２：使用<code>hasOwnProperty()</code>方法檢查有沒有該屬性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(obj.hasOwnProperty(&#x27;x&#x27;)); // false</span><br></pre></td></tr></table></figure></li>
+<li><p>方法３：<strong>推薦</strong>使用<code>Optional chaining operator</code>，只要一個<code>?</code>就能判斷，並且繼續往下取值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(obj?.x)); // undefined</span><br><span class="line">console.log(obj?.c?.d[0]?.e); // 2</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="💎-JSON（JavaScript-Object-Notation）"><a href="#💎-JSON（JavaScript-Object-Notation）" class="headerlink" title="💎 JSON（JavaScript Object Notation）"></a>💎 JSON（JavaScript Object Notation）</h2><p>JSON 是一種通用資料交換格式，許多程式語言都能夠解析並被廣泛使用，通常在串接 api 時都是以 JSON 格式為主，和 JavaScript 的 Object 同樣是 key/value pair 的格式，但是屬性名稱會用引號包起來，範例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;John&quot;,</span><br><span class="line">  &quot;sex&quot;: &quot;male&quot;,</span><br><span class="line">  &quot;age&quot;: 20</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-解析-JSON-格式資料"><a href="#🔸-解析-JSON-格式資料" class="headerlink" title="🔸 解析 JSON 格式資料"></a>🔸 解析 JSON 格式資料</h3><ul>
+<li><code>JSON 的型別是字串</code>，所以需要轉換成物件才能使用，JavaScript 中提供了<code>JSON.parse()</code>的方法來轉換成可以操作的物件。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let data = ...json file...</span><br><span class="line">console.log(JSON.parse(data)); Object&#123;...&#125;</span><br></pre></td></tr></table></figure></li>
+<li>過去實作 ajax 功能時使用的 XMLHttpRequest 取得的 json 資料都需要經過轉換才能使用，而現在常用的 <code>Fetch</code>、<code>Axios</code> 已經包裝成物件格式，<code>不需要再轉換</code>。</li>
+<li>JavaScript 也提供了<code>JSON.stringify()</code>的方法，可以將物件轉成 JSON 字串格式。</li>
+<li>localStorage、sessionStorage 存放資料為字串格式，如果要存放物件時需要先使用<code>JSON.stringify()</code>轉換存入，取出後再使用<code>JSON.parse()</code>轉回物件格式。</li>
+</ul>
+<blockquote>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/JSON">Wiki-JSON</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">MDN-Object</a><br><a target="_blank" rel="noopener" href="https://pjchender.blogspot.com/2016/01/javascriptobjectjson.html">JavaScript中物件(object)和JSON格式的轉換</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/21/JSstatement/" rel="prev" title="[JS] 陳述式（Statement）與表達式（Expression）">
+                  <i class="fa fa-chevron-left"></i> [JS] 陳述式（Statement）與表達式（Expression）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/11/23/JShoisting/" rel="next" title="[JS] 提昇（Hoisting）機制">
+                  [JS] 提昇（Hoisting）機制 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-stark920-github-io","count":false,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

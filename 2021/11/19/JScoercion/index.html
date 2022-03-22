@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JS] 深入了解型別與轉型">
+<meta property="og:url" content="https://stark920.github.io/2021/11/19/JScoercion/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://stark920.github.io/images/js-coercion.png">
+<meta property="article:published_time" content="2021-11-19T07:02:38.000Z">
+<meta property="article:modified_time" content="2022-01-14T17:15:12.643Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stark920.github.io/images/js-coercion.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2021/11/19/JScoercion/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2021/11/19/JScoercion/","path":"2021/11/19/JScoercion/","title":"[JS] 深入了解型別與轉型"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[JS] 深入了解型別與轉型 | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">18</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%9E%8B%E5%88%A5%EF%BC%88type%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">💎 型別（type）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E8%A3%9D%E7%AE%B1%EF%BC%88boxing%EF%BC%89%E5%92%8C-%E6%8B%86%E7%AE%B1%EF%BC%88unboxing%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">💎 裝箱（boxing）和 拆箱（unboxing）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%BC%B7%E5%88%B6%E8%BD%89%E5%9E%8B%EF%BC%88coercion%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">💎 強制轉型（coercion）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E9%A1%AF%E6%80%A7%E8%BD%89%E5%9E%8B%EF%BC%88explicit-coercion%EF%BC%89%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">🔸 顯性轉型（explicit coercion）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E9%9A%B1%E6%80%A7%E8%BD%89%E5%9E%8B%EF%BC%88implicit-coercion%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">🔸 隱性轉型（implicit coercion）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%B5%90%E8%AA%9E"><span class="nav-number">4.</span> <span class="nav-text">💎 結語</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/03/17/async/" title="[JS] 搞懂 Promise、Async、Await" target="_blank">[JS] 搞懂 Promise、Async、Await</a>
+    </li>
+    <li>
+        <a href="/2022/03/06/nodejs6/" title="[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）" target="_blank">[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs5/" title="[Node.JS] 打造 todolist api 4 - 部署上線" target="_blank">[Node.JS] 打造 todolist api 4 - 部署上線</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs4/" title="[Node.JS] 打造 todolist api 3 - 完成所有功能" target="_blank">[Node.JS] 打造 todolist api 3 - 完成所有功能</a>
+    </li>
+    <li>
+        <a href="/2022/03/02/nodejs3/" title="[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構" target="_blank">[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2021/11/19/JScoercion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [JS] 深入了解型別與轉型
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-11-19 15:02:38" itemprop="dateCreated datePublished" datetime="2021-11-19T15:02:38+08:00">2021-11-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-01-15 01:15:12" itemprop="dateModified" datetime="2022-01-15T01:15:12+08:00">2022-01-15</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript-Basic/" itemprop="url" rel="index"><span itemprop="name">JavaScript - Basic</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="/images/js-coercion.png"></p>
+<span id="more"></span> 
+<p>JavaScript 不論遇到什麼奇形怪狀的資料運算，都會盡可能讓程式執行下去，這麼貼心的設計也是兩面刃，可能在不知不覺中程式正常運作，也可能突然就報錯了卻毫無頭緒，馬上來認識 JavaScript 的型別系統與轉型吧！</p>
+<hr>
+<h2 id="💎-型別（type）"><a href="#💎-型別（type）" class="headerlink" title="💎 型別（type）"></a>💎 型別（type）</h2><ul>
+<li><p>JavaScript 的型別可以分為『原始型別』和『物件型別』兩類，差異在於：</p>
+<ul>
+<li>原始型別<code>沒有</code>屬性和方法可以使用</li>
+<li>物件型別<code>可以任意存取</code>屬性和方法</li>
+</ul>
+</li>
+<li><p><strong>原始型別（Primitive types）</strong></p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol (ES 6 新定義)</li>
+</ul>
+</li>
+<li><p><strong>物件型別（Object types）</strong></p>
+<ul>
+<li>原生物件（Native）<ul>
+<li>Object, Array, Function, Date, Math, RegExp</li>
+<li>原始型別包裹物件（Primitive Wrapper）：Number, String, Boolean</li>
+</ul>
+</li>
+<li>寄宿物件（Host）<ul>
+<li>window</li>
+<li>DOM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>型別檢查（typeof)：<br>除了 null 有原生的 bug 會得到 object 的結果（此 bug 不會修正），其他型別都可以使用 <code>typeof</code> 來檢查。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">console.log(typeof &#x27;a&#x27;); // string</span><br><span class="line">console.log(typeof 1); // number</span><br><span class="line">console.log(typeof true); // boolean</span><br><span class="line">console.log(typeof null); // object &lt;== 這是語言本身的bug</span><br><span class="line">console.log(typeof undefined); // undefined</span><br><span class="line">console.log(typeof Symbol()) // symbol</span><br><span class="line">console.log(typeof &#123;&#125;); // object</span><br><span class="line">console.log(typeof []); // object</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-裝箱（boxing）和-拆箱（unboxing）"><a href="#💎-裝箱（boxing）和-拆箱（unboxing）" class="headerlink" title="💎 裝箱（boxing）和 拆箱（unboxing）"></a>💎 裝箱（boxing）和 拆箱（unboxing）</h2><ul>
+<li><p>前面提到原始型別是沒有屬性和方法可以使用的，但我們卻可以利用字串方法來修改原始型別的字串（如下方的程式碼），這是因為 JavaScript 有 裝箱（boxing）和 拆箱（unboxing）機制來處理這些操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#x27;123.45&#x27;.split(&#x27;.&#x27;));</span><br><span class="line">// [&#x27;123&#x27;, &#x27;45&#x27;]</span><br></pre></td></tr></table></figure></li>
+<li><p>上個段落的物件型別中有一項 <code>原始型別包裹物件（Primitive Wrapper）</code>，使用這個方式來建立的字串（數字或布林值）會是物件的形式，並且有許多原生方法可以使用，JavaScript 便是利用這個物件型別來實作裝箱與拆箱。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let str = &#x27;123&#x27;;</span><br><span class="line">let strObj = new String(&#x27;123&#x27;);</span><br><span class="line"></span><br><span class="line">console.log(typeof str); // string</span><br><span class="line">console.log(typeof strObj); // object</span><br></pre></td></tr></table></figure></li>
+<li><p>裝箱（boxing）：當 JS 執行方法發現資料是原始型別時，便會使用 <code>new</code> 把原始型別資料建立成物件型別的資料，就可以順利執行物件內的方法。</p>
+</li>
+<li><p>拆箱（unboxing）：當 JS 完成被裝箱的物件需要執行的方法後，就會把這個物件資料還原成原始型別的資料，這時會用到兩個重要的方法，這會在接下來介紹的『轉型』再次談到：</p>
+<ul>
+<li><code>valueOf()</code>：回傳 <code>Number</code> 原始型別。</li>
+<li><code>toString()</code>：回傳 <code>String</code> 原始型別。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="💎-強制轉型（coercion）"><a href="#💎-強制轉型（coercion）" class="headerlink" title="💎 強制轉型（coercion）"></a>💎 強制轉型（coercion）</h2><ul>
+<li>強制轉型分為兩種：<code>顯性轉型</code>（explicit coercion）、<code>隱性轉型</code>（implicit coercion）</li>
+</ul>
+<h3 id="🔸-顯性轉型（explicit-coercion）："><a href="#🔸-顯性轉型（explicit-coercion）：" class="headerlink" title="🔸 顯性轉型（explicit coercion）："></a>🔸 顯性轉型（explicit coercion）：</h3><ul>
+<li><p>顯性轉型指的是在程式碼中<code>直接撰寫</code>的型別轉換。</p>
+</li>
+<li><p><strong>轉數字</strong></p>
+<ul>
+<li><p><code>parseInt()</code>：</p>
+<ul>
+<li>轉整數。</li>
+<li>小數點以後無條件捨去。</li>
+<li>轉換方式：由左至右，遇到無法轉成數字的時候停止，回傳前面的數字。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(parseInt(&#x27;1.23&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;1.23a&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;a1.23&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>parseFloat()</code>：</p>
+<ul>
+<li>轉浮點數（包含小數點以後）。</li>
+<li>轉換方式與 parseInt() 相同。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(parseFloat(&#x27;1.23&#x27;)); // 1.23</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>Number()</code>：</p>
+<ul>
+<li>可以轉整數和浮點數。</li>
+<li>數字範圍在正負 2的53次方 -1 間。</li>
+<li>轉換方式：整筆字串都可以轉成數字才轉換，否則得到 NaN。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(Number(&#x27;-1.23&#x27;)); // -1.23</span><br><span class="line">console.log(Number(&#x27;-1.23a&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>BigInt()</code>：</p>
+<ul>
+<li>轉整數</li>
+<li>範圍可以超過2的53次方（表示方式會在數字後面加上 <code>n</code>）</li>
+<li>轉換方式：非整數時直接報錯，不會得到 NaN。</li>
+<li>需注意瀏覽器支援度。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(BigInt(&quot;9007199254740991&quot;)); // 9007199254740991n</span><br><span class="line">console.log(typeof 1n); // bigint</span><br><span class="line">console.log(BigInt(&quot;900a&quot;)); // Cannot convert 900a to a BigInt</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>算數運算子</code>：</p>
+<ul>
+<li>前方加上<code>+</code>：可能會和 <code>++</code> 混淆。</li>
+<li>前方加上<code>-</code>：內容若是負數，會被轉成正數。</li>
+<li>後方加上<code>- 0</code>：較穩定寫法。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(+&#x27;-1&#x27;); // -1</span><br><span class="line">console.log(++&#x27;-1&#x27;); // Invalid left-hand side expression in prefix operation</span><br><span class="line">console.log(-&#x27;-1&#x27;); // 1</span><br><span class="line">console.log(&#x27;-1&#x27; - 0); // -1</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>轉字串</strong></p>
+<ul>
+<li><p><code>toString()</code>：不能轉換 null 和 undefined，可以設定進位制。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log((3).toString()); // 3</span><br><span class="line">console.log(undefined.toString()); // Cannot read properties of undefined</span><br><span class="line">console.log((3).toString(2)); // 11</span><br></pre></td></tr></table></figure></li>
+<li><p><code>String()</code>：可以轉換 null 和 undefined，不能設定進位制。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(String(3)); // 3</span><br><span class="line">console.log(String(undefined)); // undefined</span><br></pre></td></tr></table></figure></li>
+<li><p><code>算數運算子</code>：加上空字串 <code>+ &#39;&#39;</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(typeof (3 + &#x27;&#x27;)); // string</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>轉布林值</strong></p>
+<ul>
+<li><p>布林值只有兩種值（true 或 false），轉型後會得到 true 的值稱為 truthy，得到 false 的則是 falsy，除了下列項目是 <code>falsy</code>，其他的都是 <code>truthy</code>：</p>
+<ul>
+<li><code>false</code></li>
+<li><code>0</code></li>
+<li><code>-0</code></li>
+<li><code>0n</code> (BigInt)</li>
+<li><code>“”</code> (空字串，包含 ``, ‘’)</li>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>NaN</code></li>
+<li><code>document.all</code> (正常情況下不會用到)</li>
+</ul>
+</li>
+<li><p>轉換方式：</p>
+<ul>
+<li><p><code>Boolean()</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Boolean([])); // true</span><br></pre></td></tr></table></figure></li>
+<li><p><code>邏輯運算子</code>：前方加上雙驚嘆號 <code>!!</code>，單驚嘆號 <code>!</code> 會是相反結果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(!true); // false</span><br><span class="line">console.log(!!&#123;&#125;); // true</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="🔸-隱性轉型（implicit-coercion）"><a href="#🔸-隱性轉型（implicit-coercion）" class="headerlink" title="🔸 隱性轉型（implicit coercion）"></a>🔸 隱性轉型（implicit coercion）</h3><ul>
+<li><p>隱性轉型出現在使用運算子時，這在其他程式語言通常是不允許的（需要相同型別才可以運算），JavaScript 則會自動轉型讓程式繼續執行，也因為規則繁雜，容易疏忽出錯。</p>
+</li>
+<li><p>核心方法 <code>ToPrimitive</code><br>JavaScript 在執行運算時會使用 <code>ToPrimitive</code> 方法將運算元轉換成原始型別後就能繼續運算，<code>ToPrimitive</code> 帶有一個 <code>hint</code>(提示)，用來決定要轉成什麼型別，如果要了解詳細的運作順序可以參考 <strong><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29730094">深入理解Javascript中Object类型的转换</a></strong> 這篇文章，裡面引用了 ECMA 的規範詳細解說，非常值得一讀！</p>
+</li>
+<li><p><strong>原始型別</strong>的隱性轉型</p>
+<ul>
+<li><p><code>+</code> 算數運算子：加法運算中只要有一個值屬於字串型別，就會全部轉為 string，最高優先。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 有字串</span><br><span class="line">console.log(&#x27;&#x27; + 1 + null + true); // 1nulltrue</span><br><span class="line">// 無字串</span><br><span class="line">console.log(1 + null + true); // 2</span><br></pre></td></tr></table></figure></li>
+<li><p>其他算數運算子：<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code> 運算都會轉成 number。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#x27;6&#x27; - undefined); // NaN</span><br><span class="line">console.log(9 * [9]); // 81</span><br><span class="line">console.log(&#x27;3&#x27; / &#123;&#125;); // NaN</span><br><span class="line">console.log(6 % true); // 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>物件型別</strong>的隱性轉型</p>
+<ul>
+<li><p><code>ｔoPrimitive</code> 執行物件型別的轉換時會使用到物件內的 <code>valueOf</code> 或 <code>toString</code> 方法來取得原始型別的回傳值，因為這是物件內的方法，我們可以透過覆蓋方法來改變回傳值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 刻意改成 valueOf 回傳字串、toString 回傳數字</span><br><span class="line">let a = &#123;</span><br><span class="line">    valueOf: function() &#123;</span><br><span class="line">        return &#x27;1&#x27;;</span><br><span class="line">    &#125;,</span><br><span class="line">    toString: function() &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(a + 0); // &quot;10&quot;</span><br><span class="line">console.log(a.toString()); // 2</span><br></pre></td></tr></table></figure></li>
+<li><p><code>陣列</code>也是物件，ToPrimitive 會回傳陣列本身內容執行 <code>toString()</code> 方法後的字串。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 空陣列轉字串 &quot;&quot;，空物件轉字串 &quot;[object Object]&quot;</span><br><span class="line">console.log([] + &#123;&#125;); // &quot;[object Object]&quot;</span><br><span class="line"></span><br><span class="line">// 陣列轉字串 &quot;1,2,3&quot;，後方數字配合轉字串</span><br><span class="line">console.log([1,2,3] + 2 + 1); // &quot;1,2,321&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>&#123;&#125; + 任意值</code>：</p>
+<ol>
+<li><code>&#123;&#125;</code> 在運算元前方時會被視為<code>區塊語句</code>，而不是物件，所以實際執行的只有後面的 <code>+ x</code></li>
+<li><code>+ 任意值</code>是前一段落提到的<code>顯性轉型</code>轉數字的方法，所以後方的運算元轉為 number 型別。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 強制轉型</span><br><span class="line">console.log(+&#123;&#125;); // NaN</span><br><span class="line"></span><br><span class="line">// 看起來是物件加陣列，實際上是後方的陣列強制轉型為數字</span><br><span class="line">console.log(&#123;&#125; + []); // 0 </span><br><span class="line"></span><br><span class="line">// 上方程式實際執行時等同下面兩行：</span><br><span class="line">&#123;&#125;</span><br><span class="line">+[];</span><br><span class="line"></span><br><span class="line">// 宣告一個物件變數 x 來存放空物件，才能被當成物件來計算</span><br><span class="line">let x = &#123;&#125;;</span><br><span class="line">console.log(x + []); // &quot;[object Object]&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p><code>&#123;&#125; + &#123;&#125;</code>：這是一個特別狀況所以額外說明，不同的瀏覽器會有不同的執行結果：</p>
+<ol>
+<li>NaN - 第一個 {} 被視為區塊，</li>
+<li>“[object Object][object Object]” - 第一個 {} 被視為物件</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>邏輯運算</strong><br>邏輯運算中的運算元都會被轉為 boolean，差別在於其運算後回傳的結果。</p>
+<ul>
+<li><p>|| (or) 會回傳第一個結果為 true 的運算元，若無，則是最後一個。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(0 || false || null || undefined); // undefined</span><br><span class="line">console.log(0 || false || null || &#123;&#125; || undefined); // &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>&amp;&amp; (and) 若運算結果為 true，會回傳最後一個運算元，若運算結果為 false，回傳第一個結果為 false 的運算元。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(true &amp;&amp; &#123;&#125; &amp;&amp; -2 &amp;&amp; [&#x27;a&#x27;]); // [&#x27;a&#x27;]</span><br><span class="line">console.log(1 &amp;&amp; 0 &amp;&amp; true &amp; false); // 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>關於轉型的細節實在太多，族繁不及備載，一些極端的範例在實際撰寫時並不會用到，不求成為行走的 MDN，但求踩坑的時候能順利 debug 就好！</p>
+<blockquote>
+<p>參考文章<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/BigInt">MDN-BigInt</a><br><a target="_blank" rel="noopener" href="https://medium.com/@sunnyhuang.sc/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98-javascript-%E4%BD%95%E8%AC%82%E5%BC%B7%E5%88%B6%E8%BD%89%E5%9E%8B-coercion-%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E4%BD%9C%E5%88%B0%E8%BD%89%E6%8F%9B%E5%9E%8B%E5%88%A5-d7e39e30083">sunnyhuang-何謂強制轉型（coercion）以及如何作到轉換型別</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString">MDN-Number.prototype.toString()</a><br><a target="_blank" rel="noopener" href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/254123/">淺談JS中String()與.toString()的區別 - 程式前沿</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">MDN-Symbol.toPrimitive</a>。<br><a target="_blank" rel="noopener" href="https://eddychang.me/js-object-plus-object">Eddy 思考與學習-JS中的 {} + {} 與 {} + [] 的結果是什麼？</a><br><a target="_blank" rel="noopener" href="https://eddychang.me/js-object-plus-object"></a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/18/JSswitch/" rel="prev" title="[JS] if 和 switch 的使用時機">
+                  <i class="fa fa-chevron-left"></i> [JS] if 和 switch 的使用時機
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/11/21/JSstatement/" rel="next" title="[JS] 陳述式（Statement）與表達式（Expression）">
+                  [JS] 陳述式（Statement）與表達式（Expression） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-stark920-github-io","count":false,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

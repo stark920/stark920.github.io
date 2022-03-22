@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>六角線上預約</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScckUBohdTCx8y_nc1uAcjmpMTINV7P2ypfyYjqD7olVBF6OA/formResponse" method="POST">
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center my-5">六角西餐廳</h1>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <label for="name" class="form-label">姓名</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="name" aria-describedby="name" name="entry.2059181467" required>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="tel" class="form-label">電話</label>
+                    <div class="input-group mb-3">
+                        <input type="tel" class="form-control" id="tel" aria-describedby="tel" name="entry.1305993659" placeholder="ex: 0912345678" pattern="09[0-9]{8}" required>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="date" class="form-label">日期</label>
+                    <div class="input-group mb-3">
+                        <input type="date" class="form-control" id="date" aria-describedby="date" name="entry.624723864" min="2022-03-07" max="2023-12-30" required>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-2">用餐人數</div>
+                    <select class="form-select mb-3" id="person" aria-label="person" name="entry.654766799" required>
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <div class="mb-2">其他項目</div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="entry.2105845647" id="other1" value="需要兒童座椅">
+                        <label class="form-check-label" for="other1">需要兒童座椅</label>
+                        <br>
+                        <input class="form-check-input" type="checkbox" name="entry.2105845647" id="other2" value="素食餐點">
+                        <label class="form-check-label" for="other2">素食餐點</label>
+                        <br>
+                        <input class="form-check-input" type="checkbox" name="entry.2105845647" id="other3" value="吸煙區">
+                        <label class="form-check-label" for="other3">吸煙區</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-dark w-100 mt-2">送出</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

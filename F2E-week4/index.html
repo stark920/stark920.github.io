@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F2E 薪資調查數據圖</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid container-lg">
+              <a class="navbar-brand me-4" href="#">
+                <img src="img/Logo.png" class="logo" alt="The F2E Logo">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item mx-2">
+                    <a class="nav-link text-white px-2" href="https://2021.thef2e.com/" target="_blank">修煉精神時光屋</a>
+                  </li>
+                  <li class="nav-item mx-2 dropdown">
+                    <a class="nav-link text-white px-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        薪資調查報告
+                    </a>
+                    <ul class="dropdown-menu js-datatype" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item text-white" href="#" data-type="FE">前端薪資調查報告</a></li>
+                      <li><a class="dropdown-item text-white" href="#" data-type="UI">UI 薪資調查報告</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <button type="button" class="btn text-custom-secondary">Login</button>
+              </div>
+            </div>
+        </nav>
+    </header>
+    <section class="mt-5 ">
+        <div class="container">
+            <div class="row">
+                <h2 class="col-12 text-white text-center js-pagetitle">前端薪資調查報告</h2>
+            </div>
+        </div>
+    </section>
+    <section class="mt-5">
+        <div class="container">
+            <div class="row p-3">
+                <div class="btn-group btn-group-custom offset-lg-4 col-8 col-lg-4 js-togglechart" role="group of button" aria-label="toggle display charts">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-custom flex-1" for="btnradio1">基本資料</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                    <label class="btn btn-custom flex-1" for="btnradio2">薪資與產業</label>
+                </div>
+                <div class="dropdown col-4 col-lg-4 d-flex justify-content-end">
+                    <button class="btn btn-custom-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      2021 年
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item text-white" href="#">2021 年</a></li> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="chartpage-1" class="mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-lg-6">
+                    <div class="card-custom p-4">
+                        <h3 class="text-white">地區</h3>
+                        <p class="mt-4"><small>單位：人</small></p>
+                        <canvas id="area-chart"></canvas>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card-custom p-4">
+                        <h3 class="text-white">年齡</h3>
+                        <p class="mt-4"><small>單位：人</small></p>
+                        <canvas id="age-chart"></canvas>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5">
+                    <div class="card-custom p-4 h-100">
+                        <h3 class="text-white">性別比例</h3>
+                        <p class="mt-4"></p>
+                        <div class="d-flex align-items-center">
+                            <div class="col-3 text-white text-center">
+                                <p>女<br><span class="female-percentage"></span></p>
+                            </div>
+                            <div class="col-6">
+                                <canvas id="gender-chart"></canvas>
+                            </div>
+                            
+                            <div class="col-3 text-white text-center">
+                                <p>男<br><span class="male-percentage"></span></p>
+                            </div>    
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-7">
+                    <div class="card-custom p-4">
+                        <h3 class="text-white">科系與學歷</h3>
+                        <div class="col-12 d-flex align-items-end">
+                            <div class="col-9 col-lg-10">
+                                <canvas id="major-chart"></canvas>
+                            </div>
+                            <div class="col-3 col-lg-2 ps-4 pb-5">
+                                <small>單位：人</small>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card-custom p-4">
+                        <h3 class="text-white">第一份工作所採用之技術/軟體</h3>
+                        <div class="row g-4">
+                            <div class="col-12 col-lg-6">
+                                <canvas id="skill-chart"></canvas>
+                            </div>
+                            <div class="offset-lg-1 col-12 col-lg-4 p-4 rounded-3 text-white bg-custom-grey js-skill-detail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="chartpage-2" class="mt-5 d-none">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="card-custom p-4">
+                        <h3 class="text-white">現職年資</h3>
+                        <p class="mt-4"><small>單位：人</small></p>
+                        <canvas id="tenure-chart"></canvas>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card-custom p-4">
+                        <h3 class="text-white">年薪</h3>
+                        <p class="mt-4"><small>單位：千元</small></p>
+                        <canvas id="salary-chart"></canvas>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card-custom p-4">
+                        <h3 class="text-white">產業分布</h3>
+                        <p class="mt-4"></p>
+                        <div class="d-flex flex-wrap align-items-center">
+                            <div class="col-12 col-lg-7 d-flex align-items-center">
+                                <div class="col-3 text-white text-center">
+                                    <p>自有產品<br><span class="self-industry-percentage"></span></p>
+                                </div>
+                                <div class="col-6">
+                                    <canvas id="industry-chart"></canvas>
+                                </div>
+                                <div class="col-3 text-white text-center">
+                                    <p>接案公司<br><span class="case-industry-percentage"></span></p>
+                                </div>    
+                            </div>
+                            <div class="col-12 col-lg-5 mt-4 mt-lg-0">
+                                <div class="p-4 rounded-3 text-white bg-custom-grey">
+                                    <div>
+                                        <strong class='h5'>自有產品公司之產業人數排名 Top 10</strong>
+                                        <ul class="d-flex flex-wrap row-cols-2 mt-2 js-industry"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card-custom p-4">
+                        <div class="d-flex flex-wrap">
+                            <div class="col-12 col-lg-5">
+                                <h3 class="text-white">產業薪資與滿意度</h3>
+                            </div>
+                            <div class="col-12 col-lg-7 text-lg-end js-score-selection">
+                                <button type="button" class="btn btn-outline-light pe-3 py-1 mx-1 d-inline-flex align-items-center" value="previous">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left me-2" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                    </svg> 
+                                    上８筆
+                                </button>
+                                <button type="button" class="btn btn-outline-light ps-3 py-1 mx-1 d-inline-flex align-items-center" value="next">
+                                    下８筆
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right ms-2" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </button>
+                                <div class="btn-group col-12 col-lg-auto mt-2 mt-lg-0">
+                                    <button type="button" class="btn btn-outline-light dropdown-toggle px-3 py-1 ms-1 js-score-condition-btn flex-grow-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                        依從業人數 高至低
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item text-light" href="#" data-condition="Desc">依從業人數 高至低</a></li>
+                                      <li><a class="dropdown-item text-light" href="#" data-condition="Asc">依從業人數 低至高</a></li>
+                                    </ul>
+                                  </div>
+                            </div>
+                        </div>
+                        <p class="mt-4"><small>單位：千元</small></p>
+                        <div class="js-score-chart">
+                            <canvas id="score-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="mt-5">
+        <div class="container-fluid container-lg footer-custom">
+            <div class="row">
+                <div class="col py-3 text-white text-center">
+                    Copyright © 2021 Joyce
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JS] if 和 switch 的使用時機">
+<meta property="og:url" content="https://stark920.github.io/2021/11/18/JSswitch/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://stark920.github.io/images/js-if.png">
+<meta property="article:published_time" content="2021-11-18T15:01:06.000Z">
+<meta property="article:modified_time" content="2022-01-12T06:08:04.800Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stark920.github.io/images/js-if.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2021/11/18/JSswitch/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2021/11/18/JSswitch/","path":"2021/11/18/JSswitch/","title":"[JS] if 和 switch 的使用時機"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[JS] if 和 switch 的使用時機 | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">18</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-if%E2%80%A6else-%E7%9A%84%E5%AF%AB%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">💎 if…else 的寫法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-switch-%E7%9A%84%E5%AF%AB%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">💎 switch 的寫法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-if-%E5%92%8C-switch-%E7%B0%A1%E5%96%AE%E6%AF%94%E8%BC%83"><span class="nav-number">3.</span> <span class="nav-text">💎 if 和 switch 簡單比較</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%BB%B6%E4%BC%B8%E6%8A%80%E5%B7%A7"><span class="nav-number">4.</span> <span class="nav-text">💎 延伸技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E6%A2%9D%E4%BB%B6%EF%BC%88%E4%B8%89%E5%85%83%EF%BC%89%E9%81%8B%E7%AE%97%E5%AD%90"><span class="nav-number">4.1.</span> <span class="nav-text">🔸 條件（三元）運算子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-Early-Return"><span class="nav-number">4.2.</span> <span class="nav-text">🔸 Early Return</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/03/17/async/" title="[JS] 搞懂 Promise、Async、Await" target="_blank">[JS] 搞懂 Promise、Async、Await</a>
+    </li>
+    <li>
+        <a href="/2022/03/06/nodejs6/" title="[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）" target="_blank">[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs5/" title="[Node.JS] 打造 todolist api 4 - 部署上線" target="_blank">[Node.JS] 打造 todolist api 4 - 部署上線</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs4/" title="[Node.JS] 打造 todolist api 3 - 完成所有功能" target="_blank">[Node.JS] 打造 todolist api 3 - 完成所有功能</a>
+    </li>
+    <li>
+        <a href="/2022/03/02/nodejs3/" title="[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構" target="_blank">[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2021/11/18/JSswitch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [JS] if 和 switch 的使用時機
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-11-18 23:01:06" itemprop="dateCreated datePublished" datetime="2021-11-18T23:01:06+08:00">2021-11-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-01-12 14:08:04" itemprop="dateModified" datetime="2022-01-12T14:08:04+08:00">2022-01-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript-Basic/" itemprop="url" rel="index"><span itemprop="name">JavaScript - Basic</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="/images/js-if.png"></p>
+<span id="more"></span> 
+<p>if 和 switch 時常會被拿來比較，無論是可讀性、嚴謹性、效能…等，在比較前先了解基本的撰寫結構。</p>
+<hr>
+<h2 id="💎-if…else-的寫法"><a href="#💎-if…else-的寫法" class="headerlink" title="💎 if…else 的寫法"></a>💎 if…else 的寫法</h2><ul>
+<li><p>基本結構，至少要有一個條件判斷：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (true) &#123;</span><br><span class="line">    console.log(&quot;Hello, if!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>非 A 及 B（二選一）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let agreement = true;</span><br><span class="line">if (agreement) &#123;</span><br><span class="line">    console.log(&quot;同意&quot;);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    console.log(&quot;不同意&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>多個判斷：</p>
+<ul>
+<li>JavaScript 中的 else if 需要空白隔開（其他程式語言有些是連在一起的elseif）。</li>
+<li>else 不是必要項目，會在不符合所有的 if 或 else if 時執行。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let x = 100;</span><br><span class="line">if (x &gt;= 10000) &#123;</span><br><span class="line">    /* do something */</span><br><span class="line">&#125; else if (money &gt;= 1000) &#123;</span><br><span class="line">    /* do something */</span><br><span class="line">&#125; else if (money &gt;= 100) &#123;</span><br><span class="line">    /* do something */</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    /* do something */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>巢狀判斷</p>
+<ul>
+<li>可以在 if-else 內再加入 if-else 逐步判斷。</li>
+<li>層級過多時不易閱讀。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if (temperature &gt; 28) &#123;</span><br><span class="line">    console.log(&quot;stay home&quot;);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    if (humidity &gt; 50) &#123;</span><br><span class="line">        console.log(&quot;stay home&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (traffic === &#x27;nice&#x27;) &#123;</span><br><span class="line">            console.log(&quot;stay home&quot;);</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="💎-switch-的寫法"><a href="#💎-switch-的寫法" class="headerlink" title="💎 switch 的寫法"></a>💎 switch 的寫法</h2><ul>
+<li><p>基本結構：</p>
+<ul>
+<li>條件數量可以自行增減。</li>
+<li>每個條件結束後需加上 break 終止執行。</li>
+<li>default 不一定要放在最後，可以插在中間或最前面，不影響程式執行。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">switch (要判斷的資料) &#123;</span><br><span class="line">  case 條件1:</span><br><span class="line">    /* do something */</span><br><span class="line">    break;</span><br><span class="line">  case 條件2:</span><br><span class="line">    /* do something */</span><br><span class="line">    break;</span><br><span class="line">  ...</span><br><span class="line">  case 條件n:</span><br><span class="line">    /* do something */</span><br><span class="line">    break;</span><br><span class="line">  default:</span><br><span class="line">    /* 上述條件都不符合時執行 */</span><br><span class="line">    break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>switch 中的 break 不能遺漏</code><br>如果忘記在 case 結束時撰寫 break 來中斷，無論接下來的條件是否符合，都會一直執行到出現 break 或 switch 結尾為止，這會是相當嚴重的錯誤。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var x = 0;</span><br><span class="line">switch (x) &#123;</span><br><span class="line">  case 0:</span><br><span class="line">    console.log(0); // 此處漏掉 break</span><br><span class="line">  case 1: </span><br><span class="line">    console.log(1); // 繼續執行，此處也漏掉 break</span><br><span class="line">  case 2:</span><br><span class="line">    console.log(2); // 繼續執行</span><br><span class="line">    break; // 終止執行</span><br><span class="line">  case 3:</span><br><span class="line">    console.log(3); </span><br><span class="line">    break;</span><br><span class="line">  default:</span><br><span class="line">    console.log(&#x27;default&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">---執行結果---</span><br><span class="line">console:</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-if-和-switch-簡單比較"><a href="#💎-if-和-switch-簡單比較" class="headerlink" title="💎 if 和 switch 簡單比較"></a>💎 if 和 switch 簡單比較</h2><ul>
+<li>爬了各種文章後，大致歸納出以下幾點比較：<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">if</th>
+<th align="center">switch</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">易讀性</td>
+<td align="center">判斷條件少時較佳</td>
+<td align="center">判斷條件多時佳</td>
+</tr>
+<tr>
+<td align="center">效能</td>
+<td align="center">專案複雜時較差</td>
+<td align="center">專案複雜時較佳</td>
+</tr>
+<tr>
+<td align="center">判斷方式</td>
+<td align="center">撰寫者決定嚴謹度</td>
+<td align="center">嚴格比較（===）</td>
+</tr>
+<tr>
+<td align="center">使用時機</td>
+<td align="center">適合在少量決策、連續區間</td>
+<td align="center">適合大量決策、獨立區間</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h2 id="💎-延伸技巧"><a href="#💎-延伸技巧" class="headerlink" title="💎 延伸技巧"></a>💎 延伸技巧</h2><h3 id="🔸-條件（三元）運算子"><a href="#🔸-條件（三元）運算子" class="headerlink" title="🔸 條件（三元）運算子"></a>🔸 條件（三元）運算子</h3><ul>
+<li>條件運算子像是 if…else 的簡化版，寫法如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* 條件 ? 結果為truthy時執行 : 結果為falsy時執行 */</span><br><span class="line"></span><br><span class="line">let a = 1;</span><br><span class="line">a &gt; 1 ? console.log(&#x27;yes&#x27;) : console.log(&#x27;no&#x27;);</span><br></pre></td></tr></table></figure></li>
+<li>條件運算子也可以做到 else if，但是可讀性不太好，寫起來也容易漏掉符號：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a = 1;</span><br><span class="line">a &gt; 3 ? console.log(`$&#123;a&#125; &gt; 3`)</span><br><span class="line">: a &gt; 2 ? console.log(`$&#123;a&#125; &gt; 2`)</span><br><span class="line">: a &gt; 1 ? console.log(`$&#123;a&#125; &gt; 1`)</span><br><span class="line">: console.log(`$&#123;a&#125; &lt;= 1`);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🔸-Early-Return"><a href="#🔸-Early-Return" class="headerlink" title="🔸 Early Return"></a>🔸 Early Return</h3><ul>
+<li><p>當條件判斷多的時候，很容易寫出好幾層的巢狀判斷，不但不好閱讀，也降低執行效能。<br>這時可以挑出一些必要的條件，不符合就直接終止（return），可以減少巢狀、提高可讀性，也能提昇程式執行效率。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function doSomething(a, b)&#123;</span><br><span class="line">  // 不是數字就結束</span><br><span class="line">  if(isNaN(parseFloat(num1))||isNaN(parseFloat(num2))) return;</span><br><span class="line">  // 主要判斷邏輯</span><br><span class="line">  if(...)&#123;</span><br><span class="line">    if(...)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/if...else">MDN-if…else</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/switch">MDN-switch</a><br><a target="_blank" rel="noopener" href="https://hsiangfeng.github.io/javascript/20200117/3217748743/">Ray-JavaScript 的 if 跟 switch 效能</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Conditional_Operator">MDN-條件運算子</a><br><a target="_blank" rel="noopener" href="https://askie.today/javascript-good-condition-statement/">askie-五個小技巧讓你寫出更好的 JavaScript 條件語句</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>以上是我對 if 和 switch 的一點認知，如有錯誤或是需要補充的知識點，也歡迎大家不吝指教，謝謝！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/18/JSundefined/" rel="prev" title="[JS] undefined 和 null 的差異">
+                  <i class="fa fa-chevron-left"></i> [JS] undefined 和 null 的差異
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/11/19/JScoercion/" rel="next" title="[JS] 深入了解型別與轉型">
+                  [JS] 深入了解型別與轉型 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-stark920-github-io","count":false,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

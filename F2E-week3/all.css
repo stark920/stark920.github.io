@@ -1,0 +1,187 @@
+.color-primary {
+    color: #283C43;
+}
+.popupNormal .leaflet-popup-tip,
+.popupNormal .leaflet-popup-content-wrapper {
+    background-color: #355F8B;
+    outline: 2px solid #fff;
+    color: #fff;
+}
+.color-secondary {
+    color: #D08181;
+}
+.color-blue {
+    color: #3591C5;
+}
+.color-green {
+    color: #7FC0C5;
+}
+.color-bluegreen {
+    color: #5E9BAE;
+}
+.color-darkblue {
+    color: #52797C;
+}
+body {
+    background-color: #eee;
+    overflow: hidden;
+}
+#message-box {
+    z-index: 1030;
+    background-color: rgba(0, 0, 0, .8);
+}
+header, main, footer {
+    max-width: 1440px;
+}
+footer {
+    background-color: #444;
+}
+.banner {
+    background-image: url('img/bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.text-vertical-ch {
+    writing-mode: vertical-lr;
+}
+.text-vertical-en {
+    writing-mode: vertical-lr;
+    text-orientation: sideways-right;
+}
+.content-events-none * {
+    pointer-events: none;
+}
+.pointer-events-initial {
+    pointer-events: initial;
+}
+.favorite-toggle + label > span:last-child, input.favorite-toggle:checked + label > span:first-child{
+    display: none;
+}
+.favorite-toggle + label > span:first-child, input.favorite-toggle:checked + label > span:last-child{
+    display: inline-block;
+}
+#menu {
+    z-index: 1010;
+}
+#searchBox {
+    background-color: #eee;
+}
+#searchBox:focus {
+    background-color: #D5D5D5;
+    outline: none;
+}
+#searchBox + span {
+    top: 0.25rem;
+    right: 0.5rem;
+}
+#searchBox:focus + span, #searchBox:hover + span {
+    display: none; 
+}
+.bus-list {
+    flex: 1 1 0;
+    overflow-y: scroll;
+}
+.card-info {
+    border-bottom: 1px solid #E7E7E7;
+    cursor: pointer;
+}
+.search-button-board {
+    background-color: #F5F6F6;
+}
+.search-button-board button {
+    background-color: #D5D5D5;
+    cursor: pointer;
+}
+.pointer {
+    cursor: pointer;
+}
+.btn-station-forward {
+    background-color: #E0E0E0;
+    color: #000;
+}
+.btn-check:checked + .btn-station-forward {
+    background-color: #355F8B;
+    color: #fff;
+}
+
+#bus-state-list {
+    overflow-y: scroll;
+    flex: 1 1 0;
+}
+#bus-state-list > div{
+    width: 100%;
+    padding: 0 1.5rem;
+    cursor: pointer;
+}
+#bus-state-list > div:hover{
+    background-color: #EEE;
+}
+#bus-state-list > div *{
+    pointer-events: none;
+}
+#bus-state-list > div > div {
+    position: relative;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #E7E7E7;
+}
+#bus-state-list > div > div::after{
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid #F8F8F8;
+    background-color: #C4C4C4;
+}
+#bus-state-list > div > div::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    width: 1px;
+    height: 100%;
+    background-color: #C4C4C4;
+}
+#bus-state-list > div:first-child > div::before{
+    top: 50%;
+    height: 50%;
+}
+#bus-state-list > div:last-child > div::before{
+    bottom: 50%;
+    height: 50%;
+}
+#bus-state-list > div > div > span:first-child {
+    display: inline-block;
+    width: 77px;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0;
+    margin-right: 0.5rem;
+}
+#bus-state-list > div.over > div > span:first-child {
+    background-color: #A9A9A9;
+}
+#bus-state-list > div.coming > div > span:first-child, #bus-state-list > div.next > div > span:first-child {
+    background-color: #D08181;
+}
+#bus-state-list > div.continue > div > span:first-child {
+    background-color: #355F8B;
+}
+#bus-state-list > div.coming > div > span:nth-child(2) {
+    font-weight: bolder;
+}
+/* #bus-state-list > div.coming > div > span:last-child {
+    font-weight: bolder;
+    color: #D08181;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+} */

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JS] 參數傳遞方式 Call by what?">
+<meta property="og:url" content="https://stark920.github.io/2021/11/17/JScallby/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://stark920.github.io/images/js-callby.png">
+<meta property="og:image" content="https://static.coderbridge.com/img/stark920/8f804e92af4d4299bb01a03c1c0db8fe.png">
+<meta property="og:image" content="https://static.coderbridge.com/img/stark920/cfd22c95b0984e4f8100cba3475126b5.png">
+<meta property="og:image" content="https://static.coderbridge.com/img/stark920/31c26d8272ee4121861f06dac62773c2.png">
+<meta property="og:image" content="https://static.coderbridge.com/img/stark920/e290304dab504fc2918d0e2fac624498.png">
+<meta property="article:published_time" content="2021-11-17T13:43:11.000Z">
+<meta property="article:modified_time" content="2022-01-12T06:05:51.882Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stark920.github.io/images/js-callby.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2021/11/17/JScallby/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2021/11/17/JScallby/","path":"2021/11/17/JScallby/","title":"[JS] 參數傳遞方式 Call by what?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[JS] 參數傳遞方式 Call by what? | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">18</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E8%B3%87%E6%96%99%E5%9E%8B%E5%88%A5"><span class="nav-number">1.</span> <span class="nav-text">💎 資料型別</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%B7%AE%E7%95%B0%E6%AF%94%E8%BC%83"><span class="nav-number">2.</span> <span class="nav-text">💎 差異比較</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E6%AF%94%E8%BC%83%E9%81%8B%E7%AE%97"><span class="nav-number">2.1.</span> <span class="nav-text">🔸 比較運算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B8-%E6%8B%B7%E8%B2%9D%E8%AE%8A%E6%95%B8"><span class="nav-number">2.2.</span> <span class="nav-text">🔸 拷貝變數</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E6%AE%B5%E8%90%BD%E5%B0%8F%E7%B5%90"><span class="nav-number">3.</span> <span class="nav-text">💎 段落小結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-Call-by-sharing"><span class="nav-number">4.</span> <span class="nav-text">💎 Call by sharing?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%B8%BD%E7%B5%90"><span class="nav-number">5.</span> <span class="nav-text">💎 總結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/03/17/async/" title="[JS] 搞懂 Promise、Async、Await" target="_blank">[JS] 搞懂 Promise、Async、Await</a>
+    </li>
+    <li>
+        <a href="/2022/03/06/nodejs6/" title="[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）" target="_blank">[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs5/" title="[Node.JS] 打造 todolist api 4 - 部署上線" target="_blank">[Node.JS] 打造 todolist api 4 - 部署上線</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs4/" title="[Node.JS] 打造 todolist api 3 - 完成所有功能" target="_blank">[Node.JS] 打造 todolist api 3 - 完成所有功能</a>
+    </li>
+    <li>
+        <a href="/2022/03/02/nodejs3/" title="[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構" target="_blank">[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2021/11/17/JScallby/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [JS] 參數傳遞方式 Call by what?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-11-17 21:43:11" itemprop="dateCreated datePublished" datetime="2021-11-17T21:43:11+08:00">2021-11-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-01-12 14:05:51" itemprop="dateModified" datetime="2022-01-12T14:05:51+08:00">2022-01-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript-Basic/" itemprop="url" rel="index"><span itemprop="name">JavaScript - Basic</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="/images/js-callby.png"></p>
+<span id="more"></span> 
+<p>在探討參數傳遞的機制前，先了解一點基本的計算機觀念，電腦中的資料需要有個空間存放起來，才能被拿出來操作（運算），這存放的地方就是『記憶體』，平常會聽到電腦的記憶體有 4G、8G…等，資料不會一次佈滿整個記憶體空間，記憶體會切成許多小區塊（位置）來使用，一般在探討時會用類似 <code>0x01</code>、<code>0x02</code>… 這樣的方法來表示記憶體位置（並非實際記憶體使用位置）。</p>
+<hr>
+<h2 id="💎-資料型別"><a href="#💎-資料型別" class="headerlink" title="💎 資料型別"></a>💎 資料型別</h2><p>JavaScript 的資料型別分成<code>原始型別</code>和<code>物件型別</code>兩類，兩種型別的傳遞方式有所不同，下個段落繼續說明：</p>
+<ul>
+<li>原始型別（Primitives）：string, number, boolean, null, undefined, symbol</li>
+<li>物件型別（Object）：object, array, function…等都屬於物件型別</li>
+</ul>
+<blockquote>
+<p>詳細說明可以參考我的另一篇文章： <a href="https://stark920.github.io/2021/11/19/JScoercion">[JS] 深入了解型別與轉型</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-差異比較"><a href="#💎-差異比較" class="headerlink" title="💎 差異比較"></a>💎 差異比較</h2><h3 id="🔸-比較運算"><a href="#🔸-比較運算" class="headerlink" title="🔸 比較運算"></a>🔸 比較運算</h3><ul>
+<li><p>先看一段簡單的程式碼，使用 <code>基本型別</code> 做相等的比較運算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = 1;</span><br><span class="line">let b = 1;</span><br><span class="line">console.log(a === b); // true</span><br></pre></td></tr></table></figure>
+<p>沒意外的結果是 true，記憶體的使用會像下圖：<br><img data-src="https://static.coderbridge.com/img/stark920/8f804e92af4d4299bb01a03c1c0db8fe.png"></p>
+<center><small>在一個記憶體存放值，變數名稱 a 指向這個值的記憶體位置</small></center></li>
+<li><p>接著改成 <code>物件型別</code> 進行比較</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let obj1 = &#123;a: 1&#125;;</span><br><span class="line">let obj2 = &#123;a: 1&#125;;</span><br><span class="line">console.log(a === b); // false</span><br></pre></td></tr></table></figure>
+<p>結果卻變成 false 了，此時記憶體的使用情況變成下圖：<br><img data-src="https://static.coderbridge.com/img/stark920/cfd22c95b0984e4f8100cba3475126b5.png"></p>
+<center><small>變數裡面存放了一個指向物件實體的記憶體位置，所以這兩個變數的內容實際是不同的記憶體位置，比較的結果是不相等</small></center></li>
+</ul>
+<hr>
+<h3 id="🔸-拷貝變數"><a href="#🔸-拷貝變數" class="headerlink" title="🔸 拷貝變數"></a>🔸 拷貝變數</h3><ul>
+<li><p><code>基本型別</code> 範例程式：將 c 的資料賦予到變數 d，再改變 c 的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let c = 1;</span><br><span class="line">let d = c;</span><br><span class="line">c = 2;</span><br><span class="line"></span><br><span class="line">console.log(c); // 2</span><br><span class="line">console.log(d); // 1</span><br></pre></td></tr></table></figure>
+<p>c 的值修改之後， d 沒有同時變動，由此可知 c 的值被『複製』給 d 了，兩個變數指向不同的記憶體位置，這時候記憶體的變化如下圖：</p>
+<p><img data-src="https://static.coderbridge.com/img/stark920/31c26d8272ee4121861f06dac62773c2.png"></p>
+</li>
+<li><p>使用 <code>物件型別</code> 來做相同的操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let obj1 = &#123;a: 1&#125;;</span><br><span class="line">let obj2 = obj1;</span><br><span class="line">obj1.a = 2;</span><br><span class="line"></span><br><span class="line">console.log(obj1); // &#123;a: 2&#125;</span><br><span class="line">console.log(obj2); // &#123;a: 2&#125;</span><br><span class="line">console.log(obj1 === obj2); // true</span><br></pre></td></tr></table></figure>
+<p>修改第一個物件變數的內容，第二個物件變數也跟著變動了，表示兩個物件變數都指向同一個記憶體位置，用比較運算也得到相等的結果，如下圖：</p>
+<p><img data-src="https://static.coderbridge.com/img/stark920/e290304dab504fc2918d0e2fac624498.png"></p>
+</li>
+</ul>
+<hr>
+<h2 id="💎-段落小結"><a href="#💎-段落小結" class="headerlink" title="💎 段落小結"></a>💎 段落小結</h2><ul>
+<li><p><code>基本型別</code>是純粹的『值』，這個值是靜態的、不可變的（immutable），在傳遞時會以新的記憶體空間來存放新的（或複製來的）資料，這種參數傳遞模式通常被稱為<code>傳值（call by value）</code>。</p>
+</li>
+<li><p><code>物件型別</code>的資料是動態的、可變的（mutable），變數內會存放一個記憶體位置指向物件的本體，就像是這個物件的經紀人一樣；因此，做賦值運算時只會取得這個記憶體位置，而不是物件實體，這種複製方式又稱為淺拷貝，而參數傳遞模式通常被稱為<code>傳參考（call by reference）</code>。</p>
+</li>
+</ul>
+<blockquote>
+<p>延伸閱讀： <a target="_blank" rel="noopener" href="https://medium.com/andy-blog/%E9%97%9C%E6%96%BCjs%E4%B8%AD%E7%9A%84%E6%B7%BA%E6%8B%B7%E8%B2%9D-shallow-copy-%E4%BB%A5%E5%8F%8A%E6%B7%B1%E6%8B%B7%E8%B2%9D-deep-copy-5f5bbe96c122">Andy - 關於JS中的淺拷貝(shallow copy)以及深拷貝(deep copy)</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-Call-by-sharing"><a href="#💎-Call-by-sharing" class="headerlink" title="💎 Call by sharing?"></a>💎 Call by sharing?</h2><ul>
+<li><p>如果仔細看會發現上一個段落名稱是<code>段落小結</code>，沒錯，事情還沒結束！接著來看下面這段程式碼，並想想結果會印出什麼？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function share(obj) &#123;</span><br><span class="line">  obj.a = 2;</span><br><span class="line">  obj = &#123; b: 3 &#125;;</span><br><span class="line">  return obj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let objA = &#123; a: 1 &#125;;</span><br><span class="line">let objB = share(objA);</span><br><span class="line"></span><br><span class="line">console.log(objA); // &#123; a: 2 &#125;</span><br><span class="line">console.log(objB); // &#123; b: 3 &#125;</span><br></pre></td></tr></table></figure>
+<p>以物件傳參考的邏輯來看，objA 裡面存的記憶體位置會傳入函式，在 <code>obj.a = 2</code> 這段也確實透過傳入的位址成功修改 objA 物件內的值。</p>
+<p>到了 <code>obj = &#123; b: 3 &#125;</code> 這段卻沒有改變原始的物件（objA)，而是以傳值的方式進行，新增了一個記憶體位置存放物件，再透過 return 回傳給 objB。</p>
+<p><code>函式</code>會依傳入的參數型別有所不同（基本型別傳值、物件型別傳參考），但是對參數做<code>賦值運算時（=）</code>，就會<code>指向新的記憶體位置</code>，這種模式常被稱為 <code>call by sharing</code>。</p>
+</li>
+</ul>
+<hr>
+<h2 id="💎-總結"><a href="#💎-總結" class="headerlink" title="💎 總結"></a>💎 總結</h2><ul>
+<li>JavaScript 並沒有正式文件去定義該怎麼稱呼這些資料傳遞方式，無論是 call by value、reference 或 sharing，亦或是要說 call by 還是 pass by 其實並沒有這麼重要，最重要的是了解 JavaScript 在處理資料時有什麼不同的機制，讓我們在撰寫時不要踩坑，才是實際又有幫助的。</li>
+</ul>
+<blockquote>
+<p>參考資料： <a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2018/06/23/javascript-call-by-value-or-reference/">Huli - 深入探討 JavaScript 中的參數傳遞：call by value 還是 reference？</a></p>
+</blockquote>
+<hr>
+<p>以上是我對這參數傳遞的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/16/JSvariable/" rel="prev" title="[JS] 變數宣告方式：let、const、var">
+                  <i class="fa fa-chevron-left"></i> [JS] 變數宣告方式：let、const、var
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/11/18/JSundefined/" rel="next" title="[JS] undefined 和 null 的差異">
+                  [JS] undefined 和 null 的差異 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-stark920-github-io","count":false,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

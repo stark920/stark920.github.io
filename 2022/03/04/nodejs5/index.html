@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Node.JS] 打造 todolist api 4 - 部署上線">
+<meta property="og:url" content="https://stark920.github.io/2022/03/04/nodejs5/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://stark920.github.io/images/nodejs-logo.png">
+<meta property="article:published_time" content="2022-03-04T05:49:28.000Z">
+<meta property="article:modified_time" content="2022-03-07T16:04:56.666Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="Node.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stark920.github.io/images/nodejs-logo.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2022/03/04/nodejs5/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2022/03/04/nodejs5/","path":"2022/03/04/nodejs5/","title":"[Node.JS] 打造 todolist api 4 - 部署上線"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Node.JS] 打造 todolist api 4 - 部署上線 | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">18</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E9%9C%80%E8%A6%81%E5%B7%A5%E5%85%B7"><span class="nav-number">1.</span> <span class="nav-text">💎 需要工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-Git"><span class="nav-number">2.</span> <span class="nav-text">💎 Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A"><span class="nav-number">3.</span> <span class="nav-text">💎 環境設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-Heroku-%E7%94%B3%E8%AB%8B%E8%88%87%E5%AE%89%E8%A3%9D"><span class="nav-number">4.</span> <span class="nav-text">💎 Heroku 申請與安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-Heroku-%E4%B8%8A%E7%B7%9A%EF%BC%81"><span class="nav-number">5.</span> <span class="nav-text">💎 Heroku 上線！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%B7%9A%E4%B8%8A%E5%8A%9F%E8%83%BD%E6%B8%AC%E8%A9%A6"><span class="nav-number">6.</span> <span class="nav-text">💎 線上功能測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%B5%90%E8%AA%9E"><span class="nav-number">7.</span> <span class="nav-text">💎 結語</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/03/17/async/" title="[JS] 搞懂 Promise、Async、Await" target="_blank">[JS] 搞懂 Promise、Async、Await</a>
+    </li>
+    <li>
+        <a href="/2022/03/06/nodejs6/" title="[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）" target="_blank">[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs5/" title="[Node.JS] 打造 todolist api 4 - 部署上線" target="_blank">[Node.JS] 打造 todolist api 4 - 部署上線</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs4/" title="[Node.JS] 打造 todolist api 3 - 完成所有功能" target="_blank">[Node.JS] 打造 todolist api 3 - 完成所有功能</a>
+    </li>
+    <li>
+        <a href="/2022/03/02/nodejs3/" title="[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構" target="_blank">[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2022/03/04/nodejs5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Node.JS] 打造 todolist api 4 - 部署上線
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-03-04 13:49:28" itemprop="dateCreated datePublished" datetime="2022-03-04T13:49:28+08:00">2022-03-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-03-08 00:04:56" itemprop="dateModified" datetime="2022-03-08T00:04:56+08:00">2022-03-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span> 
+<p>寫了好幾篇，功能終於做完了，這篇來記錄如何把寫好的功能放到雲端上，讓這個 API 不再只是本地戳，真正的上線運行。</p>
+<hr>
+<h2 id="💎-需要工具"><a href="#💎-需要工具" class="headerlink" title="💎 需要工具"></a>💎 需要工具</h2><ul>
+<li>雲端平台：Heroku</li>
+<li>部署工具：Git</li>
+</ul>
+<hr>
+<h2 id="💎-Git"><a href="#💎-Git" class="headerlink" title="💎 Git"></a>💎 Git</h2><p>要把做好的專案部署到 Heroku 上，會需要用到 Git 來發佈，加入 git 版控只需要在 todolist 練習的資料夾下一個初始化的指令即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果還沒有 Git，可以到 <a target="_blank" rel="noopener" href="https://git-scm.com/">Git 官方網站</a> 下載</p>
+</blockquote>
+<p>完成初始化後可以建立在專案資料夾建立 .gitignore 檔案（例外清單），並打開編輯，在裡面加入 node_modules，當上傳專案到 heroku 平台上時，平台會自動根據 package.json 裡面的 dependancies 來安裝套件，所以可以把模組的實體檔案加到例外，不用一起部署上線。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💎-環境設定"><a href="#💎-環境設定" class="headerlink" title="💎 環境設定"></a>💎 環境設定</h2><p>在部署上線前，需要（）做一些調整，才能順利運行：</p>
+<ul>
+<li>package.json<ul>
+<li>“scripts” 內加入啟動伺服器的指令<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;node server.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li>新增 “engines” 屬性來指定運行的 node.js 版本<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;engines&quot;: &#123;</span><br><span class="line">    &quot;node&quot;: &quot;16.x&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>確認 server.js 裡面的 PORT 設定有沒有使用 process.env.PORT 來獲取環境變數，沒有的話伺服器會無法連線。</li>
+<li>完成環境設定後記得用 Git 提交版本<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#x27;todolist v1(名稱自訂)&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-Heroku-申請與安裝"><a href="#💎-Heroku-申請與安裝" class="headerlink" title="💎 Heroku 申請與安裝"></a>💎 Heroku 申請與安裝</h2><ol>
+<li>如果還沒有 Heroku 帳號，可以先到 <a target="_blank" rel="noopener" href="https://www.heroku.com/">Heroku 官方網站</a> 註冊。</li>
+<li>註冊完成後回到開發環境（VS Code）。</li>
+<li>安裝 Heroku CLI（建議使用全域安裝）。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g heroku</span><br></pre></td></tr></table></figure>
+<code>安裝完會出現不少衝突警告，但可以先無視</code></li>
+<li>測試一下 Heroku CLI 能不能正常使用（下面是檢查版本資訊的指令）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku --version</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="💎-Heroku-上線！"><a href="#💎-Heroku-上線！" class="headerlink" title="💎 Heroku 上線！"></a>💎 Heroku 上線！</h2><ol>
+<li><p>先回到 VScode，並且進入 todolist 專案資料夾，在終端機執行登入 heroku 的指令，送出後按任意按鍵會跳轉到登入的網頁，接著再網頁登入成功後，終端機也會跳出登入成功訊息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure></li>
+<li><p>執行建立伺服器指令，執行後系統會產生一組專案名稱，可以複製名稱最後的幾個數字，在網頁介面的搜尋列找到這個專案。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku create</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建立伺服器成功後，同時也會把這個遠端專案加到本地中，可以用指令 <code>git remote</code> 檢查，會發現多了一組 <code>heroku</code>。</p>
+</blockquote>
+</li>
+<li><p>發佈專案！運用 git push 把心血結晶上傳吧！<br>（指令最後的本地分支名稱視版本有所不同，需要自行調整）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push heroku main/master</span><br></pre></td></tr></table></figure></li>
+<li><p>如果上傳部署成功，就可以執行指令來啟用伺服器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku open</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="💎-線上功能測試"><a href="#💎-線上功能測試" class="headerlink" title="💎 線上功能測試"></a>💎 線上功能測試</h2><p>把所有的可能性從頭到尾測一遍。<br><strong>測試網址</strong>：</p>
+<ul>
+<li><code>http://(heroku給的網域名稱)/todo</code></li>
+<li><code>http://(heroku給的網域名稱)/todo/</code></li>
+<li><code>http://(heroku給的網域名稱)/todo/(任一筆id)</code></li>
+<li><code>http://(heroku給的網域名稱)/(亂打)</code></li>
+</ul>
+<p><strong>測試方法</strong>：</p>
+<ul>
+<li>OPTIONS</li>
+<li>GET</li>
+<li>POST</li>
+<li>PATCH</li>
+<li>DELETE</li>
+<li>其他 POSTMAN 上有的方法都可以試試</li>
+</ul>
+<p><strong>測試資料</strong>： </p>
+<ul>
+<li><code>&#123;&quot;title&quot;: &quot;隨意&quot;&#125;</code></li>
+<li>各種奇怪資料</li>
+</ul>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>這系列文章是參考六角學院的課程撰寫的，這些基本的功能照著課程走，花了很大篇幅和時間才寫出來，寫了才發現每個環節都有詳細的說明，儘管實作的內容還只是皮毛，但是能穩紮穩打的進步，真的比到論壇複製貼上慢慢摸索前進還要有成就感。</p>
+<blockquote>
+<p>我的 <a target="_blank" rel="noopener" href="https://github.com/stark920/todolistDemo">GitHub - todolistDemo</a> 也存放了照著這些文章寫出來的成果，如果操作有問題也可以參考上面的檔案。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Node-js/" rel="tag"><i class="fa fa-tag"></i> Node.js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/04/nodejs4/" rel="prev" title="[Node.JS] 打造 todolist api 3 - 完成所有功能">
+                  <i class="fa fa-chevron-left"></i> [Node.JS] 打造 todolist api 3 - 完成所有功能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/06/nodejs6/" rel="next" title="[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）">
+                  [Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-stark920-github-io","count":false,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Node.JS] 建立伺服器、掌握基本知識">
+<meta property="og:url" content="https://stark920.github.io/2022/02/22/nodejs1/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://stark920.github.io/images/nodejs-logo.png">
+<meta property="article:published_time" content="2022-02-22T14:19:27.000Z">
+<meta property="article:modified_time" content="2022-03-07T06:17:20.594Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="Node.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stark920.github.io/images/nodejs-logo.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2022/02/22/nodejs1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2022/02/22/nodejs1/","path":"2022/02/22/nodejs1/","title":"[Node.JS] 建立伺服器、掌握基本知識"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Node.JS] 建立伺服器、掌握基本知識 | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">18</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%9F%BA%E6%9C%AC%E6%8A%80%E8%83%BD-%EF%BC%8D-%E6%A8%A1%E7%B5%84%E5%BC%95%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">💎 基本技能 － 模組引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-js"><span class="nav-number">1.1.</span> <span class="nav-text">a.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-js"><span class="nav-number">1.2.</span> <span class="nav-text">b.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-js"><span class="nav-number">1.3.</span> <span class="nav-text">c.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%89%B5%E5%BB%BA%E6%9C%AC%E5%9C%B0%E4%BC%BA%E6%9C%8D%E5%99%A8-%EF%BC%8D-createServer"><span class="nav-number">2.</span> <span class="nav-text">💎 創建本地伺服器 － createServer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E8%AA%AA%E6%98%8E"><span class="nav-number">3.</span> <span class="nav-text">💎 程式碼說明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">3.1.</span> <span class="nav-text">http</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%A3%E8%81%BD%E9%80%A3%E7%B7%9A%E8%AB%8B%E6%B1%82"><span class="nav-number">3.2.</span> <span class="nav-text">監聽連線請求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request"><span class="nav-number">3.3.</span> <span class="nav-text">request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response"><span class="nav-number">3.4.</span> <span class="nav-text">response</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#listen-port"><span class="nav-number">3.5.</span> <span class="nav-text">listen(port)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E6%8E%A2%E7%B4%A2-Req-%E8%88%87-Res-%EF%BC%8D-Postman"><span class="nav-number">4.</span> <span class="nav-text">💎 探索 Req 與 Res － Postman</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-Postman"><span class="nav-number">4.1.</span> <span class="nav-text">安裝 Postman</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Postman"><span class="nav-number">4.2.</span> <span class="nav-text">使用 Postman</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E8%A3%9C%E5%85%85%E7%9F%A5%E8%AD%98"><span class="nav-number">5.</span> <span class="nav-text">💎 補充知識</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Global-%E5%85%A8%E5%9F%9F%E7%89%A9%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">Global 全域物件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AA%94%E6%A1%88%E8%B7%AF%E5%BE%91"><span class="nav-number">5.2.</span> <span class="nav-text">檔案路徑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%B5%90%E8%AA%9E"><span class="nav-number">6.</span> <span class="nav-text">💎 結語</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/03/17/async/" title="[JS] 搞懂 Promise、Async、Await" target="_blank">[JS] 搞懂 Promise、Async、Await</a>
+    </li>
+    <li>
+        <a href="/2022/03/06/nodejs6/" title="[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）" target="_blank">[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs5/" title="[Node.JS] 打造 todolist api 4 - 部署上線" target="_blank">[Node.JS] 打造 todolist api 4 - 部署上線</a>
+    </li>
+    <li>
+        <a href="/2022/03/04/nodejs4/" title="[Node.JS] 打造 todolist api 3 - 完成所有功能" target="_blank">[Node.JS] 打造 todolist api 3 - 完成所有功能</a>
+    </li>
+    <li>
+        <a href="/2022/03/02/nodejs3/" title="[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構" target="_blank">[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2022/02/22/nodejs1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Node.JS] 建立伺服器、掌握基本知識
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-02-22 22:19:27" itemprop="dateCreated datePublished" datetime="2022-02-22T22:19:27+08:00">2022-02-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-03-07 14:17:20" itemprop="dateModified" datetime="2022-03-07T14:17:20+08:00">2022-03-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span> 
+
+<p>這篇文章記錄了如何建立一個本地網頁服務，讓我們可以透過瀏覽器看到伺服器回傳的資料。</p>
+<hr>
+<h2 id="💎-基本技能-－-模組引用"><a href="#💎-基本技能-－-模組引用" class="headerlink" title="💎 基本技能 － 模組引用"></a>💎 基本技能 － 模組引用</h2><p>在 Node.js 中會使用 JavaScript 的模組方法來載入各種功能，這個段落會先介紹如何操作，如果已經熟悉可以跳過，進入下個段落。</p>
+<p>範例情境：</p>
+<ul>
+<li>主要檔案：a.js</li>
+<li>模組－寫法１：b.js</li>
+<li>模組－寫法２：c.js</li>
+</ul>
+<h3 id="a-js"><a href="#a-js" class="headerlink" title="a.js"></a>a.js</h3><ul>
+<li>使用 require 來引入其他資源<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自己的變數</span></span><br><span class="line"><span class="keyword">let</span> contentA = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 引用 b.js，如果被引用的檔案在相同目錄，路徑前方加上 ./ </span></span><br><span class="line"><span class="keyword">const</span> contentB = <span class="built_in">require</span>(<span class="string">&#x27;./b&#x27;</span>);</span><br><span class="line"><span class="comment">// 引用 c.js</span></span><br><span class="line"><span class="keyword">const</span> contentC = <span class="built_in">require</span>(<span class="string">&#x27;./c&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(contentA); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 變數存放了回傳的整個物件</span></span><br><span class="line"><span class="built_in">console</span>.log(contentB); <span class="comment">// &#123;...&#125;</span></span><br><span class="line"><span class="comment">// 可以使用物件方法取得裡面的值</span></span><br><span class="line"><span class="built_in">console</span>.log(contentB.title) <span class="comment">// B</span></span><br><span class="line"><span class="built_in">console</span>.log(contentB.getNum()) <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(contentC); <span class="comment">// &#123;...&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(contentC.title) <span class="comment">// C</span></span><br><span class="line"><span class="built_in">console</span>.log(contentC.getNum()) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="b-js"><a href="#b-js" class="headerlink" title="b.js"></a>b.js</h3><ul>
+<li>使用 module.exports 設定被引用時提供的資料<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法１－ 直接設定要輸出的資料，多個資料時通常用物件格式來存放</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">    <span class="attr">getNum</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="c-js"><a href="#c-js" class="headerlink" title="c.js"></a>c.js</h3><ul>
+<li>使用 exports.屬性名稱 設定被引用時提供的資料<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法２－ 新增屬性的方式逐一增加輸出的資料</span></span><br><span class="line"><span class="built_in">exports</span>.title = <span class="string">&#x27;C&#x27;</span>;</span><br><span class="line"><span class="built_in">exports</span>.getNum = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-創建本地伺服器-－-createServer"><a href="#💎-創建本地伺服器-－-createServer" class="headerlink" title="💎 創建本地伺服器 － createServer"></a>💎 創建本地伺服器 － createServer</h2><p>學會模組引用的操作後，就可以試著撰寫第一個 js 檔案，讓 Node.js 建立一個伺服器服務：<br><code>以下開發環境都使用 VS Code</code></p>
+<ol>
+<li><p><strong>建立伺服器 js 檔 （檔名自定)</strong><br>下面這段程式碼是 node.js 官方範例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用 http 模組</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="comment">// 建立一個本地伺服器，設定接收到請求後的回傳資料</span></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 使用 8000 port</span></span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>啟動伺服器</strong><br>開啟終端機（熱鍵為 Ctrl + <code>`</code>），使用 Node.js 執行撰寫好的檔案，如果沒有跳出錯誤訊息就表示本地伺服器成功運行了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">** 請先將路徑切換到 js 存放的位置，檔案名稱修改為自己設定的名稱 **</span><br><span class="line">node 檔案名稱.js</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>關閉伺服器</strong><br>伺服器執行的狀態下，在終端機視窗內按下 <code>Ctrl+C</code> 就可以終止。</p>
+</li>
+<li><p><strong>連線測試</strong><br>伺服器正常運作後可以開啟瀏覽器，輸入網址 <code>http://127.0.0.1:8000</code>，沒有問題的話就會顯示 <code>Hello</code>，這段網址中的 127.0.0.1 表示這部電腦的本地位置，冒號加上數字 8000 就可以指定使用前面步驟設定的 port 來連線。</p>
+</li>
+<li><p><strong>修改測試</strong><br>試著修改 Content-Type 或 res.write 的內容，讓網頁顯示不一樣的資訊。<br>每次修改儲存後都需要重起 node，可以透過 npm 安裝 <code>nodemon</code> 這個套件，就能在編輯檔案後自動重新載入伺服器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">** 安裝指令（建議全域安裝）**</span><br><span class="line">npm i -g nodemon</span><br><span class="line"></span><br><span class="line">** 使用 nodemon 來執行 js 檔案 **</span><br><span class="line">nodemon app.js</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/nodemon">npm - nodemon</a></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="💎-程式碼說明"><a href="#💎-程式碼說明" class="headerlink" title="💎 程式碼說明"></a>💎 程式碼說明</h2><h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p>程式一開始引用了 node.js 中的 <code>http</code> 模組，並使用 createServer 方法來建立伺服器，模組的其他功能可以參考官方文件。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/dist/latest-v16.x/docs/api/http.html#httpcreateserveroptions-requestlistener">官方說明文件 - http</a></p>
+</blockquote>
+<h3 id="監聽連線請求"><a href="#監聽連線請求" class="headerlink" title="監聽連線請求"></a>監聽連線請求</h3><p>createServer 方法裡面傳入的函式像是 addEventListener 事件偵測，但監聽的<code>行為</code>是有沒有<code>連線請求</code>傳送到這台伺服器主機，這個監聽函式也可以使用變數獨立出來，增加一點可讀性，改寫後如下方程式碼：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="comment">// 監聽連線請求的函式</span></span><br><span class="line"><span class="keyword">const</span> requestListener = <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 建立伺服器的參數帶入儲存函式的變數</span></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(requestListener);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="request"><a href="#request" class="headerlink" title="request"></a>request</h3><p>監聽函式帶有兩個參數，<code>req</code> 是 request（請求）的簡寫，當我們在瀏覽器網址列輸入網址送出連線，就會對該網址對應的伺服器主機發出請求，請求資訊會包含瀏覽器版本、需要的資源、請求的方式…等資訊，在 node.js 中可以透過 req 變數來查看詳細資訊。</p>
+<ul>
+<li>觀察 req 的內容：<br>修改監聽函式 &gt; 儲存檔案 &gt; 重啟伺服器 &gt; 瀏覽本地網址 &gt; 在終端機查看 req 資訊<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> requestListener = <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 新增下面這段程式碼，來顯示請求的內容</span></span><br><span class="line">    <span class="built_in">console</span>.log(req);</span><br><span class="line"></span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>req 的常用屬性：<ul>
+<li><code>req.url</code>：取得請求的資源路徑。一個網站會有好幾個檔案，透過這個屬性就可以取得請求的路徑，如果請求的網址後面沒有任何路徑，就會得到根目錄（/)，通常會設置回應首頁頁面。</li>
+<li><code>req.method</code>：取得請求的方法。一般連線請求會使用 GET 方法，但是若有夾帶其他資訊時就會使用其他方法，各種方法可以參考 MDN 的說明。<blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Methods">MDN - HTTP 請求方法</a></p>
+</blockquote>
+</li>
+<li><code>req.on(&quot;data&quot;, ...)</code>：取得請求夾帶的資料。當連線使用 POST、PATCH…等方法時通常回夾帶資料給伺服器處理，就會需要使用這個方法來接收。</li>
+<li><code>req.on(&quot;end&quot;, ...)</code>：資料接收完成後執行動作。網路封包傳遞會把資料切成片段，不會每次都一次傳完，所以在 on(data) 的階段無法確認收到的資料已經完成，要用這個方法才能確保資料接收完，再執行對應的程式碼。</li>
+</ul>
+</li>
+</ul>
+<h3 id="response"><a href="#response" class="headerlink" title="response"></a>response</h3><ul>
+<li><code>res</code> 是 response（回應）的簡寫，伺服器收到請求後，就會把設定好的資訊傳回用戶端，在簡易的範例中只會回應 Hello 的文字，可以撰寫程式碼結合 req.url 和 req.method 判斷來回應不同的內容。</li>
+<li><code>res.writeHead(status, header)</code>：回傳的表頭資訊。就像 req 一樣，res 不會只傳送單純的資料，需要包含各種資訊，status code 是狀態碼，200 就是成功，而 header 會告訴對方提供了哪些連線方法，這也是開發實務上容易採坑的地方，詳細的資訊都可以在 MDN 的 HTTP 主題中查看。<blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP">MDN - HTTP</a></p>
+</blockquote>
+</li>
+<li><code>Content-Type</code>：檔案格式。瀏覽器會依據這個屬性來決定怎麼讀取接收到的資料，常見的有 JSON(application/json)、HTML(text/html)、純文字(text/plain)…等。</li>
+<li><code>res.end()</code>：程式運作不像人類會自主開始或停止，所以需要執行一段程式碼明確的告知『我傳完了』，否則用瀏覽器連網頁後頁籤上方會一直出現轉圈圈的圖示（表示持續等待回應中）。</li>
+</ul>
+<h3 id="listen-port"><a href="#listen-port" class="headerlink" title="listen(port)"></a>listen(port)</h3><ul>
+<li><code>listen(8000)</code>：使用的通訊埠。HTTP 協定預設使用 80 port，1-1023 是系統保留，所以在自訂 port 的時候通常都是 X000 起跳。<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%80%9A%E8%A8%8A%E5%9F%A0">Wiki - Port</a></p>
+</blockquote>
+</li>
+<li><code>較安全的寫法</code>：寫好的網頁服務通常會放在各種雲端代管主機上，這些服務會由系統自動分配 port，如果程式碼寫死特定的 port，就無法跟雲端環境匹配，理所當然的就連不到，這時候可以利用環境變數 process.env.PORT 來取得執行環境的 port 號，就能動態調整讓服務正常運行，改寫如下：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> PORT = process.env.PORT || XXXX;</span><br><span class="line"><span class="comment">// ES6 寫法</span></span><br><span class="line"><span class="keyword">const</span> &#123; PORT = XXXX &#125; = process.env;</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-探索-Req-與-Res-－-Postman"><a href="#💎-探索-Req-與-Res-－-Postman" class="headerlink" title="💎 探索 Req 與 Res － Postman"></a>💎 探索 Req 與 Res － Postman</h2><p>Postman 是一套網頁請求模擬工具，相較於用瀏覽器的 Dev 工具，Postman 專注於檢查 Request &amp; Response，也能模擬各種請求行為（GET、POST、PATCH…等），有助於 API 的測試和 debug。</p>
+<h3 id="安裝-Postman"><a href="#安裝-Postman" class="headerlink" title="安裝 Postman"></a>安裝 Postman</h3><p>前往 <a target="_blank" rel="noopener" href="https://www.postman.com/downloads/">Postman 官方下載</a>，完成後執行安裝會跳轉至註冊會員網站，完成註冊後就可以使用了。</p>
+<h3 id="使用-Postman"><a href="#使用-Postman" class="headerlink" title="使用 Postman"></a>使用 Postman</h3><p>進入操作介面後，一些設定或導覽可以都先略過，接著照以下步驟操作：</p>
+<ol>
+<li>先點擊上方選單 <code>HOME</code></li>
+<li>點擊左側選單 <code>Workspaces</code></li>
+<li>選擇 <code>My Workspace</code></li>
+<li>點擊內容區塊上方分頁的 <code>+</code></li>
+<li>在網址列裡面輸入任一網址或是本地的網址（例如本篇文章練習的 <code>http://127.0.0.1:8000</code>）</li>
+<li>送出後就能查看詳細資訊了</li>
+</ol>
+<blockquote>
+<p>詳細教學也可以參考：<br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10201503">六角學院 － Postman 教學文章</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-補充知識"><a href="#💎-補充知識" class="headerlink" title="💎 補充知識"></a>💎 補充知識</h2><h3 id="Global-全域物件"><a href="#Global-全域物件" class="headerlink" title="Global 全域物件"></a>Global 全域物件</h3><p>每個執行中的軟體或是瀏覽器頁面就像是一個星球，每個星球就像是一個全域物件，囊括了星球上的所有東西，在網頁環境中的全域物件是 <code>window</code>，而 Node.js 中是 <code>global</code>。</p>
+<p>雖然都是全域，除了名稱外也有些差異，假如在全域中引入兩個檔案（a.js 和 b.js），裡面都撰寫了 <code>var a = 1</code>，這時網頁的 <code>window.a</code> 會得到 <code>1</code> 的結果，Node.js 的 <code>global.a</code> 則是 <code>undefined</code>。</p>
+<p>Node.js 中的每個模組都會是獨立的，不會互相干擾也不會變成全域變數（除非直接操作 global 物件），網頁中的 window 則可能被 var 變數影響（ES6 後建議全部改用 let 才不會污染全域）。</p>
+<h3 id="檔案路徑"><a href="#檔案路徑" class="headerlink" title="檔案路徑"></a>檔案路徑</h3><p>一個專案中會有許多資料夾和檔案，要存取這些資源就需要知道檔案的路徑位置，才能順利找到檔案，Node.js 提供 <code>path</code> 模組，可以快速的分解、組合路徑。</p>
+<ul>
+<li>全域變數：<code>__dirname</code>、<code>__filename</code> 可以取得當前的目錄和檔案名稱。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 目錄名稱</span></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 檔案名稱</span></span><br><span class="line"><span class="built_in">console</span>.log(__filename);</span><br></pre></td></tr></table></figure></li>
+<li><code>Path</code>：Node.js 的 path 模組提供許多方法來處理路徑。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 範例路徑</span></span><br><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;/aa/bb/cc.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用 path 模組</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得目錄</span></span><br><span class="line">path.dirname(url); <span class="comment">// /aa/bb</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得檔名</span></span><br><span class="line">path.basename(url); <span class="comment">// cc.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得副檔名</span></span><br><span class="line">path.extname(url); <span class="comment">// js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 拆解路徑（回傳物件格式）</span></span><br><span class="line">path.parse(url); <span class="comment">// &#123; root: &#x27;/&#x27;, dir: &#x27;/aa/bb&#x27;, base: &#x27;cc.js&#x27;, ext: &#x27;.js&#x27;, name: &#x27;cc&#x27; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 組合路徑</span></span><br><span class="line">path.join(<span class="string">&#x27;/ii&#x27;</span>, <span class="string">&#x27;jj&#x27;</span>, <span class="string">&#x27;kk.js&#x27;</span>); <span class="comment">// /ii/jj/kk.js</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/api/path.html">Node.js - path</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇的筆記記錄了如何使用 Node.js 本地建立伺服器、透過 Postman 檢查 Request &amp; Response，接下來會記錄如何製作一個簡單的 todolist api。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Node-js/" rel="tag"><i class="fa fa-tag"></i> Node.js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/21/nodejsStart/" rel="prev" title="[Node.JS] 一次認識 NVM、Node.js、NPM、NPX">
+                  <i class="fa fa-chevron-left"></i> [Node.JS] 一次認識 NVM、Node.js、NPM、NPX
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/24/nodejs2/" rel="next" title="[Node.JS] 打造 todolist api 1 - 行前準備">
+                  [Node.JS] 打造 todolist api 1 - 行前準備 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-stark920-github-io","count":false,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

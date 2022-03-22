@@ -1,0 +1,106 @@
+body {
+  background-color: #eee;
+}
+
+.navbar {
+  background-color: rgba(255,255,255, .2);
+  z-index: 2;
+}
+.navbar-scrolled {
+  background-color: rgba(119, 166, 80, .9);
+}
+.navbar-brand:hover {
+  text-shadow: 0 0 0.2rem rgba(255,255,255, .35),
+  0 0 0.2rem rgba(255,255,255, .35),
+  0 0 0.2rem rgba(255,255,255, .35);
+  transform: scale(1.1);
+  transition: all linear 0.1s;
+}
+.nav-item:hover {
+  background-color: rgba(255,255,255, .35);
+}
+.banner {
+  background-image: url('https://images.unsplash.com/photo-1525421106960-29ebe9f93dab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; 
+  height: 100vh;
+}
+.relative {
+  position: relative;
+}
+.search-btn {
+  position: absolute;
+  right: 1rem;
+  top: 4px;
+  font-size: 1rem;
+}
+.annouce-Text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 48px;
+}
+.dropdown-menu {
+  max-height: 200px;
+  overflow-y: scroll;
+  width: 95%;
+}
+
+.card {
+  border-radius: 16px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+}
+.card img {
+  border-radius: 16px 16px 0 0;
+  object-fit: cover;
+  object-position: center center;
+  height: 220px;
+}
+.see-more {
+  background-color: #FD975E;
+  color: #fff;
+  border-radius: 2rem;
+  padding: 4px 16px;
+  position: absolute;
+  right: 2.5%;
+}
+.card-min {
+  position: relative;
+  height: 120px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.card-min-title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.card-min-title:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.card-min img {
+  border-radius: 16px;
+  height: 120px;
+}
+.card-min:hover img {
+  transform: scale(1.2);
+  transition: linear .3s;
+}
+
+footer {
+  background-color: #FD975E;
+  height: 64px;
+  color: #fff;
+}

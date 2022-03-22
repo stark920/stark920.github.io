@@ -1,0 +1,58 @@
+body {
+    background-color: #28234C; 
+}
+
+.dropdown-menu {
+    background-color: #080231;
+    border: 1px solid #F2F2F4;
+}
+
+.dropdown-item:hover, .nav-link:hover, .footer-custom {
+    background-color: #8E7DFA;
+}
+
+.btn-group-custom {
+    border: 1px solid #F2F2F4;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+}
+
+.btn-custom {
+    color: #F2F2F4 !important;
+    border-radius: 0.25rem;
+    border: none;
+}
+
+.btn-custom-dark {
+    color: #F2F2F4 !important;
+    background-color: #080231;
+    border-radius: 0.25rem;
+    border: none;
+}
+
+.btn-check:checked + .btn-custom {
+    background-color: #F2F2F4;
+    color: #080231 !important;
+}
+
+.flex-1 {
+    flex: 1 !important;
+}
+
+.text-custom-secondary {
+    color: #8E7DFA !important;
+}
+
+.card-custom {
+    background: #080231;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+.card-custom small {
+    color: #6B6783;
+}
+
+.bg-custom-grey {
+    background-color:#28234C
+}
