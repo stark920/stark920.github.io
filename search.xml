@@ -1,198 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>[JS] 深入了解型別與轉型</title>
-    <url>/2021/11/19/JScoercion/</url>
-    <content><![CDATA[<p><img data-src="/images/js-coercion.png"></p>
-<span id="more"></span> 
-<p>JavaScript 不論遇到什麼奇形怪狀的資料運算，都會盡可能讓程式執行下去，這麼貼心的設計也是兩面刃，可能在不知不覺中程式正常運作，也可能突然就報錯了卻毫無頭緒，馬上來認識 JavaScript 的型別系統與轉型吧！</p>
-<hr>
-<h2 id="💎-型別（type）"><a href="#💎-型別（type）" class="headerlink" title="💎 型別（type）"></a>💎 型別（type）</h2><ul>
-<li><p>JavaScript 的型別可以分為『原始型別』和『物件型別』兩類，差異在於：</p>
-<ul>
-<li>原始型別<code>沒有</code>屬性和方法可以使用</li>
-<li>物件型別<code>可以任意存取</code>屬性和方法</li>
-</ul>
-</li>
-<li><p><strong>原始型別（Primitive types）</strong></p>
-<ul>
-<li>string</li>
-<li>number</li>
-<li>boolean</li>
-<li>null</li>
-<li>undefined</li>
-<li>symbol (ES 6 新定義)</li>
-</ul>
-</li>
-<li><p><strong>物件型別（Object types）</strong></p>
-<ul>
-<li>原生物件（Native）<ul>
-<li>Object, Array, Function, Date, Math, RegExp</li>
-<li>原始型別包裹物件（Primitive Wrapper）：Number, String, Boolean</li>
-</ul>
-</li>
-<li>寄宿物件（Host）<ul>
-<li>window</li>
-<li>DOM</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>型別檢查（typeof)：<br>除了 null 有原生的 bug 會得到 object 的結果（此 bug 不會修正），其他型別都可以使用 <code>typeof</code> 來檢查。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof &#x27;a&#x27;); // string</span><br><span class="line">console.log(typeof 1); // number</span><br><span class="line">console.log(typeof true); // boolean</span><br><span class="line">console.log(typeof null); // object &lt;== 這是語言本身的bug</span><br><span class="line">console.log(typeof undefined); // undefined</span><br><span class="line">console.log(typeof Symbol()) // symbol</span><br><span class="line">console.log(typeof &#123;&#125;); // object</span><br><span class="line">console.log(typeof []); // object</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="💎-裝箱（boxing）和-拆箱（unboxing）"><a href="#💎-裝箱（boxing）和-拆箱（unboxing）" class="headerlink" title="💎 裝箱（boxing）和 拆箱（unboxing）"></a>💎 裝箱（boxing）和 拆箱（unboxing）</h2><ul>
-<li><p>前面提到原始型別是沒有屬性和方法可以使用的，但我們卻可以利用字串方法來修改原始型別的字串（如下方的程式碼），這是因為 JavaScript 有 裝箱（boxing）和 拆箱（unboxing）機制來處理這些操作。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;123.45&#x27;.split(&#x27;.&#x27;));</span><br><span class="line">// [&#x27;123&#x27;, &#x27;45&#x27;]</span><br></pre></td></tr></table></figure></li>
-<li><p>上個段落的物件型別中有一項 <code>原始型別包裹物件（Primitive Wrapper）</code>，使用這個方式來建立的字串（數字或布林值）會是物件的形式，並且有許多原生方法可以使用，JavaScript 便是利用這個物件型別來實作裝箱與拆箱。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &#x27;123&#x27;;</span><br><span class="line">let strObj = new String(&#x27;123&#x27;);</span><br><span class="line"></span><br><span class="line">console.log(typeof str); // string</span><br><span class="line">console.log(typeof strObj); // object</span><br></pre></td></tr></table></figure></li>
-<li><p>裝箱（boxing）：當 JS 執行方法發現資料是原始型別時，便會使用 <code>new</code> 把原始型別資料建立成物件型別的資料，就可以順利執行物件內的方法。</p>
-</li>
-<li><p>拆箱（unboxing）：當 JS 完成被裝箱的物件需要執行的方法後，就會把這個物件資料還原成原始型別的資料，這時會用到兩個重要的方法，這會在接下來介紹的『轉型』再次談到：</p>
-<ul>
-<li><code>valueOf()</code>：回傳 <code>Number</code> 原始型別。</li>
-<li><code>toString()</code>：回傳 <code>String</code> 原始型別。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-強制轉型（coercion）"><a href="#💎-強制轉型（coercion）" class="headerlink" title="💎 強制轉型（coercion）"></a>💎 強制轉型（coercion）</h2><ul>
-<li>強制轉型分為兩種：<code>顯性轉型</code>（explicit coercion）、<code>隱性轉型</code>（implicit coercion）</li>
-</ul>
-<h3 id="🔸-顯性轉型（explicit-coercion）："><a href="#🔸-顯性轉型（explicit-coercion）：" class="headerlink" title="🔸 顯性轉型（explicit coercion）："></a>🔸 顯性轉型（explicit coercion）：</h3><ul>
-<li><p>顯性轉型指的是在程式碼中<code>直接撰寫</code>的型別轉換。</p>
-</li>
-<li><p><strong>轉數字</strong></p>
-<ul>
-<li><p><code>parseInt()</code>：</p>
-<ul>
-<li>轉整數。</li>
-<li>小數點以後無條件捨去。</li>
-<li>轉換方式：由左至右，遇到無法轉成數字的時候停止，回傳前面的數字。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseInt(&#x27;1.23&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;1.23a&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;a1.23&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>parseFloat()</code>：</p>
-<ul>
-<li>轉浮點數（包含小數點以後）。</li>
-<li>轉換方式與 parseInt() 相同。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseFloat(&#x27;1.23&#x27;)); // 1.23</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>Number()</code>：</p>
-<ul>
-<li>可以轉整數和浮點數。</li>
-<li>數字範圍在正負 2的53次方 -1 間。</li>
-<li>轉換方式：整筆字串都可以轉成數字才轉換，否則得到 NaN。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Number(&#x27;-1.23&#x27;)); // -1.23</span><br><span class="line">console.log(Number(&#x27;-1.23a&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>BigInt()</code>：</p>
-<ul>
-<li>轉整數</li>
-<li>範圍可以超過2的53次方（表示方式會在數字後面加上 <code>n</code>）</li>
-<li>轉換方式：非整數時直接報錯，不會得到 NaN。</li>
-<li>需注意瀏覽器支援度。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(BigInt(&quot;9007199254740991&quot;)); // 9007199254740991n</span><br><span class="line">console.log(typeof 1n); // bigint</span><br><span class="line">console.log(BigInt(&quot;900a&quot;)); // Cannot convert 900a to a BigInt</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>算數運算子</code>：</p>
-<ul>
-<li>前方加上<code>+</code>：可能會和 <code>++</code> 混淆。</li>
-<li>前方加上<code>-</code>：內容若是負數，會被轉成正數。</li>
-<li>後方加上<code>- 0</code>：較穩定寫法。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(+&#x27;-1&#x27;); // -1</span><br><span class="line">console.log(++&#x27;-1&#x27;); // Invalid left-hand side expression in prefix operation</span><br><span class="line">console.log(-&#x27;-1&#x27;); // 1</span><br><span class="line">console.log(&#x27;-1&#x27; - 0); // -1</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>轉字串</strong></p>
-<ul>
-<li><p><code>toString()</code>：不能轉換 null 和 undefined，可以設定進位制。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log((3).toString()); // 3</span><br><span class="line">console.log(undefined.toString()); // Cannot read properties of undefined</span><br><span class="line">console.log((3).toString(2)); // 11</span><br></pre></td></tr></table></figure></li>
-<li><p><code>String()</code>：可以轉換 null 和 undefined，不能設定進位制。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(String(3)); // 3</span><br><span class="line">console.log(String(undefined)); // undefined</span><br></pre></td></tr></table></figure></li>
-<li><p><code>算數運算子</code>：加上空字串 <code>+ &#39;&#39;</code>。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof (3 + &#x27;&#x27;)); // string</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>轉布林值</strong></p>
-<ul>
-<li><p>布林值只有兩種值（true 或 false），轉型後會得到 true 的值稱為 truthy，得到 false 的則是 falsy，除了下列項目是 <code>falsy</code>，其他的都是 <code>truthy</code>：</p>
-<ul>
-<li><code>false</code></li>
-<li><code>0</code></li>
-<li><code>-0</code></li>
-<li><code>0n</code> (BigInt)</li>
-<li><code>“”</code> (空字串，包含 ``, ‘’)</li>
-<li><code>null</code></li>
-<li><code>undefined</code></li>
-<li><code>NaN</code></li>
-<li><code>document.all</code> (正常情況下不會用到)</li>
-</ul>
-</li>
-<li><p>轉換方式：</p>
-<ul>
-<li><p><code>Boolean()</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Boolean([])); // true</span><br></pre></td></tr></table></figure></li>
-<li><p><code>邏輯運算子</code>：前方加上雙驚嘆號 <code>!!</code>，單驚嘆號 <code>!</code> 會是相反結果。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(!true); // false</span><br><span class="line">console.log(!!&#123;&#125;); // true</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="🔸-隱性轉型（implicit-coercion）"><a href="#🔸-隱性轉型（implicit-coercion）" class="headerlink" title="🔸 隱性轉型（implicit coercion）"></a>🔸 隱性轉型（implicit coercion）</h3><ul>
-<li><p>隱性轉型出現在使用運算子時，這在其他程式語言通常是不允許的（需要相同型別才可以運算），JavaScript 則會自動轉型讓程式繼續執行，也因為規則繁雜，容易疏忽出錯。</p>
-</li>
-<li><p>核心方法 <code>ToPrimitive</code><br>JavaScript 在執行運算時會使用 <code>ToPrimitive</code> 方法將運算元轉換成原始型別後就能繼續運算，<code>ToPrimitive</code> 帶有一個 <code>hint</code>(提示)，用來決定要轉成什麼型別，如果要了解詳細的運作順序可以參考 <strong><a href="https://zhuanlan.zhihu.com/p/29730094">深入理解Javascript中Object类型的转换</a></strong> 這篇文章，裡面引用了 ECMA 的規範詳細解說，非常值得一讀！</p>
-</li>
-<li><p><strong>原始型別</strong>的隱性轉型</p>
-<ul>
-<li><p><code>+</code> 算數運算子：加法運算中只要有一個值屬於字串型別，就會全部轉為 string，最高優先。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 有字串</span><br><span class="line">console.log(&#x27;&#x27; + 1 + null + true); // 1nulltrue</span><br><span class="line">// 無字串</span><br><span class="line">console.log(1 + null + true); // 2</span><br></pre></td></tr></table></figure></li>
-<li><p>其他算數運算子：<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code> 運算都會轉成 number。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;6&#x27; - undefined); // NaN</span><br><span class="line">console.log(9 * [9]); // 81</span><br><span class="line">console.log(&#x27;3&#x27; / &#123;&#125;); // NaN</span><br><span class="line">console.log(6 % true); // 0</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>物件型別</strong>的隱性轉型</p>
-<ul>
-<li><p><code>ｔoPrimitive</code> 執行物件型別的轉換時會使用到物件內的 <code>valueOf</code> 或 <code>toString</code> 方法來取得原始型別的回傳值，因為這是物件內的方法，我們可以透過覆蓋方法來改變回傳值：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 刻意改成 valueOf 回傳字串、toString 回傳數字</span><br><span class="line">let a = &#123;</span><br><span class="line">    valueOf: function() &#123;</span><br><span class="line">        return &#x27;1&#x27;;</span><br><span class="line">    &#125;,</span><br><span class="line">    toString: function() &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(a + 0); // &quot;10&quot;</span><br><span class="line">console.log(a.toString()); // 2</span><br></pre></td></tr></table></figure></li>
-<li><p><code>陣列</code>也是物件，ToPrimitive 會回傳陣列本身內容執行 <code>toString()</code> 方法後的字串。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 空陣列轉字串 &quot;&quot;，空物件轉字串 &quot;[object Object]&quot;</span><br><span class="line">console.log([] + &#123;&#125;); // &quot;[object Object]&quot;</span><br><span class="line"></span><br><span class="line">// 陣列轉字串 &quot;1,2,3&quot;，後方數字配合轉字串</span><br><span class="line">console.log([1,2,3] + 2 + 1); // &quot;1,2,321&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p><code>&#123;&#125; + 任意值</code>：</p>
-<ol>
-<li><code>&#123;&#125;</code> 在運算元前方時會被視為<code>區塊語句</code>，而不是物件，所以實際執行的只有後面的 <code>+ x</code></li>
-<li><code>+ 任意值</code>是前一段落提到的<code>顯性轉型</code>轉數字的方法，所以後方的運算元轉為 number 型別。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 強制轉型</span><br><span class="line">console.log(+&#123;&#125;); // NaN</span><br><span class="line"></span><br><span class="line">// 看起來是物件加陣列，實際上是後方的陣列強制轉型為數字</span><br><span class="line">console.log(&#123;&#125; + []); // 0 </span><br><span class="line"></span><br><span class="line">// 上方程式實際執行時等同下面兩行：</span><br><span class="line">&#123;&#125;</span><br><span class="line">+[];</span><br><span class="line"></span><br><span class="line">// 宣告一個物件變數 x 來存放空物件，才能被當成物件來計算</span><br><span class="line">let x = &#123;&#125;;</span><br><span class="line">console.log(x + []); // &quot;[object Object]&quot;</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p><code>&#123;&#125; + &#123;&#125;</code>：這是一個特別狀況所以額外說明，不同的瀏覽器會有不同的執行結果：</p>
-<ol>
-<li>NaN - 第一個 {} 被視為區塊，</li>
-<li>“[object Object][object Object]” - 第一個 {} 被視為物件</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p><strong>邏輯運算</strong><br>邏輯運算中的運算元都會被轉為 boolean，差別在於其運算後回傳的結果。</p>
-<ul>
-<li><p>|| (or) 會回傳第一個結果為 true 的運算元，若無，則是最後一個。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(0 || false || null || undefined); // undefined</span><br><span class="line">console.log(0 || false || null || &#123;&#125; || undefined); // &#123;&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>&amp;&amp; (and) 若運算結果為 true，會回傳最後一個運算元，若運算結果為 false，回傳第一個結果為 false 的運算元。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(true &amp;&amp; &#123;&#125; &amp;&amp; -2 &amp;&amp; [&#x27;a&#x27;]); // [&#x27;a&#x27;]</span><br><span class="line">console.log(1 &amp;&amp; 0 &amp;&amp; true &amp; false); // 0</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>關於轉型的細節實在太多，族繁不及備載，一些極端的範例在實際撰寫時並不會用到，不求成為行走的 MDN，但求踩坑的時候能順利 debug 就好！</p>
-<blockquote>
-<p>參考文章<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/BigInt">MDN-BigInt</a><br><a href="https://medium.com/@sunnyhuang.sc/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98-javascript-%E4%BD%95%E8%AC%82%E5%BC%B7%E5%88%B6%E8%BD%89%E5%9E%8B-coercion-%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E4%BD%9C%E5%88%B0%E8%BD%89%E6%8F%9B%E5%9E%8B%E5%88%A5-d7e39e30083">sunnyhuang-何謂強制轉型（coercion）以及如何作到轉換型別</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString">MDN-Number.prototype.toString()</a><br><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/254123/">淺談JS中String()與.toString()的區別 - 程式前沿</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">MDN-Symbol.toPrimitive</a>。<br><a href="https://eddychang.me/js-object-plus-object">Eddy 思考與學習-JS中的 {} + {} 與 {} + [] 的結果是什麼？</a><br><a href="https://eddychang.me/js-object-plus-object"></a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[JS] 參數傳遞方式 Call by what?</title>
     <url>/2021/11/17/JScallby/</url>
     <content><![CDATA[<p><img data-src="/images/js-callby.png"></p>
@@ -268,6 +76,55 @@
       </tags>
   </entry>
   <entry>
+    <title>[JS] 提昇（Hoisting）機制</title>
+    <url>/2021/11/23/JShoisting/</url>
+    <content><![CDATA[<p><img data-src="/images/js-hoisting.png"></p>
+<span id="more"></span> 
+<p>如果今天想要使用電腦，該怎麼做？</p>
+<p>你的答案很可能是，按下電腦開機鍵就好，但實際上得先有主機、滑鼠、鍵盤、螢幕、電源、作業系統…等軟、硬體環境，才有辦法使用電腦。</p>
+<p>JavaScript 雖然是直譯式語言（不需透過編譯器轉譯成可執行檔），但是『執行』之前，還是需要先把原本字元組成的程式碼編譯成執行環境（就像是上面提到的準備滑鼠、鍵盤…等等），而其中一個步驟就是先將 <code>變數</code> 和 <code>函數</code> 的名稱放入記憶體，這種行為在 ECMA 的文件中沒有明確定義專有名詞，一般會用 <code>提昇（Hoisting）</code>來稱呼。</p>
+<blockquote>
+<p>參考文章：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting">MDN - 提升（Hoisting）</a></p>
+</blockquote>
+<hr>
+<p>提昇（Hoisting）的方式會因為變數類型有所不同：</p>
+<h2 id="💎-var、function："><a href="#💎-var、function：" class="headerlink" title="💎 var、function："></a>💎 var、function：</h2><p>按照逐行執行的邏輯，下面前兩行程式碼會因為還沒有產生這個變數而出現錯誤，但實際上並不會出現任何錯誤。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(foo); // foo()&#123;return &#x27;Hello&#x27;;&#125;</span><br><span class="line"></span><br><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>從結果回推實際執行的順序會像下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(a);</span><br><span class="line">console.log(foo);</span><br></pre></td></tr></table></figure>
+
+<p>這次做小調整，改成賦予 a 變數一個值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">var a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
+
+<p>雖然沒有出現錯誤，但是 a 的值並沒有跟著被提昇，回推的執行順序會像下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a</span><br><span class="line">console.log(a); // undefined</span><br><span class="line">a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
+
+<p>再看下面這段程式碼，想想看結果是什麼：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b = 1;</span><br><span class="line">var b;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p>如果不清楚運作 JavaScript 的運作機制，可能會認為答案是 <code>undefined</code>，覺得後者蓋掉前者，但答案其實是 <code>1</code>，回推後的實際執行會像是下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b;</span><br><span class="line">var b;</span><br><span class="line">b = 1;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p>『重複宣告』加上『提昇機制』是不是讓人覺得很坑呢？</p>
+<h2 id="💎-let、const："><a href="#💎-let、const：" class="headerlink" title="💎 let、const："></a>💎 let、const：</h2><p>ES6 版本提供了 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，這兩種新的方式解決了 <code>var</code> 的許多奇怪問題。</p>
+<p>使用 <code>let</code> 和 <code>const</code> 宣告的變數名稱在 JavaScript 從『環境建立』一直執行到『變數實際存在的那一行程式碼』的這段期間，變數名稱都是無法被取用的，這段期間稱為 Temporal Dead Zone（TDZ），暫時性死區。</p>
+<p>這個機制就像是我買了對號座的票（宣告），這個位置的票就不能被其他人購買（不能重複宣告），但是在我坐上車位前（實際執行的那段程式碼），都無法在這個位置找到我（TDZ鎖定）。</p>
+<p>以下是使用 <code>let</code> 或 <code>const</code> 宣告的輸出結果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(x); // x is not defined</span><br><span class="line">let x = 1;</span><br><span class="line">console.log(x); // 前面已經因為執行階段出錯終止，不會執行到這裡</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考文章<br>1、<a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a><br>2、<a href="https://eddychang.me/es6-tdz">理解ES6中的暫時死區(TDZ)</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[JS] 物件與 JSON 格式操作技巧</title>
     <url>/2021/11/22/JSobject/</url>
     <content><![CDATA[<p><img data-src="/images/js-json.png"></p>
@@ -325,132 +182,45 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 陳述式（Statement）與表達式（Expression）</title>
-    <url>/2021/11/21/JSstatement/</url>
-    <content><![CDATA[<p><img data-src="/images/js-statement.png"></p>
+    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
+    <url>/2022/01/04/JSscope/</url>
+    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
 <span id="more"></span> 
 
-<p>陳述式(Statement)與表達式(Expression)不是特定的使用方法或技巧，而是語法觀念，所有的程式碼都可以分成這兩類型的語句。</p>
-<h2 id="💎-各種譯名："><a href="#💎-各種譯名：" class="headerlink" title="💎 各種譯名："></a>💎 各種譯名：</h2><ul>
-<li>Statement：陳述式。</li>
-<li>Expression：表示式、運算式、表達式。</li>
-</ul>
-<h2 id="💎-兩者的差別："><a href="#💎-兩者的差別：" class="headerlink" title="💎 兩者的差別："></a>💎 兩者的差別：</h2><ul>
-<li><code>陳述式：不會回傳結果</code>。</li>
-<li><code>表達式：會回傳結果</code>。</li>
-</ul>
-<h2 id="💎-陳述式的種類"><a href="#💎-陳述式的種類" class="headerlink" title="💎 陳述式的種類"></a>💎 陳述式的種類</h2><ul>
-<li>流程控制<ul>
-<li>{  } 區塊</li>
-<li>if..else</li>
-<li>switch</li>
-<li>try..catch</li>
-</ul>
-</li>
-<li>宣告<ul>
-<li>var</li>
-<li>let</li>
-<li>const</li>
-</ul>
-</li>
-<li>函式<ul>
-<li>function</li>
-<li>return</li>
-</ul>
-</li>
-<li>疊代<ul>
-<li>for</li>
-<li>while</li>
-</ul>
-</li>
-<li>其他<ul>
-<li>export</li>
-<li>import</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>詳細可以參考 MDN：<br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements">Statements and declarations</a></p>
-</blockquote>
-<h2 id="💎-表達式的種類"><a href="#💎-表達式的種類" class="headerlink" title="💎 表達式的種類"></a>💎 表達式的種類</h2><ul>
-<li>值：單純一個數字、字串、布林、物件…等等。</li>
-<li>變數</li>
-<li>賦值（=）</li>
-<li>運算子（+, -, /, ==, ===, != ……）</li>
-<li>會回傳結果都是</li>
-</ul>
-<h2 id="💎-陳述式與表達式的混用"><a href="#💎-陳述式與表達式的混用" class="headerlink" title="💎 陳述式與表達式的混用"></a>💎 陳述式與表達式的混用</h2><p>一段程式碼通常不會只使用其中一種方式撰寫，接著用以下範例來解說：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let example = function () &#123;</span><br><span class="line">    if (1 == 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>這段程式碼中的<code>陳述式</code>：</p>
-<ul>
-<li>let</li>
-<li>function</li>
-<li>if..else</li>
-<li>return</li>
-</ul>
-</li>
-<li><p>這段程式碼中的<code>表達式</code>：</p>
-<ul>
-<li>1</li>
-<li>=</li>
-<li>==</li>
-</ul>
-</li>
-<li><p>這整段程式碼雖然結合了各種陳述式和表達式，最終是將函式賦予一個變數名稱，所以是一個<code>表達式</code>(賦值是表達式)，又稱為<code>函式表達式</code>，而一般宣告名稱的函式則稱為<code>函式陳述式</code>。</p>
-</li>
-</ol>
-<blockquote>
-<p>參考文章：<br><a href="https://wcc723.github.io/development/2020/09/17/js-expression/">卡斯柏 - JavaScript 表達式觀念及運用 - JS Expression</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[JS] 提昇（Hoisting）機制</title>
-    <url>/2021/11/23/JShoisting/</url>
-    <content><![CDATA[<p><img data-src="/images/js-hoisting.png"></p>
-<span id="more"></span> 
-<p>如果今天想要使用電腦，該怎麼做？</p>
-<p>你的答案很可能是，按下電腦開機鍵就好，但實際上得先有主機、滑鼠、鍵盤、螢幕、電源、作業系統…等軟、硬體環境，才有辦法使用電腦。</p>
-<p>JavaScript 雖然是直譯式語言（不需透過編譯器轉譯成可執行檔），但是『執行』之前，還是需要先把原本字元組成的程式碼編譯成執行環境（就像是上面提到的準備滑鼠、鍵盤…等等），而其中一個步驟就是先將 <code>變數</code> 和 <code>函數</code> 的名稱放入記憶體，這種行為在 ECMA 的文件中沒有明確定義專有名詞，一般會用 <code>提昇（Hoisting）</code>來稱呼。</p>
-<blockquote>
-<p>參考文章：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting">MDN - 提升（Hoisting）</a></p>
-</blockquote>
+<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
+<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
+<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
+<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
+<p>接著就來看 JavaScript 如何去實現這些功能。</p>
 <hr>
-<p>提昇（Hoisting）的方式會因為變數類型有所不同：</p>
-<h2 id="💎-var、function："><a href="#💎-var、function：" class="headerlink" title="💎 var、function："></a>💎 var、function：</h2><p>按照逐行執行的邏輯，下面前兩行程式碼會因為還沒有產生這個變數而出現錯誤，但實際上並不會出現任何錯誤。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(foo); // foo()&#123;return &#x27;Hello&#x27;;&#125;</span><br><span class="line"></span><br><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>從結果回推實際執行的順序會像下面這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(a);</span><br><span class="line">console.log(foo);</span><br></pre></td></tr></table></figure>
-
-<p>這次做小調整，改成賦予 a 變數一個值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">var a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
-
-<p>雖然沒有出現錯誤，但是 a 的值並沒有跟著被提昇，回推的執行順序會像下面這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a</span><br><span class="line">console.log(a); // undefined</span><br><span class="line">a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
-
-<p>再看下面這段程式碼，想想看結果是什麼：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b = 1;</span><br><span class="line">var b;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
-
-<p>如果不清楚運作 JavaScript 的運作機制，可能會認為答案是 <code>undefined</code>，覺得後者蓋掉前者，但答案其實是 <code>1</code>，回推後的實際執行會像是下面這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b;</span><br><span class="line">var b;</span><br><span class="line">b = 1;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
-
-<p>『重複宣告』加上『提昇機制』是不是讓人覺得很坑呢？</p>
-<h2 id="💎-let、const："><a href="#💎-let、const：" class="headerlink" title="💎 let、const："></a>💎 let、const：</h2><p>ES6 版本提供了 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，這兩種新的方式解決了 <code>var</code> 的許多奇怪問題。</p>
-<p>使用 <code>let</code> 和 <code>const</code> 宣告的變數名稱在 JavaScript 從『環境建立』一直執行到『變數實際存在的那一行程式碼』的這段期間，變數名稱都是無法被取用的，這段期間稱為 Temporal Dead Zone（TDZ），暫時性死區。</p>
-<p>這個機制就像是我買了對號座的票（宣告），這個位置的票就不能被其他人購買（不能重複宣告），但是在我坐上車位前（實際執行的那段程式碼），都無法在這個位置找到我（TDZ鎖定）。</p>
-<p>以下是使用 <code>let</code> 或 <code>const</code> 宣告的輸出結果：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(x); // x is not defined</span><br><span class="line">let x = 1;</span><br><span class="line">console.log(x); // 前面已經因為執行階段出錯終止，不會執行到這裡</span><br></pre></td></tr></table></figure>
-
+<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
+<p>  不同的宣告方式產生的全域變數也有差異：</p>
+<ul>
+<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
+<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
+<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
+<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
 <blockquote>
-<p>參考文章<br>1、<a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a><br>2、<a href="https://eddychang.me/es6-tdz">理解ES6中的暫時死區(TDZ)</a></p>
+<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
+</blockquote>
+<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
+<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
+<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
+<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
+<blockquote>
+<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
+</blockquote>
+<ul>
+<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
+<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
+<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
+</ul>
+<blockquote>
+<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
 </blockquote>
 ]]></content>
       <categories>
@@ -767,92 +537,201 @@
       </tags>
   </entry>
   <entry>
-    <title>[心得] 六角學院 JS 工程師養成直播班 - 學習心得</title>
-    <url>/2021/12/21/EXPhexschoolJSlive/</url>
-    <content><![CDATA[<p><img data-src="/images/hexschool-livejs.png"></p>
-<span id="more"></span> 
-
-<p>過去參加過各種『ｏｏ電腦』的實體課程，也在各種平台買了很多線上課程，最近第一次參加了線上直播班課程，以下就來分享課程內容和學習心得。</p>
-<h2 id="💎-課程內容"><a href="#💎-課程內容" class="headerlink" title="💎 課程內容"></a>💎 課程內容</h2><ul>
-<li>課程名稱：JS 工程師養成直播班 - 2021秋季</li>
-<li>授課時間：每週直播一次約 2 小時，共 9 週</li>
-<li>授課內容：JavaScript 從零開始 -&gt; 串接 API 製作前、後台功能</li>
-<li>其他服務：<ul>
-<li>每日練習任務、每週主線任務，並有課程助教協助任務批改及建議</li>
-<li>週二加開主線任務講解直播</li>
-<li>週三、四不定期主題直播</li>
-<li>社群平台提供線上諮詢、履歷檢查…等，想問什麼就問什麼</li>
-</ul>
-</li>
-</ul>
-<h2 id="💎-課程比較"><a href="#💎-課程比較" class="headerlink" title="💎 課程比較"></a>💎 課程比較</h2><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">實體課程</th>
-<th align="center">線上課程</th>
-<th align="center">直播班</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">價格</td>
-<td align="center">高</td>
-<td align="center">低</td>
-<td align="center">中</td>
-</tr>
-<tr>
-<td align="center">課程編排</td>
-<td align="center">緊湊</td>
-<td align="center">考驗自制力</td>
-<td align="center">每週搭配練習循序漸進</td>
-</tr>
-<tr>
-<td align="center">課後服務</td>
-<td align="center">大概就完課證書？</td>
-<td align="center">透過課程平台與開課導師互動</td>
-<td align="center">有專屬社群和助教團可詢問</td>
-</tr>
-<tr>
-<td align="center">學員交流</td>
-<td align="center">很少</td>
-<td align="center">趨近０</td>
-<td align="center">校長、助教團 + 一堆同學互助</td>
-</tr>
-<tr>
-<td align="center">學習效率</td>
-<td align="center">需要天份，跟不上進度就GG</td>
-<td align="center">考驗自制力與學習能力</td>
-<td align="center">只要有網路就可以問到懂為止</td>
-</tr>
-</tbody></table>
-<h2 id="💎-學習心得"><a href="#💎-學習心得" class="headerlink" title="💎 學習心得"></a>💎 學習心得</h2><h3 id="個人背景"><a href="#個人背景" class="headerlink" title="個人背景"></a>個人背景</h3><p>我是剛退伍的職業軍人，過去負責維護單位機房、伺服器和網站…等等，有開發 ASP.NET 內部網站也自學撰寫 HTML、CSS、JS 一段時間，會選擇上這門課是過去一直都使用較舊的技術開發網站（沒有API、框架…等），想透過這堂課強化基礎能力，並了解前端工程師在實務上的工作。</p>
-<h3 id="課程心得"><a href="#課程心得" class="headerlink" title="課程心得"></a>課程心得</h3><p>六角學院的這堂直播課雖然課程規劃是從０開始，但是不得不佩服他們的專業，考量到上課的同學程度不同，安排了課後筆記、學員分組討論２個內容，雖然直播課的內容對我來說已經熟悉，但是這兩個內容讓我學到了不少。</p>
-<ul>
-<li><p>課後筆記：題目都是許多 JavaScript 需要釐清的基本觀念，撰寫筆記的過程需要閱讀大量相關文章，再歸納出自己的脈絡，嘗試寫成別人也能理解的文章，這個學習過程會比看一些 JS tricky 的影片更加有效。</p>
-</li>
-<li><p>學員分組討論：分組的同學中大家的程度不一樣，可以透過小組討論互相學習，也可以在檢視同學的問題時，充當偽助教試著去了解別人的程式碼並給予建議，如果有好的寫法也可以藉機學習新招式。</p>
-</li>
-</ul>
-<p>過去上的一些實體課程，通常到上完後也不會和同學有任何互動，即使有熱心的同學開群組，也只是分享一些教材，完課後也成了廢群，更不用說線上課程就只是自己看看影片，哪來的同學？</p>
-<p>六角學院有龐大的社群服務，雖然一開始真的有點摸不著頭緒（有舊的 udemy 課程、新的課程網站、Discord、Slack、Email信件、HackMD…），但是有把 Slack 當 FB、IG 在滑的校長、<del>被迫</del>輪班的助教群和大量的同學可以諮詢交流，這絕對是 CP 爆表的超值服務。</p>
-<p>除此之外，每週主線任務的提交平台，可以看到其他同學的作品，不用再擔心卡住時找不到 Code 可以參考，相同的程式從每個人手中寫出來都是不同的樣貌，除了學習該怎麼寫出功能，還可以學習如何寫出讓人容易看懂的程式碼。</p>
-<p>最後，要特別提的就是老師大力推廣的 Kata 挑戰，這是第一次遇到課程特別針對撰寫速度要求學生練習的，再結合社群分享，可以看到同學的各種騷操作，可以說速寫又是另一個世界了！</p>
-<p>如果看這篇文章的你，正打算轉職前端工程師，或是學習前端技能中卻找不到方向，都非常推薦來參加直播班，這不僅僅是一套學習課程，而是給你一個完整的學習環境。</p>
-<blockquote>
-<p>課程網站：<br><a href="https://www.hexschool.com/">六角學院</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Course Experience</category>
-      </categories>
-      <tags>
-        <tag>Experience</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[JS] 搞懂 Promise、Async、Await</title>
     <url>/2022/03/17/async/</url>
     <content><![CDATA[<p>WIP…</p>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 深入了解型別與轉型</title>
+    <url>/2021/11/19/JScoercion/</url>
+    <content><![CDATA[<p><img data-src="/images/js-coercion.png"></p>
+<span id="more"></span> 
+<p>JavaScript 不論遇到什麼奇形怪狀的資料運算，都會盡可能讓程式執行下去，這麼貼心的設計也是兩面刃，可能在不知不覺中程式正常運作，也可能突然就報錯了卻毫無頭緒，馬上來認識 JavaScript 的型別系統與轉型吧！</p>
+<hr>
+<h2 id="💎-型別（type）"><a href="#💎-型別（type）" class="headerlink" title="💎 型別（type）"></a>💎 型別（type）</h2><ul>
+<li><p>JavaScript 的型別可以分為『原始型別』和『物件型別』兩類，差異在於：</p>
+<ul>
+<li>原始型別<code>沒有</code>屬性和方法可以使用</li>
+<li>物件型別<code>可以任意存取</code>屬性和方法</li>
+</ul>
+</li>
+<li><p><strong>原始型別（Primitive types）</strong></p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol (ES 6 新定義)</li>
+</ul>
+</li>
+<li><p><strong>物件型別（Object types）</strong></p>
+<ul>
+<li>原生物件（Native）<ul>
+<li>Object, Array, Function, Date, Math, RegExp</li>
+<li>原始型別包裹物件（Primitive Wrapper）：Number, String, Boolean</li>
+</ul>
+</li>
+<li>寄宿物件（Host）<ul>
+<li>window</li>
+<li>DOM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>型別檢查（typeof)：<br>除了 null 有原生的 bug 會得到 object 的結果（此 bug 不會修正），其他型別都可以使用 <code>typeof</code> 來檢查。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof &#x27;a&#x27;); // string</span><br><span class="line">console.log(typeof 1); // number</span><br><span class="line">console.log(typeof true); // boolean</span><br><span class="line">console.log(typeof null); // object &lt;== 這是語言本身的bug</span><br><span class="line">console.log(typeof undefined); // undefined</span><br><span class="line">console.log(typeof Symbol()) // symbol</span><br><span class="line">console.log(typeof &#123;&#125;); // object</span><br><span class="line">console.log(typeof []); // object</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-裝箱（boxing）和-拆箱（unboxing）"><a href="#💎-裝箱（boxing）和-拆箱（unboxing）" class="headerlink" title="💎 裝箱（boxing）和 拆箱（unboxing）"></a>💎 裝箱（boxing）和 拆箱（unboxing）</h2><ul>
+<li><p>前面提到原始型別是沒有屬性和方法可以使用的，但我們卻可以利用字串方法來修改原始型別的字串（如下方的程式碼），這是因為 JavaScript 有 裝箱（boxing）和 拆箱（unboxing）機制來處理這些操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;123.45&#x27;.split(&#x27;.&#x27;));</span><br><span class="line">// [&#x27;123&#x27;, &#x27;45&#x27;]</span><br></pre></td></tr></table></figure></li>
+<li><p>上個段落的物件型別中有一項 <code>原始型別包裹物件（Primitive Wrapper）</code>，使用這個方式來建立的字串（數字或布林值）會是物件的形式，並且有許多原生方法可以使用，JavaScript 便是利用這個物件型別來實作裝箱與拆箱。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &#x27;123&#x27;;</span><br><span class="line">let strObj = new String(&#x27;123&#x27;);</span><br><span class="line"></span><br><span class="line">console.log(typeof str); // string</span><br><span class="line">console.log(typeof strObj); // object</span><br></pre></td></tr></table></figure></li>
+<li><p>裝箱（boxing）：當 JS 執行方法發現資料是原始型別時，便會使用 <code>new</code> 把原始型別資料建立成物件型別的資料，就可以順利執行物件內的方法。</p>
+</li>
+<li><p>拆箱（unboxing）：當 JS 完成被裝箱的物件需要執行的方法後，就會把這個物件資料還原成原始型別的資料，這時會用到兩個重要的方法，這會在接下來介紹的『轉型』再次談到：</p>
+<ul>
+<li><code>valueOf()</code>：回傳 <code>Number</code> 原始型別。</li>
+<li><code>toString()</code>：回傳 <code>String</code> 原始型別。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="💎-強制轉型（coercion）"><a href="#💎-強制轉型（coercion）" class="headerlink" title="💎 強制轉型（coercion）"></a>💎 強制轉型（coercion）</h2><ul>
+<li>強制轉型分為兩種：<code>顯性轉型</code>（explicit coercion）、<code>隱性轉型</code>（implicit coercion）</li>
+</ul>
+<h3 id="🔸-顯性轉型（explicit-coercion）："><a href="#🔸-顯性轉型（explicit-coercion）：" class="headerlink" title="🔸 顯性轉型（explicit coercion）："></a>🔸 顯性轉型（explicit coercion）：</h3><ul>
+<li><p>顯性轉型指的是在程式碼中<code>直接撰寫</code>的型別轉換。</p>
+</li>
+<li><p><strong>轉數字</strong></p>
+<ul>
+<li><p><code>parseInt()</code>：</p>
+<ul>
+<li>轉整數。</li>
+<li>小數點以後無條件捨去。</li>
+<li>轉換方式：由左至右，遇到無法轉成數字的時候停止，回傳前面的數字。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseInt(&#x27;1.23&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;1.23a&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;a1.23&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>parseFloat()</code>：</p>
+<ul>
+<li>轉浮點數（包含小數點以後）。</li>
+<li>轉換方式與 parseInt() 相同。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseFloat(&#x27;1.23&#x27;)); // 1.23</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>Number()</code>：</p>
+<ul>
+<li>可以轉整數和浮點數。</li>
+<li>數字範圍在正負 2的53次方 -1 間。</li>
+<li>轉換方式：整筆字串都可以轉成數字才轉換，否則得到 NaN。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Number(&#x27;-1.23&#x27;)); // -1.23</span><br><span class="line">console.log(Number(&#x27;-1.23a&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>BigInt()</code>：</p>
+<ul>
+<li>轉整數</li>
+<li>範圍可以超過2的53次方（表示方式會在數字後面加上 <code>n</code>）</li>
+<li>轉換方式：非整數時直接報錯，不會得到 NaN。</li>
+<li>需注意瀏覽器支援度。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(BigInt(&quot;9007199254740991&quot;)); // 9007199254740991n</span><br><span class="line">console.log(typeof 1n); // bigint</span><br><span class="line">console.log(BigInt(&quot;900a&quot;)); // Cannot convert 900a to a BigInt</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>算數運算子</code>：</p>
+<ul>
+<li>前方加上<code>+</code>：可能會和 <code>++</code> 混淆。</li>
+<li>前方加上<code>-</code>：內容若是負數，會被轉成正數。</li>
+<li>後方加上<code>- 0</code>：較穩定寫法。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(+&#x27;-1&#x27;); // -1</span><br><span class="line">console.log(++&#x27;-1&#x27;); // Invalid left-hand side expression in prefix operation</span><br><span class="line">console.log(-&#x27;-1&#x27;); // 1</span><br><span class="line">console.log(&#x27;-1&#x27; - 0); // -1</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>轉字串</strong></p>
+<ul>
+<li><p><code>toString()</code>：不能轉換 null 和 undefined，可以設定進位制。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log((3).toString()); // 3</span><br><span class="line">console.log(undefined.toString()); // Cannot read properties of undefined</span><br><span class="line">console.log((3).toString(2)); // 11</span><br></pre></td></tr></table></figure></li>
+<li><p><code>String()</code>：可以轉換 null 和 undefined，不能設定進位制。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(String(3)); // 3</span><br><span class="line">console.log(String(undefined)); // undefined</span><br></pre></td></tr></table></figure></li>
+<li><p><code>算數運算子</code>：加上空字串 <code>+ &#39;&#39;</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof (3 + &#x27;&#x27;)); // string</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>轉布林值</strong></p>
+<ul>
+<li><p>布林值只有兩種值（true 或 false），轉型後會得到 true 的值稱為 truthy，得到 false 的則是 falsy，除了下列項目是 <code>falsy</code>，其他的都是 <code>truthy</code>：</p>
+<ul>
+<li><code>false</code></li>
+<li><code>0</code></li>
+<li><code>-0</code></li>
+<li><code>0n</code> (BigInt)</li>
+<li><code>“”</code> (空字串，包含 ``, ‘’)</li>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>NaN</code></li>
+<li><code>document.all</code> (正常情況下不會用到)</li>
+</ul>
+</li>
+<li><p>轉換方式：</p>
+<ul>
+<li><p><code>Boolean()</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Boolean([])); // true</span><br></pre></td></tr></table></figure></li>
+<li><p><code>邏輯運算子</code>：前方加上雙驚嘆號 <code>!!</code>，單驚嘆號 <code>!</code> 會是相反結果。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(!true); // false</span><br><span class="line">console.log(!!&#123;&#125;); // true</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="🔸-隱性轉型（implicit-coercion）"><a href="#🔸-隱性轉型（implicit-coercion）" class="headerlink" title="🔸 隱性轉型（implicit coercion）"></a>🔸 隱性轉型（implicit coercion）</h3><ul>
+<li><p>隱性轉型出現在使用運算子時，這在其他程式語言通常是不允許的（需要相同型別才可以運算），JavaScript 則會自動轉型讓程式繼續執行，也因為規則繁雜，容易疏忽出錯。</p>
+</li>
+<li><p>核心方法 <code>ToPrimitive</code><br>JavaScript 在執行運算時會使用 <code>ToPrimitive</code> 方法將運算元轉換成原始型別後就能繼續運算，<code>ToPrimitive</code> 帶有一個 <code>hint</code>(提示)，用來決定要轉成什麼型別，如果要了解詳細的運作順序可以參考 <strong><a href="https://zhuanlan.zhihu.com/p/29730094">深入理解Javascript中Object类型的转换</a></strong> 這篇文章，裡面引用了 ECMA 的規範詳細解說，非常值得一讀！</p>
+</li>
+<li><p><strong>原始型別</strong>的隱性轉型</p>
+<ul>
+<li><p><code>+</code> 算數運算子：加法運算中只要有一個值屬於字串型別，就會全部轉為 string，最高優先。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 有字串</span><br><span class="line">console.log(&#x27;&#x27; + 1 + null + true); // 1nulltrue</span><br><span class="line">// 無字串</span><br><span class="line">console.log(1 + null + true); // 2</span><br></pre></td></tr></table></figure></li>
+<li><p>其他算數運算子：<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code> 運算都會轉成 number。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;6&#x27; - undefined); // NaN</span><br><span class="line">console.log(9 * [9]); // 81</span><br><span class="line">console.log(&#x27;3&#x27; / &#123;&#125;); // NaN</span><br><span class="line">console.log(6 % true); // 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>物件型別</strong>的隱性轉型</p>
+<ul>
+<li><p><code>ｔoPrimitive</code> 執行物件型別的轉換時會使用到物件內的 <code>valueOf</code> 或 <code>toString</code> 方法來取得原始型別的回傳值，因為這是物件內的方法，我們可以透過覆蓋方法來改變回傳值：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 刻意改成 valueOf 回傳字串、toString 回傳數字</span><br><span class="line">let a = &#123;</span><br><span class="line">    valueOf: function() &#123;</span><br><span class="line">        return &#x27;1&#x27;;</span><br><span class="line">    &#125;,</span><br><span class="line">    toString: function() &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(a + 0); // &quot;10&quot;</span><br><span class="line">console.log(a.toString()); // 2</span><br></pre></td></tr></table></figure></li>
+<li><p><code>陣列</code>也是物件，ToPrimitive 會回傳陣列本身內容執行 <code>toString()</code> 方法後的字串。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 空陣列轉字串 &quot;&quot;，空物件轉字串 &quot;[object Object]&quot;</span><br><span class="line">console.log([] + &#123;&#125;); // &quot;[object Object]&quot;</span><br><span class="line"></span><br><span class="line">// 陣列轉字串 &quot;1,2,3&quot;，後方數字配合轉字串</span><br><span class="line">console.log([1,2,3] + 2 + 1); // &quot;1,2,321&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>&#123;&#125; + 任意值</code>：</p>
+<ol>
+<li><code>&#123;&#125;</code> 在運算元前方時會被視為<code>區塊語句</code>，而不是物件，所以實際執行的只有後面的 <code>+ x</code></li>
+<li><code>+ 任意值</code>是前一段落提到的<code>顯性轉型</code>轉數字的方法，所以後方的運算元轉為 number 型別。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 強制轉型</span><br><span class="line">console.log(+&#123;&#125;); // NaN</span><br><span class="line"></span><br><span class="line">// 看起來是物件加陣列，實際上是後方的陣列強制轉型為數字</span><br><span class="line">console.log(&#123;&#125; + []); // 0 </span><br><span class="line"></span><br><span class="line">// 上方程式實際執行時等同下面兩行：</span><br><span class="line">&#123;&#125;</span><br><span class="line">+[];</span><br><span class="line"></span><br><span class="line">// 宣告一個物件變數 x 來存放空物件，才能被當成物件來計算</span><br><span class="line">let x = &#123;&#125;;</span><br><span class="line">console.log(x + []); // &quot;[object Object]&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p><code>&#123;&#125; + &#123;&#125;</code>：這是一個特別狀況所以額外說明，不同的瀏覽器會有不同的執行結果：</p>
+<ol>
+<li>NaN - 第一個 {} 被視為區塊，</li>
+<li>“[object Object][object Object]” - 第一個 {} 被視為物件</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>邏輯運算</strong><br>邏輯運算中的運算元都會被轉為 boolean，差別在於其運算後回傳的結果。</p>
+<ul>
+<li><p>|| (or) 會回傳第一個結果為 true 的運算元，若無，則是最後一個。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(0 || false || null || undefined); // undefined</span><br><span class="line">console.log(0 || false || null || &#123;&#125; || undefined); // &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>&amp;&amp; (and) 若運算結果為 true，會回傳最後一個運算元，若運算結果為 false，回傳第一個結果為 false 的運算元。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(true &amp;&amp; &#123;&#125; &amp;&amp; -2 &amp;&amp; [&#x27;a&#x27;]); // [&#x27;a&#x27;]</span><br><span class="line">console.log(1 &amp;&amp; 0 &amp;&amp; true &amp; false); // 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>關於轉型的細節實在太多，族繁不及備載，一些極端的範例在實際撰寫時並不會用到，不求成為行走的 MDN，但求踩坑的時候能順利 debug 就好！</p>
+<blockquote>
+<p>參考文章<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/BigInt">MDN-BigInt</a><br><a href="https://medium.com/@sunnyhuang.sc/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98-javascript-%E4%BD%95%E8%AC%82%E5%BC%B7%E5%88%B6%E8%BD%89%E5%9E%8B-coercion-%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E4%BD%9C%E5%88%B0%E8%BD%89%E6%8F%9B%E5%9E%8B%E5%88%A5-d7e39e30083">sunnyhuang-何謂強制轉型（coercion）以及如何作到轉換型別</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString">MDN-Number.prototype.toString()</a><br><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/254123/">淺談JS中String()與.toString()的區別 - 程式前沿</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">MDN-Symbol.toPrimitive</a>。<br><a href="https://eddychang.me/js-object-plus-object">Eddy 思考與學習-JS中的 {} + {} 與 {} + [] 的結果是什麼？</a><br><a href="https://eddychang.me/js-object-plus-object"></a></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>JavaScript - Basic</category>
@@ -970,101 +849,6 @@
 </ul>
 <hr>
 <h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇的筆記記錄了如何使用 Node.js 本地建立伺服器、透過 Postman 檢查 Request &amp; Response，接下來會記錄如何製作一個簡單的 todolist api。</p>
-]]></content>
-      <categories>
-        <category>Node.js</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 打造 todolist api 1 - 行前準備</title>
-    <url>/2022/02/24/nodejs2/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span>
-<p>上一篇文章完成了網頁伺服器服務的建置，這一次就更進一步的製作一個簡單的 todolist API，讓他有新增、修改、刪除的功能。</p>
-<hr>
-<h2 id="💎-流程、架構規劃"><a href="#💎-流程、架構規劃" class="headerlink" title="💎 流程、架構規劃"></a>💎 流程、架構規劃</h2><p>六角學院的課程中都會以流程圖的方式，這對於循序漸進完成程式功能會非常有幫助，在完成第一個版本後就可以嘗試重構和模組化，下面是我整理出的結構，每個人在撰寫程式碼時的構思不盡相同，可以自行規劃。</p>
-<ul>
-<li><code>工具</code><ul>
-<li>NPM/Yarn：套件管理工具</li>
-<li>UUID 套件：用來建立待辦事項的 id</li>
-<li>nodemon 套件：建立可即時更新的本地伺服器</li>
-<li>POSTMAN 軟體：模擬 http 請求，做功能測試</li>
-<li>Git/GitHub：版本控制</li>
-<li>代管平台（heroku）：api 服務上線</li>
-</ul>
-</li>
-<li><code>server</code>：啟用 api 的主要程式碼<ul>
-<li>http：使用 node.js 原生的模組</li>
-<li>headers：回傳 json 格式，開放跨域（CORS），提供 route 的五種請求方法</li>
-<li>port：要加入環境變數（process.env.PORT）</li>
-</ul>
-</li>
-<li><code>route</code>：依請求決定要執行的動作<ul>
-<li>OPTIONS：回應表頭就好</li>
-<li>GET：回應全部待辦</li>
-<li>POST：新增一筆待辦、回應全部待辦，需要檢查 body 內容</li>
-<li>DELETE<ul>
-<li>單筆：刪除一筆待辦、回應全部待辦，需要檢查 url 的 id</li>
-<li>全部：刪除全部待辦、回應全部待辦</li>
-</ul>
-</li>
-<li>PATCH：修改一筆待辦、回應全部待辦，需要檢查 url 的 id、body 內容</li>
-</ul>
-</li>
-<li><code>response</code>：回傳資料優化<ul>
-<li>success：回傳（無內容或待辦資料）</li>
-<li>false：回傳錯誤代碼及錯誤訊息</li>
-</ul>
-</li>
-<li><code>constants</code>：常用的常數<ul>
-<li>（視實際撰寫的重複使用狀況獨立出來）</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-建立專案環境"><a href="#💎-建立專案環境" class="headerlink" title="💎 建立專案環境"></a>💎 建立專案環境</h2><ol>
-<li>建立一個新專案資料夾。</li>
-<li>執行 <code>npm init</code> 指令來製作 package.json 檔案。</li>
-<li>執行 <code>npm i uuid</code> 來安裝 UUID 套件（後續待辦事項的編號使用）。<blockquote>
-<p><a href="https://zh.wikipedia.org/zh-tw/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">Wiki - UUID</a><br><a href="https://www.npmjs.com/package/uuid">npm - uuid</a></p>
-</blockquote>
-</li>
-<li>在專案資料夾中建立一個 server.js 檔案。</li>
-<li>先參考官方範例在 server.js 內撰寫啟用伺服器的程式碼：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p>段落測試：</p>
-<ol>
-<li>執行 <code>nodemon server.js</code> 測試是否有錯誤資訊（如果環境沒有 nodemon，請執行 <code>npm i -g nodemon</code> 全域安裝）</li>
-<li>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:8000</code>，確認是否正常顯示回傳的資料。</li>
-</ol>
-</blockquote>
-<hr>
-<h2 id="💎-伺服器設定調整"><a href="#💎-伺服器設定調整" class="headerlink" title="💎 伺服器設定調整"></a>💎 伺服器設定調整</h2><ol>
-<li><strong>修改預設 header</strong></li>
-</ol>
-<ul>
-<li>todolist api 設計成回傳 json 檔，所以要把 <code>Content-Type</code> 改成 <code>application/json</code>。</li>
-<li>加入開放哪些 <code>Headers</code> 和 <code>Methods</code> 的設定。</li>
-<li>加入允許所有來源的跨域連線請求（<code>CORS</code>）。<blockquote>
-<p>跨域請求可以參考 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">MDN - CORS</a></p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// header 獨立成一個常數</span></span><br><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>: <span class="string">&#x27;Content-Type, Authorization, Content-Length, X-Requested-With&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;PATCH, POST, GET, OPTIONS, DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改成使用變數</span></span><br><span class="line">    res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">    <span class="comment">// 修改成回傳 json 格式的內容</span></span><br><span class="line">    <span class="comment">// 此處需要注意，網路封包傳送的資料只有純字串，需要先轉換</span></span><br><span class="line">    res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">       <span class="string">&quot;test&quot;</span>: <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    &#125;));</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<ol start="2">
-<li><strong>修改預設 port</strong></li>
-</ol>
-<ul>
-<li>加入環境變數，佈署到代管服務才能正常運行。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; PORT = <span class="number">3000</span> &#125; = process.env;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>段落測試：<br>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:3000</code>，確認是否正常顯示回傳的資料。</p>
-</blockquote>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇文章已經完成基本的環境建立，並且整理出程式需要撰寫的內容，下一篇文章就可以依照這個結構逐步完成所有的功能。</p>
 ]]></content>
       <categories>
         <category>Node.js</category>
@@ -1194,6 +978,265 @@
       </categories>
       <tags>
         <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 陳述式（Statement）與表達式（Expression）</title>
+    <url>/2021/11/21/JSstatement/</url>
+    <content><![CDATA[<p><img data-src="/images/js-statement.png"></p>
+<span id="more"></span> 
+
+<p>陳述式(Statement)與表達式(Expression)不是特定的使用方法或技巧，而是語法觀念，所有的程式碼都可以分成這兩類型的語句。</p>
+<h2 id="💎-各種譯名："><a href="#💎-各種譯名：" class="headerlink" title="💎 各種譯名："></a>💎 各種譯名：</h2><ul>
+<li>Statement：陳述式。</li>
+<li>Expression：表示式、運算式、表達式。</li>
+</ul>
+<h2 id="💎-兩者的差別："><a href="#💎-兩者的差別：" class="headerlink" title="💎 兩者的差別："></a>💎 兩者的差別：</h2><ul>
+<li><code>陳述式：不會回傳結果</code>。</li>
+<li><code>表達式：會回傳結果</code>。</li>
+</ul>
+<h2 id="💎-陳述式的種類"><a href="#💎-陳述式的種類" class="headerlink" title="💎 陳述式的種類"></a>💎 陳述式的種類</h2><ul>
+<li>流程控制<ul>
+<li>{  } 區塊</li>
+<li>if..else</li>
+<li>switch</li>
+<li>try..catch</li>
+</ul>
+</li>
+<li>宣告<ul>
+<li>var</li>
+<li>let</li>
+<li>const</li>
+</ul>
+</li>
+<li>函式<ul>
+<li>function</li>
+<li>return</li>
+</ul>
+</li>
+<li>疊代<ul>
+<li>for</li>
+<li>while</li>
+</ul>
+</li>
+<li>其他<ul>
+<li>export</li>
+<li>import</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>詳細可以參考 MDN：<br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements">Statements and declarations</a></p>
+</blockquote>
+<h2 id="💎-表達式的種類"><a href="#💎-表達式的種類" class="headerlink" title="💎 表達式的種類"></a>💎 表達式的種類</h2><ul>
+<li>值：單純一個數字、字串、布林、物件…等等。</li>
+<li>變數</li>
+<li>賦值（=）</li>
+<li>運算子（+, -, /, ==, ===, != ……）</li>
+<li>會回傳結果都是</li>
+</ul>
+<h2 id="💎-陳述式與表達式的混用"><a href="#💎-陳述式與表達式的混用" class="headerlink" title="💎 陳述式與表達式的混用"></a>💎 陳述式與表達式的混用</h2><p>一段程式碼通常不會只使用其中一種方式撰寫，接著用以下範例來解說：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let example = function () &#123;</span><br><span class="line">    if (1 == 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>這段程式碼中的<code>陳述式</code>：</p>
+<ul>
+<li>let</li>
+<li>function</li>
+<li>if..else</li>
+<li>return</li>
+</ul>
+</li>
+<li><p>這段程式碼中的<code>表達式</code>：</p>
+<ul>
+<li>1</li>
+<li>=</li>
+<li>==</li>
+</ul>
+</li>
+<li><p>這整段程式碼雖然結合了各種陳述式和表達式，最終是將函式賦予一個變數名稱，所以是一個<code>表達式</code>(賦值是表達式)，又稱為<code>函式表達式</code>，而一般宣告名稱的函式則稱為<code>函式陳述式</code>。</p>
+</li>
+</ol>
+<blockquote>
+<p>參考文章：<br><a href="https://wcc723.github.io/development/2020/09/17/js-expression/">卡斯柏 - JavaScript 表達式觀念及運用 - JS Expression</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Node.JS] 打造 todolist api 4 - 部署上線</title>
+    <url>/2022/03/04/nodejs5/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span> 
+<p>寫了好幾篇，功能終於做完了，這篇來記錄如何把寫好的功能放到雲端上，讓這個 API 不再只是本地戳，真正的上線運行。</p>
+<hr>
+<h2 id="💎-需要工具"><a href="#💎-需要工具" class="headerlink" title="💎 需要工具"></a>💎 需要工具</h2><ul>
+<li>雲端平台：Heroku</li>
+<li>部署工具：Git</li>
+</ul>
+<hr>
+<h2 id="💎-Git"><a href="#💎-Git" class="headerlink" title="💎 Git"></a>💎 Git</h2><p>要把做好的專案部署到 Heroku 上，會需要用到 Git 來發佈，加入 git 版控只需要在 todolist 練習的資料夾下一個初始化的指令即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果還沒有 Git，可以到 <a href="https://git-scm.com/">Git 官方網站</a> 下載</p>
+</blockquote>
+<p>完成初始化後可以建立在專案資料夾建立 .gitignore 檔案（例外清單），並打開編輯，在裡面加入 node_modules，當上傳專案到 heroku 平台上時，平台會自動根據 package.json 裡面的 dependancies 來安裝套件，所以可以把模組的實體檔案加到例外，不用一起部署上線。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node_modules</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💎-環境設定"><a href="#💎-環境設定" class="headerlink" title="💎 環境設定"></a>💎 環境設定</h2><p>在部署上線前，需要（）做一些調整，才能順利運行：</p>
+<ul>
+<li>package.json<ul>
+<li>“scripts” 內加入啟動伺服器的指令<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;node server.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li>新增 “engines” 屬性來指定運行的 node.js 版本<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;engines&quot;: &#123;</span><br><span class="line">    &quot;node&quot;: &quot;16.x&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>確認 server.js 裡面的 PORT 設定有沒有使用 process.env.PORT 來獲取環境變數，沒有的話伺服器會無法連線。</li>
+<li>完成環境設定後記得用 Git 提交版本<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#x27;todolist v1(名稱自訂)&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-Heroku-申請與安裝"><a href="#💎-Heroku-申請與安裝" class="headerlink" title="💎 Heroku 申請與安裝"></a>💎 Heroku 申請與安裝</h2><ol>
+<li>如果還沒有 Heroku 帳號，可以先到 <a href="https://www.heroku.com/">Heroku 官方網站</a> 註冊。</li>
+<li>註冊完成後回到開發環境（VS Code）。</li>
+<li>安裝 Heroku CLI（建議使用全域安裝）。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i -g heroku</span><br></pre></td></tr></table></figure>
+<code>安裝完會出現不少衝突警告，但可以先無視</code></li>
+<li>測試一下 Heroku CLI 能不能正常使用（下面是檢查版本資訊的指令）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku --version</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="💎-Heroku-上線！"><a href="#💎-Heroku-上線！" class="headerlink" title="💎 Heroku 上線！"></a>💎 Heroku 上線！</h2><ol>
+<li><p>先回到 VScode，並且進入 todolist 專案資料夾，在終端機執行登入 heroku 的指令，送出後按任意按鍵會跳轉到登入的網頁，接著再網頁登入成功後，終端機也會跳出登入成功訊息。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure></li>
+<li><p>執行建立伺服器指令，執行後系統會產生一組專案名稱，可以複製名稱最後的幾個數字，在網頁介面的搜尋列找到這個專案。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku create</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建立伺服器成功後，同時也會把這個遠端專案加到本地中，可以用指令 <code>git remote</code> 檢查，會發現多了一組 <code>heroku</code>。</p>
+</blockquote>
+</li>
+<li><p>發佈專案！運用 git push 把心血結晶上傳吧！<br>（指令最後的本地分支名稱視版本有所不同，需要自行調整）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push heroku main/master</span><br></pre></td></tr></table></figure></li>
+<li><p>如果上傳部署成功，就可以執行指令來啟用伺服器。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku open</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="💎-線上功能測試"><a href="#💎-線上功能測試" class="headerlink" title="💎 線上功能測試"></a>💎 線上功能測試</h2><p>把所有的可能性從頭到尾測一遍。<br><strong>測試網址</strong>：</p>
+<ul>
+<li><code>http://(heroku給的網域名稱)/todo</code></li>
+<li><code>http://(heroku給的網域名稱)/todo/</code></li>
+<li><code>http://(heroku給的網域名稱)/todo/(任一筆id)</code></li>
+<li><code>http://(heroku給的網域名稱)/(亂打)</code></li>
+</ul>
+<p><strong>測試方法</strong>：</p>
+<ul>
+<li>OPTIONS</li>
+<li>GET</li>
+<li>POST</li>
+<li>PATCH</li>
+<li>DELETE</li>
+<li>其他 POSTMAN 上有的方法都可以試試</li>
+</ul>
+<p><strong>測試資料</strong>： </p>
+<ul>
+<li><code>&#123;&quot;title&quot;: &quot;隨意&quot;&#125;</code></li>
+<li>各種奇怪資料</li>
+</ul>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>這系列文章是參考六角學院的課程撰寫的，這些基本的功能照著課程走，花了很大篇幅和時間才寫出來，寫了才發現每個環節都有詳細的說明，儘管實作的內容還只是皮毛，但是能穩紮穩打的進步，真的比到論壇複製貼上慢慢摸索前進還要有成就感。</p>
+<blockquote>
+<p>我的 <a href="https://github.com/stark920/todolistDemo">GitHub - todolistDemo</a> 也存放了照著這些文章寫出來的成果，如果操作有問題也可以參考上面的檔案。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Node.js</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[心得] 六角學院 JS 工程師養成直播班 - 學習心得</title>
+    <url>/2021/12/21/EXPhexschoolJSlive/</url>
+    <content><![CDATA[<p><img data-src="/images/hexschool-livejs.png"></p>
+<span id="more"></span> 
+
+<p>過去參加過各種『ｏｏ電腦』的實體課程，也在各種平台買了很多線上課程，最近第一次參加了線上直播班課程，以下就來分享課程內容和學習心得。</p>
+<h2 id="💎-課程內容"><a href="#💎-課程內容" class="headerlink" title="💎 課程內容"></a>💎 課程內容</h2><ul>
+<li>課程名稱：JS 工程師養成直播班 - 2021秋季</li>
+<li>授課時間：每週直播一次約 2 小時，共 9 週</li>
+<li>授課內容：JavaScript 從零開始 -&gt; 串接 API 製作前、後台功能</li>
+<li>其他服務：<ul>
+<li>每日練習任務、每週主線任務，並有課程助教協助任務批改及建議</li>
+<li>週二加開主線任務講解直播</li>
+<li>週三、四不定期主題直播</li>
+<li>社群平台提供線上諮詢、履歷檢查…等，想問什麼就問什麼</li>
+</ul>
+</li>
+</ul>
+<h2 id="💎-課程比較"><a href="#💎-課程比較" class="headerlink" title="💎 課程比較"></a>💎 課程比較</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">實體課程</th>
+<th align="center">線上課程</th>
+<th align="center">直播班</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">價格</td>
+<td align="center">高</td>
+<td align="center">低</td>
+<td align="center">中</td>
+</tr>
+<tr>
+<td align="center">課程編排</td>
+<td align="center">緊湊</td>
+<td align="center">考驗自制力</td>
+<td align="center">每週搭配練習循序漸進</td>
+</tr>
+<tr>
+<td align="center">課後服務</td>
+<td align="center">大概就完課證書？</td>
+<td align="center">透過課程平台與開課導師互動</td>
+<td align="center">有專屬社群和助教團可詢問</td>
+</tr>
+<tr>
+<td align="center">學員交流</td>
+<td align="center">很少</td>
+<td align="center">趨近０</td>
+<td align="center">校長、助教團 + 一堆同學互助</td>
+</tr>
+<tr>
+<td align="center">學習效率</td>
+<td align="center">需要天份，跟不上進度就GG</td>
+<td align="center">考驗自制力與學習能力</td>
+<td align="center">只要有網路就可以問到懂為止</td>
+</tr>
+</tbody></table>
+<h2 id="💎-學習心得"><a href="#💎-學習心得" class="headerlink" title="💎 學習心得"></a>💎 學習心得</h2><h3 id="個人背景"><a href="#個人背景" class="headerlink" title="個人背景"></a>個人背景</h3><p>我是剛退伍的職業軍人，過去負責維護單位機房、伺服器和網站…等等，有開發 ASP.NET 內部網站也自學撰寫 HTML、CSS、JS 一段時間，會選擇上這門課是過去一直都使用較舊的技術開發網站（沒有API、框架…等），想透過這堂課強化基礎能力，並了解前端工程師在實務上的工作。</p>
+<h3 id="課程心得"><a href="#課程心得" class="headerlink" title="課程心得"></a>課程心得</h3><p>六角學院的這堂直播課雖然課程規劃是從０開始，但是不得不佩服他們的專業，考量到上課的同學程度不同，安排了課後筆記、學員分組討論２個內容，雖然直播課的內容對我來說已經熟悉，但是這兩個內容讓我學到了不少。</p>
+<ul>
+<li><p>課後筆記：題目都是許多 JavaScript 需要釐清的基本觀念，撰寫筆記的過程需要閱讀大量相關文章，再歸納出自己的脈絡，嘗試寫成別人也能理解的文章，這個學習過程會比看一些 JS tricky 的影片更加有效。</p>
+</li>
+<li><p>學員分組討論：分組的同學中大家的程度不一樣，可以透過小組討論互相學習，也可以在檢視同學的問題時，充當偽助教試著去了解別人的程式碼並給予建議，如果有好的寫法也可以藉機學習新招式。</p>
+</li>
+</ul>
+<p>過去上的一些實體課程，通常到上完後也不會和同學有任何互動，即使有熱心的同學開群組，也只是分享一些教材，完課後也成了廢群，更不用說線上課程就只是自己看看影片，哪來的同學？</p>
+<p>六角學院有龐大的社群服務，雖然一開始真的有點摸不著頭緒（有舊的 udemy 課程、新的課程網站、Discord、Slack、Email信件、HackMD…），但是有把 Slack 當 FB、IG 在滑的校長、<del>被迫</del>輪班的助教群和大量的同學可以諮詢交流，這絕對是 CP 爆表的超值服務。</p>
+<p>除此之外，每週主線任務的提交平台，可以看到其他同學的作品，不用再擔心卡住時找不到 Code 可以參考，相同的程式從每個人手中寫出來都是不同的樣貌，除了學習該怎麼寫出功能，還可以學習如何寫出讓人容易看懂的程式碼。</p>
+<p>最後，要特別提的就是老師大力推廣的 Kata 挑戰，這是第一次遇到課程特別針對撰寫速度要求學生練習的，再結合社群分享，可以看到同學的各種騷操作，可以說速寫又是另一個世界了！</p>
+<p>如果看這篇文章的你，正打算轉職前端工程師，或是學習前端技能中卻找不到方向，都非常推薦來參加直播班，這不僅僅是一套學習課程，而是給你一個完整的學習環境。</p>
+<blockquote>
+<p>課程網站：<br><a href="https://www.hexschool.com/">六角學院</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Course Experience</category>
+      </categories>
+      <tags>
+        <tag>Experience</tag>
       </tags>
   </entry>
   <entry>
@@ -1566,135 +1609,92 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
-    <url>/2022/01/04/JSscope/</url>
-    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
-<span id="more"></span> 
-
-<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
-<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
-<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
-<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
-<p>接著就來看 JavaScript 如何去實現這些功能。</p>
-<hr>
-<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
-<p>  不同的宣告方式產生的全域變數也有差異：</p>
-<ul>
-<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
-<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
-<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
-<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
-<blockquote>
-<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
-</blockquote>
-<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
-<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
-<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
-<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
-<blockquote>
-<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
-</blockquote>
-<ul>
-<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
-<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
-<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
-</ul>
-<blockquote>
-<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 打造 todolist api 4 - 部署上線</title>
-    <url>/2022/03/04/nodejs5/</url>
+    <title>[Node.JS] 打造 todolist api 1 - 行前準備</title>
+    <url>/2022/02/24/nodejs2/</url>
     <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span> 
-<p>寫了好幾篇，功能終於做完了，這篇來記錄如何把寫好的功能放到雲端上，讓這個 API 不再只是本地戳，真正的上線運行。</p>
+<span id="more"></span>
+<p>上一篇文章完成了網頁伺服器服務的建置，這一次就更進一步的製作一個簡單的 todolist API，讓他有新增、修改、刪除的功能。</p>
 <hr>
-<h2 id="💎-需要工具"><a href="#💎-需要工具" class="headerlink" title="💎 需要工具"></a>💎 需要工具</h2><ul>
-<li>雲端平台：Heroku</li>
-<li>部署工具：Git</li>
-</ul>
-<hr>
-<h2 id="💎-Git"><a href="#💎-Git" class="headerlink" title="💎 Git"></a>💎 Git</h2><p>要把做好的專案部署到 Heroku 上，會需要用到 Git 來發佈，加入 git 版控只需要在 todolist 練習的資料夾下一個初始化的指令即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果還沒有 Git，可以到 <a href="https://git-scm.com/">Git 官方網站</a> 下載</p>
-</blockquote>
-<p>完成初始化後可以建立在專案資料夾建立 .gitignore 檔案（例外清單），並打開編輯，在裡面加入 node_modules，當上傳專案到 heroku 平台上時，平台會自動根據 package.json 裡面的 dependancies 來安裝套件，所以可以把模組的實體檔案加到例外，不用一起部署上線。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node_modules</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="💎-環境設定"><a href="#💎-環境設定" class="headerlink" title="💎 環境設定"></a>💎 環境設定</h2><p>在部署上線前，需要（）做一些調整，才能順利運行：</p>
+<h2 id="💎-流程、架構規劃"><a href="#💎-流程、架構規劃" class="headerlink" title="💎 流程、架構規劃"></a>💎 流程、架構規劃</h2><p>六角學院的課程中都會以流程圖的方式，這對於循序漸進完成程式功能會非常有幫助，在完成第一個版本後就可以嘗試重構和模組化，下面是我整理出的結構，每個人在撰寫程式碼時的構思不盡相同，可以自行規劃。</p>
 <ul>
-<li>package.json<ul>
-<li>“scripts” 內加入啟動伺服器的指令<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;node server.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
-<li>新增 “engines” 屬性來指定運行的 node.js 版本<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;engines&quot;: &#123;</span><br><span class="line">    &quot;node&quot;: &quot;16.x&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><code>工具</code><ul>
+<li>NPM/Yarn：套件管理工具</li>
+<li>UUID 套件：用來建立待辦事項的 id</li>
+<li>nodemon 套件：建立可即時更新的本地伺服器</li>
+<li>POSTMAN 軟體：模擬 http 請求，做功能測試</li>
+<li>Git/GitHub：版本控制</li>
+<li>代管平台（heroku）：api 服務上線</li>
 </ul>
 </li>
-<li>確認 server.js 裡面的 PORT 設定有沒有使用 process.env.PORT 來獲取環境變數，沒有的話伺服器會無法連線。</li>
-<li>完成環境設定後記得用 Git 提交版本<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#x27;todolist v1(名稱自訂)&#x27;</span><br></pre></td></tr></table></figure></li>
+<li><code>server</code>：啟用 api 的主要程式碼<ul>
+<li>http：使用 node.js 原生的模組</li>
+<li>headers：回傳 json 格式，開放跨域（CORS），提供 route 的五種請求方法</li>
+<li>port：要加入環境變數（process.env.PORT）</li>
+</ul>
+</li>
+<li><code>route</code>：依請求決定要執行的動作<ul>
+<li>OPTIONS：回應表頭就好</li>
+<li>GET：回應全部待辦</li>
+<li>POST：新增一筆待辦、回應全部待辦，需要檢查 body 內容</li>
+<li>DELETE<ul>
+<li>單筆：刪除一筆待辦、回應全部待辦，需要檢查 url 的 id</li>
+<li>全部：刪除全部待辦、回應全部待辦</li>
+</ul>
+</li>
+<li>PATCH：修改一筆待辦、回應全部待辦，需要檢查 url 的 id、body 內容</li>
+</ul>
+</li>
+<li><code>response</code>：回傳資料優化<ul>
+<li>success：回傳（無內容或待辦資料）</li>
+<li>false：回傳錯誤代碼及錯誤訊息</li>
+</ul>
+</li>
+<li><code>constants</code>：常用的常數<ul>
+<li>（視實際撰寫的重複使用狀況獨立出來）</li>
+</ul>
+</li>
 </ul>
 <hr>
-<h2 id="💎-Heroku-申請與安裝"><a href="#💎-Heroku-申請與安裝" class="headerlink" title="💎 Heroku 申請與安裝"></a>💎 Heroku 申請與安裝</h2><ol>
-<li>如果還沒有 Heroku 帳號，可以先到 <a href="https://www.heroku.com/">Heroku 官方網站</a> 註冊。</li>
-<li>註冊完成後回到開發環境（VS Code）。</li>
-<li>安裝 Heroku CLI（建議使用全域安裝）。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i -g heroku</span><br></pre></td></tr></table></figure>
-<code>安裝完會出現不少衝突警告，但可以先無視</code></li>
-<li>測試一下 Heroku CLI 能不能正常使用（下面是檢查版本資訊的指令）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku --version</span><br></pre></td></tr></table></figure></li>
-</ol>
-<hr>
-<h2 id="💎-Heroku-上線！"><a href="#💎-Heroku-上線！" class="headerlink" title="💎 Heroku 上線！"></a>💎 Heroku 上線！</h2><ol>
-<li><p>先回到 VScode，並且進入 todolist 專案資料夾，在終端機執行登入 heroku 的指令，送出後按任意按鍵會跳轉到登入的網頁，接著再網頁登入成功後，終端機也會跳出登入成功訊息。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure></li>
-<li><p>執行建立伺服器指令，執行後系統會產生一組專案名稱，可以複製名稱最後的幾個數字，在網頁介面的搜尋列找到這個專案。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku create</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>建立伺服器成功後，同時也會把這個遠端專案加到本地中，可以用指令 <code>git remote</code> 檢查，會發現多了一組 <code>heroku</code>。</p>
+<h2 id="💎-建立專案環境"><a href="#💎-建立專案環境" class="headerlink" title="💎 建立專案環境"></a>💎 建立專案環境</h2><ol>
+<li>建立一個新專案資料夾。</li>
+<li>執行 <code>npm init</code> 指令來製作 package.json 檔案。</li>
+<li>執行 <code>npm i uuid</code> 來安裝 UUID 套件（後續待辦事項的編號使用）。<blockquote>
+<p><a href="https://zh.wikipedia.org/zh-tw/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">Wiki - UUID</a><br><a href="https://www.npmjs.com/package/uuid">npm - uuid</a></p>
 </blockquote>
 </li>
-<li><p>發佈專案！運用 git push 把心血結晶上傳吧！<br>（指令最後的本地分支名稱視版本有所不同，需要自行調整）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push heroku main/master</span><br></pre></td></tr></table></figure></li>
-<li><p>如果上傳部署成功，就可以執行指令來啟用伺服器。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku open</span><br></pre></td></tr></table></figure></li>
+<li>在專案資料夾中建立一個 server.js 檔案。</li>
+<li>先參考官方範例在 server.js 內撰寫啟用伺服器的程式碼：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
 </ol>
-<hr>
-<h2 id="💎-線上功能測試"><a href="#💎-線上功能測試" class="headerlink" title="💎 線上功能測試"></a>💎 線上功能測試</h2><p>把所有的可能性從頭到尾測一遍。<br><strong>測試網址</strong>：</p>
-<ul>
-<li><code>http://(heroku給的網域名稱)/todo</code></li>
-<li><code>http://(heroku給的網域名稱)/todo/</code></li>
-<li><code>http://(heroku給的網域名稱)/todo/(任一筆id)</code></li>
-<li><code>http://(heroku給的網域名稱)/(亂打)</code></li>
-</ul>
-<p><strong>測試方法</strong>：</p>
-<ul>
-<li>OPTIONS</li>
-<li>GET</li>
-<li>POST</li>
-<li>PATCH</li>
-<li>DELETE</li>
-<li>其他 POSTMAN 上有的方法都可以試試</li>
-</ul>
-<p><strong>測試資料</strong>： </p>
-<ul>
-<li><code>&#123;&quot;title&quot;: &quot;隨意&quot;&#125;</code></li>
-<li>各種奇怪資料</li>
-</ul>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>這系列文章是參考六角學院的課程撰寫的，這些基本的功能照著課程走，花了很大篇幅和時間才寫出來，寫了才發現每個環節都有詳細的說明，儘管實作的內容還只是皮毛，但是能穩紮穩打的進步，真的比到論壇複製貼上慢慢摸索前進還要有成就感。</p>
 <blockquote>
-<p>我的 <a href="https://github.com/stark920/todolistDemo">GitHub - todolistDemo</a> 也存放了照著這些文章寫出來的成果，如果操作有問題也可以參考上面的檔案。</p>
+<p>段落測試：</p>
+<ol>
+<li>執行 <code>nodemon server.js</code> 測試是否有錯誤資訊（如果環境沒有 nodemon，請執行 <code>npm i -g nodemon</code> 全域安裝）</li>
+<li>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:8000</code>，確認是否正常顯示回傳的資料。</li>
+</ol>
 </blockquote>
+<hr>
+<h2 id="💎-伺服器設定調整"><a href="#💎-伺服器設定調整" class="headerlink" title="💎 伺服器設定調整"></a>💎 伺服器設定調整</h2><ol>
+<li><strong>修改預設 header</strong></li>
+</ol>
+<ul>
+<li>todolist api 設計成回傳 json 檔，所以要把 <code>Content-Type</code> 改成 <code>application/json</code>。</li>
+<li>加入開放哪些 <code>Headers</code> 和 <code>Methods</code> 的設定。</li>
+<li>加入允許所有來源的跨域連線請求（<code>CORS</code>）。<blockquote>
+<p>跨域請求可以參考 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">MDN - CORS</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// header 獨立成一個常數</span></span><br><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>: <span class="string">&#x27;Content-Type, Authorization, Content-Length, X-Requested-With&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;PATCH, POST, GET, OPTIONS, DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改成使用變數</span></span><br><span class="line">    res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">    <span class="comment">// 修改成回傳 json 格式的內容</span></span><br><span class="line">    <span class="comment">// 此處需要注意，網路封包傳送的資料只有純字串，需要先轉換</span></span><br><span class="line">    res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">       <span class="string">&quot;test&quot;</span>: <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    &#125;));</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li><strong>修改預設 port</strong></li>
+</ol>
+<ul>
+<li>加入環境變數，佈署到代管服務才能正常運行。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; PORT = <span class="number">3000</span> &#125; = process.env;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>段落測試：<br>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:3000</code>，確認是否正常顯示回傳的資料。</p>
+</blockquote>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇文章已經完成基本的環境建立，並且整理出程式需要撰寫的內容，下一篇文章就可以依照這個結構逐步完成所有的功能。</p>
 ]]></content>
       <categories>
         <category>Node.js</category>
