@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[心得] 六角學院 JS 工程師養成直播班 - 學習心得</title>
+    <url>/2021/12/21/EXPhexschoolJSlive/</url>
+    <content><![CDATA[<p><img data-src="/images/hexschool-livejs.png"></p>
+<span id="more"></span> 
+
+<p>過去參加過各種『ｏｏ電腦』的實體課程，也在各種平台買了很多線上課程，最近第一次參加了線上直播班課程，以下就來分享課程內容和學習心得。</p>
+<h2 id="💎-課程內容"><a href="#💎-課程內容" class="headerlink" title="💎 課程內容"></a>💎 課程內容</h2><ul>
+<li>課程名稱：JS 工程師養成直播班 - 2021秋季</li>
+<li>授課時間：每週直播一次約 2 小時，共 9 週</li>
+<li>授課內容：JavaScript 從零開始 -&gt; 串接 API 製作前、後台功能</li>
+<li>其他服務：<ul>
+<li>每日練習任務、每週主線任務，並有課程助教協助任務批改及建議</li>
+<li>週二加開主線任務講解直播</li>
+<li>週三、四不定期主題直播</li>
+<li>社群平台提供線上諮詢、履歷檢查…等，想問什麼就問什麼</li>
+</ul>
+</li>
+</ul>
+<h2 id="💎-課程比較"><a href="#💎-課程比較" class="headerlink" title="💎 課程比較"></a>💎 課程比較</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">實體課程</th>
+<th align="center">線上課程</th>
+<th align="center">直播班</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">價格</td>
+<td align="center">高</td>
+<td align="center">低</td>
+<td align="center">中</td>
+</tr>
+<tr>
+<td align="center">課程編排</td>
+<td align="center">緊湊</td>
+<td align="center">考驗自制力</td>
+<td align="center">每週搭配練習循序漸進</td>
+</tr>
+<tr>
+<td align="center">課後服務</td>
+<td align="center">大概就完課證書？</td>
+<td align="center">透過課程平台與開課導師互動</td>
+<td align="center">有專屬社群和助教團可詢問</td>
+</tr>
+<tr>
+<td align="center">學員交流</td>
+<td align="center">很少</td>
+<td align="center">趨近０</td>
+<td align="center">校長、助教團 + 一堆同學互助</td>
+</tr>
+<tr>
+<td align="center">學習效率</td>
+<td align="center">需要天份，跟不上進度就GG</td>
+<td align="center">考驗自制力與學習能力</td>
+<td align="center">只要有網路就可以問到懂為止</td>
+</tr>
+</tbody></table>
+<h2 id="💎-學習心得"><a href="#💎-學習心得" class="headerlink" title="💎 學習心得"></a>💎 學習心得</h2><h3 id="個人背景"><a href="#個人背景" class="headerlink" title="個人背景"></a>個人背景</h3><p>我是剛退伍的職業軍人，過去負責維護單位機房、伺服器和網站…等等，有開發 ASP.NET 內部網站也自學撰寫 HTML、CSS、JS 一段時間，會選擇上這門課是過去一直都使用較舊的技術開發網站（沒有API、框架…等），想透過這堂課強化基礎能力，並了解前端工程師在實務上的工作。</p>
+<h3 id="課程心得"><a href="#課程心得" class="headerlink" title="課程心得"></a>課程心得</h3><p>六角學院的這堂直播課雖然課程規劃是從０開始，但是不得不佩服他們的專業，考量到上課的同學程度不同，安排了課後筆記、學員分組討論２個內容，雖然直播課的內容對我來說已經熟悉，但是這兩個內容讓我學到了不少。</p>
+<ul>
+<li><p>課後筆記：題目都是許多 JavaScript 需要釐清的基本觀念，撰寫筆記的過程需要閱讀大量相關文章，再歸納出自己的脈絡，嘗試寫成別人也能理解的文章，這個學習過程會比看一些 JS tricky 的影片更加有效。</p>
+</li>
+<li><p>學員分組討論：分組的同學中大家的程度不一樣，可以透過小組討論互相學習，也可以在檢視同學的問題時，充當偽助教試著去了解別人的程式碼並給予建議，如果有好的寫法也可以藉機學習新招式。</p>
+</li>
+</ul>
+<p>過去上的一些實體課程，通常到上完後也不會和同學有任何互動，即使有熱心的同學開群組，也只是分享一些教材，完課後也成了廢群，更不用說線上課程就只是自己看看影片，哪來的同學？</p>
+<p>六角學院有龐大的社群服務，雖然一開始真的有點摸不著頭緒（有舊的 udemy 課程、新的課程網站、Discord、Slack、Email信件、HackMD…），但是有把 Slack 當 FB、IG 在滑的校長、<del>被迫</del>輪班的助教群和大量的同學可以諮詢交流，這絕對是 CP 爆表的超值服務。</p>
+<p>除此之外，每週主線任務的提交平台，可以看到其他同學的作品，不用再擔心卡住時找不到 Code 可以參考，相同的程式從每個人手中寫出來都是不同的樣貌，除了學習該怎麼寫出功能，還可以學習如何寫出讓人容易看懂的程式碼。</p>
+<p>最後，要特別提的就是老師大力推廣的 Kata 挑戰，這是第一次遇到課程特別針對撰寫速度要求學生練習的，再結合社群分享，可以看到同學的各種騷操作，可以說速寫又是另一個世界了！</p>
+<p>如果看這篇文章的你，正打算轉職前端工程師，或是學習前端技能中卻找不到方向，都非常推薦來參加直播班，這不僅僅是一套學習課程，而是給你一個完整的學習環境。</p>
+<blockquote>
+<p>課程網站：<br><a href="https://www.hexschool.com/">六角學院</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Course Experience</category>
+      </categories>
+      <tags>
+        <tag>Experience</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[JS] 參數傳遞方式 Call by what?</title>
     <url>/2021/11/17/JScallby/</url>
     <content><![CDATA[<p><img data-src="/images/js-callby.png"></p>
@@ -374,55 +457,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
-    <url>/2022/01/04/JSscope/</url>
-    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
-<span id="more"></span> 
-
-<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
-<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
-<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
-<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
-<p>接著就來看 JavaScript 如何去實現這些功能。</p>
-<hr>
-<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
-<p>  不同的宣告方式產生的全域變數也有差異：</p>
-<ul>
-<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
-<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
-<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
-<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
-<blockquote>
-<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
-</blockquote>
-<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
-<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
-<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
-<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
-<blockquote>
-<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
-</blockquote>
-<ul>
-<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
-<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
-<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
-</ul>
-<blockquote>
-<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[JS] 陳述式（Statement）與表達式（Expression）</title>
     <url>/2021/11/21/JSstatement/</url>
     <content><![CDATA[<p><img data-src="/images/js-statement.png"></p>
@@ -500,6 +534,55 @@
 </ol>
 <blockquote>
 <p>參考文章：<br><a href="https://wcc723.github.io/development/2020/09/17/js-expression/">卡斯柏 - JavaScript 表達式觀念及運用 - JS Expression</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
+    <url>/2022/01/04/JSscope/</url>
+    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
+<span id="more"></span> 
+
+<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
+<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
+<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
+<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
+<p>接著就來看 JavaScript 如何去實現這些功能。</p>
+<hr>
+<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
+<p>  不同的宣告方式產生的全域變數也有差異：</p>
+<ul>
+<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
+<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
+<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
+<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
+<blockquote>
+<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
+</blockquote>
+<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
+<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
+<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
+<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
+<blockquote>
+<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
+</blockquote>
+<ul>
+<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
+<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
+<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
+</ul>
+<blockquote>
+<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
 </blockquote>
 ]]></content>
       <categories>
@@ -595,6 +678,83 @@
 </ul>
 <hr>
 <p>以上是我對 if 和 switch 的一點認知，如有錯誤或是需要補充的知識點，也歡迎大家不吝指教，謝謝！</p>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] undefined 和 null 的差異</title>
+    <url>/2021/11/18/JSundefined/</url>
+    <content><![CDATA[<p><img data-src="/images/js-null.png"></p>
+<span id="more"></span> 
+<p>undefined 是 JavaScript 的特有物之一，新手入門時，常會對 undefined 和 null 這兩個型別產生疑問，以下逐步解說。</p>
+<hr>
+<h2 id="💎-null"><a href="#💎-null" class="headerlink" title="💎 null"></a>💎 null</h2><ul>
+<li><p><code>null</code> 表示一個空值（沒有值），是各種程式語言中常見的型別，如果有後端資料庫的相關經驗，在設計 SQL 資料表時，可以在非必要欄位設定『允許 null』，當資料建立起來的時候，這些沒填的欄位就會塞入 null 來表示空值。</p>
+</li>
+<li><p>JS 中的 <code>null</code> 是一種<code>原始型別</code>，可以賦予變數的值為 null 來表示他是<code>空值</code>，當看到 null 時，我們可以知道這是人為賦予的空值，不是系統自動產生的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = null; // 不要包引號，會變成字串</span><br><span class="line">console.log(a); // null</span><br></pre></td></tr></table></figure></li>
+<li><p>JS 裡的 null 還有一些特色：</p>
+<ul>
+<li>檢查型別（typeof）的設計失誤（因影響久遠，此錯誤不會修正），正確是 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof null); // object</span><br></pre></td></tr></table></figure></li>
+<li>null 雖然代表著空值，轉型成字串時會照字面上的英文轉。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(null + &#x27;&#x27;); // &#x27;null&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>參考資料： <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/null">MDN-null</a>、<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/typeof">MDN-typeof</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="💎-undefined"><a href="#💎-undefined" class="headerlink" title="💎 undefined"></a>💎 undefined</h2><ul>
+<li>undefined 從字面上可以理解成『未定義』，表示這個變數並沒有被賦予任何的值，跟已經被賦予空值（null）代表著不一樣的資料狀態，比起 null，undefined 更容易跟 not defined 搞混：<ul>
+<li><code>undefined</code> 是變數<code>已被宣告</code>且<code>未賦值</code>，屬於<code>原始型別</code>之一。</li>
+<li><code>not defined</code> 是變數<code>未被宣告</code>，不屬於原始型別，是程式<code>執行時的錯誤訊息（runtime error）</code>。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a;</span><br><span class="line"></span><br><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(typeof a); // undefined</span><br><span class="line">console.log(b); // ReferenceError: b is not defined</span><br><span class="line">console.log(typeof b); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="💎-null-undefined"><a href="#💎-null-undefined" class="headerlink" title="💎 null == undefined ?"></a>💎 null == undefined ?</h2><ul>
+<li>看完前面的段落，可以知道 undefined 和 null 意義上是完全不同，接著來比較看看：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined == null); // true</span><br></pre></td></tr></table></figure>
+不是說好不一樣的嗎？<br>可能是轉型在作亂，改用嚴格比較（===）看看。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined === null); // false</span><br></pre></td></tr></table></figure>
+果然是轉型搞的鬼，但是為什麼 undefined 和 null 轉型後會相等？下個段落繼續說明。</li>
+</ul>
+<hr>
+<h2 id="💎-truthy-amp-falsy"><a href="#💎-truthy-amp-falsy" class="headerlink" title="💎 truthy &amp; falsy"></a>💎 truthy &amp; falsy</h2><ul>
+<li><p>JavaScript 中的各種值都可以被轉換成布林值（Boolean），轉換後為 true 的值稱為 <code>truthy</code>，反之則稱為 <code>falsy</code>，除了以下所列的值屬於 falsy 值，其他都是 truthy 值。<br>（完整的圖表可以參考 <a href="https://dorey.github.io/JavaScript-Equality-Table/">JS Comparison Table</a>）</p>
+<ul>
+<li>false</li>
+<li>0</li>
+<li>-0</li>
+<li>0n (BigInt)</li>
+<li>“” (空字串，包含 <code>單引號</code>、<code>反引號</code>)</li>
+<li>null</li>
+<li>undefined</li>
+<li>NaN</li>
+<li>document.all (正常不會用到)</li>
+</ul>
+</li>
+<li><p>由上可知，<code>null</code>和<code>undefined</code>都是<code>falsy</code>值，在做一般相等的比較時，都會被轉成 false，所以得到的結果是 true。</p>
+</li>
+<li><p>truthy 和 falsy 的運用：檢查資料是否存在時可以運用轉成布林值的方法減少程式碼撰寫長度。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 原始寫法：</span><br><span class="line">if (arr[0] === undefined) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 轉型為布林值</span><br><span class="line">if (!arr[0]) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考資料： <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">MDN-Falsy</a>、<a href="https://dorey.github.io/JavaScript-Equality-Table/">dorey-JS Comparison Table</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="💎-null-和-undefined-出現時機"><a href="#💎-null-和-undefined-出現時機" class="headerlink" title="💎 null 和 undefined 出現時機"></a>💎 null 和 undefined 出現時機</h2><p>除了未賦值的 undefined 和自己定義的 null 外，還有什麼時候會出現呢？</p>
+<ul>
+<li><code>null</code>：會出現在 BOM(Browser Object Model)中不存在的資料，例如：document.querySelector、localStorage、 sessionStorage…等，不存在時會得到 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">localStorage.getItem(&#x27;a&#x27;); // null</span><br><span class="line">sessionStorage.getItem(&#x27;a&#x27;); // null</span><br></pre></td></tr></table></figure></li>
+<li><code>undefined</code>：取用不存在 JS 程式碼中或是未賦值的資料會得到 undefined。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">let obj = &#123;&#125;;</span><br><span class="line">console.log(arr[1]); // undefined</span><br><span class="line">console.log(obj.a); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<p>以上是我對這兩個型別的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝觀看！</p>
 ]]></content>
       <categories>
         <category>JavaScript - Basic</category>
@@ -739,74 +899,9 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] undefined 和 null 的差異</title>
-    <url>/2021/11/18/JSundefined/</url>
-    <content><![CDATA[<p><img data-src="/images/js-null.png"></p>
-<span id="more"></span> 
-<p>undefined 是 JavaScript 的特有物之一，新手入門時，常會對 undefined 和 null 這兩個型別產生疑問，以下逐步解說。</p>
-<hr>
-<h2 id="💎-null"><a href="#💎-null" class="headerlink" title="💎 null"></a>💎 null</h2><ul>
-<li><p><code>null</code> 表示一個空值（沒有值），是各種程式語言中常見的型別，如果有後端資料庫的相關經驗，在設計 SQL 資料表時，可以在非必要欄位設定『允許 null』，當資料建立起來的時候，這些沒填的欄位就會塞入 null 來表示空值。</p>
-</li>
-<li><p>JS 中的 <code>null</code> 是一種<code>原始型別</code>，可以賦予變數的值為 null 來表示他是<code>空值</code>，當看到 null 時，我們可以知道這是人為賦予的空值，不是系統自動產生的。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = null; // 不要包引號，會變成字串</span><br><span class="line">console.log(a); // null</span><br></pre></td></tr></table></figure></li>
-<li><p>JS 裡的 null 還有一些特色：</p>
-<ul>
-<li>檢查型別（typeof）的設計失誤（因影響久遠，此錯誤不會修正），正確是 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof null); // object</span><br></pre></td></tr></table></figure></li>
-<li>null 雖然代表著空值，轉型成字串時會照字面上的英文轉。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(null + &#x27;&#x27;); // &#x27;null&#x27;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>參考資料： <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/null">MDN-null</a>、<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/typeof">MDN-typeof</a></p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="💎-undefined"><a href="#💎-undefined" class="headerlink" title="💎 undefined"></a>💎 undefined</h2><ul>
-<li>undefined 從字面上可以理解成『未定義』，表示這個變數並沒有被賦予任何的值，跟已經被賦予空值（null）代表著不一樣的資料狀態，比起 null，undefined 更容易跟 not defined 搞混：<ul>
-<li><code>undefined</code> 是變數<code>已被宣告</code>且<code>未賦值</code>，屬於<code>原始型別</code>之一。</li>
-<li><code>not defined</code> 是變數<code>未被宣告</code>，不屬於原始型別，是程式<code>執行時的錯誤訊息（runtime error）</code>。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a;</span><br><span class="line"></span><br><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(typeof a); // undefined</span><br><span class="line">console.log(b); // ReferenceError: b is not defined</span><br><span class="line">console.log(typeof b); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-null-undefined"><a href="#💎-null-undefined" class="headerlink" title="💎 null == undefined ?"></a>💎 null == undefined ?</h2><ul>
-<li>看完前面的段落，可以知道 undefined 和 null 意義上是完全不同，接著來比較看看：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined == null); // true</span><br></pre></td></tr></table></figure>
-不是說好不一樣的嗎？<br>可能是轉型在作亂，改用嚴格比較（===）看看。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined === null); // false</span><br></pre></td></tr></table></figure>
-果然是轉型搞的鬼，但是為什麼 undefined 和 null 轉型後會相等？下個段落繼續說明。</li>
-</ul>
-<hr>
-<h2 id="💎-truthy-amp-falsy"><a href="#💎-truthy-amp-falsy" class="headerlink" title="💎 truthy &amp; falsy"></a>💎 truthy &amp; falsy</h2><ul>
-<li><p>JavaScript 中的各種值都可以被轉換成布林值（Boolean），轉換後為 true 的值稱為 <code>truthy</code>，反之則稱為 <code>falsy</code>，除了以下所列的值屬於 falsy 值，其他都是 truthy 值。<br>（完整的圖表可以參考 <a href="https://dorey.github.io/JavaScript-Equality-Table/">JS Comparison Table</a>）</p>
-<ul>
-<li>false</li>
-<li>0</li>
-<li>-0</li>
-<li>0n (BigInt)</li>
-<li>“” (空字串，包含 <code>單引號</code>、<code>反引號</code>)</li>
-<li>null</li>
-<li>undefined</li>
-<li>NaN</li>
-<li>document.all (正常不會用到)</li>
-</ul>
-</li>
-<li><p>由上可知，<code>null</code>和<code>undefined</code>都是<code>falsy</code>值，在做一般相等的比較時，都會被轉成 false，所以得到的結果是 true。</p>
-</li>
-<li><p>truthy 和 falsy 的運用：檢查資料是否存在時可以運用轉成布林值的方法減少程式碼撰寫長度。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 原始寫法：</span><br><span class="line">if (arr[0] === undefined) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 轉型為布林值</span><br><span class="line">if (!arr[0]) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>參考資料： <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">MDN-Falsy</a>、<a href="https://dorey.github.io/JavaScript-Equality-Table/">dorey-JS Comparison Table</a></p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="💎-null-和-undefined-出現時機"><a href="#💎-null-和-undefined-出現時機" class="headerlink" title="💎 null 和 undefined 出現時機"></a>💎 null 和 undefined 出現時機</h2><p>除了未賦值的 undefined 和自己定義的 null 外，還有什麼時候會出現呢？</p>
-<ul>
-<li><code>null</code>：會出現在 BOM(Browser Object Model)中不存在的資料，例如：document.querySelector、localStorage、 sessionStorage…等，不存在時會得到 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">localStorage.getItem(&#x27;a&#x27;); // null</span><br><span class="line">sessionStorage.getItem(&#x27;a&#x27;); // null</span><br></pre></td></tr></table></figure></li>
-<li><code>undefined</code>：取用不存在 JS 程式碼中或是未賦值的資料會得到 undefined。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">let obj = &#123;&#125;;</span><br><span class="line">console.log(arr[1]); // undefined</span><br><span class="line">console.log(obj.a); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<p>以上是我對這兩個型別的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝觀看！</p>
+    <title>[JS] 搞懂 Promise、Async、Await</title>
+    <url>/2022/03/17/async/</url>
+    <content><![CDATA[<p>WIP…</p>
 ]]></content>
       <categories>
         <category>JavaScript - Basic</category>
@@ -933,113 +1028,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 搞懂 Promise、Async、Await</title>
-    <url>/2022/03/17/async/</url>
-    <content><![CDATA[<p>WIP…</p>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 打造 todolist api 1 - 行前準備</title>
-    <url>/2022/02/24/nodejs2/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span>
-<p>上一篇文章完成了網頁伺服器服務的建置，這一次就更進一步的製作一個簡單的 todolist API，讓他有新增、修改、刪除的功能。</p>
-<hr>
-<h2 id="💎-流程、架構規劃"><a href="#💎-流程、架構規劃" class="headerlink" title="💎 流程、架構規劃"></a>💎 流程、架構規劃</h2><p>六角學院的課程中都會以流程圖的方式，這對於循序漸進完成程式功能會非常有幫助，在完成第一個版本後就可以嘗試重構和模組化，下面是我整理出的結構，每個人在撰寫程式碼時的構思不盡相同，可以自行規劃。</p>
-<ul>
-<li><code>工具</code><ul>
-<li>NPM/Yarn：套件管理工具</li>
-<li>UUID 套件：用來建立待辦事項的 id</li>
-<li>nodemon 套件：建立可即時更新的本地伺服器</li>
-<li>POSTMAN 軟體：模擬 http 請求，做功能測試</li>
-<li>Git/GitHub：版本控制</li>
-<li>代管平台（heroku）：api 服務上線</li>
-</ul>
-</li>
-<li><code>server</code>：啟用 api 的主要程式碼<ul>
-<li>http：使用 node.js 原生的模組</li>
-<li>headers：回傳 json 格式，開放跨域（CORS），提供 route 的五種請求方法</li>
-<li>port：要加入環境變數（process.env.PORT）</li>
-</ul>
-</li>
-<li><code>route</code>：依請求決定要執行的動作<ul>
-<li>OPTIONS：回應表頭就好</li>
-<li>GET：回應全部待辦</li>
-<li>POST：新增一筆待辦、回應全部待辦，需要檢查 body 內容</li>
-<li>DELETE<ul>
-<li>單筆：刪除一筆待辦、回應全部待辦，需要檢查 url 的 id</li>
-<li>全部：刪除全部待辦、回應全部待辦</li>
-</ul>
-</li>
-<li>PATCH：修改一筆待辦、回應全部待辦，需要檢查 url 的 id、body 內容</li>
-</ul>
-</li>
-<li><code>response</code>：回傳資料優化<ul>
-<li>success：回傳（無內容或待辦資料）</li>
-<li>false：回傳錯誤代碼及錯誤訊息</li>
-</ul>
-</li>
-<li><code>constants</code>：常用的常數<ul>
-<li>（視實際撰寫的重複使用狀況獨立出來）</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-建立專案環境"><a href="#💎-建立專案環境" class="headerlink" title="💎 建立專案環境"></a>💎 建立專案環境</h2><ol>
-<li>建立一個新專案資料夾。</li>
-<li>執行 <code>npm init</code> 指令來製作 package.json 檔案。</li>
-<li>執行 <code>npm i uuid</code> 來安裝 UUID 套件（後續待辦事項的編號使用）。<blockquote>
-<p><a href="https://zh.wikipedia.org/zh-tw/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">Wiki - UUID</a><br><a href="https://www.npmjs.com/package/uuid">npm - uuid</a></p>
-</blockquote>
-</li>
-<li>在專案資料夾中建立一個 server.js 檔案。</li>
-<li>先參考官方範例在 server.js 內撰寫啟用伺服器的程式碼：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p>段落測試：</p>
-<ol>
-<li>執行 <code>nodemon server.js</code> 測試是否有錯誤資訊（如果環境沒有 nodemon，請執行 <code>npm i -g nodemon</code> 全域安裝）</li>
-<li>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:8000</code>，確認是否正常顯示回傳的資料。</li>
-</ol>
-</blockquote>
-<hr>
-<h2 id="💎-伺服器設定調整"><a href="#💎-伺服器設定調整" class="headerlink" title="💎 伺服器設定調整"></a>💎 伺服器設定調整</h2><ol>
-<li><strong>修改預設 header</strong></li>
-</ol>
-<ul>
-<li>todolist api 設計成回傳 json 檔，所以要把 <code>Content-Type</code> 改成 <code>application/json</code>。</li>
-<li>加入開放哪些 <code>Headers</code> 和 <code>Methods</code> 的設定。</li>
-<li>加入允許所有來源的跨域連線請求（<code>CORS</code>）。<blockquote>
-<p>跨域請求可以參考 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">MDN - CORS</a></p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// header 獨立成一個常數</span></span><br><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>: <span class="string">&#x27;Content-Type, Authorization, Content-Length, X-Requested-With&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;PATCH, POST, GET, OPTIONS, DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改成使用變數</span></span><br><span class="line">    res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">    <span class="comment">// 修改成回傳 json 格式的內容</span></span><br><span class="line">    <span class="comment">// 此處需要注意，網路封包傳送的資料只有純字串，需要先轉換</span></span><br><span class="line">    res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">       <span class="string">&quot;test&quot;</span>: <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    &#125;));</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<ol start="2">
-<li><strong>修改預設 port</strong></li>
-</ol>
-<ul>
-<li>加入環境變數，佈署到代管服務才能正常運行。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; PORT = <span class="number">3000</span> &#125; = process.env;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>段落測試：<br>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:3000</code>，確認是否正常顯示回傳的資料。</p>
-</blockquote>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇文章已經完成基本的環境建立，並且整理出程式需要撰寫的內容，下一篇文章就可以依照這個結構逐步完成所有的功能。</p>
-]]></content>
-      <categories>
-        <category>Node.js</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構</title>
     <url>/2022/03/02/nodejs3/</url>
     <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
@@ -1076,84 +1064,6 @@
 </blockquote>
 <hr>
 <h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇的筆記已經完成所有方法的架構，下一篇完結篇就會補上所有的功能。</p>
-]]></content>
-      <categories>
-        <category>Node.js</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 打造 todolist api 3 - 完成所有功能</title>
-    <url>/2022/03/04/nodejs4/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span> 
-<p>前一篇已經把整個架構寫好，這次就直接照著架構補完所有功能！</p>
-<hr>
-<h2 id="💎-GET-取得待辦清單"><a href="#💎-GET-取得待辦清單" class="headerlink" title="💎 GET - 取得待辦清單"></a>💎 GET - 取得待辦清單</h2><p>在前端撰寫 todolist 的練習時，都會使用一個陣列變數來存放待辦資料，現在搭配後端，就由 Node.js 負責管理這個陣列變數。<br>GET 方法非常簡單，只要回傳這個存放待辦事項的變數即可。<br><code>目前的練習中，變數只是存放在伺服器執行環境的記憶體中，並沒有存成實體檔案（資料庫），當伺服器重啟時記憶體釋放，資料就會遺失</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 宣告用來存放待辦事項的陣列</span></span><br><span class="line"><span class="keyword">const</span> todos = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">            <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="comment">// 改成回傳待辦事項的變數 </span></span><br><span class="line">            <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>段落測試</strong><br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：GET（只要順利回傳空陣列就成功了）</p>
-</blockquote>
-<hr>
-<h2 id="💎-POST-新增一筆待辦"><a href="#💎-POST-新增一筆待辦" class="headerlink" title="💎 POST - 新增一筆待辦"></a>💎 POST - 新增一筆待辦</h2><p>在撰寫這段時，需要先規劃好一筆待辦事項會有哪些欄位，本次練習只放『標題』、『ID』就好，格式設計如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;吃飯&quot;</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;xxxxxxxxxxx&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>標題</strong><ul>
-<li>需要接收 <code>req</code> 傳來的資料，使用 node.js 的 req.on 方法來監聽資料接收的事件。</li>
-<li>封包大小有限，當傳送的資料大時就會被切成好幾個片段，接收端需要在收到所有的片段之後組合起來，才會取得完整可用的資料。</li>
-<li>要確保資料已經確實接收，分別使用 <code>req.on(&#39;data&#39;, function)</code> 來處理資料傳送中的行為，<code>req.on(&#39;end&#39;, function)</code> 處理接收完的行為。</li>
-<li>資料檢查：格式設計了使用 title 存放標題，如果傳入的資料不是 JSON 格式，或是沒有這個屬性都可能讓伺服器掛掉，所以需要先檢查是不是符合規範。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    <span class="comment">// 建立一個變數來接收傳入的資料</span></span><br><span class="line">    <span class="keyword">let</span> body = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="comment">// 當有資料傳入就加到 body 變數裡面</span></span><br><span class="line">    req.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">        body += chunk;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="comment">// 資料接收完才會執行</span></span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 取出 body 裡面的 title，如果沒有會得到 undefined</span></span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="comment">// 有 title 就加到陣列裡面，並且回傳全部待辦</span></span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title</span><br><span class="line">                &#125;);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            <span class="comment">// 沒 title 回傳錯誤</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>ID</strong><ul>
-<li>ID 需要是不會重複的數值，使用 UUID 套件來完成。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入 uuid 模組，請確認有無安裝該套件</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">v4</span>: uuidv4 &#125; = <span class="built_in">require</span>(<span class="string">&#x27;uuid&#x27;</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="comment">// 加入 ID</span></span><br><span class="line">                    <span class="attr">id</span>: uuidv4()</span><br><span class="line">                &#125;);</span><br><span class="line">            ...</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>防錯</strong><ul>
-<li>雖然前面已經針對 title 檢查，還是需要甚防有心人傳入奇怪的資料，可以使用 try…catch 來捕捉問題。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">    req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="string">&#x27;id&#x27;</span>: uuidv4()</span><br><span class="line">                &#125;)</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：POST（需要在 body 加入 JSON 資料）<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
-</blockquote>
-<hr>
-<h2 id="💎-DELETE-刪除全部待辦"><a href="#💎-DELETE-刪除全部待辦" class="headerlink" title="💎 DELETE - 刪除全部待辦"></a>💎 DELETE - 刪除全部待辦</h2><p>刪除全部非常簡單，只要把陣列清空就好，要注意的是陣列和物件都盡量避免賦值（=）操作，以方法操作為主，所以我在一開始宣告 todos 時是使用 const ，這樣就無法使用 <code>todos = []</code>，而是使用陣列方法 <code>todos.length = 0</code> 來清空陣列。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">    <span class="comment">// 陣列長度為 0 = 沒資料</span></span><br><span class="line">    todos.length = <span class="number">0</span>;</span><br><span class="line">    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：DELETE</p>
-</blockquote>
-<hr>
-<h2 id="💎-DELETE-刪除一筆待辦"><a href="#💎-DELETE-刪除一筆待辦" class="headerlink" title="💎 DELETE - 刪除一筆待辦"></a>💎 DELETE - 刪除一筆待辦</h2><ul>
-<li><strong>取得傳入的 ID</strong>：<br>前一篇文章有提到，把待辦的 ID 塞到網址後面的格式會是 <code>http://網域/路徑/參數</code>，使用 <code>req.url</code> 會得到 <code>/路徑/參數</code>，接著用字串方法 <code>split(&#39;/&#39;)</code> 切割成陣列，再使用 <code>pop()</code> 取得最後一筆資料就是參數了。</li>
-<li><strong>找出 ID 相符的資料</strong>：<br>使用 <code>findIndex</code> 方法來找出待辦事項的陣列中有沒有 ID 相符的資料，符合時會取得該筆資料的 <code>index</code>，沒有符合資料時會得到 <code>-1</code>。</li>
-<li><strong>刪除陣列資料</strong><br>成功取得指定資料在陣列中的 index 後就可以使用 <code>splice(index, 1)</code> 的方法刪除 1 筆資料，第一個參數是起始的索引位置，第二個參數是要往後刪除幾筆資料。</li>
-<li><strong>架構調整</strong><br>調整前：<code>確認網址開頭</code>(/todo/) &gt; <code>確認請求方法</code>（PATCH or DELETE）<br>調整後：<code>確認網址開頭</code>(/todo/) &gt; <code>確認 ID 是否存在</code> &gt; <code>確認請求方法</code>（PATCH or DELETE）<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">        <span class="comment">// 取得請求網址最後一段帶的 ID</span></span><br><span class="line">        <span class="keyword">let</span> id = req.url.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">        <span class="comment">// 找出 todos 裡面有沒有符合 id 的項目</span></span><br><span class="line">        <span class="keyword">let</span> index = todos.findIndex(<span class="function"><span class="params">el</span> =&gt;</span> el.id == id);</span><br><span class="line">        <span class="comment">// 先判斷有沒有指定 ID</span></span><br><span class="line">        <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method == <span class="string">&#x27;DELETE&#x27;</span>) &#123;</span><br><span class="line">                todos.splice(index, <span class="number">1</span>);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：DELETE</p>
-</blockquote>
-<hr>
-<h2 id="💎-PATCH-編輯一筆待辦"><a href="#💎-PATCH-編輯一筆待辦" class="headerlink" title="💎 PATCH - 編輯一筆待辦"></a>💎 PATCH - 編輯一筆待辦</h2><p>終於到了最後一步，也是集大成的一步，『路徑 ID』和『接收資料』都會用上，可以參考 <code>POST</code> 和 <code>DELETE(單筆)</code> 的寫法自行整合在一起，流程大致如下：</p>
-<ol>
-<li>檢查連結（url）</li>
-<li>檢查ID (url)</li>
-<li>檢查方法 (method)</li>
-<li>確認接收完資料 (req.on(end))</li>
-<li>偵錯 （try…catch）</li>
-<li>檢查接收的待辦資料（title）</li>
-<li>更新待辦資料（title）</li>
-<li>回傳待辦資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">                <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                    <span class="comment">// 修改對應 ID 的 title</span></span><br><span class="line">                    todos[index].title = title;</span><br><span class="line">                    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; </span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：PATCH<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
-</blockquote>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>寫到這邊，總算把所有功能完成，後續還有許多可以調整優化的（回傳詳細的錯誤訊息、模組化…等），就自行發揮吧！</p>
 ]]></content>
       <categories>
         <category>Node.js</category>
@@ -1500,86 +1410,98 @@
       </tags>
   </entry>
   <entry>
-    <title>[心得] 六角學院 JS 工程師養成直播班 - 學習心得</title>
-    <url>/2021/12/21/EXPhexschoolJSlive/</url>
-    <content><![CDATA[<p><img data-src="/images/hexschool-livejs.png"></p>
-<span id="more"></span> 
-
-<p>過去參加過各種『ｏｏ電腦』的實體課程，也在各種平台買了很多線上課程，最近第一次參加了線上直播班課程，以下就來分享課程內容和學習心得。</p>
-<h2 id="💎-課程內容"><a href="#💎-課程內容" class="headerlink" title="💎 課程內容"></a>💎 課程內容</h2><ul>
-<li>課程名稱：JS 工程師養成直播班 - 2021秋季</li>
-<li>授課時間：每週直播一次約 2 小時，共 9 週</li>
-<li>授課內容：JavaScript 從零開始 -&gt; 串接 API 製作前、後台功能</li>
-<li>其他服務：<ul>
-<li>每日練習任務、每週主線任務，並有課程助教協助任務批改及建議</li>
-<li>週二加開主線任務講解直播</li>
-<li>週三、四不定期主題直播</li>
-<li>社群平台提供線上諮詢、履歷檢查…等，想問什麼就問什麼</li>
-</ul>
-</li>
-</ul>
-<h2 id="💎-課程比較"><a href="#💎-課程比較" class="headerlink" title="💎 課程比較"></a>💎 課程比較</h2><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">實體課程</th>
-<th align="center">線上課程</th>
-<th align="center">直播班</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">價格</td>
-<td align="center">高</td>
-<td align="center">低</td>
-<td align="center">中</td>
-</tr>
-<tr>
-<td align="center">課程編排</td>
-<td align="center">緊湊</td>
-<td align="center">考驗自制力</td>
-<td align="center">每週搭配練習循序漸進</td>
-</tr>
-<tr>
-<td align="center">課後服務</td>
-<td align="center">大概就完課證書？</td>
-<td align="center">透過課程平台與開課導師互動</td>
-<td align="center">有專屬社群和助教團可詢問</td>
-</tr>
-<tr>
-<td align="center">學員交流</td>
-<td align="center">很少</td>
-<td align="center">趨近０</td>
-<td align="center">校長、助教團 + 一堆同學互助</td>
-</tr>
-<tr>
-<td align="center">學習效率</td>
-<td align="center">需要天份，跟不上進度就GG</td>
-<td align="center">考驗自制力與學習能力</td>
-<td align="center">只要有網路就可以問到懂為止</td>
-</tr>
-</tbody></table>
-<h2 id="💎-學習心得"><a href="#💎-學習心得" class="headerlink" title="💎 學習心得"></a>💎 學習心得</h2><h3 id="個人背景"><a href="#個人背景" class="headerlink" title="個人背景"></a>個人背景</h3><p>我是剛退伍的職業軍人，過去負責維護單位機房、伺服器和網站…等等，有開發 ASP.NET 內部網站也自學撰寫 HTML、CSS、JS 一段時間，會選擇上這門課是過去一直都使用較舊的技術開發網站（沒有API、框架…等），想透過這堂課強化基礎能力，並了解前端工程師在實務上的工作。</p>
-<h3 id="課程心得"><a href="#課程心得" class="headerlink" title="課程心得"></a>課程心得</h3><p>六角學院的這堂直播課雖然課程規劃是從０開始，但是不得不佩服他們的專業，考量到上課的同學程度不同，安排了課後筆記、學員分組討論２個內容，雖然直播課的內容對我來說已經熟悉，但是這兩個內容讓我學到了不少。</p>
+    <title>[Node.JS] 打造 todolist api 1 - 行前準備</title>
+    <url>/2022/02/24/nodejs2/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span>
+<p>上一篇文章完成了網頁伺服器服務的建置，這一次就更進一步的製作一個簡單的 todolist API，讓他有新增、修改、刪除的功能。</p>
+<hr>
+<h2 id="💎-流程、架構規劃"><a href="#💎-流程、架構規劃" class="headerlink" title="💎 流程、架構規劃"></a>💎 流程、架構規劃</h2><p>六角學院的課程中都會以流程圖的方式，這對於循序漸進完成程式功能會非常有幫助，在完成第一個版本後就可以嘗試重構和模組化，下面是我整理出的結構，每個人在撰寫程式碼時的構思不盡相同，可以自行規劃。</p>
 <ul>
-<li><p>課後筆記：題目都是許多 JavaScript 需要釐清的基本觀念，撰寫筆記的過程需要閱讀大量相關文章，再歸納出自己的脈絡，嘗試寫成別人也能理解的文章，這個學習過程會比看一些 JS tricky 的影片更加有效。</p>
+<li><code>工具</code><ul>
+<li>NPM/Yarn：套件管理工具</li>
+<li>UUID 套件：用來建立待辦事項的 id</li>
+<li>nodemon 套件：建立可即時更新的本地伺服器</li>
+<li>POSTMAN 軟體：模擬 http 請求，做功能測試</li>
+<li>Git/GitHub：版本控制</li>
+<li>代管平台（heroku）：api 服務上線</li>
+</ul>
 </li>
-<li><p>學員分組討論：分組的同學中大家的程度不一樣，可以透過小組討論互相學習，也可以在檢視同學的問題時，充當偽助教試著去了解別人的程式碼並給予建議，如果有好的寫法也可以藉機學習新招式。</p>
+<li><code>server</code>：啟用 api 的主要程式碼<ul>
+<li>http：使用 node.js 原生的模組</li>
+<li>headers：回傳 json 格式，開放跨域（CORS），提供 route 的五種請求方法</li>
+<li>port：要加入環境變數（process.env.PORT）</li>
+</ul>
+</li>
+<li><code>route</code>：依請求決定要執行的動作<ul>
+<li>OPTIONS：回應表頭就好</li>
+<li>GET：回應全部待辦</li>
+<li>POST：新增一筆待辦、回應全部待辦，需要檢查 body 內容</li>
+<li>DELETE<ul>
+<li>單筆：刪除一筆待辦、回應全部待辦，需要檢查 url 的 id</li>
+<li>全部：刪除全部待辦、回應全部待辦</li>
+</ul>
+</li>
+<li>PATCH：修改一筆待辦、回應全部待辦，需要檢查 url 的 id、body 內容</li>
+</ul>
+</li>
+<li><code>response</code>：回傳資料優化<ul>
+<li>success：回傳（無內容或待辦資料）</li>
+<li>false：回傳錯誤代碼及錯誤訊息</li>
+</ul>
+</li>
+<li><code>constants</code>：常用的常數<ul>
+<li>（視實際撰寫的重複使用狀況獨立出來）</li>
+</ul>
 </li>
 </ul>
-<p>過去上的一些實體課程，通常到上完後也不會和同學有任何互動，即使有熱心的同學開群組，也只是分享一些教材，完課後也成了廢群，更不用說線上課程就只是自己看看影片，哪來的同學？</p>
-<p>六角學院有龐大的社群服務，雖然一開始真的有點摸不著頭緒（有舊的 udemy 課程、新的課程網站、Discord、Slack、Email信件、HackMD…），但是有把 Slack 當 FB、IG 在滑的校長、<del>被迫</del>輪班的助教群和大量的同學可以諮詢交流，這絕對是 CP 爆表的超值服務。</p>
-<p>除此之外，每週主線任務的提交平台，可以看到其他同學的作品，不用再擔心卡住時找不到 Code 可以參考，相同的程式從每個人手中寫出來都是不同的樣貌，除了學習該怎麼寫出功能，還可以學習如何寫出讓人容易看懂的程式碼。</p>
-<p>最後，要特別提的就是老師大力推廣的 Kata 挑戰，這是第一次遇到課程特別針對撰寫速度要求學生練習的，再結合社群分享，可以看到同學的各種騷操作，可以說速寫又是另一個世界了！</p>
-<p>如果看這篇文章的你，正打算轉職前端工程師，或是學習前端技能中卻找不到方向，都非常推薦來參加直播班，這不僅僅是一套學習課程，而是給你一個完整的學習環境。</p>
-<blockquote>
-<p>課程網站：<br><a href="https://www.hexschool.com/">六角學院</a></p>
+<hr>
+<h2 id="💎-建立專案環境"><a href="#💎-建立專案環境" class="headerlink" title="💎 建立專案環境"></a>💎 建立專案環境</h2><ol>
+<li>建立一個新專案資料夾。</li>
+<li>執行 <code>npm init</code> 指令來製作 package.json 檔案。</li>
+<li>執行 <code>npm i uuid</code> 來安裝 UUID 套件（後續待辦事項的編號使用）。<blockquote>
+<p><a href="https://zh.wikipedia.org/zh-tw/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">Wiki - UUID</a><br><a href="https://www.npmjs.com/package/uuid">npm - uuid</a></p>
 </blockquote>
+</li>
+<li>在專案資料夾中建立一個 server.js 檔案。</li>
+<li>先參考官方範例在 server.js 內撰寫啟用伺服器的程式碼：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>段落測試：</p>
+<ol>
+<li>執行 <code>nodemon server.js</code> 測試是否有錯誤資訊（如果環境沒有 nodemon，請執行 <code>npm i -g nodemon</code> 全域安裝）</li>
+<li>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:8000</code>，確認是否正常顯示回傳的資料。</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="💎-伺服器設定調整"><a href="#💎-伺服器設定調整" class="headerlink" title="💎 伺服器設定調整"></a>💎 伺服器設定調整</h2><ol>
+<li><strong>修改預設 header</strong></li>
+</ol>
+<ul>
+<li>todolist api 設計成回傳 json 檔，所以要把 <code>Content-Type</code> 改成 <code>application/json</code>。</li>
+<li>加入開放哪些 <code>Headers</code> 和 <code>Methods</code> 的設定。</li>
+<li>加入允許所有來源的跨域連線請求（<code>CORS</code>）。<blockquote>
+<p>跨域請求可以參考 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">MDN - CORS</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// header 獨立成一個常數</span></span><br><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>: <span class="string">&#x27;Content-Type, Authorization, Content-Length, X-Requested-With&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;PATCH, POST, GET, OPTIONS, DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改成使用變數</span></span><br><span class="line">    res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">    <span class="comment">// 修改成回傳 json 格式的內容</span></span><br><span class="line">    <span class="comment">// 此處需要注意，網路封包傳送的資料只有純字串，需要先轉換</span></span><br><span class="line">    res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">       <span class="string">&quot;test&quot;</span>: <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    &#125;));</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li><strong>修改預設 port</strong></li>
+</ol>
+<ul>
+<li>加入環境變數，佈署到代管服務才能正常運行。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; PORT = <span class="number">3000</span> &#125; = process.env;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>段落測試：<br>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:3000</code>，確認是否正常顯示回傳的資料。</p>
+</blockquote>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇文章已經完成基本的環境建立，並且整理出程式需要撰寫的內容，下一篇文章就可以依照這個結構逐步完成所有的功能。</p>
 ]]></content>
       <categories>
-        <category>Course Experience</category>
+        <category>Node.js</category>
       </categories>
       <tags>
-        <tag>Experience</tag>
+        <tag>Node.js</tag>
       </tags>
   </entry>
   <entry>
@@ -1701,6 +1623,84 @@
       <tags>
         <tag>Node.js</tag>
         <tag>NPM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Node.JS] 打造 todolist api 3 - 完成所有功能</title>
+    <url>/2022/03/04/nodejs4/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span> 
+<p>前一篇已經把整個架構寫好，這次就直接照著架構補完所有功能！</p>
+<hr>
+<h2 id="💎-GET-取得待辦清單"><a href="#💎-GET-取得待辦清單" class="headerlink" title="💎 GET - 取得待辦清單"></a>💎 GET - 取得待辦清單</h2><p>在前端撰寫 todolist 的練習時，都會使用一個陣列變數來存放待辦資料，現在搭配後端，就由 Node.js 負責管理這個陣列變數。<br>GET 方法非常簡單，只要回傳這個存放待辦事項的變數即可。<br><code>目前的練習中，變數只是存放在伺服器執行環境的記憶體中，並沒有存成實體檔案（資料庫），當伺服器重啟時記憶體釋放，資料就會遺失</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 宣告用來存放待辦事項的陣列</span></span><br><span class="line"><span class="keyword">const</span> todos = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">            <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="comment">// 改成回傳待辦事項的變數 </span></span><br><span class="line">            <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>段落測試</strong><br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：GET（只要順利回傳空陣列就成功了）</p>
+</blockquote>
+<hr>
+<h2 id="💎-POST-新增一筆待辦"><a href="#💎-POST-新增一筆待辦" class="headerlink" title="💎 POST - 新增一筆待辦"></a>💎 POST - 新增一筆待辦</h2><p>在撰寫這段時，需要先規劃好一筆待辦事項會有哪些欄位，本次練習只放『標題』、『ID』就好，格式設計如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;吃飯&quot;</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;xxxxxxxxxxx&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>標題</strong><ul>
+<li>需要接收 <code>req</code> 傳來的資料，使用 node.js 的 req.on 方法來監聽資料接收的事件。</li>
+<li>封包大小有限，當傳送的資料大時就會被切成好幾個片段，接收端需要在收到所有的片段之後組合起來，才會取得完整可用的資料。</li>
+<li>要確保資料已經確實接收，分別使用 <code>req.on(&#39;data&#39;, function)</code> 來處理資料傳送中的行為，<code>req.on(&#39;end&#39;, function)</code> 處理接收完的行為。</li>
+<li>資料檢查：格式設計了使用 title 存放標題，如果傳入的資料不是 JSON 格式，或是沒有這個屬性都可能讓伺服器掛掉，所以需要先檢查是不是符合規範。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    <span class="comment">// 建立一個變數來接收傳入的資料</span></span><br><span class="line">    <span class="keyword">let</span> body = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="comment">// 當有資料傳入就加到 body 變數裡面</span></span><br><span class="line">    req.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">        body += chunk;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="comment">// 資料接收完才會執行</span></span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 取出 body 裡面的 title，如果沒有會得到 undefined</span></span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="comment">// 有 title 就加到陣列裡面，並且回傳全部待辦</span></span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title</span><br><span class="line">                &#125;);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            <span class="comment">// 沒 title 回傳錯誤</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>ID</strong><ul>
+<li>ID 需要是不會重複的數值，使用 UUID 套件來完成。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入 uuid 模組，請確認有無安裝該套件</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">v4</span>: uuidv4 &#125; = <span class="built_in">require</span>(<span class="string">&#x27;uuid&#x27;</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="comment">// 加入 ID</span></span><br><span class="line">                    <span class="attr">id</span>: uuidv4()</span><br><span class="line">                &#125;);</span><br><span class="line">            ...</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>防錯</strong><ul>
+<li>雖然前面已經針對 title 檢查，還是需要甚防有心人傳入奇怪的資料，可以使用 try…catch 來捕捉問題。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">    req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="string">&#x27;id&#x27;</span>: uuidv4()</span><br><span class="line">                &#125;)</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：POST（需要在 body 加入 JSON 資料）<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
+</blockquote>
+<hr>
+<h2 id="💎-DELETE-刪除全部待辦"><a href="#💎-DELETE-刪除全部待辦" class="headerlink" title="💎 DELETE - 刪除全部待辦"></a>💎 DELETE - 刪除全部待辦</h2><p>刪除全部非常簡單，只要把陣列清空就好，要注意的是陣列和物件都盡量避免賦值（=）操作，以方法操作為主，所以我在一開始宣告 todos 時是使用 const ，這樣就無法使用 <code>todos = []</code>，而是使用陣列方法 <code>todos.length = 0</code> 來清空陣列。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">    <span class="comment">// 陣列長度為 0 = 沒資料</span></span><br><span class="line">    todos.length = <span class="number">0</span>;</span><br><span class="line">    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：DELETE</p>
+</blockquote>
+<hr>
+<h2 id="💎-DELETE-刪除一筆待辦"><a href="#💎-DELETE-刪除一筆待辦" class="headerlink" title="💎 DELETE - 刪除一筆待辦"></a>💎 DELETE - 刪除一筆待辦</h2><ul>
+<li><strong>取得傳入的 ID</strong>：<br>前一篇文章有提到，把待辦的 ID 塞到網址後面的格式會是 <code>http://網域/路徑/參數</code>，使用 <code>req.url</code> 會得到 <code>/路徑/參數</code>，接著用字串方法 <code>split(&#39;/&#39;)</code> 切割成陣列，再使用 <code>pop()</code> 取得最後一筆資料就是參數了。</li>
+<li><strong>找出 ID 相符的資料</strong>：<br>使用 <code>findIndex</code> 方法來找出待辦事項的陣列中有沒有 ID 相符的資料，符合時會取得該筆資料的 <code>index</code>，沒有符合資料時會得到 <code>-1</code>。</li>
+<li><strong>刪除陣列資料</strong><br>成功取得指定資料在陣列中的 index 後就可以使用 <code>splice(index, 1)</code> 的方法刪除 1 筆資料，第一個參數是起始的索引位置，第二個參數是要往後刪除幾筆資料。</li>
+<li><strong>架構調整</strong><br>調整前：<code>確認網址開頭</code>(/todo/) &gt; <code>確認請求方法</code>（PATCH or DELETE）<br>調整後：<code>確認網址開頭</code>(/todo/) &gt; <code>確認 ID 是否存在</code> &gt; <code>確認請求方法</code>（PATCH or DELETE）<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">        <span class="comment">// 取得請求網址最後一段帶的 ID</span></span><br><span class="line">        <span class="keyword">let</span> id = req.url.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">        <span class="comment">// 找出 todos 裡面有沒有符合 id 的項目</span></span><br><span class="line">        <span class="keyword">let</span> index = todos.findIndex(<span class="function"><span class="params">el</span> =&gt;</span> el.id == id);</span><br><span class="line">        <span class="comment">// 先判斷有沒有指定 ID</span></span><br><span class="line">        <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method == <span class="string">&#x27;DELETE&#x27;</span>) &#123;</span><br><span class="line">                todos.splice(index, <span class="number">1</span>);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：DELETE</p>
+</blockquote>
+<hr>
+<h2 id="💎-PATCH-編輯一筆待辦"><a href="#💎-PATCH-編輯一筆待辦" class="headerlink" title="💎 PATCH - 編輯一筆待辦"></a>💎 PATCH - 編輯一筆待辦</h2><p>終於到了最後一步，也是集大成的一步，『路徑 ID』和『接收資料』都會用上，可以參考 <code>POST</code> 和 <code>DELETE(單筆)</code> 的寫法自行整合在一起，流程大致如下：</p>
+<ol>
+<li>檢查連結（url）</li>
+<li>檢查ID (url)</li>
+<li>檢查方法 (method)</li>
+<li>確認接收完資料 (req.on(end))</li>
+<li>偵錯 （try…catch）</li>
+<li>檢查接收的待辦資料（title）</li>
+<li>更新待辦資料（title）</li>
+<li>回傳待辦資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">                <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                    <span class="comment">// 修改對應 ID 的 title</span></span><br><span class="line">                    todos[index].title = title;</span><br><span class="line">                    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; </span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：PATCH<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
+</blockquote>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>寫到這邊，總算把所有功能完成，後續還有許多可以調整優化的（回傳詳細的錯誤訊息、模組化…等），就自行發揮吧！</p>
+]]></content>
+      <categories>
+        <category>Node.js</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
       </tags>
   </entry>
 </search>
