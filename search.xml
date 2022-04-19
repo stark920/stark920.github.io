@@ -84,55 +84,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 提昇（Hoisting）機制</title>
-    <url>/2021/11/23/JShoisting/</url>
-    <content><![CDATA[<p><img data-src="/images/js-hoisting.png"></p>
-<span id="more"></span> 
-<p>如果今天想要使用電腦，該怎麼做？</p>
-<p>你的答案很可能是，按下電腦開機鍵就好，但實際上得先有主機、滑鼠、鍵盤、螢幕、電源、作業系統…等軟、硬體環境，才有辦法使用電腦。</p>
-<p>JavaScript 雖然是直譯式語言（不需透過編譯器轉譯成可執行檔），但是『執行』之前，還是需要先把原本字元組成的程式碼編譯成執行環境（就像是上面提到的準備滑鼠、鍵盤…等等），而其中一個步驟就是先將 <code>變數</code> 和 <code>函數</code> 的名稱放入記憶體，這種行為在 ECMA 的文件中沒有明確定義專有名詞，一般會用 <code>提昇（Hoisting）</code>來稱呼。</p>
-<blockquote>
-<p>參考文章：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting">MDN - 提升（Hoisting）</a></p>
-</blockquote>
-<hr>
-<p>提昇（Hoisting）的方式會因為變數類型有所不同：</p>
-<h2 id="💎-var、function："><a href="#💎-var、function：" class="headerlink" title="💎 var、function："></a>💎 var、function：</h2><p>按照逐行執行的邏輯，下面前兩行程式碼會因為還沒有產生這個變數而出現錯誤，但實際上並不會出現任何錯誤。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(foo); // foo()&#123;return &#x27;Hello&#x27;;&#125;</span><br><span class="line"></span><br><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>從結果回推實際執行的順序會像下面這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(a);</span><br><span class="line">console.log(foo);</span><br></pre></td></tr></table></figure>
-
-<p>這次做小調整，改成賦予 a 變數一個值</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">var a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
-
-<p>雖然沒有出現錯誤，但是 a 的值並沒有跟著被提昇，回推的執行順序會像下面這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a</span><br><span class="line">console.log(a); // undefined</span><br><span class="line">a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
-
-<p>再看下面這段程式碼，想想看結果是什麼：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b = 1;</span><br><span class="line">var b;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
-
-<p>如果不清楚運作 JavaScript 的運作機制，可能會認為答案是 <code>undefined</code>，覺得後者蓋掉前者，但答案其實是 <code>1</code>，回推後的實際執行會像是下面這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b;</span><br><span class="line">var b;</span><br><span class="line">b = 1;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
-
-<p>『重複宣告』加上『提昇機制』是不是讓人覺得很坑呢？</p>
-<h2 id="💎-let、const："><a href="#💎-let、const：" class="headerlink" title="💎 let、const："></a>💎 let、const：</h2><p>ES6 版本提供了 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，這兩種新的方式解決了 <code>var</code> 的許多奇怪問題。</p>
-<p>使用 <code>let</code> 和 <code>const</code> 宣告的變數名稱在 JavaScript 從『環境建立』一直執行到『變數實際存在的那一行程式碼』的這段期間，變數名稱都是無法被取用的，這段期間稱為 Temporal Dead Zone（TDZ），暫時性死區。</p>
-<p>這個機制就像是我買了對號座的票（宣告），這個位置的票就不能被其他人購買（不能重複宣告），但是在我坐上車位前（實際執行的那段程式碼），都無法在這個位置找到我（TDZ鎖定）。</p>
-<p>以下是使用 <code>let</code> 或 <code>const</code> 宣告的輸出結果：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(x); // x is not defined</span><br><span class="line">let x = 1;</span><br><span class="line">console.log(x); // 前面已經因為執行階段出錯終止，不會執行到這裡</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>參考文章<br>1、<a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a><br>2、<a href="https://eddychang.me/es6-tdz">理解ES6中的暫時死區(TDZ)</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[JS] 參數傳遞方式 Call by what?</title>
     <url>/2021/11/17/JScallby/</url>
     <content><![CDATA[<p><img data-src="/images/js-callby.png"></p>
@@ -208,136 +159,45 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
-    <url>/2022/01/04/JSscope/</url>
-    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
+    <title>[JS] 提昇（Hoisting）機制</title>
+    <url>/2021/11/23/JShoisting/</url>
+    <content><![CDATA[<p><img data-src="/images/js-hoisting.png"></p>
 <span id="more"></span> 
-
-<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
-<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
-<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
-<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
-<p>接著就來看 JavaScript 如何去實現這些功能。</p>
-<hr>
-<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
-<p>  不同的宣告方式產生的全域變數也有差異：</p>
-<ul>
-<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
-<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
-<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
-<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
+<p>如果今天想要使用電腦，該怎麼做？</p>
+<p>你的答案很可能是，按下電腦開機鍵就好，但實際上得先有主機、滑鼠、鍵盤、螢幕、電源、作業系統…等軟、硬體環境，才有辦法使用電腦。</p>
+<p>JavaScript 雖然是直譯式語言（不需透過編譯器轉譯成可執行檔），但是『執行』之前，還是需要先把原本字元組成的程式碼編譯成執行環境（就像是上面提到的準備滑鼠、鍵盤…等等），而其中一個步驟就是先將 <code>變數</code> 和 <code>函數</code> 的名稱放入記憶體，這種行為在 ECMA 的文件中沒有明確定義專有名詞，一般會用 <code>提昇（Hoisting）</code>來稱呼。</p>
 <blockquote>
-<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
-</blockquote>
-<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
-<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
-<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
-<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
-<blockquote>
-<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
-</blockquote>
-<ul>
-<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
-<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
-<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
-</ul>
-<blockquote>
-<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[JS] 從 Event Loop 到 Callback function，一堆名詞講的是什麼？</title>
-    <url>/2022/04/17/JScallback/</url>
-    <content><![CDATA[<p><img data-src="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop/the_javascript_runtime_environment_example.svg"></p>
-<blockquote>
-<p>圖片來源：<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop">MDN - 並行模型和事件循環</a></p>
-</blockquote>
-<span id="more"></span>
-
-<hr>
-<h2 id="事件循環（event-loop）"><a href="#事件循環（event-loop）" class="headerlink" title="事件循環（event loop）"></a>事件循環（event loop）</h2><p>JavaScript 是單執行緒的語言，一次只能做一件事，遇到需要花費大量時間的程式時，後面的程式就會全部卡住。</p>
-<p>舉例來說，去超商提款機領錢，前面的人換了無數張卡片，一陣操作十幾分鐘過去，但是超商就只有一台提款機，只能在後面慢慢等他用完。</p>
-<p>為了減少這種排隊窘境，瀏覽器執行時會讓順順跑的排一列、費時的移到另一列等待，順跑的一列出現空檔時，再把另一列排隊的項目抓回來執行。</p>
-<p>我非常推薦先觀看下方影片來了解事件循環的運作，會比文字和圖片解釋更加容易理解：</p>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/8aGhZQkoFbQ" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-<blockquote>
-<p>影片講者的事件循環模擬器：<a href="http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4=">連結</a></p>
+<p>參考文章：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting">MDN - 提升（Hoisting）</a></p>
 </blockquote>
 <hr>
-<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><p>看完上面的影片，我們可以快速了解事件循環的流程，以下歸納幾個名詞代表的意思：</p>
-<ul>
-<li>同步的 JavaScript（Synchronous）：瀏覽器執行多數的程式碼都是同步的，收到就立刻執行。</li>
-<li>非同步的 JavaScript（Asynchronous）：許多無法立即完成的程式會交由瀏覽器的 Web APIs 來處理，最常見的情況就是取得外部資料。</li>
-<li>Web APIs：瀏覽器中提供的應用（例如：抓 api 資料、等待幾秒…等）。</li>
-<li>Stack (Call Stack）：同步執行的程式片段，會以堆疊方式執行（先進後出）。</li>
-<li>Queue（Callback Queue / Task Queue）：非同步執行的程式片段會交給 Web APIs 處理，完成後進入佇列中等待執行（先進先出）。</li>
-</ul>
-<hr>
-<h2 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h2><p>經過 Web APIs 處理完的非同步程式會進入 Queue 等待，當 Stack 沒有執行中的程式時，就會抓取 Queue 中等待執行的程式回來執行，這個回頭做的動作就是 Callback (回呼)，所以非同步執行後回頭做的函式就是 Callback Function ? 意思大概到了，但不完全是。</p>
-<p>在 MDN 中說明回呼函式（Callback Function）指的是<code>把函式作為參數，提供另一個函式使用</code>，用這種方式設計出來的函式可以是同步和非同步的，但通常都是用來處理非同步的程式。</p>
-<p>非同步的完成時間通常是難以預測的，舉例來說，要取得一個外部資源，會因為網路速度、檔案大小讓完成時間都不相同，當有多個非同步程式執行，我們無法知道哪一個會先完成，回呼函式的設計就是要<code>確保函式執行的先後順序</code>。</p>
-<hr>
-<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2><p>學習 JavaScript 時進入非同步的章節通常第一個學的就是 setTimeout，可以指定一段時間後再執行別的程式碼，在 <a href="https://www.w3schools.com/jsref/met_win_settimeout.asp">W3schools</a> 可以看到 setTimeout 傳入參數的格式：</p>
-<p><code>setTimeout(function, milliseconds, param1, param2, ...)</code></p>
-<p><strong>第一個參數是函式</strong>、第二個是間隔的時間、第三個以後是可以選擇要額外傳入的參數。</p>
-<p>第一個參數正好符合了「把函式作為參數，提供另一個函式使用」，也就是說這是一個 <code>Callback Function</code>。</p>
-<p>接下來的段落，會透過設計情境來說明如何設計和應用 Callback Function。</p>
-<hr>
-<h2 id="設計情境"><a href="#設計情境" class="headerlink" title="設計情境"></a>設計情境</h2><p>有點年紀的朋友們（？應該都聽過企鵝的笑話，每天的活動是「吃飯、睡覺、打東東」，以此為題設計一個每日工作的程式碼會像下面這樣：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  eat();</span><br><span class="line">  sleep();</span><br><span class="line">  hitDongDong();</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 今日完成事項：</span></span><br><span class="line"><span class="comment">// 吃飽了</span></span><br><span class="line"><span class="comment">// 睡飽了</span></span><br><span class="line"><span class="comment">// 打爽了</span></span><br></pre></td></tr></table></figure>
+<p>提昇（Hoisting）的方式會因為變數類型有所不同：</p>
+<h2 id="💎-var、function："><a href="#💎-var、function：" class="headerlink" title="💎 var、function："></a>💎 var、function：</h2><p>按照逐行執行的邏輯，下面前兩行程式碼會因為還沒有產生這個變數而出現錯誤，但實際上並不會出現任何錯誤。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(foo); // foo()&#123;return &#x27;Hello&#x27;;&#125;</span><br><span class="line"></span><br><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="同步回呼函式"><a href="#同步回呼函式" class="headerlink" title="同步回呼函式"></a>同步回呼函式</h2><p>上面的函式設計上沒有彈性，不同的企鵝除了打東東之外也會做其他的事情，我們增加一個參數來接收要做的事情（函式），改寫後如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">...activities</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  activities.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 執行前先檢查是否為函式</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">&#x27;function&#x27;</span>) fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks(eat, sleep, hitDongDong);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 今日完成事項：</span></span><br><span class="line"><span class="comment">// 吃飽了</span></span><br><span class="line"><span class="comment">// 睡飽了</span></span><br><span class="line"><span class="comment">// 打爽了</span></span><br></pre></td></tr></table></figure>
+<p>從結果回推實際執行的順序會像下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  return &#x27;Hello&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(a);</span><br><span class="line">console.log(foo);</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>上面的程式碼中，在 dailyWorks 這個主要函式中增加了 activities 參數（參數名稱可以自定），用來接收要執行的函式。</p>
-</li>
-<li><p>運用其餘運算符（…）來接收更多的函式，就可以在執行 dailyWorks 函式時自由的傳入更多的函式。</p>
-</li>
-<li><p>因為程式碼都是同步執行，這是一個「同步回呼函式」，單純只是把函式當參數傳入後依序執行，沒有非同步的順序問題。</p>
-</li>
-</ul>
-<hr>
-<h2 id="非同步回呼函式"><a href="#非同步回呼函式" class="headerlink" title="非同步回呼函式"></a>非同步回呼函式</h2><p>問題又來了，企鵝哪有那麼神，可以一瞬間做那麼多事情？接著就讓每件工作加入一點執行時間。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">...activities</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  activities.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">&#x27;function&#x27;</span>) fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks(eat, sleep, hitDongDong);</span><br></pre></td></tr></table></figure>
+<p>這次做小調整，改成賦予 a 變數一個值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(a); // undefined</span><br><span class="line">var a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
 
-<p>完成修改後，請問上面這段程式碼的執行結果？</p>
-<ul>
-<li>(A) 依序每過 1 秒印出「吃飽了」、「睡飽了」、「打爽了」</li>
-<li>(B) 1 秒後同時印出「吃飽了」、「睡飽了」、「打爽了」</li>
-</ul>
-<p>如果你的答案是 (A)，請再回去看上面一開始分享的影片，並且試著把這段程式碼的執行流程畫出來。</p>
-<p>上面的程式碼雖然執行結果不如預期，實際上已經是一個「非同步回呼函式」，只是傳入的函式彼此間沒有先後的順序關係，執行順序是：</p>
-<ol>
-<li>函式本身的 <code>console.log(&#39;今日完成事項：&#39;)</code>。</li>
-<li>傳入的函式個憑本事誰快誰就先完成。</li>
-</ol>
-<p>要完整發揮回呼函式的設計，讓所有非同步函式有順序關係，必須做以下修改：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dailyWorks(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  eat(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    sleep(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      hitDongDong();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>雖然沒有出現錯誤，但是 a 的值並沒有跟著被提昇，回推的執行順序會像下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a</span><br><span class="line">console.log(a); // undefined</span><br><span class="line">a = 1;</span><br><span class="line">console.log(a); // 1</span><br></pre></td></tr></table></figure>
 
-<p>修改後的程式碼，把每個函式都改成 callback function，這樣就可以讓每個函式依照順序往下執行，這就是 callback function 設計的精華所在。</p>
-<p>為了確保執行的順序，必須以巢狀的方式撰寫，當程式碼變得複雜時，傳說中的 Callback Hell（回呼地獄）就會誕生，雖然這不是電腦執行程式的問題，但是對於人類閱讀會有很大的障礙。</p>
-<p><img data-src="https://miro.medium.com/max/1400/1*zxx4iQAG4HilOIQqDKpxJw.jpeg"></p>
+<p>再看下面這段程式碼，想想看結果是什麼：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b = 1;</span><br><span class="line">var b;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p>如果不清楚運作 JavaScript 的運作機制，可能會認為答案是 <code>undefined</code>，覺得後者蓋掉前者，但答案其實是 <code>1</code>，回推後的實際執行會像是下面這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var b;</span><br><span class="line">var b;</span><br><span class="line">b = 1;</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+
+<p>『重複宣告』加上『提昇機制』是不是讓人覺得很坑呢？</p>
+<h2 id="💎-let、const："><a href="#💎-let、const：" class="headerlink" title="💎 let、const："></a>💎 let、const：</h2><p>ES6 版本提供了 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，這兩種新的方式解決了 <code>var</code> 的許多奇怪問題。</p>
+<p>使用 <code>let</code> 和 <code>const</code> 宣告的變數名稱在 JavaScript 從『環境建立』一直執行到『變數實際存在的那一行程式碼』的這段期間，變數名稱都是無法被取用的，這段期間稱為 Temporal Dead Zone（TDZ），暫時性死區。</p>
+<p>這個機制就像是我買了對號座的票（宣告），這個位置的票就不能被其他人購買（不能重複宣告），但是在我坐上車位前（實際執行的那段程式碼），都無法在這個位置找到我（TDZ鎖定）。</p>
+<p>以下是使用 <code>let</code> 或 <code>const</code> 宣告的輸出結果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(x); // x is not defined</span><br><span class="line">let x = 1;</span><br><span class="line">console.log(x); // 前面已經因為執行階段出錯終止，不會執行到這裡</span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p>圖片來源：<a href="https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997">Async Flow: From callback hell to promise to Async-Await</a></p>
-</blockquote>
-<hr>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>Callback function 歷史悠久，這也表示 Callback hell 荼毒了很長一段時間，直到 ES6（2015）的 Promise 和 ES8（2017）的 async/await 才有較簡潔的撰寫方法，儘管學習新方法可以縮短許多時間，但是 Event loop 的流程和 Callback function 的撰寫方式都是重要的基本功，花點時間弄清楚對於撰寫非同步程式會非常有幫助。</p>
-<blockquote>
-<p>參考資料：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Callback_function">MDN - 回呼函式</a> 、 <a href="https://ithelp.ithome.com.tw/articles/10192739">Kuro - 重新認識 JavaScript: Day 18 Callback Function 與 IIFE</a></p>
+<p>參考文章<br>1、<a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a><br>2、<a href="https://eddychang.me/es6-tdz">理解ES6中的暫時死區(TDZ)</a></p>
 </blockquote>
 ]]></content>
       <categories>
@@ -405,188 +265,87 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 深入了解型別與轉型</title>
-    <url>/2021/11/19/JScoercion/</url>
-    <content><![CDATA[<p><img data-src="/images/js-coercion.png"></p>
-<span id="more"></span> 
-<p>JavaScript 不論遇到什麼奇形怪狀的資料運算，都會盡可能讓程式執行下去，這麼貼心的設計也是兩面刃，可能在不知不覺中程式正常運作，也可能突然就報錯了卻毫無頭緒，馬上來認識 JavaScript 的型別系統與轉型吧！</p>
-<hr>
-<h2 id="💎-型別（type）"><a href="#💎-型別（type）" class="headerlink" title="💎 型別（type）"></a>💎 型別（type）</h2><ul>
-<li><p>JavaScript 的型別可以分為『原始型別』和『物件型別』兩類，差異在於：</p>
-<ul>
-<li>原始型別<code>沒有</code>屬性和方法可以使用</li>
-<li>物件型別<code>可以任意存取</code>屬性和方法</li>
-</ul>
-</li>
-<li><p><strong>原始型別（Primitive types）</strong></p>
-<ul>
-<li>string</li>
-<li>number</li>
-<li>boolean</li>
-<li>null</li>
-<li>undefined</li>
-<li>symbol (ES 6 新定義)</li>
-</ul>
-</li>
-<li><p><strong>物件型別（Object types）</strong></p>
-<ul>
-<li>原生物件（Native）<ul>
-<li>Object, Array, Function, Date, Math, RegExp</li>
-<li>原始型別包裹物件（Primitive Wrapper）：Number, String, Boolean</li>
-</ul>
-</li>
-<li>寄宿物件（Host）<ul>
-<li>window</li>
-<li>DOM</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>型別檢查（typeof)：<br>除了 null 有原生的 bug 會得到 object 的結果（此 bug 不會修正），其他型別都可以使用 <code>typeof</code> 來檢查。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof &#x27;a&#x27;); // string</span><br><span class="line">console.log(typeof 1); // number</span><br><span class="line">console.log(typeof true); // boolean</span><br><span class="line">console.log(typeof null); // object &lt;== 這是語言本身的bug</span><br><span class="line">console.log(typeof undefined); // undefined</span><br><span class="line">console.log(typeof Symbol()) // symbol</span><br><span class="line">console.log(typeof &#123;&#125;); // object</span><br><span class="line">console.log(typeof []); // object</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="💎-裝箱（boxing）和-拆箱（unboxing）"><a href="#💎-裝箱（boxing）和-拆箱（unboxing）" class="headerlink" title="💎 裝箱（boxing）和 拆箱（unboxing）"></a>💎 裝箱（boxing）和 拆箱（unboxing）</h2><ul>
-<li><p>前面提到原始型別是沒有屬性和方法可以使用的，但我們卻可以利用字串方法來修改原始型別的字串（如下方的程式碼），這是因為 JavaScript 有 裝箱（boxing）和 拆箱（unboxing）機制來處理這些操作。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;123.45&#x27;.split(&#x27;.&#x27;));</span><br><span class="line">// [&#x27;123&#x27;, &#x27;45&#x27;]</span><br></pre></td></tr></table></figure></li>
-<li><p>上個段落的物件型別中有一項 <code>原始型別包裹物件（Primitive Wrapper）</code>，使用這個方式來建立的字串（數字或布林值）會是物件的形式，並且有許多原生方法可以使用，JavaScript 便是利用這個物件型別來實作裝箱與拆箱。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &#x27;123&#x27;;</span><br><span class="line">let strObj = new String(&#x27;123&#x27;);</span><br><span class="line"></span><br><span class="line">console.log(typeof str); // string</span><br><span class="line">console.log(typeof strObj); // object</span><br></pre></td></tr></table></figure></li>
-<li><p>裝箱（boxing）：當 JS 執行方法發現資料是原始型別時，便會使用 <code>new</code> 把原始型別資料建立成物件型別的資料，就可以順利執行物件內的方法。</p>
-</li>
-<li><p>拆箱（unboxing）：當 JS 完成被裝箱的物件需要執行的方法後，就會把這個物件資料還原成原始型別的資料，這時會用到兩個重要的方法，這會在接下來介紹的『轉型』再次談到：</p>
-<ul>
-<li><code>valueOf()</code>：回傳 <code>Number</code> 原始型別。</li>
-<li><code>toString()</code>：回傳 <code>String</code> 原始型別。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-強制轉型（coercion）"><a href="#💎-強制轉型（coercion）" class="headerlink" title="💎 強制轉型（coercion）"></a>💎 強制轉型（coercion）</h2><ul>
-<li>強制轉型分為兩種：<code>顯性轉型</code>（explicit coercion）、<code>隱性轉型</code>（implicit coercion）</li>
-</ul>
-<h3 id="🔸-顯性轉型（explicit-coercion）："><a href="#🔸-顯性轉型（explicit-coercion）：" class="headerlink" title="🔸 顯性轉型（explicit coercion）："></a>🔸 顯性轉型（explicit coercion）：</h3><ul>
-<li><p>顯性轉型指的是在程式碼中<code>直接撰寫</code>的型別轉換。</p>
-</li>
-<li><p><strong>轉數字</strong></p>
-<ul>
-<li><p><code>parseInt()</code>：</p>
-<ul>
-<li>轉整數。</li>
-<li>小數點以後無條件捨去。</li>
-<li>轉換方式：由左至右，遇到無法轉成數字的時候停止，回傳前面的數字。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseInt(&#x27;1.23&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;1.23a&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;a1.23&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>parseFloat()</code>：</p>
-<ul>
-<li>轉浮點數（包含小數點以後）。</li>
-<li>轉換方式與 parseInt() 相同。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseFloat(&#x27;1.23&#x27;)); // 1.23</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>Number()</code>：</p>
-<ul>
-<li>可以轉整數和浮點數。</li>
-<li>數字範圍在正負 2的53次方 -1 間。</li>
-<li>轉換方式：整筆字串都可以轉成數字才轉換，否則得到 NaN。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Number(&#x27;-1.23&#x27;)); // -1.23</span><br><span class="line">console.log(Number(&#x27;-1.23a&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>BigInt()</code>：</p>
-<ul>
-<li>轉整數</li>
-<li>範圍可以超過2的53次方（表示方式會在數字後面加上 <code>n</code>）</li>
-<li>轉換方式：非整數時直接報錯，不會得到 NaN。</li>
-<li>需注意瀏覽器支援度。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(BigInt(&quot;9007199254740991&quot;)); // 9007199254740991n</span><br><span class="line">console.log(typeof 1n); // bigint</span><br><span class="line">console.log(BigInt(&quot;900a&quot;)); // Cannot convert 900a to a BigInt</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>算數運算子</code>：</p>
-<ul>
-<li>前方加上<code>+</code>：可能會和 <code>++</code> 混淆。</li>
-<li>前方加上<code>-</code>：內容若是負數，會被轉成正數。</li>
-<li>後方加上<code>- 0</code>：較穩定寫法。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(+&#x27;-1&#x27;); // -1</span><br><span class="line">console.log(++&#x27;-1&#x27;); // Invalid left-hand side expression in prefix operation</span><br><span class="line">console.log(-&#x27;-1&#x27;); // 1</span><br><span class="line">console.log(&#x27;-1&#x27; - 0); // -1</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>轉字串</strong></p>
-<ul>
-<li><p><code>toString()</code>：不能轉換 null 和 undefined，可以設定進位制。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log((3).toString()); // 3</span><br><span class="line">console.log(undefined.toString()); // Cannot read properties of undefined</span><br><span class="line">console.log((3).toString(2)); // 11</span><br></pre></td></tr></table></figure></li>
-<li><p><code>String()</code>：可以轉換 null 和 undefined，不能設定進位制。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(String(3)); // 3</span><br><span class="line">console.log(String(undefined)); // undefined</span><br></pre></td></tr></table></figure></li>
-<li><p><code>算數運算子</code>：加上空字串 <code>+ &#39;&#39;</code>。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof (3 + &#x27;&#x27;)); // string</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>轉布林值</strong></p>
-<ul>
-<li><p>布林值只有兩種值（true 或 false），轉型後會得到 true 的值稱為 truthy，得到 false 的則是 falsy，除了下列項目是 <code>falsy</code>，其他的都是 <code>truthy</code>：</p>
-<ul>
-<li><code>false</code></li>
-<li><code>0</code></li>
-<li><code>-0</code></li>
-<li><code>0n</code> (BigInt)</li>
-<li><code>“”</code> (空字串，包含 ``, ‘’)</li>
-<li><code>null</code></li>
-<li><code>undefined</code></li>
-<li><code>NaN</code></li>
-<li><code>document.all</code> (正常情況下不會用到)</li>
-</ul>
-</li>
-<li><p>轉換方式：</p>
-<ul>
-<li><p><code>Boolean()</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Boolean([])); // true</span><br></pre></td></tr></table></figure></li>
-<li><p><code>邏輯運算子</code>：前方加上雙驚嘆號 <code>!!</code>，單驚嘆號 <code>!</code> 會是相反結果。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(!true); // false</span><br><span class="line">console.log(!!&#123;&#125;); // true</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="🔸-隱性轉型（implicit-coercion）"><a href="#🔸-隱性轉型（implicit-coercion）" class="headerlink" title="🔸 隱性轉型（implicit coercion）"></a>🔸 隱性轉型（implicit coercion）</h3><ul>
-<li><p>隱性轉型出現在使用運算子時，這在其他程式語言通常是不允許的（需要相同型別才可以運算），JavaScript 則會自動轉型讓程式繼續執行，也因為規則繁雜，容易疏忽出錯。</p>
-</li>
-<li><p>核心方法 <code>ToPrimitive</code><br>JavaScript 在執行運算時會使用 <code>ToPrimitive</code> 方法將運算元轉換成原始型別後就能繼續運算，<code>ToPrimitive</code> 帶有一個 <code>hint</code>(提示)，用來決定要轉成什麼型別，如果要了解詳細的運作順序可以參考 <strong><a href="https://zhuanlan.zhihu.com/p/29730094">深入理解Javascript中Object类型的转换</a></strong> 這篇文章，裡面引用了 ECMA 的規範詳細解說，非常值得一讀！</p>
-</li>
-<li><p><strong>原始型別</strong>的隱性轉型</p>
-<ul>
-<li><p><code>+</code> 算數運算子：加法運算中只要有一個值屬於字串型別，就會全部轉為 string，最高優先。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 有字串</span><br><span class="line">console.log(&#x27;&#x27; + 1 + null + true); // 1nulltrue</span><br><span class="line">// 無字串</span><br><span class="line">console.log(1 + null + true); // 2</span><br></pre></td></tr></table></figure></li>
-<li><p>其他算數運算子：<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code> 運算都會轉成 number。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;6&#x27; - undefined); // NaN</span><br><span class="line">console.log(9 * [9]); // 81</span><br><span class="line">console.log(&#x27;3&#x27; / &#123;&#125;); // NaN</span><br><span class="line">console.log(6 % true); // 0</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>物件型別</strong>的隱性轉型</p>
-<ul>
-<li><p><code>ｔoPrimitive</code> 執行物件型別的轉換時會使用到物件內的 <code>valueOf</code> 或 <code>toString</code> 方法來取得原始型別的回傳值，因為這是物件內的方法，我們可以透過覆蓋方法來改變回傳值：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 刻意改成 valueOf 回傳字串、toString 回傳數字</span><br><span class="line">let a = &#123;</span><br><span class="line">    valueOf: function() &#123;</span><br><span class="line">        return &#x27;1&#x27;;</span><br><span class="line">    &#125;,</span><br><span class="line">    toString: function() &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(a + 0); // &quot;10&quot;</span><br><span class="line">console.log(a.toString()); // 2</span><br></pre></td></tr></table></figure></li>
-<li><p><code>陣列</code>也是物件，ToPrimitive 會回傳陣列本身內容執行 <code>toString()</code> 方法後的字串。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 空陣列轉字串 &quot;&quot;，空物件轉字串 &quot;[object Object]&quot;</span><br><span class="line">console.log([] + &#123;&#125;); // &quot;[object Object]&quot;</span><br><span class="line"></span><br><span class="line">// 陣列轉字串 &quot;1,2,3&quot;，後方數字配合轉字串</span><br><span class="line">console.log([1,2,3] + 2 + 1); // &quot;1,2,321&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p><code>&#123;&#125; + 任意值</code>：</p>
-<ol>
-<li><code>&#123;&#125;</code> 在運算元前方時會被視為<code>區塊語句</code>，而不是物件，所以實際執行的只有後面的 <code>+ x</code></li>
-<li><code>+ 任意值</code>是前一段落提到的<code>顯性轉型</code>轉數字的方法，所以後方的運算元轉為 number 型別。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 強制轉型</span><br><span class="line">console.log(+&#123;&#125;); // NaN</span><br><span class="line"></span><br><span class="line">// 看起來是物件加陣列，實際上是後方的陣列強制轉型為數字</span><br><span class="line">console.log(&#123;&#125; + []); // 0 </span><br><span class="line"></span><br><span class="line">// 上方程式實際執行時等同下面兩行：</span><br><span class="line">&#123;&#125;</span><br><span class="line">+[];</span><br><span class="line"></span><br><span class="line">// 宣告一個物件變數 x 來存放空物件，才能被當成物件來計算</span><br><span class="line">let x = &#123;&#125;;</span><br><span class="line">console.log(x + []); // &quot;[object Object]&quot;</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p><code>&#123;&#125; + &#123;&#125;</code>：這是一個特別狀況所以額外說明，不同的瀏覽器會有不同的執行結果：</p>
-<ol>
-<li>NaN - 第一個 {} 被視為區塊，</li>
-<li>“[object Object][object Object]” - 第一個 {} 被視為物件</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p><strong>邏輯運算</strong><br>邏輯運算中的運算元都會被轉為 boolean，差別在於其運算後回傳的結果。</p>
-<ul>
-<li><p>|| (or) 會回傳第一個結果為 true 的運算元，若無，則是最後一個。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(0 || false || null || undefined); // undefined</span><br><span class="line">console.log(0 || false || null || &#123;&#125; || undefined); // &#123;&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>&amp;&amp; (and) 若運算結果為 true，會回傳最後一個運算元，若運算結果為 false，回傳第一個結果為 false 的運算元。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(true &amp;&amp; &#123;&#125; &amp;&amp; -2 &amp;&amp; [&#x27;a&#x27;]); // [&#x27;a&#x27;]</span><br><span class="line">console.log(1 &amp;&amp; 0 &amp;&amp; true &amp; false); // 0</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>關於轉型的細節實在太多，族繁不及備載，一些極端的範例在實際撰寫時並不會用到，不求成為行走的 MDN，但求踩坑的時候能順利 debug 就好！</p>
+    <title>[JS] 從 Event Loop 到 Callback function，一堆名詞講的是什麼？</title>
+    <url>/2022/04/17/JScallback/</url>
+    <content><![CDATA[<p><img data-src="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop/the_javascript_runtime_environment_example.svg"></p>
 <blockquote>
-<p>參考文章<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/BigInt">MDN-BigInt</a><br><a href="https://medium.com/@sunnyhuang.sc/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98-javascript-%E4%BD%95%E8%AC%82%E5%BC%B7%E5%88%B6%E8%BD%89%E5%9E%8B-coercion-%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E4%BD%9C%E5%88%B0%E8%BD%89%E6%8F%9B%E5%9E%8B%E5%88%A5-d7e39e30083">sunnyhuang-何謂強制轉型（coercion）以及如何作到轉換型別</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString">MDN-Number.prototype.toString()</a><br><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/254123/">淺談JS中String()與.toString()的區別 - 程式前沿</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">MDN-Symbol.toPrimitive</a>。<br><a href="https://eddychang.me/js-object-plus-object">Eddy 思考與學習-JS中的 {} + {} 與 {} + [] 的結果是什麼？</a><br><a href="https://eddychang.me/js-object-plus-object"></a></p>
+<p>圖片來源：<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop">MDN - 並行模型和事件循環</a></p>
+</blockquote>
+<span id="more"></span>
+
+<hr>
+<h2 id="事件循環（event-loop）"><a href="#事件循環（event-loop）" class="headerlink" title="事件循環（event loop）"></a>事件循環（event loop）</h2><p>JavaScript 是單執行緒的語言，一次只能做一件事，遇到需要花費大量時間的程式時，後面的程式就會全部卡住。</p>
+<p>舉例來說，去超商提款機領錢，前面的人換了無數張卡片，一陣操作十幾分鐘過去，但是超商就只有一台提款機，只能在後面慢慢等他用完。</p>
+<p>為了減少這種排隊窘境，瀏覽器執行時會讓順順跑的排一列、費時的移到另一列等待，順跑的一列出現空檔時，再把另一列排隊的項目抓回來執行。</p>
+<p>我非常推薦先觀看下方影片來了解事件循環的運作，會比文字和圖片解釋更加容易理解：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/8aGhZQkoFbQ" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<blockquote>
+<p>影片講者的事件循環模擬器：<a href="http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4=">連結</a></p>
+</blockquote>
+<hr>
+<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><p>看完上面的影片，我們可以快速了解事件循環的流程，以下歸納幾個名詞代表的意思：</p>
+<ul>
+<li>同步的 JavaScript（Synchronous）：瀏覽器執行多數的程式碼都是同步的，收到就立刻執行。</li>
+<li>非同步的 JavaScript（Asynchronous）：許多無法立即完成的程式會交由瀏覽器的 Web APIs 來處理，最常見的情況就是取得外部資料。</li>
+<li>Web APIs：瀏覽器中提供的應用（例如：抓 api 資料、等待幾秒…等）。</li>
+<li>Stack (Call Stack）：同步執行的程式片段，會以堆疊方式執行（先進後出）。</li>
+<li>Queue（Callback Queue / Task Queue）：非同步執行的程式片段會交給 Web APIs 處理，完成後進入佇列中等待執行（先進先出）。</li>
+</ul>
+<hr>
+<h2 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h2><p>經過 Web APIs 處理完的非同步程式會進入 Queue 等待，當 Stack 沒有執行中的程式時，就會抓取 Queue 中等待執行的程式回來執行，這個回頭做的動作就是 Callback (回呼)，所以非同步執行後回頭做的函式就是 Callback Function ? 意思大概到了，但不完全是。</p>
+<p>在 MDN 中說明回呼函式（Callback Function）指的是<code>把函式作為參數，提供另一個函式使用</code>，用這種方式設計出來的函式可以是同步和非同步的，但通常都是用來處理非同步的程式。</p>
+<p>非同步的完成時間通常是難以預測的，舉例來說，要取得一個外部資源，會因為網路速度、檔案大小讓完成時間都不相同，當有多個非同步程式執行，我們無法知道哪一個會先完成，回呼函式的設計就是要<code>確保函式執行的先後順序</code>。</p>
+<hr>
+<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2><p>學習 JavaScript 時進入非同步的章節通常第一個學的就是 setTimeout，可以指定一段時間後再執行別的程式碼，在 <a href="https://www.w3schools.com/jsref/met_win_settimeout.asp">W3schools</a> 可以看到 setTimeout 傳入參數的格式：</p>
+<p><code>setTimeout(function, milliseconds, param1, param2, ...)</code></p>
+<p><strong>第一個參數是函式</strong>、第二個是間隔的時間、第三個以後是可以選擇要額外傳入的參數。</p>
+<p>第一個參數正好符合了「把函式作為參數，提供另一個函式使用」，也就是說這是一個 <code>Callback Function</code>。</p>
+<p>接下來的段落，會透過設計情境來說明如何設計和應用 Callback Function。</p>
+<hr>
+<h2 id="設計情境"><a href="#設計情境" class="headerlink" title="設計情境"></a>設計情境</h2><p>有點年紀的朋友們（？應該都聽過企鵝的笑話，每天的活動是「吃飯、睡覺、打東東」，以此為題設計一個每日工作的程式碼會像下面這樣：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  eat();</span><br><span class="line">  sleep();</span><br><span class="line">  hitDongDong();</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 今日完成事項：</span></span><br><span class="line"><span class="comment">// 吃飽了</span></span><br><span class="line"><span class="comment">// 睡飽了</span></span><br><span class="line"><span class="comment">// 打爽了</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="同步回呼函式"><a href="#同步回呼函式" class="headerlink" title="同步回呼函式"></a>同步回呼函式</h2><p>上面的函式設計上沒有彈性，不同的企鵝除了打東東之外也會做其他的事情，我們增加一個參數來接收要做的事情（函式），改寫後如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moreActivity</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">...activities</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  activities.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 執行前先檢查是否為函式</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">&#x27;function&#x27;</span>) fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks(eat, sleep, hitDongDong, moreActivity);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 今日完成事項：</span></span><br><span class="line"><span class="comment">// 吃飽了</span></span><br><span class="line"><span class="comment">// 睡飽了</span></span><br><span class="line"><span class="comment">// 打爽了</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>上面的程式碼中，在 dailyWorks 這個主要函式中增加了 activities 參數（參數名稱可以自定），用來接收要執行的函式。</p>
+</li>
+<li><p>運用其餘運算符（…）來接收更多的函式，就可以在執行 dailyWorks 函式時自由的替換或傳入更多的函式。</p>
+</li>
+<li><p>因為傳入的函式都是同步執行，是「同步回呼函式」，哪個先傳入就先執行，沒有非同步的順序問題。</p>
+</li>
+</ul>
+<hr>
+<h2 id="非同步回呼函式"><a href="#非同步回呼函式" class="headerlink" title="非同步回呼函式"></a>非同步回呼函式</h2><p>問題又來了，企鵝哪有那麼神，可以一瞬間做那麼多事情？接著就讓每件工作加入一點執行時間。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">...activities</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  activities.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">&#x27;function&#x27;</span>) fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks(eat, sleep, hitDongDong);</span><br></pre></td></tr></table></figure>
+
+<p>完成修改後，請問上面這段程式碼的執行結果？</p>
+<ul>
+<li>(A) 依序每過 1 秒印出「吃飽了」、「睡飽了」、「打爽了」</li>
+<li>(B) 1 秒後同時印出「吃飽了」、「睡飽了」、「打爽了」</li>
+</ul>
+<p>如果你的答案是 (A)，請再回去看上面一開始分享的影片，並且試著把這段程式碼的執行流程畫出來。</p>
+<p>上面的程式碼雖然執行結果不如預期，實際上已經是一個「非同步回呼函式」，只是傳入的函式彼此間沒有先後的順序關係，執行順序是：</p>
+<ol>
+<li>函式本身的 <code>console.log(&#39;今日完成事項：&#39;)</code>。</li>
+<li>傳入的函式個憑本事誰快誰就先完成。</li>
+</ol>
+<p>要完整發揮回呼函式的設計，讓所有非同步函式有順序關係，必須做以下修改：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dailyWorks(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  eat(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    sleep(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      hitDongDong();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>修改後的程式碼，把每個函式都改成 callback function，這樣就可以讓每個函式依照順序往下執行，這就是 callback function 設計的精華所在。</p>
+<p>為了確保執行的順序，必須以巢狀的方式撰寫，當程式碼變得複雜時，傳說中的 Callback Hell（回呼地獄）就會誕生，雖然這不是電腦執行程式的問題，但是對於人類閱讀會有很大的障礙。</p>
+<p><img data-src="https://miro.medium.com/max/1400/1*zxx4iQAG4HilOIQqDKpxJw.jpeg"></p>
+<blockquote>
+<p>圖片來源：<a href="https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997">Async Flow: From callback hell to promise to Async-Await</a></p>
+</blockquote>
+<hr>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>Callback function 歷史悠久，這也表示 Callback hell 荼毒了很長一段時間，直到 ES6（2015）的 Promise 和 ES8（2017）的 async/await 才有較簡潔的撰寫方法，儘管學習新方法可以縮短許多時間，但是 Event loop 的流程和 Callback function 的撰寫方式都是重要的基本功，花點時間弄清楚對於撰寫非同步程式會非常有幫助。</p>
+<blockquote>
+<p>參考資料：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Callback_function">MDN - 回呼函式</a> 、 <a href="https://ithelp.ithome.com.tw/articles/10192739">Kuro - 重新認識 JavaScript: Day 18 Callback Function 與 IIFE</a></p>
 </blockquote>
 ]]></content>
       <categories>
@@ -816,215 +575,80 @@
       </tags>
   </entry>
   <entry>
-    <title>[Node.JS] 建立伺服器、掌握基本知識</title>
-    <url>/2022/02/22/nodejs1/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+    <title>[JS] undefined 和 null 的差異</title>
+    <url>/2021/11/18/JSundefined/</url>
+    <content><![CDATA[<p><img data-src="/images/js-null.png"></p>
 <span id="more"></span> 
+<p>undefined 是 JavaScript 的特有物之一，新手入門時，常會對 undefined 和 null 這兩個型別產生疑問，以下逐步解說。</p>
+<hr>
+<h2 id="💎-null"><a href="#💎-null" class="headerlink" title="💎 null"></a>💎 null</h2><ul>
+<li><p><code>null</code> 表示一個空值（沒有值），是各種程式語言中常見的型別，如果有後端資料庫的相關經驗，在設計 SQL 資料表時，可以在非必要欄位設定『允許 null』，當資料建立起來的時候，這些沒填的欄位就會塞入 null 來表示空值。</p>
+</li>
+<li><p>JS 中的 <code>null</code> 是一種<code>原始型別</code>，可以賦予變數的值為 null 來表示他是<code>空值</code>，當看到 null 時，我們可以知道這是人為賦予的空值，不是系統自動產生的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = null; // 不要包引號，會變成字串</span><br><span class="line">console.log(a); // null</span><br></pre></td></tr></table></figure></li>
+<li><p>JS 裡的 null 還有一些特色：</p>
+<ul>
+<li>檢查型別（typeof）的設計失誤（因影響久遠，此錯誤不會修正），正確是 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof null); // object</span><br></pre></td></tr></table></figure></li>
+<li>null 雖然代表著空值，轉型成字串時會照字面上的英文轉。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(null + &#x27;&#x27;); // &#x27;null&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>參考資料： <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/null">MDN-null</a>、<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/typeof">MDN-typeof</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="💎-undefined"><a href="#💎-undefined" class="headerlink" title="💎 undefined"></a>💎 undefined</h2><ul>
+<li>undefined 從字面上可以理解成『未定義』，表示這個變數並沒有被賦予任何的值，跟已經被賦予空值（null）代表著不一樣的資料狀態，比起 null，undefined 更容易跟 not defined 搞混：<ul>
+<li><code>undefined</code> 是變數<code>已被宣告</code>且<code>未賦值</code>，屬於<code>原始型別</code>之一。</li>
+<li><code>not defined</code> 是變數<code>未被宣告</code>，不屬於原始型別，是程式<code>執行時的錯誤訊息（runtime error）</code>。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a;</span><br><span class="line"></span><br><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(typeof a); // undefined</span><br><span class="line">console.log(b); // ReferenceError: b is not defined</span><br><span class="line">console.log(typeof b); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="💎-null-undefined"><a href="#💎-null-undefined" class="headerlink" title="💎 null == undefined ?"></a>💎 null == undefined ?</h2><ul>
+<li>看完前面的段落，可以知道 undefined 和 null 意義上是完全不同，接著來比較看看：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined == null); // true</span><br></pre></td></tr></table></figure>
+不是說好不一樣的嗎？<br>可能是轉型在作亂，改用嚴格比較（===）看看。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined === null); // false</span><br></pre></td></tr></table></figure>
+果然是轉型搞的鬼，但是為什麼 undefined 和 null 轉型後會相等？下個段落繼續說明。</li>
+</ul>
+<hr>
+<h2 id="💎-truthy-amp-falsy"><a href="#💎-truthy-amp-falsy" class="headerlink" title="💎 truthy &amp; falsy"></a>💎 truthy &amp; falsy</h2><ul>
+<li><p>JavaScript 中的各種值都可以被轉換成布林值（Boolean），轉換後為 true 的值稱為 <code>truthy</code>，反之則稱為 <code>falsy</code>，除了以下所列的值屬於 falsy 值，其他都是 truthy 值。<br>（完整的圖表可以參考 <a href="https://dorey.github.io/JavaScript-Equality-Table/">JS Comparison Table</a>）</p>
+<ul>
+<li>false</li>
+<li>0</li>
+<li>-0</li>
+<li>0n (BigInt)</li>
+<li>“” (空字串，包含 <code>單引號</code>、<code>反引號</code>)</li>
+<li>null</li>
+<li>undefined</li>
+<li>NaN</li>
+<li>document.all (正常不會用到)</li>
+</ul>
+</li>
+<li><p>由上可知，<code>null</code>和<code>undefined</code>都是<code>falsy</code>值，在做一般相等的比較時，都會被轉成 false，所以得到的結果是 true。</p>
+</li>
+<li><p>truthy 和 falsy 的運用：檢查資料是否存在時可以運用轉成布林值的方法減少程式碼撰寫長度。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 原始寫法：</span><br><span class="line">if (arr[0] === undefined) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 轉型為布林值</span><br><span class="line">if (!arr[0]) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>這篇文章記錄了如何建立一個本地網頁服務，讓我們可以透過瀏覽器看到伺服器回傳的資料。</p>
+<blockquote>
+<p>參考資料： <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">MDN-Falsy</a>、<a href="https://dorey.github.io/JavaScript-Equality-Table/">dorey-JS Comparison Table</a></p>
+</blockquote>
+</li>
+</ul>
 <hr>
-<h2 id="💎-基本技能-－-模組引用"><a href="#💎-基本技能-－-模組引用" class="headerlink" title="💎 基本技能 － 模組引用"></a>💎 基本技能 － 模組引用</h2><p>在 Node.js 中會使用 JavaScript 的模組方法來載入各種功能，這個段落會先介紹如何操作，如果已經熟悉可以跳過，進入下個段落。</p>
-<p>範例情境：</p>
+<h2 id="💎-null-和-undefined-出現時機"><a href="#💎-null-和-undefined-出現時機" class="headerlink" title="💎 null 和 undefined 出現時機"></a>💎 null 和 undefined 出現時機</h2><p>除了未賦值的 undefined 和自己定義的 null 外，還有什麼時候會出現呢？</p>
 <ul>
-<li>主要檔案：a.js</li>
-<li>模組－寫法１：b.js</li>
-<li>模組－寫法２：c.js</li>
-</ul>
-<h3 id="a-js"><a href="#a-js" class="headerlink" title="a.js"></a>a.js</h3><ul>
-<li>使用 require 來引入其他資源<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自己的變數</span></span><br><span class="line"><span class="keyword">let</span> contentA = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 引用 b.js，如果被引用的檔案在相同目錄，路徑前方加上 ./ </span></span><br><span class="line"><span class="keyword">const</span> contentB = <span class="built_in">require</span>(<span class="string">&#x27;./b&#x27;</span>);</span><br><span class="line"><span class="comment">// 引用 c.js</span></span><br><span class="line"><span class="keyword">const</span> contentC = <span class="built_in">require</span>(<span class="string">&#x27;./c&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(contentA); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 變數存放了回傳的整個物件</span></span><br><span class="line"><span class="built_in">console</span>.log(contentB); <span class="comment">// &#123;...&#125;</span></span><br><span class="line"><span class="comment">// 可以使用物件方法取得裡面的值</span></span><br><span class="line"><span class="built_in">console</span>.log(contentB.title) <span class="comment">// B</span></span><br><span class="line"><span class="built_in">console</span>.log(contentB.getNum()) <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(contentC); <span class="comment">// &#123;...&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(contentC.title) <span class="comment">// C</span></span><br><span class="line"><span class="built_in">console</span>.log(contentC.getNum()) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="b-js"><a href="#b-js" class="headerlink" title="b.js"></a>b.js</h3><ul>
-<li>使用 module.exports 設定被引用時提供的資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 方法１－ 直接設定要輸出的資料，多個資料時通常用物件格式來存放</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">    <span class="attr">getNum</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="c-js"><a href="#c-js" class="headerlink" title="c.js"></a>c.js</h3><ul>
-<li>使用 exports.屬性名稱 設定被引用時提供的資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 方法２－ 新增屬性的方式逐一增加輸出的資料</span></span><br><span class="line"><span class="built_in">exports</span>.title = <span class="string">&#x27;C&#x27;</span>;</span><br><span class="line"><span class="built_in">exports</span>.getNum = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li><code>null</code>：會出現在 BOM(Browser Object Model)中不存在的資料，例如：document.querySelector、localStorage、 sessionStorage…等，不存在時會得到 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">localStorage.getItem(&#x27;a&#x27;); // null</span><br><span class="line">sessionStorage.getItem(&#x27;a&#x27;); // null</span><br></pre></td></tr></table></figure></li>
+<li><code>undefined</code>：取用不存在 JS 程式碼中或是未賦值的資料會得到 undefined。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">let obj = &#123;&#125;;</span><br><span class="line">console.log(arr[1]); // undefined</span><br><span class="line">console.log(obj.a); // undefined</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h2 id="💎-創建本地伺服器-－-createServer"><a href="#💎-創建本地伺服器-－-createServer" class="headerlink" title="💎 創建本地伺服器 － createServer"></a>💎 創建本地伺服器 － createServer</h2><p>學會模組引用的操作後，就可以試著撰寫第一個 js 檔案，讓 Node.js 建立一個伺服器服務：<br><code>以下開發環境都使用 VS Code</code></p>
-<ol>
-<li><p><strong>建立伺服器 js 檔 （檔名自定)</strong><br>下面這段程式碼是 node.js 官方範例</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引用 http 模組</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="comment">// 建立一個本地伺服器，設定接收到請求後的回傳資料</span></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 使用 8000 port</span></span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>啟動伺服器</strong><br>開啟終端機（熱鍵為 Ctrl + <code>`</code>），使用 Node.js 執行撰寫好的檔案，如果沒有跳出錯誤訊息就表示本地伺服器成功運行了。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">** 請先將路徑切換到 js 存放的位置，檔案名稱修改為自己設定的名稱 **</span><br><span class="line">node 檔案名稱.js</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>關閉伺服器</strong><br>伺服器執行的狀態下，在終端機視窗內按下 <code>Ctrl+C</code> 就可以終止。</p>
-</li>
-<li><p><strong>連線測試</strong><br>伺服器正常運作後可以開啟瀏覽器，輸入網址 <code>http://127.0.0.1:8000</code>，沒有問題的話就會顯示 <code>Hello</code>，這段網址中的 127.0.0.1 表示這部電腦的本地位置，冒號加上數字 8000 就可以指定使用前面步驟設定的 port 來連線。</p>
-</li>
-<li><p><strong>修改測試</strong><br>試著修改 Content-Type 或 res.write 的內容，讓網頁顯示不一樣的資訊。<br>每次修改儲存後都需要重起 node，可以透過 npm 安裝 <code>nodemon</code> 這個套件，就能在編輯檔案後自動重新載入伺服器。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">** 安裝指令（建議全域安裝）**</span><br><span class="line">npm i -g nodemon</span><br><span class="line"></span><br><span class="line">** 使用 nodemon 來執行 js 檔案 **</span><br><span class="line">nodemon app.js</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="https://www.npmjs.com/package/nodemon">npm - nodemon</a></p>
-</blockquote>
-</li>
-</ol>
-<h2 id="💎-程式碼說明"><a href="#💎-程式碼說明" class="headerlink" title="💎 程式碼說明"></a>💎 程式碼說明</h2><h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p>程式一開始引用了 node.js 中的 <code>http</code> 模組，並使用 createServer 方法來建立伺服器，模組的其他功能可以參考官方文件。</p>
-<blockquote>
-<p><a href="https://nodejs.org/dist/latest-v16.x/docs/api/http.html#httpcreateserveroptions-requestlistener">官方說明文件 - http</a></p>
-</blockquote>
-<h3 id="監聽連線請求"><a href="#監聽連線請求" class="headerlink" title="監聽連線請求"></a>監聽連線請求</h3><p>createServer 方法裡面傳入的函式像是 addEventListener 事件偵測，但監聽的<code>行為</code>是有沒有<code>連線請求</code>傳送到這台伺服器主機，這個監聽函式也可以使用變數獨立出來，增加一點可讀性，改寫後如下方程式碼：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="comment">// 監聽連線請求的函式</span></span><br><span class="line"><span class="keyword">const</span> requestListener = <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 建立伺服器的參數帶入儲存函式的變數</span></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(requestListener);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="request"><a href="#request" class="headerlink" title="request"></a>request</h3><p>監聽函式帶有兩個參數，<code>req</code> 是 request（請求）的簡寫，當我們在瀏覽器網址列輸入網址送出連線，就會對該網址對應的伺服器主機發出請求，請求資訊會包含瀏覽器版本、需要的資源、請求的方式…等資訊，在 node.js 中可以透過 req 變數來查看詳細資訊。</p>
-<ul>
-<li>觀察 req 的內容：<br>修改監聽函式 &gt; 儲存檔案 &gt; 重啟伺服器 &gt; 瀏覽本地網址 &gt; 在終端機查看 req 資訊<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> requestListener = <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 新增下面這段程式碼，來顯示請求的內容</span></span><br><span class="line">    <span class="built_in">console</span>.log(req);</span><br><span class="line"></span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
-<li>req 的常用屬性：<ul>
-<li><code>req.url</code>：取得請求的資源路徑。一個網站會有好幾個檔案，透過這個屬性就可以取得請求的路徑，如果請求的網址後面沒有任何路徑，就會得到根目錄（/)，通常會設置回應首頁頁面。</li>
-<li><code>req.method</code>：取得請求的方法。一般連線請求會使用 GET 方法，但是若有夾帶其他資訊時就會使用其他方法，各種方法可以參考 MDN 的說明。<blockquote>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Methods">MDN - HTTP 請求方法</a></p>
-</blockquote>
-</li>
-<li><code>req.on(&quot;data&quot;, ...)</code>：取得請求夾帶的資料。當連線使用 POST、PATCH…等方法時通常回夾帶資料給伺服器處理，就會需要使用這個方法來接收。</li>
-<li><code>req.on(&quot;end&quot;, ...)</code>：資料接收完成後執行動作。網路封包傳遞會把資料切成片段，不會每次都一次傳完，所以在 on(data) 的階段無法確認收到的資料已經完成，要用這個方法才能確保資料接收完，再執行對應的程式碼。</li>
-</ul>
-</li>
-</ul>
-<h3 id="response"><a href="#response" class="headerlink" title="response"></a>response</h3><ul>
-<li><code>res</code> 是 response（回應）的簡寫，伺服器收到請求後，就會把設定好的資訊傳回用戶端，在簡易的範例中只會回應 Hello 的文字，可以撰寫程式碼結合 req.url 和 req.method 判斷來回應不同的內容。</li>
-<li><code>res.writeHead(status, header)</code>：回傳的表頭資訊。就像 req 一樣，res 不會只傳送單純的資料，需要包含各種資訊，status code 是狀態碼，200 就是成功，而 header 會告訴對方提供了哪些連線方法，這也是開發實務上容易採坑的地方，詳細的資訊都可以在 MDN 的 HTTP 主題中查看。<blockquote>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP">MDN - HTTP</a></p>
-</blockquote>
-</li>
-<li><code>Content-Type</code>：檔案格式。瀏覽器會依據這個屬性來決定怎麼讀取接收到的資料，常見的有 JSON(application/json)、HTML(text/html)、純文字(text/plain)…等。</li>
-<li><code>res.end()</code>：程式運作不像人類會自主開始或停止，所以需要執行一段程式碼明確的告知『我傳完了』，否則用瀏覽器連網頁後頁籤上方會一直出現轉圈圈的圖示（表示持續等待回應中）。</li>
-</ul>
-<h3 id="listen-port"><a href="#listen-port" class="headerlink" title="listen(port)"></a>listen(port)</h3><ul>
-<li><code>listen(8000)</code>：使用的通訊埠。HTTP 協定預設使用 80 port，1-1023 是系統保留，所以在自訂 port 的時候通常都是 X000 起跳。<blockquote>
-<p><a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E8%A8%8A%E5%9F%A0">Wiki - Port</a></p>
-</blockquote>
-</li>
-<li><code>較安全的寫法</code>：寫好的網頁服務通常會放在各種雲端代管主機上，這些服務會由系統自動分配 port，如果程式碼寫死特定的 port，就無法跟雲端環境匹配，理所當然的就連不到，這時候可以利用環境變數 process.env.PORT 來取得執行環境的 port 號，就能動態調整讓服務正常運行，改寫如下：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> PORT = process.env.PORT || XXXX;</span><br><span class="line"><span class="comment">// ES6 寫法</span></span><br><span class="line"><span class="keyword">const</span> &#123; PORT = XXXX &#125; = process.env;</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="💎-探索-Req-與-Res-－-Postman"><a href="#💎-探索-Req-與-Res-－-Postman" class="headerlink" title="💎 探索 Req 與 Res － Postman"></a>💎 探索 Req 與 Res － Postman</h2><p>Postman 是一套網頁請求模擬工具，相較於用瀏覽器的 Dev 工具，Postman 專注於檢查 Request &amp; Response，也能模擬各種請求行為（GET、POST、PATCH…等），有助於 API 的測試和 debug。</p>
-<h3 id="安裝-Postman"><a href="#安裝-Postman" class="headerlink" title="安裝 Postman"></a>安裝 Postman</h3><p>前往 <a href="https://www.postman.com/downloads/">Postman 官方下載</a>，完成後執行安裝會跳轉至註冊會員網站，完成註冊後就可以使用了。</p>
-<h3 id="使用-Postman"><a href="#使用-Postman" class="headerlink" title="使用 Postman"></a>使用 Postman</h3><p>進入操作介面後，一些設定或導覽可以都先略過，接著照以下步驟操作：</p>
-<ol>
-<li>先點擊上方選單 <code>HOME</code></li>
-<li>點擊左側選單 <code>Workspaces</code></li>
-<li>選擇 <code>My Workspace</code></li>
-<li>點擊內容區塊上方分頁的 <code>+</code></li>
-<li>在網址列裡面輸入任一網址或是本地的網址（例如本篇文章練習的 <code>http://127.0.0.1:8000</code>）</li>
-<li>送出後就能查看詳細資訊了</li>
-</ol>
-<blockquote>
-<p>詳細教學也可以參考：<br><a href="https://ithelp.ithome.com.tw/articles/10201503">六角學院 － Postman 教學文章</a></p>
-</blockquote>
-<hr>
-<h2 id="💎-補充知識"><a href="#💎-補充知識" class="headerlink" title="💎 補充知識"></a>💎 補充知識</h2><h3 id="Global-全域物件"><a href="#Global-全域物件" class="headerlink" title="Global 全域物件"></a>Global 全域物件</h3><p>每個執行中的軟體或是瀏覽器頁面就像是一個星球，每個星球就像是一個全域物件，囊括了星球上的所有東西，在網頁環境中的全域物件是 <code>window</code>，而 Node.js 中是 <code>global</code>。</p>
-<p>雖然都是全域，除了名稱外也有些差異，假如在全域中引入兩個檔案（a.js 和 b.js），裡面都撰寫了 <code>var a = 1</code>，這時網頁的 <code>window.a</code> 會得到 <code>1</code> 的結果，Node.js 的 <code>global.a</code> 則是 <code>undefined</code>。</p>
-<p>Node.js 中的每個模組都會是獨立的，不會互相干擾也不會變成全域變數（除非直接操作 global 物件），網頁中的 window 則可能被 var 變數影響（ES6 後建議全部改用 let 才不會污染全域）。</p>
-<h3 id="檔案路徑"><a href="#檔案路徑" class="headerlink" title="檔案路徑"></a>檔案路徑</h3><p>一個專案中會有許多資料夾和檔案，要存取這些資源就需要知道檔案的路徑位置，才能順利找到檔案，Node.js 提供 <code>path</code> 模組，可以快速的分解、組合路徑。</p>
-<ul>
-<li>全域變數：<code>__dirname</code>、<code>__filename</code> 可以取得當前的目錄和檔案名稱。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 目錄名稱</span></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 檔案名稱</span></span><br><span class="line"><span class="built_in">console</span>.log(__filename);</span><br></pre></td></tr></table></figure></li>
-<li><code>Path</code>：Node.js 的 path 模組提供許多方法來處理路徑。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 範例路徑</span></span><br><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;/aa/bb/cc.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用 path 模組</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得目錄</span></span><br><span class="line">path.dirname(url); <span class="comment">// /aa/bb</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得檔名</span></span><br><span class="line">path.basename(url); <span class="comment">// cc.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得副檔名</span></span><br><span class="line">path.extname(url); <span class="comment">// js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 拆解路徑（回傳物件格式）</span></span><br><span class="line">path.parse(url); <span class="comment">// &#123; root: &#x27;/&#x27;, dir: &#x27;/aa/bb&#x27;, base: &#x27;cc.js&#x27;, ext: &#x27;.js&#x27;, name: &#x27;cc&#x27; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 組合路徑</span></span><br><span class="line">path.join(<span class="string">&#x27;/ii&#x27;</span>, <span class="string">&#x27;jj&#x27;</span>, <span class="string">&#x27;kk.js&#x27;</span>); <span class="comment">// /ii/jj/kk.js</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="https://nodejs.org/api/path.html">Node.js - path</a></p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇的筆記記錄了如何使用 Node.js 本地建立伺服器、透過 Postman 檢查 Request &amp; Response，接下來會記錄如何製作一個簡單的 todolist api。</p>
+<p>以上是我對這兩個型別的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝觀看！</p>
 ]]></content>
       <categories>
-        <category>Node.js</category>
+        <category>JavaScript - Basic</category>
       </categories>
       <tags>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 打造 todolist api 1 - 行前準備</title>
-    <url>/2022/02/24/nodejs2/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span>
-<p>上一篇文章完成了網頁伺服器服務的建置，這一次就更進一步的製作一個簡單的 todolist API，讓他有新增、修改、刪除的功能。</p>
-<hr>
-<h2 id="💎-流程、架構規劃"><a href="#💎-流程、架構規劃" class="headerlink" title="💎 流程、架構規劃"></a>💎 流程、架構規劃</h2><p>六角學院的課程中都會以流程圖的方式，這對於循序漸進完成程式功能會非常有幫助，在完成第一個版本後就可以嘗試重構和模組化，下面是我整理出的結構，每個人在撰寫程式碼時的構思不盡相同，可以自行規劃。</p>
-<ul>
-<li><code>工具</code><ul>
-<li>NPM/Yarn：套件管理工具</li>
-<li>UUID 套件：用來建立待辦事項的 id</li>
-<li>nodemon 套件：建立可即時更新的本地伺服器</li>
-<li>POSTMAN 軟體：模擬 http 請求，做功能測試</li>
-<li>Git/GitHub：版本控制</li>
-<li>代管平台（heroku）：api 服務上線</li>
-</ul>
-</li>
-<li><code>server</code>：啟用 api 的主要程式碼<ul>
-<li>http：使用 node.js 原生的模組</li>
-<li>headers：回傳 json 格式，開放跨域（CORS），提供 route 的五種請求方法</li>
-<li>port：要加入環境變數（process.env.PORT）</li>
-</ul>
-</li>
-<li><code>route</code>：依請求決定要執行的動作<ul>
-<li>OPTIONS：回應表頭就好</li>
-<li>GET：回應全部待辦</li>
-<li>POST：新增一筆待辦、回應全部待辦，需要檢查 body 內容</li>
-<li>DELETE<ul>
-<li>單筆：刪除一筆待辦、回應全部待辦，需要檢查 url 的 id</li>
-<li>全部：刪除全部待辦、回應全部待辦</li>
-</ul>
-</li>
-<li>PATCH：修改一筆待辦、回應全部待辦，需要檢查 url 的 id、body 內容</li>
-</ul>
-</li>
-<li><code>response</code>：回傳資料優化<ul>
-<li>success：回傳（無內容或待辦資料）</li>
-<li>false：回傳錯誤代碼及錯誤訊息</li>
-</ul>
-</li>
-<li><code>constants</code>：常用的常數<ul>
-<li>（視實際撰寫的重複使用狀況獨立出來）</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-建立專案環境"><a href="#💎-建立專案環境" class="headerlink" title="💎 建立專案環境"></a>💎 建立專案環境</h2><ol>
-<li>建立一個新專案資料夾。</li>
-<li>執行 <code>npm init</code> 指令來製作 package.json 檔案。</li>
-<li>執行 <code>npm i uuid</code> 來安裝 UUID 套件（後續待辦事項的編號使用）。<blockquote>
-<p><a href="https://zh.wikipedia.org/zh-tw/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">Wiki - UUID</a><br><a href="https://www.npmjs.com/package/uuid">npm - uuid</a></p>
-</blockquote>
-</li>
-<li>在專案資料夾中建立一個 server.js 檔案。</li>
-<li>先參考官方範例在 server.js 內撰寫啟用伺服器的程式碼：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p>段落測試：</p>
-<ol>
-<li>執行 <code>nodemon server.js</code> 測試是否有錯誤資訊（如果環境沒有 nodemon，請執行 <code>npm i -g nodemon</code> 全域安裝）</li>
-<li>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:8000</code>，確認是否正常顯示回傳的資料。</li>
-</ol>
-</blockquote>
-<hr>
-<h2 id="💎-伺服器設定調整"><a href="#💎-伺服器設定調整" class="headerlink" title="💎 伺服器設定調整"></a>💎 伺服器設定調整</h2><ol>
-<li><strong>修改預設 header</strong></li>
-</ol>
-<ul>
-<li>todolist api 設計成回傳 json 檔，所以要把 <code>Content-Type</code> 改成 <code>application/json</code>。</li>
-<li>加入開放哪些 <code>Headers</code> 和 <code>Methods</code> 的設定。</li>
-<li>加入允許所有來源的跨域連線請求（<code>CORS</code>）。<blockquote>
-<p>跨域請求可以參考 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">MDN - CORS</a></p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// header 獨立成一個常數</span></span><br><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>: <span class="string">&#x27;Content-Type, Authorization, Content-Length, X-Requested-With&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;PATCH, POST, GET, OPTIONS, DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改成使用變數</span></span><br><span class="line">    res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">    <span class="comment">// 修改成回傳 json 格式的內容</span></span><br><span class="line">    <span class="comment">// 此處需要注意，網路封包傳送的資料只有純字串，需要先轉換</span></span><br><span class="line">    res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">       <span class="string">&quot;test&quot;</span>: <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    &#125;));</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<ol start="2">
-<li><strong>修改預設 port</strong></li>
-</ol>
-<ul>
-<li>加入環境變數，佈署到代管服務才能正常運行。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; PORT = <span class="number">3000</span> &#125; = process.env;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>段落測試：<br>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:3000</code>，確認是否正常顯示回傳的資料。</p>
-</blockquote>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇文章已經完成基本的環境建立，並且整理出程式需要撰寫的內容，下一篇文章就可以依照這個結構逐步完成所有的功能。</p>
-]]></content>
-      <categories>
-        <category>Node.js</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -1163,6 +787,410 @@
       </tags>
   </entry>
   <entry>
+    <title>[JS] 深入了解型別與轉型</title>
+    <url>/2021/11/19/JScoercion/</url>
+    <content><![CDATA[<p><img data-src="/images/js-coercion.png"></p>
+<span id="more"></span> 
+<p>JavaScript 不論遇到什麼奇形怪狀的資料運算，都會盡可能讓程式執行下去，這麼貼心的設計也是兩面刃，可能在不知不覺中程式正常運作，也可能突然就報錯了卻毫無頭緒，馬上來認識 JavaScript 的型別系統與轉型吧！</p>
+<hr>
+<h2 id="💎-型別（type）"><a href="#💎-型別（type）" class="headerlink" title="💎 型別（type）"></a>💎 型別（type）</h2><ul>
+<li><p>JavaScript 的型別可以分為『原始型別』和『物件型別』兩類，差異在於：</p>
+<ul>
+<li>原始型別<code>沒有</code>屬性和方法可以使用</li>
+<li>物件型別<code>可以任意存取</code>屬性和方法</li>
+</ul>
+</li>
+<li><p><strong>原始型別（Primitive types）</strong></p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol (ES 6 新定義)</li>
+</ul>
+</li>
+<li><p><strong>物件型別（Object types）</strong></p>
+<ul>
+<li>原生物件（Native）<ul>
+<li>Object, Array, Function, Date, Math, RegExp</li>
+<li>原始型別包裹物件（Primitive Wrapper）：Number, String, Boolean</li>
+</ul>
+</li>
+<li>寄宿物件（Host）<ul>
+<li>window</li>
+<li>DOM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>型別檢查（typeof)：<br>除了 null 有原生的 bug 會得到 object 的結果（此 bug 不會修正），其他型別都可以使用 <code>typeof</code> 來檢查。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof &#x27;a&#x27;); // string</span><br><span class="line">console.log(typeof 1); // number</span><br><span class="line">console.log(typeof true); // boolean</span><br><span class="line">console.log(typeof null); // object &lt;== 這是語言本身的bug</span><br><span class="line">console.log(typeof undefined); // undefined</span><br><span class="line">console.log(typeof Symbol()) // symbol</span><br><span class="line">console.log(typeof &#123;&#125;); // object</span><br><span class="line">console.log(typeof []); // object</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-裝箱（boxing）和-拆箱（unboxing）"><a href="#💎-裝箱（boxing）和-拆箱（unboxing）" class="headerlink" title="💎 裝箱（boxing）和 拆箱（unboxing）"></a>💎 裝箱（boxing）和 拆箱（unboxing）</h2><ul>
+<li><p>前面提到原始型別是沒有屬性和方法可以使用的，但我們卻可以利用字串方法來修改原始型別的字串（如下方的程式碼），這是因為 JavaScript 有 裝箱（boxing）和 拆箱（unboxing）機制來處理這些操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;123.45&#x27;.split(&#x27;.&#x27;));</span><br><span class="line">// [&#x27;123&#x27;, &#x27;45&#x27;]</span><br></pre></td></tr></table></figure></li>
+<li><p>上個段落的物件型別中有一項 <code>原始型別包裹物件（Primitive Wrapper）</code>，使用這個方式來建立的字串（數字或布林值）會是物件的形式，並且有許多原生方法可以使用，JavaScript 便是利用這個物件型別來實作裝箱與拆箱。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &#x27;123&#x27;;</span><br><span class="line">let strObj = new String(&#x27;123&#x27;);</span><br><span class="line"></span><br><span class="line">console.log(typeof str); // string</span><br><span class="line">console.log(typeof strObj); // object</span><br></pre></td></tr></table></figure></li>
+<li><p>裝箱（boxing）：當 JS 執行方法發現資料是原始型別時，便會使用 <code>new</code> 把原始型別資料建立成物件型別的資料，就可以順利執行物件內的方法。</p>
+</li>
+<li><p>拆箱（unboxing）：當 JS 完成被裝箱的物件需要執行的方法後，就會把這個物件資料還原成原始型別的資料，這時會用到兩個重要的方法，這會在接下來介紹的『轉型』再次談到：</p>
+<ul>
+<li><code>valueOf()</code>：回傳 <code>Number</code> 原始型別。</li>
+<li><code>toString()</code>：回傳 <code>String</code> 原始型別。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="💎-強制轉型（coercion）"><a href="#💎-強制轉型（coercion）" class="headerlink" title="💎 強制轉型（coercion）"></a>💎 強制轉型（coercion）</h2><ul>
+<li>強制轉型分為兩種：<code>顯性轉型</code>（explicit coercion）、<code>隱性轉型</code>（implicit coercion）</li>
+</ul>
+<h3 id="🔸-顯性轉型（explicit-coercion）："><a href="#🔸-顯性轉型（explicit-coercion）：" class="headerlink" title="🔸 顯性轉型（explicit coercion）："></a>🔸 顯性轉型（explicit coercion）：</h3><ul>
+<li><p>顯性轉型指的是在程式碼中<code>直接撰寫</code>的型別轉換。</p>
+</li>
+<li><p><strong>轉數字</strong></p>
+<ul>
+<li><p><code>parseInt()</code>：</p>
+<ul>
+<li>轉整數。</li>
+<li>小數點以後無條件捨去。</li>
+<li>轉換方式：由左至右，遇到無法轉成數字的時候停止，回傳前面的數字。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseInt(&#x27;1.23&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;1.23a&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;a1.23&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>parseFloat()</code>：</p>
+<ul>
+<li>轉浮點數（包含小數點以後）。</li>
+<li>轉換方式與 parseInt() 相同。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseFloat(&#x27;1.23&#x27;)); // 1.23</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>Number()</code>：</p>
+<ul>
+<li>可以轉整數和浮點數。</li>
+<li>數字範圍在正負 2的53次方 -1 間。</li>
+<li>轉換方式：整筆字串都可以轉成數字才轉換，否則得到 NaN。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Number(&#x27;-1.23&#x27;)); // -1.23</span><br><span class="line">console.log(Number(&#x27;-1.23a&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>BigInt()</code>：</p>
+<ul>
+<li>轉整數</li>
+<li>範圍可以超過2的53次方（表示方式會在數字後面加上 <code>n</code>）</li>
+<li>轉換方式：非整數時直接報錯，不會得到 NaN。</li>
+<li>需注意瀏覽器支援度。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(BigInt(&quot;9007199254740991&quot;)); // 9007199254740991n</span><br><span class="line">console.log(typeof 1n); // bigint</span><br><span class="line">console.log(BigInt(&quot;900a&quot;)); // Cannot convert 900a to a BigInt</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>算數運算子</code>：</p>
+<ul>
+<li>前方加上<code>+</code>：可能會和 <code>++</code> 混淆。</li>
+<li>前方加上<code>-</code>：內容若是負數，會被轉成正數。</li>
+<li>後方加上<code>- 0</code>：較穩定寫法。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(+&#x27;-1&#x27;); // -1</span><br><span class="line">console.log(++&#x27;-1&#x27;); // Invalid left-hand side expression in prefix operation</span><br><span class="line">console.log(-&#x27;-1&#x27;); // 1</span><br><span class="line">console.log(&#x27;-1&#x27; - 0); // -1</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>轉字串</strong></p>
+<ul>
+<li><p><code>toString()</code>：不能轉換 null 和 undefined，可以設定進位制。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log((3).toString()); // 3</span><br><span class="line">console.log(undefined.toString()); // Cannot read properties of undefined</span><br><span class="line">console.log((3).toString(2)); // 11</span><br></pre></td></tr></table></figure></li>
+<li><p><code>String()</code>：可以轉換 null 和 undefined，不能設定進位制。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(String(3)); // 3</span><br><span class="line">console.log(String(undefined)); // undefined</span><br></pre></td></tr></table></figure></li>
+<li><p><code>算數運算子</code>：加上空字串 <code>+ &#39;&#39;</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof (3 + &#x27;&#x27;)); // string</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>轉布林值</strong></p>
+<ul>
+<li><p>布林值只有兩種值（true 或 false），轉型後會得到 true 的值稱為 truthy，得到 false 的則是 falsy，除了下列項目是 <code>falsy</code>，其他的都是 <code>truthy</code>：</p>
+<ul>
+<li><code>false</code></li>
+<li><code>0</code></li>
+<li><code>-0</code></li>
+<li><code>0n</code> (BigInt)</li>
+<li><code>“”</code> (空字串，包含 ``, ‘’)</li>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>NaN</code></li>
+<li><code>document.all</code> (正常情況下不會用到)</li>
+</ul>
+</li>
+<li><p>轉換方式：</p>
+<ul>
+<li><p><code>Boolean()</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Boolean([])); // true</span><br></pre></td></tr></table></figure></li>
+<li><p><code>邏輯運算子</code>：前方加上雙驚嘆號 <code>!!</code>，單驚嘆號 <code>!</code> 會是相反結果。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(!true); // false</span><br><span class="line">console.log(!!&#123;&#125;); // true</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="🔸-隱性轉型（implicit-coercion）"><a href="#🔸-隱性轉型（implicit-coercion）" class="headerlink" title="🔸 隱性轉型（implicit coercion）"></a>🔸 隱性轉型（implicit coercion）</h3><ul>
+<li><p>隱性轉型出現在使用運算子時，這在其他程式語言通常是不允許的（需要相同型別才可以運算），JavaScript 則會自動轉型讓程式繼續執行，也因為規則繁雜，容易疏忽出錯。</p>
+</li>
+<li><p>核心方法 <code>ToPrimitive</code><br>JavaScript 在執行運算時會使用 <code>ToPrimitive</code> 方法將運算元轉換成原始型別後就能繼續運算，<code>ToPrimitive</code> 帶有一個 <code>hint</code>(提示)，用來決定要轉成什麼型別，如果要了解詳細的運作順序可以參考 <strong><a href="https://zhuanlan.zhihu.com/p/29730094">深入理解Javascript中Object类型的转换</a></strong> 這篇文章，裡面引用了 ECMA 的規範詳細解說，非常值得一讀！</p>
+</li>
+<li><p><strong>原始型別</strong>的隱性轉型</p>
+<ul>
+<li><p><code>+</code> 算數運算子：加法運算中只要有一個值屬於字串型別，就會全部轉為 string，最高優先。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 有字串</span><br><span class="line">console.log(&#x27;&#x27; + 1 + null + true); // 1nulltrue</span><br><span class="line">// 無字串</span><br><span class="line">console.log(1 + null + true); // 2</span><br></pre></td></tr></table></figure></li>
+<li><p>其他算數運算子：<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code> 運算都會轉成 number。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;6&#x27; - undefined); // NaN</span><br><span class="line">console.log(9 * [9]); // 81</span><br><span class="line">console.log(&#x27;3&#x27; / &#123;&#125;); // NaN</span><br><span class="line">console.log(6 % true); // 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>物件型別</strong>的隱性轉型</p>
+<ul>
+<li><p><code>ｔoPrimitive</code> 執行物件型別的轉換時會使用到物件內的 <code>valueOf</code> 或 <code>toString</code> 方法來取得原始型別的回傳值，因為這是物件內的方法，我們可以透過覆蓋方法來改變回傳值：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 刻意改成 valueOf 回傳字串、toString 回傳數字</span><br><span class="line">let a = &#123;</span><br><span class="line">    valueOf: function() &#123;</span><br><span class="line">        return &#x27;1&#x27;;</span><br><span class="line">    &#125;,</span><br><span class="line">    toString: function() &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(a + 0); // &quot;10&quot;</span><br><span class="line">console.log(a.toString()); // 2</span><br></pre></td></tr></table></figure></li>
+<li><p><code>陣列</code>也是物件，ToPrimitive 會回傳陣列本身內容執行 <code>toString()</code> 方法後的字串。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 空陣列轉字串 &quot;&quot;，空物件轉字串 &quot;[object Object]&quot;</span><br><span class="line">console.log([] + &#123;&#125;); // &quot;[object Object]&quot;</span><br><span class="line"></span><br><span class="line">// 陣列轉字串 &quot;1,2,3&quot;，後方數字配合轉字串</span><br><span class="line">console.log([1,2,3] + 2 + 1); // &quot;1,2,321&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>&#123;&#125; + 任意值</code>：</p>
+<ol>
+<li><code>&#123;&#125;</code> 在運算元前方時會被視為<code>區塊語句</code>，而不是物件，所以實際執行的只有後面的 <code>+ x</code></li>
+<li><code>+ 任意值</code>是前一段落提到的<code>顯性轉型</code>轉數字的方法，所以後方的運算元轉為 number 型別。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 強制轉型</span><br><span class="line">console.log(+&#123;&#125;); // NaN</span><br><span class="line"></span><br><span class="line">// 看起來是物件加陣列，實際上是後方的陣列強制轉型為數字</span><br><span class="line">console.log(&#123;&#125; + []); // 0 </span><br><span class="line"></span><br><span class="line">// 上方程式實際執行時等同下面兩行：</span><br><span class="line">&#123;&#125;</span><br><span class="line">+[];</span><br><span class="line"></span><br><span class="line">// 宣告一個物件變數 x 來存放空物件，才能被當成物件來計算</span><br><span class="line">let x = &#123;&#125;;</span><br><span class="line">console.log(x + []); // &quot;[object Object]&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p><code>&#123;&#125; + &#123;&#125;</code>：這是一個特別狀況所以額外說明，不同的瀏覽器會有不同的執行結果：</p>
+<ol>
+<li>NaN - 第一個 {} 被視為區塊，</li>
+<li>“[object Object][object Object]” - 第一個 {} 被視為物件</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>邏輯運算</strong><br>邏輯運算中的運算元都會被轉為 boolean，差別在於其運算後回傳的結果。</p>
+<ul>
+<li><p>|| (or) 會回傳第一個結果為 true 的運算元，若無，則是最後一個。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(0 || false || null || undefined); // undefined</span><br><span class="line">console.log(0 || false || null || &#123;&#125; || undefined); // &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>&amp;&amp; (and) 若運算結果為 true，會回傳最後一個運算元，若運算結果為 false，回傳第一個結果為 false 的運算元。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(true &amp;&amp; &#123;&#125; &amp;&amp; -2 &amp;&amp; [&#x27;a&#x27;]); // [&#x27;a&#x27;]</span><br><span class="line">console.log(1 &amp;&amp; 0 &amp;&amp; true &amp; false); // 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>關於轉型的細節實在太多，族繁不及備載，一些極端的範例在實際撰寫時並不會用到，不求成為行走的 MDN，但求踩坑的時候能順利 debug 就好！</p>
+<blockquote>
+<p>參考文章<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/BigInt">MDN-BigInt</a><br><a href="https://medium.com/@sunnyhuang.sc/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98-javascript-%E4%BD%95%E8%AC%82%E5%BC%B7%E5%88%B6%E8%BD%89%E5%9E%8B-coercion-%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E4%BD%9C%E5%88%B0%E8%BD%89%E6%8F%9B%E5%9E%8B%E5%88%A5-d7e39e30083">sunnyhuang-何謂強制轉型（coercion）以及如何作到轉換型別</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString">MDN-Number.prototype.toString()</a><br><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/254123/">淺談JS中String()與.toString()的區別 - 程式前沿</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">MDN-Symbol.toPrimitive</a>。<br><a href="https://eddychang.me/js-object-plus-object">Eddy 思考與學習-JS中的 {} + {} 與 {} + [] 的結果是什麼？</a><br><a href="https://eddychang.me/js-object-plus-object"></a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Node.JS] 打造 todolist api 1 - 行前準備</title>
+    <url>/2022/02/24/nodejs2/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span>
+<p>上一篇文章完成了網頁伺服器服務的建置，這一次就更進一步的製作一個簡單的 todolist API，讓他有新增、修改、刪除的功能。</p>
+<hr>
+<h2 id="💎-流程、架構規劃"><a href="#💎-流程、架構規劃" class="headerlink" title="💎 流程、架構規劃"></a>💎 流程、架構規劃</h2><p>六角學院的課程中都會以流程圖的方式，這對於循序漸進完成程式功能會非常有幫助，在完成第一個版本後就可以嘗試重構和模組化，下面是我整理出的結構，每個人在撰寫程式碼時的構思不盡相同，可以自行規劃。</p>
+<ul>
+<li><code>工具</code><ul>
+<li>NPM/Yarn：套件管理工具</li>
+<li>UUID 套件：用來建立待辦事項的 id</li>
+<li>nodemon 套件：建立可即時更新的本地伺服器</li>
+<li>POSTMAN 軟體：模擬 http 請求，做功能測試</li>
+<li>Git/GitHub：版本控制</li>
+<li>代管平台（heroku）：api 服務上線</li>
+</ul>
+</li>
+<li><code>server</code>：啟用 api 的主要程式碼<ul>
+<li>http：使用 node.js 原生的模組</li>
+<li>headers：回傳 json 格式，開放跨域（CORS），提供 route 的五種請求方法</li>
+<li>port：要加入環境變數（process.env.PORT）</li>
+</ul>
+</li>
+<li><code>route</code>：依請求決定要執行的動作<ul>
+<li>OPTIONS：回應表頭就好</li>
+<li>GET：回應全部待辦</li>
+<li>POST：新增一筆待辦、回應全部待辦，需要檢查 body 內容</li>
+<li>DELETE<ul>
+<li>單筆：刪除一筆待辦、回應全部待辦，需要檢查 url 的 id</li>
+<li>全部：刪除全部待辦、回應全部待辦</li>
+</ul>
+</li>
+<li>PATCH：修改一筆待辦、回應全部待辦，需要檢查 url 的 id、body 內容</li>
+</ul>
+</li>
+<li><code>response</code>：回傳資料優化<ul>
+<li>success：回傳（無內容或待辦資料）</li>
+<li>false：回傳錯誤代碼及錯誤訊息</li>
+</ul>
+</li>
+<li><code>constants</code>：常用的常數<ul>
+<li>（視實際撰寫的重複使用狀況獨立出來）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="💎-建立專案環境"><a href="#💎-建立專案環境" class="headerlink" title="💎 建立專案環境"></a>💎 建立專案環境</h2><ol>
+<li>建立一個新專案資料夾。</li>
+<li>執行 <code>npm init</code> 指令來製作 package.json 檔案。</li>
+<li>執行 <code>npm i uuid</code> 來安裝 UUID 套件（後續待辦事項的編號使用）。<blockquote>
+<p><a href="https://zh.wikipedia.org/zh-tw/%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E8%AF%86%E5%88%AB%E7%A0%81">Wiki - UUID</a><br><a href="https://www.npmjs.com/package/uuid">npm - uuid</a></p>
+</blockquote>
+</li>
+<li>在專案資料夾中建立一個 server.js 檔案。</li>
+<li>先參考官方範例在 server.js 內撰寫啟用伺服器的程式碼：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>段落測試：</p>
+<ol>
+<li>執行 <code>nodemon server.js</code> 測試是否有錯誤資訊（如果環境沒有 nodemon，請執行 <code>npm i -g nodemon</code> 全域安裝）</li>
+<li>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:8000</code>，確認是否正常顯示回傳的資料。</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="💎-伺服器設定調整"><a href="#💎-伺服器設定調整" class="headerlink" title="💎 伺服器設定調整"></a>💎 伺服器設定調整</h2><ol>
+<li><strong>修改預設 header</strong></li>
+</ol>
+<ul>
+<li>todolist api 設計成回傳 json 檔，所以要把 <code>Content-Type</code> 改成 <code>application/json</code>。</li>
+<li>加入開放哪些 <code>Headers</code> 和 <code>Methods</code> 的設定。</li>
+<li>加入允許所有來源的跨域連線請求（<code>CORS</code>）。<blockquote>
+<p>跨域請求可以參考 <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">MDN - CORS</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// header 獨立成一個常數</span></span><br><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>: <span class="string">&#x27;Content-Type, Authorization, Content-Length, X-Requested-With&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;PATCH, POST, GET, OPTIONS, DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改成使用變數</span></span><br><span class="line">    res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">    <span class="comment">// 修改成回傳 json 格式的內容</span></span><br><span class="line">    <span class="comment">// 此處需要注意，網路封包傳送的資料只有純字串，需要先轉換</span></span><br><span class="line">    res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">       <span class="string">&quot;test&quot;</span>: <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    &#125;));</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li><strong>修改預設 port</strong></li>
+</ol>
+<ul>
+<li>加入環境變數，佈署到代管服務才能正常運行。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; PORT = <span class="number">3000</span> &#125; = process.env;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>段落測試：<br>開啟任一瀏覽器，連線本地網址 <code>http://127.0.0.1:3000</code>，確認是否正常顯示回傳的資料。</p>
+</blockquote>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇文章已經完成基本的環境建立，並且整理出程式需要撰寫的內容，下一篇文章就可以依照這個結構逐步完成所有的功能。</p>
+]]></content>
+      <categories>
+        <category>Node.js</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Node.JS] 建立伺服器、掌握基本知識</title>
+    <url>/2022/02/22/nodejs1/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span> 
+
+<p>這篇文章記錄了如何建立一個本地網頁服務，讓我們可以透過瀏覽器看到伺服器回傳的資料。</p>
+<hr>
+<h2 id="💎-基本技能-－-模組引用"><a href="#💎-基本技能-－-模組引用" class="headerlink" title="💎 基本技能 － 模組引用"></a>💎 基本技能 － 模組引用</h2><p>在 Node.js 中會使用 JavaScript 的模組方法來載入各種功能，這個段落會先介紹如何操作，如果已經熟悉可以跳過，進入下個段落。</p>
+<p>範例情境：</p>
+<ul>
+<li>主要檔案：a.js</li>
+<li>模組－寫法１：b.js</li>
+<li>模組－寫法２：c.js</li>
+</ul>
+<h3 id="a-js"><a href="#a-js" class="headerlink" title="a.js"></a>a.js</h3><ul>
+<li>使用 require 來引入其他資源<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自己的變數</span></span><br><span class="line"><span class="keyword">let</span> contentA = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 引用 b.js，如果被引用的檔案在相同目錄，路徑前方加上 ./ </span></span><br><span class="line"><span class="keyword">const</span> contentB = <span class="built_in">require</span>(<span class="string">&#x27;./b&#x27;</span>);</span><br><span class="line"><span class="comment">// 引用 c.js</span></span><br><span class="line"><span class="keyword">const</span> contentC = <span class="built_in">require</span>(<span class="string">&#x27;./c&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(contentA); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 變數存放了回傳的整個物件</span></span><br><span class="line"><span class="built_in">console</span>.log(contentB); <span class="comment">// &#123;...&#125;</span></span><br><span class="line"><span class="comment">// 可以使用物件方法取得裡面的值</span></span><br><span class="line"><span class="built_in">console</span>.log(contentB.title) <span class="comment">// B</span></span><br><span class="line"><span class="built_in">console</span>.log(contentB.getNum()) <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(contentC); <span class="comment">// &#123;...&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(contentC.title) <span class="comment">// C</span></span><br><span class="line"><span class="built_in">console</span>.log(contentC.getNum()) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="b-js"><a href="#b-js" class="headerlink" title="b.js"></a>b.js</h3><ul>
+<li>使用 module.exports 設定被引用時提供的資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 方法１－ 直接設定要輸出的資料，多個資料時通常用物件格式來存放</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">    <span class="attr">getNum</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="c-js"><a href="#c-js" class="headerlink" title="c.js"></a>c.js</h3><ul>
+<li>使用 exports.屬性名稱 設定被引用時提供的資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 方法２－ 新增屬性的方式逐一增加輸出的資料</span></span><br><span class="line"><span class="built_in">exports</span>.title = <span class="string">&#x27;C&#x27;</span>;</span><br><span class="line"><span class="built_in">exports</span>.getNum = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-創建本地伺服器-－-createServer"><a href="#💎-創建本地伺服器-－-createServer" class="headerlink" title="💎 創建本地伺服器 － createServer"></a>💎 創建本地伺服器 － createServer</h2><p>學會模組引用的操作後，就可以試著撰寫第一個 js 檔案，讓 Node.js 建立一個伺服器服務：<br><code>以下開發環境都使用 VS Code</code></p>
+<ol>
+<li><p><strong>建立伺服器 js 檔 （檔名自定)</strong><br>下面這段程式碼是 node.js 官方範例</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引用 http 模組</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="comment">// 建立一個本地伺服器，設定接收到請求後的回傳資料</span></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 使用 8000 port</span></span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>啟動伺服器</strong><br>開啟終端機（熱鍵為 Ctrl + <code>`</code>），使用 Node.js 執行撰寫好的檔案，如果沒有跳出錯誤訊息就表示本地伺服器成功運行了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">** 請先將路徑切換到 js 存放的位置，檔案名稱修改為自己設定的名稱 **</span><br><span class="line">node 檔案名稱.js</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>關閉伺服器</strong><br>伺服器執行的狀態下，在終端機視窗內按下 <code>Ctrl+C</code> 就可以終止。</p>
+</li>
+<li><p><strong>連線測試</strong><br>伺服器正常運作後可以開啟瀏覽器，輸入網址 <code>http://127.0.0.1:8000</code>，沒有問題的話就會顯示 <code>Hello</code>，這段網址中的 127.0.0.1 表示這部電腦的本地位置，冒號加上數字 8000 就可以指定使用前面步驟設定的 port 來連線。</p>
+</li>
+<li><p><strong>修改測試</strong><br>試著修改 Content-Type 或 res.write 的內容，讓網頁顯示不一樣的資訊。<br>每次修改儲存後都需要重起 node，可以透過 npm 安裝 <code>nodemon</code> 這個套件，就能在編輯檔案後自動重新載入伺服器。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">** 安裝指令（建議全域安裝）**</span><br><span class="line">npm i -g nodemon</span><br><span class="line"></span><br><span class="line">** 使用 nodemon 來執行 js 檔案 **</span><br><span class="line">nodemon app.js</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://www.npmjs.com/package/nodemon">npm - nodemon</a></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="💎-程式碼說明"><a href="#💎-程式碼說明" class="headerlink" title="💎 程式碼說明"></a>💎 程式碼說明</h2><h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p>程式一開始引用了 node.js 中的 <code>http</code> 模組，並使用 createServer 方法來建立伺服器，模組的其他功能可以參考官方文件。</p>
+<blockquote>
+<p><a href="https://nodejs.org/dist/latest-v16.x/docs/api/http.html#httpcreateserveroptions-requestlistener">官方說明文件 - http</a></p>
+</blockquote>
+<h3 id="監聽連線請求"><a href="#監聽連線請求" class="headerlink" title="監聽連線請求"></a>監聽連線請求</h3><p>createServer 方法裡面傳入的函式像是 addEventListener 事件偵測，但監聽的<code>行為</code>是有沒有<code>連線請求</code>傳送到這台伺服器主機，這個監聽函式也可以使用變數獨立出來，增加一點可讀性，改寫後如下方程式碼：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="comment">// 監聽連線請求的函式</span></span><br><span class="line"><span class="keyword">const</span> requestListener = <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 建立伺服器的參數帶入儲存函式的變數</span></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(requestListener);</span><br><span class="line">server.listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="request"><a href="#request" class="headerlink" title="request"></a>request</h3><p>監聽函式帶有兩個參數，<code>req</code> 是 request（請求）的簡寫，當我們在瀏覽器網址列輸入網址送出連線，就會對該網址對應的伺服器主機發出請求，請求資訊會包含瀏覽器版本、需要的資源、請求的方式…等資訊，在 node.js 中可以透過 req 變數來查看詳細資訊。</p>
+<ul>
+<li>觀察 req 的內容：<br>修改監聽函式 &gt; 儲存檔案 &gt; 重啟伺服器 &gt; 瀏覽本地網址 &gt; 在終端機查看 req 資訊<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> requestListener = <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 新增下面這段程式碼，來顯示請求的內容</span></span><br><span class="line">    <span class="built_in">console</span>.log(req);</span><br><span class="line"></span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    res.write(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>req 的常用屬性：<ul>
+<li><code>req.url</code>：取得請求的資源路徑。一個網站會有好幾個檔案，透過這個屬性就可以取得請求的路徑，如果請求的網址後面沒有任何路徑，就會得到根目錄（/)，通常會設置回應首頁頁面。</li>
+<li><code>req.method</code>：取得請求的方法。一般連線請求會使用 GET 方法，但是若有夾帶其他資訊時就會使用其他方法，各種方法可以參考 MDN 的說明。<blockquote>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Methods">MDN - HTTP 請求方法</a></p>
+</blockquote>
+</li>
+<li><code>req.on(&quot;data&quot;, ...)</code>：取得請求夾帶的資料。當連線使用 POST、PATCH…等方法時通常回夾帶資料給伺服器處理，就會需要使用這個方法來接收。</li>
+<li><code>req.on(&quot;end&quot;, ...)</code>：資料接收完成後執行動作。網路封包傳遞會把資料切成片段，不會每次都一次傳完，所以在 on(data) 的階段無法確認收到的資料已經完成，要用這個方法才能確保資料接收完，再執行對應的程式碼。</li>
+</ul>
+</li>
+</ul>
+<h3 id="response"><a href="#response" class="headerlink" title="response"></a>response</h3><ul>
+<li><code>res</code> 是 response（回應）的簡寫，伺服器收到請求後，就會把設定好的資訊傳回用戶端，在簡易的範例中只會回應 Hello 的文字，可以撰寫程式碼結合 req.url 和 req.method 判斷來回應不同的內容。</li>
+<li><code>res.writeHead(status, header)</code>：回傳的表頭資訊。就像 req 一樣，res 不會只傳送單純的資料，需要包含各種資訊，status code 是狀態碼，200 就是成功，而 header 會告訴對方提供了哪些連線方法，這也是開發實務上容易採坑的地方，詳細的資訊都可以在 MDN 的 HTTP 主題中查看。<blockquote>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP">MDN - HTTP</a></p>
+</blockquote>
+</li>
+<li><code>Content-Type</code>：檔案格式。瀏覽器會依據這個屬性來決定怎麼讀取接收到的資料，常見的有 JSON(application/json)、HTML(text/html)、純文字(text/plain)…等。</li>
+<li><code>res.end()</code>：程式運作不像人類會自主開始或停止，所以需要執行一段程式碼明確的告知『我傳完了』，否則用瀏覽器連網頁後頁籤上方會一直出現轉圈圈的圖示（表示持續等待回應中）。</li>
+</ul>
+<h3 id="listen-port"><a href="#listen-port" class="headerlink" title="listen(port)"></a>listen(port)</h3><ul>
+<li><code>listen(8000)</code>：使用的通訊埠。HTTP 協定預設使用 80 port，1-1023 是系統保留，所以在自訂 port 的時候通常都是 X000 起跳。<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E8%A8%8A%E5%9F%A0">Wiki - Port</a></p>
+</blockquote>
+</li>
+<li><code>較安全的寫法</code>：寫好的網頁服務通常會放在各種雲端代管主機上，這些服務會由系統自動分配 port，如果程式碼寫死特定的 port，就無法跟雲端環境匹配，理所當然的就連不到，這時候可以利用環境變數 process.env.PORT 來取得執行環境的 port 號，就能動態調整讓服務正常運行，改寫如下：<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> PORT = process.env.PORT || XXXX;</span><br><span class="line"><span class="comment">// ES6 寫法</span></span><br><span class="line"><span class="keyword">const</span> &#123; PORT = XXXX &#125; = process.env;</span><br><span class="line"></span><br><span class="line">server.listen(PORT);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-探索-Req-與-Res-－-Postman"><a href="#💎-探索-Req-與-Res-－-Postman" class="headerlink" title="💎 探索 Req 與 Res － Postman"></a>💎 探索 Req 與 Res － Postman</h2><p>Postman 是一套網頁請求模擬工具，相較於用瀏覽器的 Dev 工具，Postman 專注於檢查 Request &amp; Response，也能模擬各種請求行為（GET、POST、PATCH…等），有助於 API 的測試和 debug。</p>
+<h3 id="安裝-Postman"><a href="#安裝-Postman" class="headerlink" title="安裝 Postman"></a>安裝 Postman</h3><p>前往 <a href="https://www.postman.com/downloads/">Postman 官方下載</a>，完成後執行安裝會跳轉至註冊會員網站，完成註冊後就可以使用了。</p>
+<h3 id="使用-Postman"><a href="#使用-Postman" class="headerlink" title="使用 Postman"></a>使用 Postman</h3><p>進入操作介面後，一些設定或導覽可以都先略過，接著照以下步驟操作：</p>
+<ol>
+<li>先點擊上方選單 <code>HOME</code></li>
+<li>點擊左側選單 <code>Workspaces</code></li>
+<li>選擇 <code>My Workspace</code></li>
+<li>點擊內容區塊上方分頁的 <code>+</code></li>
+<li>在網址列裡面輸入任一網址或是本地的網址（例如本篇文章練習的 <code>http://127.0.0.1:8000</code>）</li>
+<li>送出後就能查看詳細資訊了</li>
+</ol>
+<blockquote>
+<p>詳細教學也可以參考：<br><a href="https://ithelp.ithome.com.tw/articles/10201503">六角學院 － Postman 教學文章</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-補充知識"><a href="#💎-補充知識" class="headerlink" title="💎 補充知識"></a>💎 補充知識</h2><h3 id="Global-全域物件"><a href="#Global-全域物件" class="headerlink" title="Global 全域物件"></a>Global 全域物件</h3><p>每個執行中的軟體或是瀏覽器頁面就像是一個星球，每個星球就像是一個全域物件，囊括了星球上的所有東西，在網頁環境中的全域物件是 <code>window</code>，而 Node.js 中是 <code>global</code>。</p>
+<p>雖然都是全域，除了名稱外也有些差異，假如在全域中引入兩個檔案（a.js 和 b.js），裡面都撰寫了 <code>var a = 1</code>，這時網頁的 <code>window.a</code> 會得到 <code>1</code> 的結果，Node.js 的 <code>global.a</code> 則是 <code>undefined</code>。</p>
+<p>Node.js 中的每個模組都會是獨立的，不會互相干擾也不會變成全域變數（除非直接操作 global 物件），網頁中的 window 則可能被 var 變數影響（ES6 後建議全部改用 let 才不會污染全域）。</p>
+<h3 id="檔案路徑"><a href="#檔案路徑" class="headerlink" title="檔案路徑"></a>檔案路徑</h3><p>一個專案中會有許多資料夾和檔案，要存取這些資源就需要知道檔案的路徑位置，才能順利找到檔案，Node.js 提供 <code>path</code> 模組，可以快速的分解、組合路徑。</p>
+<ul>
+<li>全域變數：<code>__dirname</code>、<code>__filename</code> 可以取得當前的目錄和檔案名稱。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 目錄名稱</span></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 檔案名稱</span></span><br><span class="line"><span class="built_in">console</span>.log(__filename);</span><br></pre></td></tr></table></figure></li>
+<li><code>Path</code>：Node.js 的 path 模組提供許多方法來處理路徑。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 範例路徑</span></span><br><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;/aa/bb/cc.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用 path 模組</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得目錄</span></span><br><span class="line">path.dirname(url); <span class="comment">// /aa/bb</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得檔名</span></span><br><span class="line">path.basename(url); <span class="comment">// cc.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得副檔名</span></span><br><span class="line">path.extname(url); <span class="comment">// js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 拆解路徑（回傳物件格式）</span></span><br><span class="line">path.parse(url); <span class="comment">// &#123; root: &#x27;/&#x27;, dir: &#x27;/aa/bb&#x27;, base: &#x27;cc.js&#x27;, ext: &#x27;.js&#x27;, name: &#x27;cc&#x27; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 組合路徑</span></span><br><span class="line">path.join(<span class="string">&#x27;/ii&#x27;</span>, <span class="string">&#x27;jj&#x27;</span>, <span class="string">&#x27;kk.js&#x27;</span>); <span class="comment">// /ii/jj/kk.js</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://nodejs.org/api/path.html">Node.js - path</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇的筆記記錄了如何使用 Node.js 本地建立伺服器、透過 Postman 檢查 Request &amp; Response，接下來會記錄如何製作一個簡單的 todolist api。</p>
+]]></content>
+      <categories>
+        <category>Node.js</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構</title>
     <url>/2022/03/02/nodejs3/</url>
     <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
@@ -1283,293 +1311,6 @@
       </categories>
       <tags>
         <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[JS] undefined 和 null 的差異</title>
-    <url>/2021/11/18/JSundefined/</url>
-    <content><![CDATA[<p><img data-src="/images/js-null.png"></p>
-<span id="more"></span> 
-<p>undefined 是 JavaScript 的特有物之一，新手入門時，常會對 undefined 和 null 這兩個型別產生疑問，以下逐步解說。</p>
-<hr>
-<h2 id="💎-null"><a href="#💎-null" class="headerlink" title="💎 null"></a>💎 null</h2><ul>
-<li><p><code>null</code> 表示一個空值（沒有值），是各種程式語言中常見的型別，如果有後端資料庫的相關經驗，在設計 SQL 資料表時，可以在非必要欄位設定『允許 null』，當資料建立起來的時候，這些沒填的欄位就會塞入 null 來表示空值。</p>
-</li>
-<li><p>JS 中的 <code>null</code> 是一種<code>原始型別</code>，可以賦予變數的值為 null 來表示他是<code>空值</code>，當看到 null 時，我們可以知道這是人為賦予的空值，不是系統自動產生的。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a = null; // 不要包引號，會變成字串</span><br><span class="line">console.log(a); // null</span><br></pre></td></tr></table></figure></li>
-<li><p>JS 裡的 null 還有一些特色：</p>
-<ul>
-<li>檢查型別（typeof）的設計失誤（因影響久遠，此錯誤不會修正），正確是 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof null); // object</span><br></pre></td></tr></table></figure></li>
-<li>null 雖然代表著空值，轉型成字串時會照字面上的英文轉。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(null + &#x27;&#x27;); // &#x27;null&#x27;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>參考資料： <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/null">MDN-null</a>、<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/typeof">MDN-typeof</a></p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="💎-undefined"><a href="#💎-undefined" class="headerlink" title="💎 undefined"></a>💎 undefined</h2><ul>
-<li>undefined 從字面上可以理解成『未定義』，表示這個變數並沒有被賦予任何的值，跟已經被賦予空值（null）代表著不一樣的資料狀態，比起 null，undefined 更容易跟 not defined 搞混：<ul>
-<li><code>undefined</code> 是變數<code>已被宣告</code>且<code>未賦值</code>，屬於<code>原始型別</code>之一。</li>
-<li><code>not defined</code> 是變數<code>未被宣告</code>，不屬於原始型別，是程式<code>執行時的錯誤訊息（runtime error）</code>。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let a;</span><br><span class="line"></span><br><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(typeof a); // undefined</span><br><span class="line">console.log(b); // ReferenceError: b is not defined</span><br><span class="line">console.log(typeof b); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-null-undefined"><a href="#💎-null-undefined" class="headerlink" title="💎 null == undefined ?"></a>💎 null == undefined ?</h2><ul>
-<li>看完前面的段落，可以知道 undefined 和 null 意義上是完全不同，接著來比較看看：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined == null); // true</span><br></pre></td></tr></table></figure>
-不是說好不一樣的嗎？<br>可能是轉型在作亂，改用嚴格比較（===）看看。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(undefined === null); // false</span><br></pre></td></tr></table></figure>
-果然是轉型搞的鬼，但是為什麼 undefined 和 null 轉型後會相等？下個段落繼續說明。</li>
-</ul>
-<hr>
-<h2 id="💎-truthy-amp-falsy"><a href="#💎-truthy-amp-falsy" class="headerlink" title="💎 truthy &amp; falsy"></a>💎 truthy &amp; falsy</h2><ul>
-<li><p>JavaScript 中的各種值都可以被轉換成布林值（Boolean），轉換後為 true 的值稱為 <code>truthy</code>，反之則稱為 <code>falsy</code>，除了以下所列的值屬於 falsy 值，其他都是 truthy 值。<br>（完整的圖表可以參考 <a href="https://dorey.github.io/JavaScript-Equality-Table/">JS Comparison Table</a>）</p>
-<ul>
-<li>false</li>
-<li>0</li>
-<li>-0</li>
-<li>0n (BigInt)</li>
-<li>“” (空字串，包含 <code>單引號</code>、<code>反引號</code>)</li>
-<li>null</li>
-<li>undefined</li>
-<li>NaN</li>
-<li>document.all (正常不會用到)</li>
-</ul>
-</li>
-<li><p>由上可知，<code>null</code>和<code>undefined</code>都是<code>falsy</code>值，在做一般相等的比較時，都會被轉成 false，所以得到的結果是 true。</p>
-</li>
-<li><p>truthy 和 falsy 的運用：檢查資料是否存在時可以運用轉成布林值的方法減少程式碼撰寫長度。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 原始寫法：</span><br><span class="line">if (arr[0] === undefined) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 轉型為布林值</span><br><span class="line">if (!arr[0]) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>參考資料： <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">MDN-Falsy</a>、<a href="https://dorey.github.io/JavaScript-Equality-Table/">dorey-JS Comparison Table</a></p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="💎-null-和-undefined-出現時機"><a href="#💎-null-和-undefined-出現時機" class="headerlink" title="💎 null 和 undefined 出現時機"></a>💎 null 和 undefined 出現時機</h2><p>除了未賦值的 undefined 和自己定義的 null 外，還有什麼時候會出現呢？</p>
-<ul>
-<li><code>null</code>：會出現在 BOM(Browser Object Model)中不存在的資料，例如：document.querySelector、localStorage、 sessionStorage…等，不存在時會得到 null。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">localStorage.getItem(&#x27;a&#x27;); // null</span><br><span class="line">sessionStorage.getItem(&#x27;a&#x27;); // null</span><br></pre></td></tr></table></figure></li>
-<li><code>undefined</code>：取用不存在 JS 程式碼中或是未賦值的資料會得到 undefined。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">let obj = &#123;&#125;;</span><br><span class="line">console.log(arr[1]); // undefined</span><br><span class="line">console.log(obj.a); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<p>以上是我對這兩個型別的一點認知，如有錯誤或是補充的知識點，也歡迎大家不吝指教，謝謝觀看！</p>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 打造 todolist api 4 - 部署上線</title>
-    <url>/2022/03/04/nodejs5/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span> 
-<p>寫了好幾篇，功能終於做完了，這篇來記錄如何把寫好的功能放到雲端上，讓這個 API 不再只是本地戳，真正的上線運行。</p>
-<hr>
-<h2 id="💎-需要工具"><a href="#💎-需要工具" class="headerlink" title="💎 需要工具"></a>💎 需要工具</h2><ul>
-<li>雲端平台：Heroku</li>
-<li>部署工具：Git</li>
-</ul>
-<hr>
-<h2 id="💎-Git"><a href="#💎-Git" class="headerlink" title="💎 Git"></a>💎 Git</h2><p>要把做好的專案部署到 Heroku 上，會需要用到 Git 來發佈，加入 git 版控只需要在 todolist 練習的資料夾下一個初始化的指令即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果還沒有 Git，可以到 <a href="https://git-scm.com/">Git 官方網站</a> 下載</p>
-</blockquote>
-<p>完成初始化後可以建立在專案資料夾建立 .gitignore 檔案（例外清單），並打開編輯，在裡面加入 node_modules，當上傳專案到 heroku 平台上時，平台會自動根據 package.json 裡面的 dependancies 來安裝套件，所以可以把模組的實體檔案加到例外，不用一起部署上線。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node_modules</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="💎-環境設定"><a href="#💎-環境設定" class="headerlink" title="💎 環境設定"></a>💎 環境設定</h2><p>在部署上線前，需要（）做一些調整，才能順利運行：</p>
-<ul>
-<li>package.json<ul>
-<li>“scripts” 內加入啟動伺服器的指令<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;node server.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
-<li>新增 “engines” 屬性來指定運行的 node.js 版本<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;engines&quot;: &#123;</span><br><span class="line">    &quot;node&quot;: &quot;16.x&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>確認 server.js 裡面的 PORT 設定有沒有使用 process.env.PORT 來獲取環境變數，沒有的話伺服器會無法連線。</li>
-<li>完成環境設定後記得用 Git 提交版本<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#x27;todolist v1(名稱自訂)&#x27;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="💎-Heroku-申請與安裝"><a href="#💎-Heroku-申請與安裝" class="headerlink" title="💎 Heroku 申請與安裝"></a>💎 Heroku 申請與安裝</h2><ol>
-<li>如果還沒有 Heroku 帳號，可以先到 <a href="https://www.heroku.com/">Heroku 官方網站</a> 註冊。</li>
-<li>註冊完成後回到開發環境（VS Code）。</li>
-<li>安裝 Heroku CLI（建議使用全域安裝）。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i -g heroku</span><br></pre></td></tr></table></figure>
-<code>安裝完會出現不少衝突警告，但可以先無視</code></li>
-<li>測試一下 Heroku CLI 能不能正常使用（下面是檢查版本資訊的指令）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku --version</span><br></pre></td></tr></table></figure></li>
-</ol>
-<hr>
-<h2 id="💎-Heroku-上線！"><a href="#💎-Heroku-上線！" class="headerlink" title="💎 Heroku 上線！"></a>💎 Heroku 上線！</h2><ol>
-<li><p>先回到 VScode，並且進入 todolist 專案資料夾，在終端機執行登入 heroku 的指令，送出後按任意按鍵會跳轉到登入的網頁，接著再網頁登入成功後，終端機也會跳出登入成功訊息。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure></li>
-<li><p>執行建立伺服器指令，執行後系統會產生一組專案名稱，可以複製名稱最後的幾個數字，在網頁介面的搜尋列找到這個專案。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku create</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>建立伺服器成功後，同時也會把這個遠端專案加到本地中，可以用指令 <code>git remote</code> 檢查，會發現多了一組 <code>heroku</code>。</p>
-</blockquote>
-</li>
-<li><p>發佈專案！運用 git push 把心血結晶上傳吧！<br>（指令最後的本地分支名稱視版本有所不同，需要自行調整）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push heroku main/master</span><br></pre></td></tr></table></figure></li>
-<li><p>如果上傳部署成功，就可以執行指令來啟用伺服器。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku open</span><br></pre></td></tr></table></figure></li>
-</ol>
-<hr>
-<h2 id="💎-線上功能測試"><a href="#💎-線上功能測試" class="headerlink" title="💎 線上功能測試"></a>💎 線上功能測試</h2><p>把所有的可能性從頭到尾測一遍。<br><strong>測試網址</strong>：</p>
-<ul>
-<li><code>http://(heroku給的網域名稱)/todo</code></li>
-<li><code>http://(heroku給的網域名稱)/todo/</code></li>
-<li><code>http://(heroku給的網域名稱)/todo/(任一筆id)</code></li>
-<li><code>http://(heroku給的網域名稱)/(亂打)</code></li>
-</ul>
-<p><strong>測試方法</strong>：</p>
-<ul>
-<li>OPTIONS</li>
-<li>GET</li>
-<li>POST</li>
-<li>PATCH</li>
-<li>DELETE</li>
-<li>其他 POSTMAN 上有的方法都可以試試</li>
-</ul>
-<p><strong>測試資料</strong>： </p>
-<ul>
-<li><code>&#123;&quot;title&quot;: &quot;隨意&quot;&#125;</code></li>
-<li>各種奇怪資料</li>
-</ul>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>這系列文章是參考六角學院的課程撰寫的，這些基本的功能照著課程走，花了很大篇幅和時間才寫出來，寫了才發現每個環節都有詳細的說明，儘管實作的內容還只是皮毛，但是能穩紮穩打的進步，真的比到論壇複製貼上慢慢摸索前進還要有成就感。</p>
-<blockquote>
-<p>我的 <a href="https://github.com/stark920/todolistDemo">GitHub - todolistDemo</a> 也存放了照著這些文章寫出來的成果，如果操作有問題也可以參考上面的檔案。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Node.js</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 一次認識 NVM、Node.js、NPM、NPX</title>
-    <url>/2022/02/21/nodejsStart/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span>
-<p>對於前端新手來說 Node.js 做為後端工具感覺已經很遙遠了，打電動只知道 NPC，各種 N 什麼的到底是啥玩意兒？這次就來一次認識清楚！</p>
-<hr>
-<h2 id="💎-Node-js"><a href="#💎-Node-js" class="headerlink" title="💎 Node.js"></a>💎 Node.js</h2><p>JavaScript 過去都只在前端上（瀏覽器）應用，直到 2009 年 Node.js 問世後才逐漸讓 JavaScript 跨足到後端（伺服器），讓後端工程師除了 Apache 或 IIS 外有了新的選擇。</p>
-<h3 id="V8"><a href="#V8" class="headerlink" title="V8"></a>V8</h3><p>Node.js 採用了 Google 的 V8 引擎開發，V8 是為了 Chrome 瀏覽器打造的 JavaScript 引擎，使用 C++ 程式語言撰寫，V8 引擎可以將 JavaScipt 的原始碼編譯成機器語言來執行，就能像其他程式語言一樣在瀏覽器以外的環境使用。</p>
-<blockquote>
-<p>參考資料： <a href="https://https//zh.wikipedia.org/wiki/Node.js">Wiki - Node.js</a></p>
-</blockquote>
-<h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><ol>
-<li><p>前往官方網站下載 Node.js 安裝檔（建議選左邊的穩定版本），按『下一步』到完成即可。</p>
-<ul>
-<li>LTS：穩定支援版本。</li>
-<li>Current：最新版本，可能會有一些套件不支援的問題，新版本的網路相關資訊也較少，較舊版本的作法可能不適用。<blockquote>
-<p>官網連結： <a href="https://nodejs.org/en/">Node.js</a><br>各版本支援時間列表： <a href="https://nodejs.org/en/about/releases/">Long Term Support (LTS) schedule</a></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>完成安裝後可以開啟終端機（Windows -&gt; cmd, Mac -&gt; Terminal），鍵入指令 <code>node --version (node -v)</code> 來檢查版本資訊。</p>
-</li>
-</ol>
-<h3 id="簡單操作"><a href="#簡單操作" class="headerlink" title="簡單操作"></a>簡單操作</h3><p><code>以下指令都是在終端機內執行</code></p>
-<ol>
-<li>進入 node.js 執行環境<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node</span><br></pre></td></tr></table></figure></li>
-<li>進入環境後可以輸入 JavaScript 程式碼，就像瀏覽器的檢查工具一樣<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">let</span> a = 1</span><br><span class="line"><span class="comment">#undefined</span></span><br><span class="line">a</span><br><span class="line"><span class="comment">#1</span></span><br><span class="line">a++</span><br><span class="line"><span class="comment">#1</span></span><br><span class="line">a</span><br><span class="line"><span class="comment">#2</span></span><br><span class="line">console.log(<span class="string">&#x27;Hello, world!&#x27;</span>)</span><br><span class="line"><span class="comment">#Hello, world!</span></span><br></pre></td></tr></table></figure></li>
-<li>查看可用的指令<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.<span class="built_in">help</span></span><br></pre></td></tr></table></figure></li>
-<li>離開 node.js 環境（方法 1）<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.<span class="built_in">exit</span></span><br></pre></td></tr></table></figure></li>
-<li>離開 node.js 環境（方法 2）<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 按兩次 Ctrl+C</span></span><br><span class="line">Ctrl+C</span><br><span class="line">Ctrl+C</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="執行-JS-檔案"><a href="#執行-JS-檔案" class="headerlink" title="執行 JS 檔案"></a>執行 JS 檔案</h3><p><code>以下操作 不 在 Node.js 環境內</code><br>方法１：先用指令移動到 JS 檔案存放的目錄位置，再輸入指令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node 檔名</span><br></pre></td></tr></table></figure>
-<p>方法２：直接輸入完整路徑和檔名</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node 完整路徑/檔名</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="💎-NPM"><a href="#💎-NPM" class="headerlink" title="💎 NPM"></a>💎 NPM</h2><p>NPM（Node Package Manager）是 Node.js 內的套件管理工具，開發時為了節省時間都會使用非常多的外部套件，每個套件也會有各自的版本，就會需要有工具來管理這些套件。<br>NPM 是 Node.js 的工具，不需要另外下載安裝，完成 Node.js 的安裝後就可以在終端機輸入指令 <code>npm -v</code> 來檢查版本資訊。</p>
-<h3 id="起手勢"><a href="#起手勢" class="headerlink" title="起手勢"></a>起手勢</h3><ol>
-<li><p>新增一個專案資料夾</p>
-</li>
-<li><p>使用 VS Code 開啟專案資料夾</p>
-</li>
-<li><p>開啟終端機介面（組合熱鍵 <code>ctrl + 反引號</code>）</p>
-</li>
-<li><p>輸入初始化指令來建立專案檔</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure></li>
-<li><p>輸入初始化指令後，會請你依序輸入以下資訊，如果不知道要打什麼就按 Enter 跳過，最後再輸入 yes 就完成了。</p>
-<ul>
-<li>專案名稱</li>
-<li>版本</li>
-<li>描述</li>
-<li>進入點（Webpack文章會說明）</li>
-<li>測試指令</li>
-<li>Git 儲存庫位置</li>
-<li>關鍵字</li>
-<li>作者</li>
-<li>開源授權方式</li>
-</ul>
-</li>
-<li><p>初始化指令也可以加入參數，跳過環境設定，直接用預設值建立。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="安裝／移除套件"><a href="#安裝／移除套件" class="headerlink" title="安裝／移除套件"></a>安裝／移除套件</h3><ol>
-<li>安裝套件：<code>npm install 套件名稱</code> 或 <code>npm i 套件名稱</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以安裝 Bootstrap 為例</span></span><br><span class="line">npm install bootstrap</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以安裝 FontAwesome 為例</span></span><br><span class="line">npm i fontawesome</span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 如果出現權限不足錯誤，在指令前方加 sudo，並且提供本機使用者帳號密碼來執行：</span></span><br><span class="line">sudo npm install (套件名稱)</span><br></pre></td></tr></table></figure></li>
-<li>移除套件：<code>npm uninstall 套件名稱</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall (套件名稱)</span><br></pre></td></tr></table></figure></li>
-<li>檢視所有安裝的套件：<code>npm list</code></li>
-</ol>
-<h3 id="安裝模式"><a href="#安裝模式" class="headerlink" title="安裝模式"></a>安裝模式</h3><p>隨著專案變得龐大，使用的套件也會變多，這時候就需要針對套件的使用情境來區分『上線』、『開發』和『全域』使用，專案發佈時把不需要上線提供使用者使用的套件留在本地，才能減少資源與效能的浪費。</p>
-<ul>
-<li>上線使用<br>上線使用顧名思義是需要一起上線使用的（例如：Bootstrap）。<br>在較早的 NPM 教學文章會看到安裝時需要加上 <code>--save</code> 參數，在 v5 版本以後已經改為預設值，可以不用加上參數。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># npm v5 之前</span></span><br><span class="line">npm install --save (套件名稱)</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm v5 以後</span></span><br><span class="line">npm i (套件名稱)</span><br></pre></td></tr></table></figure></li>
-<li>開發使用<br>開發用的套件只需要存放在本地，部署到線上會造成空間浪費（例如：Webpack、Gulp）。<br>在 v5 版本以前需要在指令加上參數 <code>--save-dev</code>， v5 版本以後簡化成加上 <code>-D</code> 即可。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># npm v5 之前</span></span><br><span class="line">npm install --save-dev (套件名稱)</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm v5 以後</span></span><br><span class="line">npm i -D (套件名稱)</span><br></pre></td></tr></table></figure>
-開發版的套件會記錄在 package.json 中的 “devDependencies” 屬性，和上線版的 “dependencies” 不同，執行完指令後可以檢查是否成功裝對位置。</li>
-</ul>
-<p><img data-src="https://ithelp.ithome.com.tw/upload/images/20211005/20129729eJZJMY6b3s.png"></p>
-<ul>
-<li>全域使用<br>有些提供本地使用的工具在不同的專案都可以應用，不使用時也不會影響到其他專案（例如：Yarn、ESLint、TypeScript、各種 cli …），就可以安裝在全域，這樣每個專案不需要額外安裝也可以使用。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i -g (套件名稱)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="💎-NPM-檔案結構"><a href="#💎-NPM-檔案結構" class="headerlink" title="💎 NPM 檔案結構"></a>💎 NPM 檔案結構</h2><p>完成起手勢後，專案資料夾會多了一些檔案，其中最重要的就是 <code>package.json</code>：</p>
-<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><ul>
-<li>執行 <code>npm init</code> 指令後產生的檔案，是整個專案的縮影，裡面記錄專案名稱、指令、使用的套件種類和版本…等資訊。</li>
-<li>安裝新的套件後，package.json 會在 <code>dependencies</code> 這個項目中記錄套件名稱、版本資訊，通常版本的數字前面會有一個 <code>^</code> 符號，表示會優先使用最新的版本。<br><img data-src="https://ithelp.ithome.com.tw/upload/images/20211005/20129729IobskSFiu9.png"></li>
-<li>因為 package.json 記錄了專案所需要的所有套件資訊，在團隊合作或是下載別的專案時，分享者不需要將套件實體檔案上傳，只要提供 package.json ，讓使用者下載後執行指令 <code>npm install</code> 或 <code>npm i</code> 就會安裝需要的套件了。</li>
-</ul>
-<h3 id="package-lock-json"><a href="#package-lock-json" class="headerlink" title="package-lock.json"></a>package-lock.json</h3><ul>
-<li>這是 NPM 5 版本之後才有的檔案，安裝任一套件後就會產生，這個檔案同樣也記錄了套件的版本資訊，但是內容更詳細，這個檔案可以明確的記錄安裝時的版本資訊。</li>
-<li>團隊協作時，如果希望團隊的套件版本一致，就可以把這個 package-lock.json 也提供給其他成員，就會安裝指定的版本套件；反之，希望團隊成員都使用最新版本，就不需要提供這個檔案，讓 NPM 依據 package.json 安裝套件。</li>
-</ul>
-<h3 id="node-modules"><a href="#node-modules" class="headerlink" title="node_modules"></a>node_modules</h3><ul>
-<li>node_modules 資聊夾裡面存放著下載回來的套件實體檔案，即使不小心刪除了，也可以透過 <code>npm i</code> 指令下載回來。</li>
-<li>可以在這個資料夾內查看套件撰寫的內容，但不宜在此處編輯修改，會有被覆蓋、與其他團隊成員不同步的問題。</li>
-</ul>
-<hr>
-<h2 id="💎-NVM"><a href="#💎-NVM" class="headerlink" title="💎 NVM"></a>💎 NVM</h2><p>套件隨著版本的更新需要管理工具來管理，同樣的，Node.js 也有各種版本，隨著時光流逝，一些專案也成了古董，不只套件版本是舊的、Node.js 版本也是舊的，想要切換到不同版本的 Node.js 的話就需要使用 NVM，使用起來非常簡單，下面就簡短介紹。</p>
-<h3 id="安裝-1"><a href="#安裝-1" class="headerlink" title="安裝"></a>安裝</h3><p>NVM 的安裝有很棒的文章可以參考，可以參考下面的連結：</p>
-<blockquote>
-<p>中文：<a href="https://www.casper.tw/development/2022/01/10/install-nvm/">卡斯伯’s Blog - 安裝 nvm 環境，Node.js 開發者必學（Windows、Mac 均適用）</a><br>英文：<a href="https://github.com/nvm-sh/nvm#installing-and-updating">官方文件</a></p>
-</blockquote>
-<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安裝特定版本 Node.js，例如 12 版</span></span><br><span class="line">nvm install 12</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切換到特定版本 Node.js，例如 12 版</span></span><br><span class="line">nvm use 12</span><br><span class="line"></span><br><span class="line"><span class="comment"># 顯示有哪些 Node.js 版本可用</span></span><br><span class="line">nvm list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 設定預設版本，例如 16 版</span></span><br><span class="line">nvm <span class="built_in">alias</span> default 16</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="💎-NPX"><a href="#💎-NPX" class="headerlink" title="💎 NPX"></a>💎 NPX</h2><p>前面介紹的 npm 在使用上就只有<code>『要用』</code>（安裝）和<code>『不要用』</code>（移除）兩種選擇，沒有<code>『借我用一下就好』</code>這個選項，npx 補足了這個需求（npm v5.2.0 以後才有），可以在不實際安裝套件的情況下執行 CLI、GitHub gists 或 repo（實際上還有安裝的動作，但是放到一個暫存空間）。<br><code>以下指令轉自官方文件，可以安心使用</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># npx 套件名稱 (參數...)</span></span><br><span class="line">npx cowsay hello</span><br><span class="line"></span><br><span class="line"><span class="comment"># npx GitHub gist url</span></span><br><span class="line">npx https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定 Node.js 版本，用這個方式就不需要用 NVM 在本地裝多個版本</span></span><br><span class="line">npx node@12 -v</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>參考資料：<a href="https://nodejs.dev/learn/the-npx-nodejs-package-runner">官方文件</a>、<a href="https://www.freecodecamp.org/news/npm-vs-npx-whats-the-difference/">npm vs npx — What’s the Difference?</a></p>
-</blockquote>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>試著用一句話形容這些工具<br>Node.js - 建置 JavaScript 的後端環境。<br>NVM - 可以切換不同版本的 Node.js 來使用。<br>NPM - 下載和管理各種套件。<br>NPX - 暫存的方式使用套件，用完就刪。</p>
-]]></content>
-      <categories>
-        <category>Node.js</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-        <tag>NPM</tag>
       </tags>
   </entry>
   <entry>
@@ -1818,6 +1559,265 @@
       </categories>
       <tags>
         <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
+    <url>/2022/01/04/JSscope/</url>
+    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
+<span id="more"></span> 
+
+<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
+<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
+<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
+<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
+<p>接著就來看 JavaScript 如何去實現這些功能。</p>
+<hr>
+<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
+<p>  不同的宣告方式產生的全域變數也有差異：</p>
+<ul>
+<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
+<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
+<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
+<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
+<blockquote>
+<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
+</blockquote>
+<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
+<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
+<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
+<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
+<blockquote>
+<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
+</blockquote>
+<ul>
+<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
+<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
+<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
+</ul>
+<blockquote>
+<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Node.JS] 打造 todolist api 4 - 部署上線</title>
+    <url>/2022/03/04/nodejs5/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span> 
+<p>寫了好幾篇，功能終於做完了，這篇來記錄如何把寫好的功能放到雲端上，讓這個 API 不再只是本地戳，真正的上線運行。</p>
+<hr>
+<h2 id="💎-需要工具"><a href="#💎-需要工具" class="headerlink" title="💎 需要工具"></a>💎 需要工具</h2><ul>
+<li>雲端平台：Heroku</li>
+<li>部署工具：Git</li>
+</ul>
+<hr>
+<h2 id="💎-Git"><a href="#💎-Git" class="headerlink" title="💎 Git"></a>💎 Git</h2><p>要把做好的專案部署到 Heroku 上，會需要用到 Git 來發佈，加入 git 版控只需要在 todolist 練習的資料夾下一個初始化的指令即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果還沒有 Git，可以到 <a href="https://git-scm.com/">Git 官方網站</a> 下載</p>
+</blockquote>
+<p>完成初始化後可以建立在專案資料夾建立 .gitignore 檔案（例外清單），並打開編輯，在裡面加入 node_modules，當上傳專案到 heroku 平台上時，平台會自動根據 package.json 裡面的 dependancies 來安裝套件，所以可以把模組的實體檔案加到例外，不用一起部署上線。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node_modules</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💎-環境設定"><a href="#💎-環境設定" class="headerlink" title="💎 環境設定"></a>💎 環境設定</h2><p>在部署上線前，需要（）做一些調整，才能順利運行：</p>
+<ul>
+<li>package.json<ul>
+<li>“scripts” 內加入啟動伺服器的指令<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;node server.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li>新增 “engines” 屬性來指定運行的 node.js 版本<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;engines&quot;: &#123;</span><br><span class="line">    &quot;node&quot;: &quot;16.x&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>確認 server.js 裡面的 PORT 設定有沒有使用 process.env.PORT 來獲取環境變數，沒有的話伺服器會無法連線。</li>
+<li>完成環境設定後記得用 Git 提交版本<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#x27;todolist v1(名稱自訂)&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-Heroku-申請與安裝"><a href="#💎-Heroku-申請與安裝" class="headerlink" title="💎 Heroku 申請與安裝"></a>💎 Heroku 申請與安裝</h2><ol>
+<li>如果還沒有 Heroku 帳號，可以先到 <a href="https://www.heroku.com/">Heroku 官方網站</a> 註冊。</li>
+<li>註冊完成後回到開發環境（VS Code）。</li>
+<li>安裝 Heroku CLI（建議使用全域安裝）。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i -g heroku</span><br></pre></td></tr></table></figure>
+<code>安裝完會出現不少衝突警告，但可以先無視</code></li>
+<li>測試一下 Heroku CLI 能不能正常使用（下面是檢查版本資訊的指令）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku --version</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="💎-Heroku-上線！"><a href="#💎-Heroku-上線！" class="headerlink" title="💎 Heroku 上線！"></a>💎 Heroku 上線！</h2><ol>
+<li><p>先回到 VScode，並且進入 todolist 專案資料夾，在終端機執行登入 heroku 的指令，送出後按任意按鍵會跳轉到登入的網頁，接著再網頁登入成功後，終端機也會跳出登入成功訊息。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure></li>
+<li><p>執行建立伺服器指令，執行後系統會產生一組專案名稱，可以複製名稱最後的幾個數字，在網頁介面的搜尋列找到這個專案。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku create</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建立伺服器成功後，同時也會把這個遠端專案加到本地中，可以用指令 <code>git remote</code> 檢查，會發現多了一組 <code>heroku</code>。</p>
+</blockquote>
+</li>
+<li><p>發佈專案！運用 git push 把心血結晶上傳吧！<br>（指令最後的本地分支名稱視版本有所不同，需要自行調整）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push heroku main/master</span><br></pre></td></tr></table></figure></li>
+<li><p>如果上傳部署成功，就可以執行指令來啟用伺服器。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">heroku open</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="💎-線上功能測試"><a href="#💎-線上功能測試" class="headerlink" title="💎 線上功能測試"></a>💎 線上功能測試</h2><p>把所有的可能性從頭到尾測一遍。<br><strong>測試網址</strong>：</p>
+<ul>
+<li><code>http://(heroku給的網域名稱)/todo</code></li>
+<li><code>http://(heroku給的網域名稱)/todo/</code></li>
+<li><code>http://(heroku給的網域名稱)/todo/(任一筆id)</code></li>
+<li><code>http://(heroku給的網域名稱)/(亂打)</code></li>
+</ul>
+<p><strong>測試方法</strong>：</p>
+<ul>
+<li>OPTIONS</li>
+<li>GET</li>
+<li>POST</li>
+<li>PATCH</li>
+<li>DELETE</li>
+<li>其他 POSTMAN 上有的方法都可以試試</li>
+</ul>
+<p><strong>測試資料</strong>： </p>
+<ul>
+<li><code>&#123;&quot;title&quot;: &quot;隨意&quot;&#125;</code></li>
+<li>各種奇怪資料</li>
+</ul>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>這系列文章是參考六角學院的課程撰寫的，這些基本的功能照著課程走，花了很大篇幅和時間才寫出來，寫了才發現每個環節都有詳細的說明，儘管實作的內容還只是皮毛，但是能穩紮穩打的進步，真的比到論壇複製貼上慢慢摸索前進還要有成就感。</p>
+<blockquote>
+<p>我的 <a href="https://github.com/stark920/todolistDemo">GitHub - todolistDemo</a> 也存放了照著這些文章寫出來的成果，如果操作有問題也可以參考上面的檔案。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Node.js</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Node.JS] 一次認識 NVM、Node.js、NPM、NPX</title>
+    <url>/2022/02/21/nodejsStart/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span>
+<p>對於前端新手來說 Node.js 做為後端工具感覺已經很遙遠了，打電動只知道 NPC，各種 N 什麼的到底是啥玩意兒？這次就來一次認識清楚！</p>
+<hr>
+<h2 id="💎-Node-js"><a href="#💎-Node-js" class="headerlink" title="💎 Node.js"></a>💎 Node.js</h2><p>JavaScript 過去都只在前端上（瀏覽器）應用，直到 2009 年 Node.js 問世後才逐漸讓 JavaScript 跨足到後端（伺服器），讓後端工程師除了 Apache 或 IIS 外有了新的選擇。</p>
+<h3 id="V8"><a href="#V8" class="headerlink" title="V8"></a>V8</h3><p>Node.js 採用了 Google 的 V8 引擎開發，V8 是為了 Chrome 瀏覽器打造的 JavaScript 引擎，使用 C++ 程式語言撰寫，V8 引擎可以將 JavaScipt 的原始碼編譯成機器語言來執行，就能像其他程式語言一樣在瀏覽器以外的環境使用。</p>
+<blockquote>
+<p>參考資料： <a href="https://https//zh.wikipedia.org/wiki/Node.js">Wiki - Node.js</a></p>
+</blockquote>
+<h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><ol>
+<li><p>前往官方網站下載 Node.js 安裝檔（建議選左邊的穩定版本），按『下一步』到完成即可。</p>
+<ul>
+<li>LTS：穩定支援版本。</li>
+<li>Current：最新版本，可能會有一些套件不支援的問題，新版本的網路相關資訊也較少，較舊版本的作法可能不適用。<blockquote>
+<p>官網連結： <a href="https://nodejs.org/en/">Node.js</a><br>各版本支援時間列表： <a href="https://nodejs.org/en/about/releases/">Long Term Support (LTS) schedule</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>完成安裝後可以開啟終端機（Windows -&gt; cmd, Mac -&gt; Terminal），鍵入指令 <code>node --version (node -v)</code> 來檢查版本資訊。</p>
+</li>
+</ol>
+<h3 id="簡單操作"><a href="#簡單操作" class="headerlink" title="簡單操作"></a>簡單操作</h3><p><code>以下指令都是在終端機內執行</code></p>
+<ol>
+<li>進入 node.js 執行環境<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node</span><br></pre></td></tr></table></figure></li>
+<li>進入環境後可以輸入 JavaScript 程式碼，就像瀏覽器的檢查工具一樣<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">let</span> a = 1</span><br><span class="line"><span class="comment">#undefined</span></span><br><span class="line">a</span><br><span class="line"><span class="comment">#1</span></span><br><span class="line">a++</span><br><span class="line"><span class="comment">#1</span></span><br><span class="line">a</span><br><span class="line"><span class="comment">#2</span></span><br><span class="line">console.log(<span class="string">&#x27;Hello, world!&#x27;</span>)</span><br><span class="line"><span class="comment">#Hello, world!</span></span><br></pre></td></tr></table></figure></li>
+<li>查看可用的指令<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.<span class="built_in">help</span></span><br></pre></td></tr></table></figure></li>
+<li>離開 node.js 環境（方法 1）<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.<span class="built_in">exit</span></span><br></pre></td></tr></table></figure></li>
+<li>離開 node.js 環境（方法 2）<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 按兩次 Ctrl+C</span></span><br><span class="line">Ctrl+C</span><br><span class="line">Ctrl+C</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="執行-JS-檔案"><a href="#執行-JS-檔案" class="headerlink" title="執行 JS 檔案"></a>執行 JS 檔案</h3><p><code>以下操作 不 在 Node.js 環境內</code><br>方法１：先用指令移動到 JS 檔案存放的目錄位置，再輸入指令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node 檔名</span><br></pre></td></tr></table></figure>
+<p>方法２：直接輸入完整路徑和檔名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node 完整路徑/檔名</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💎-NPM"><a href="#💎-NPM" class="headerlink" title="💎 NPM"></a>💎 NPM</h2><p>NPM（Node Package Manager）是 Node.js 內的套件管理工具，開發時為了節省時間都會使用非常多的外部套件，每個套件也會有各自的版本，就會需要有工具來管理這些套件。<br>NPM 是 Node.js 的工具，不需要另外下載安裝，完成 Node.js 的安裝後就可以在終端機輸入指令 <code>npm -v</code> 來檢查版本資訊。</p>
+<h3 id="起手勢"><a href="#起手勢" class="headerlink" title="起手勢"></a>起手勢</h3><ol>
+<li><p>新增一個專案資料夾</p>
+</li>
+<li><p>使用 VS Code 開啟專案資料夾</p>
+</li>
+<li><p>開啟終端機介面（組合熱鍵 <code>ctrl + 反引號</code>）</p>
+</li>
+<li><p>輸入初始化指令來建立專案檔</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure></li>
+<li><p>輸入初始化指令後，會請你依序輸入以下資訊，如果不知道要打什麼就按 Enter 跳過，最後再輸入 yes 就完成了。</p>
+<ul>
+<li>專案名稱</li>
+<li>版本</li>
+<li>描述</li>
+<li>進入點（Webpack文章會說明）</li>
+<li>測試指令</li>
+<li>Git 儲存庫位置</li>
+<li>關鍵字</li>
+<li>作者</li>
+<li>開源授權方式</li>
+</ul>
+</li>
+<li><p>初始化指令也可以加入參數，跳過環境設定，直接用預設值建立。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="安裝／移除套件"><a href="#安裝／移除套件" class="headerlink" title="安裝／移除套件"></a>安裝／移除套件</h3><ol>
+<li>安裝套件：<code>npm install 套件名稱</code> 或 <code>npm i 套件名稱</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以安裝 Bootstrap 為例</span></span><br><span class="line">npm install bootstrap</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以安裝 FontAwesome 為例</span></span><br><span class="line">npm i fontawesome</span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 如果出現權限不足錯誤，在指令前方加 sudo，並且提供本機使用者帳號密碼來執行：</span></span><br><span class="line">sudo npm install (套件名稱)</span><br></pre></td></tr></table></figure></li>
+<li>移除套件：<code>npm uninstall 套件名稱</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall (套件名稱)</span><br></pre></td></tr></table></figure></li>
+<li>檢視所有安裝的套件：<code>npm list</code></li>
+</ol>
+<h3 id="安裝模式"><a href="#安裝模式" class="headerlink" title="安裝模式"></a>安裝模式</h3><p>隨著專案變得龐大，使用的套件也會變多，這時候就需要針對套件的使用情境來區分『上線』、『開發』和『全域』使用，專案發佈時把不需要上線提供使用者使用的套件留在本地，才能減少資源與效能的浪費。</p>
+<ul>
+<li>上線使用<br>上線使用顧名思義是需要一起上線使用的（例如：Bootstrap）。<br>在較早的 NPM 教學文章會看到安裝時需要加上 <code>--save</code> 參數，在 v5 版本以後已經改為預設值，可以不用加上參數。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># npm v5 之前</span></span><br><span class="line">npm install --save (套件名稱)</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm v5 以後</span></span><br><span class="line">npm i (套件名稱)</span><br></pre></td></tr></table></figure></li>
+<li>開發使用<br>開發用的套件只需要存放在本地，部署到線上會造成空間浪費（例如：Webpack、Gulp）。<br>在 v5 版本以前需要在指令加上參數 <code>--save-dev</code>， v5 版本以後簡化成加上 <code>-D</code> 即可。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># npm v5 之前</span></span><br><span class="line">npm install --save-dev (套件名稱)</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm v5 以後</span></span><br><span class="line">npm i -D (套件名稱)</span><br></pre></td></tr></table></figure>
+開發版的套件會記錄在 package.json 中的 “devDependencies” 屬性，和上線版的 “dependencies” 不同，執行完指令後可以檢查是否成功裝對位置。</li>
+</ul>
+<p><img data-src="https://ithelp.ithome.com.tw/upload/images/20211005/20129729eJZJMY6b3s.png"></p>
+<ul>
+<li>全域使用<br>有些提供本地使用的工具在不同的專案都可以應用，不使用時也不會影響到其他專案（例如：Yarn、ESLint、TypeScript、各種 cli …），就可以安裝在全域，這樣每個專案不需要額外安裝也可以使用。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i -g (套件名稱)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-NPM-檔案結構"><a href="#💎-NPM-檔案結構" class="headerlink" title="💎 NPM 檔案結構"></a>💎 NPM 檔案結構</h2><p>完成起手勢後，專案資料夾會多了一些檔案，其中最重要的就是 <code>package.json</code>：</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><ul>
+<li>執行 <code>npm init</code> 指令後產生的檔案，是整個專案的縮影，裡面記錄專案名稱、指令、使用的套件種類和版本…等資訊。</li>
+<li>安裝新的套件後，package.json 會在 <code>dependencies</code> 這個項目中記錄套件名稱、版本資訊，通常版本的數字前面會有一個 <code>^</code> 符號，表示會優先使用最新的版本。<br><img data-src="https://ithelp.ithome.com.tw/upload/images/20211005/20129729IobskSFiu9.png"></li>
+<li>因為 package.json 記錄了專案所需要的所有套件資訊，在團隊合作或是下載別的專案時，分享者不需要將套件實體檔案上傳，只要提供 package.json ，讓使用者下載後執行指令 <code>npm install</code> 或 <code>npm i</code> 就會安裝需要的套件了。</li>
+</ul>
+<h3 id="package-lock-json"><a href="#package-lock-json" class="headerlink" title="package-lock.json"></a>package-lock.json</h3><ul>
+<li>這是 NPM 5 版本之後才有的檔案，安裝任一套件後就會產生，這個檔案同樣也記錄了套件的版本資訊，但是內容更詳細，這個檔案可以明確的記錄安裝時的版本資訊。</li>
+<li>團隊協作時，如果希望團隊的套件版本一致，就可以把這個 package-lock.json 也提供給其他成員，就會安裝指定的版本套件；反之，希望團隊成員都使用最新版本，就不需要提供這個檔案，讓 NPM 依據 package.json 安裝套件。</li>
+</ul>
+<h3 id="node-modules"><a href="#node-modules" class="headerlink" title="node_modules"></a>node_modules</h3><ul>
+<li>node_modules 資聊夾裡面存放著下載回來的套件實體檔案，即使不小心刪除了，也可以透過 <code>npm i</code> 指令下載回來。</li>
+<li>可以在這個資料夾內查看套件撰寫的內容，但不宜在此處編輯修改，會有被覆蓋、與其他團隊成員不同步的問題。</li>
+</ul>
+<hr>
+<h2 id="💎-NVM"><a href="#💎-NVM" class="headerlink" title="💎 NVM"></a>💎 NVM</h2><p>套件隨著版本的更新需要管理工具來管理，同樣的，Node.js 也有各種版本，隨著時光流逝，一些專案也成了古董，不只套件版本是舊的、Node.js 版本也是舊的，想要切換到不同版本的 Node.js 的話就需要使用 NVM，使用起來非常簡單，下面就簡短介紹。</p>
+<h3 id="安裝-1"><a href="#安裝-1" class="headerlink" title="安裝"></a>安裝</h3><p>NVM 的安裝有很棒的文章可以參考，可以參考下面的連結：</p>
+<blockquote>
+<p>中文：<a href="https://www.casper.tw/development/2022/01/10/install-nvm/">卡斯伯’s Blog - 安裝 nvm 環境，Node.js 開發者必學（Windows、Mac 均適用）</a><br>英文：<a href="https://github.com/nvm-sh/nvm#installing-and-updating">官方文件</a></p>
+</blockquote>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安裝特定版本 Node.js，例如 12 版</span></span><br><span class="line">nvm install 12</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切換到特定版本 Node.js，例如 12 版</span></span><br><span class="line">nvm use 12</span><br><span class="line"></span><br><span class="line"><span class="comment"># 顯示有哪些 Node.js 版本可用</span></span><br><span class="line">nvm list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 設定預設版本，例如 16 版</span></span><br><span class="line">nvm <span class="built_in">alias</span> default 16</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💎-NPX"><a href="#💎-NPX" class="headerlink" title="💎 NPX"></a>💎 NPX</h2><p>前面介紹的 npm 在使用上就只有<code>『要用』</code>（安裝）和<code>『不要用』</code>（移除）兩種選擇，沒有<code>『借我用一下就好』</code>這個選項，npx 補足了這個需求（npm v5.2.0 以後才有），可以在不實際安裝套件的情況下執行 CLI、GitHub gists 或 repo（實際上還有安裝的動作，但是放到一個暫存空間）。<br><code>以下指令轉自官方文件，可以安心使用</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># npx 套件名稱 (參數...)</span></span><br><span class="line">npx cowsay hello</span><br><span class="line"></span><br><span class="line"><span class="comment"># npx GitHub gist url</span></span><br><span class="line">npx https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定 Node.js 版本，用這個方式就不需要用 NVM 在本地裝多個版本</span></span><br><span class="line">npx node@12 -v</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>參考資料：<a href="https://nodejs.dev/learn/the-npx-nodejs-package-runner">官方文件</a>、<a href="https://www.freecodecamp.org/news/npm-vs-npx-whats-the-difference/">npm vs npx — What’s the Difference?</a></p>
+</blockquote>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>試著用一句話形容這些工具<br>Node.js - 建置 JavaScript 的後端環境。<br>NVM - 可以切換不同版本的 Node.js 來使用。<br>NPM - 下載和管理各種套件。<br>NPX - 暫存的方式使用套件，用完就刪。</p>
+]]></content>
+      <categories>
+        <category>Node.js</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+        <tag>NPM</tag>
       </tags>
   </entry>
 </search>
