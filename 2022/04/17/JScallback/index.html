@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop/the_javascript_runtime_environment_example.svg">
 <meta property="og:image" content="https://miro.medium.com/max/1400/1*zxx4iQAG4HilOIQqDKpxJw.jpeg">
 <meta property="article:published_time" content="2022-04-17T04:00:33.000Z">
-<meta property="article:modified_time" content="2022-04-17T16:46:28.408Z">
+<meta property="article:modified_time" content="2022-04-19T03:21:45.450Z">
 <meta property="article:author" content="Genos Huang">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -154,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%92%B0%EF%BC%88event-loop%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">事件循環（event loop）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B"><span class="nav-number">2.</span> <span class="nav-text">名詞解釋</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Callback-Function"><span class="nav-number">3.</span> <span class="nav-text">Callback Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%AD%E8%A8%88%E6%83%85%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text">設計情境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%9B%9E%E5%91%BC%E5%87%BD%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">同步回呼函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E5%90%8C%E6%AD%A5%E5%9B%9E%E5%91%BC%E5%87%BD%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">非同步回呼函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-number">7.</span> <span class="nav-text">結語</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%92%B0%EF%BC%88event-loop%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">事件循環（event loop）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B"><span class="nav-number">2.</span> <span class="nav-text">名詞解釋</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Callback-Function"><span class="nav-number">3.</span> <span class="nav-text">Callback Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setTimeout"><span class="nav-number">4.</span> <span class="nav-text">setTimeout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%AD%E8%A8%88%E6%83%85%E5%A2%83"><span class="nav-number">5.</span> <span class="nav-text">設計情境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%9B%9E%E5%91%BC%E5%87%BD%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">同步回呼函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E5%90%8C%E6%AD%A5%E5%9B%9E%E5%91%BC%E5%87%BD%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">非同步回呼函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-number">8.</span> <span class="nav-text">結語</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -295,7 +295,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2022-04-18 00:46:28" itemprop="dateModified" datetime="2022-04-18T00:46:28+08:00">2022-04-18</time>
+        <time title="修改時間：2022-04-19 11:21:45" itemprop="dateModified" datetime="2022-04-19T11:21:45+08:00">2022-04-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -337,19 +337,27 @@
 <p>我非常推薦先觀看下方影片來了解事件循環的運作，會比文字和圖片解釋更加容易理解：</p>
 <div class="video-container"><iframe src="https://www.youtube.com/embed/8aGhZQkoFbQ" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
 
+<blockquote>
+<p>影片講者的事件循環模擬器：<a target="_blank" rel="noopener" href="http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4=">連結</a></p>
+</blockquote>
 <hr>
 <h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><p>看完上面的影片，我們可以快速了解事件循環的流程，以下歸納幾個名詞代表的意思：</p>
 <ul>
-<li>Stack (Call Stack）：同步執行的程式片段，會以堆疊方式執行（先進後出）。</li>
-<li>Queue（Callback Queue）：非同步執行的程式片段會交給 Web APIs 處理，完成後進入佇列中等待執行（先進先出）。</li>
+<li>同步的 JavaScript（Synchronous）：瀏覽器執行多數的程式碼都是同步的，收到就立刻執行。</li>
+<li>非同步的 JavaScript（Asynchronous）：許多無法立即完成的程式會交由瀏覽器的 Web APIs 來處理，最常見的情況就是取得外部資料。</li>
 <li>Web APIs：瀏覽器中提供的應用（例如：抓 api 資料、等待幾秒…等）。</li>
+<li>Stack (Call Stack）：同步執行的程式片段，會以堆疊方式執行（先進後出）。</li>
+<li>Queue（Callback Queue / Task Queue）：非同步執行的程式片段會交給 Web APIs 處理，完成後進入佇列中等待執行（先進先出）。</li>
 </ul>
 <hr>
-<h2 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h2><p>回呼函式（Callback Function），不管是英文還是中文都讓人摸不著頭緒，從字面上來看和 Callback Queue 有幾分相似，但不表示這是一個非同步的函式。</p>
-<p>實際上他指的是<code>把函式作為參數</code>-<code>提供另一個函式使用</code>，用這種方式設計出來的函式可以是同步和非同步的，但通常都是用來處理非同步的程式。</p>
-<p>因為非同步程式完成的時間通常是無法控制的，Callback Queue 中是先完成先執行，這使的我們無法控制多個非同步程式執行的順序，回呼函式的設計就是要解決這個問題，<code>確保非同步函式能夠依序執行</code>。</p>
-<p>接著就來說明如何設計和應用 Callback Function。</p>
+<h2 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h2><p>回呼函式（Callback Function）指的是<code>把函式作為參數，提供另一個函式使用</code>，用這種方式設計出來的函式可以是同步和非同步的，但通常都是用來處理非同步的程式。</p>
+<p>非同步的 JavaScript 完成的時間通常是難以預測的，舉例來說，要取得一個外部資源，會因為網路速度、檔案大小讓完成時間都不盡相同，加上用來存放 Web APIs 處理完後的 Callback Queue 是先進先出，這使的我們無法控制多個非同步程式執行的順序，回呼函式的設計就是要解決這個問題，<code>確保非同步函式能夠依序執行</code>。</p>
 <hr>
+<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2><p>學習 JavaScript 時進入非同步的章節通常第一個學的就是 setTimeout，我們可以指定一段時間後再執行別的程式碼，在 <a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/met_win_settimeout.asp">W3schools</a> 可以看到 setTimeout 傳入參數的格式：</p>
+<p><code>setTimeout(function, milliseconds, param1, param2, ...)</code></p>
+<p><strong>第一個參數是函式</strong>、第二個是間隔的時間、第三個以後是可以選擇要額外傳入的參數。</p>
+<p>我在第一個參數特別加了粗體，因為這正好符合了「把函式作為參數，提供另一個函式使用」，也就是說這是一個 <code>Callback Function</code>。</p>
+<p>接下來的段落，會透過設計情境來說明如何設計和應用 Callback Function。</p>
 <h2 id="設計情境"><a href="#設計情境" class="headerlink" title="設計情境"></a>設計情境</h2><p>有點年紀的朋友們（？應該都聽過企鵝的笑話，每天的活動是「吃飯、睡覺、打東東」，以此為題設計一個每日工作的程式碼會像下面這樣：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  eat();</span><br><span class="line">  sleep();</span><br><span class="line">  hitDongDong();</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 今日完成事項：</span></span><br><span class="line"><span class="comment">// 吃飽了</span></span><br><span class="line"><span class="comment">// 睡飽了</span></span><br><span class="line"><span class="comment">// 打爽了</span></span><br></pre></td></tr></table></figure>
 
