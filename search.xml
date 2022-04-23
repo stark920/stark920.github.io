@@ -1,86 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>[心得] 六角學院 JS 工程師養成直播班 - 學習心得</title>
-    <url>/2021/12/21/EXPhexschoolJSlive/</url>
-    <content><![CDATA[<p><img data-src="/images/hexschool-livejs.png"></p>
-<span id="more"></span> 
-
-<p>過去參加過各種『ｏｏ電腦』的實體課程，也在各種平台買了很多線上課程，最近第一次參加了線上直播班課程，以下就來分享課程內容和學習心得。</p>
-<h2 id="💎-課程內容"><a href="#💎-課程內容" class="headerlink" title="💎 課程內容"></a>💎 課程內容</h2><ul>
-<li>課程名稱：JS 工程師養成直播班 - 2021秋季</li>
-<li>授課時間：每週直播一次約 2 小時，共 9 週</li>
-<li>授課內容：JavaScript 從零開始 -&gt; 串接 API 製作前、後台功能</li>
-<li>其他服務：<ul>
-<li>每日練習任務、每週主線任務，並有課程助教協助任務批改及建議</li>
-<li>週二加開主線任務講解直播</li>
-<li>週三、四不定期主題直播</li>
-<li>社群平台提供線上諮詢、履歷檢查…等，想問什麼就問什麼</li>
-</ul>
-</li>
-</ul>
-<h2 id="💎-課程比較"><a href="#💎-課程比較" class="headerlink" title="💎 課程比較"></a>💎 課程比較</h2><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">實體課程</th>
-<th align="center">線上課程</th>
-<th align="center">直播班</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">價格</td>
-<td align="center">高</td>
-<td align="center">低</td>
-<td align="center">中</td>
-</tr>
-<tr>
-<td align="center">課程編排</td>
-<td align="center">緊湊</td>
-<td align="center">考驗自制力</td>
-<td align="center">每週搭配練習循序漸進</td>
-</tr>
-<tr>
-<td align="center">課後服務</td>
-<td align="center">大概就完課證書？</td>
-<td align="center">透過課程平台與開課導師互動</td>
-<td align="center">有專屬社群和助教團可詢問</td>
-</tr>
-<tr>
-<td align="center">學員交流</td>
-<td align="center">很少</td>
-<td align="center">趨近０</td>
-<td align="center">校長、助教團 + 一堆同學互助</td>
-</tr>
-<tr>
-<td align="center">學習效率</td>
-<td align="center">需要天份，跟不上進度就GG</td>
-<td align="center">考驗自制力與學習能力</td>
-<td align="center">只要有網路就可以問到懂為止</td>
-</tr>
-</tbody></table>
-<h2 id="💎-學習心得"><a href="#💎-學習心得" class="headerlink" title="💎 學習心得"></a>💎 學習心得</h2><h3 id="個人背景"><a href="#個人背景" class="headerlink" title="個人背景"></a>個人背景</h3><p>我是剛退伍的職業軍人，過去負責維護單位機房、伺服器和網站…等等，有開發 ASP.NET 內部網站也自學撰寫 HTML、CSS、JS 一段時間，會選擇上這門課是過去一直都使用較舊的技術開發網站（沒有API、框架…等），想透過這堂課強化基礎能力，並了解前端工程師在實務上的工作。</p>
-<h3 id="課程心得"><a href="#課程心得" class="headerlink" title="課程心得"></a>課程心得</h3><p>六角學院的這堂直播課雖然課程規劃是從０開始，但是不得不佩服他們的專業，考量到上課的同學程度不同，安排了課後筆記、學員分組討論２個內容，雖然直播課的內容對我來說已經熟悉，但是這兩個內容讓我學到了不少。</p>
-<ul>
-<li><p>課後筆記：題目都是許多 JavaScript 需要釐清的基本觀念，撰寫筆記的過程需要閱讀大量相關文章，再歸納出自己的脈絡，嘗試寫成別人也能理解的文章，這個學習過程會比看一些 JS tricky 的影片更加有效。</p>
-</li>
-<li><p>學員分組討論：分組的同學中大家的程度不一樣，可以透過小組討論互相學習，也可以在檢視同學的問題時，充當偽助教試著去了解別人的程式碼並給予建議，如果有好的寫法也可以藉機學習新招式。</p>
-</li>
-</ul>
-<p>過去上的一些實體課程，通常到上完後也不會和同學有任何互動，即使有熱心的同學開群組，也只是分享一些教材，完課後也成了廢群，更不用說線上課程就只是自己看看影片，哪來的同學？</p>
-<p>六角學院有龐大的社群服務，雖然一開始真的有點摸不著頭緒（有舊的 udemy 課程、新的課程網站、Discord、Slack、Email信件、HackMD…），但是有把 Slack 當 FB、IG 在滑的校長、<del>被迫</del>輪班的助教群和大量的同學可以諮詢交流，這絕對是 CP 爆表的超值服務。</p>
-<p>除此之外，每週主線任務的提交平台，可以看到其他同學的作品，不用再擔心卡住時找不到 Code 可以參考，相同的程式從每個人手中寫出來都是不同的樣貌，除了學習該怎麼寫出功能，還可以學習如何寫出讓人容易看懂的程式碼。</p>
-<p>最後，要特別提的就是老師大力推廣的 Kata 挑戰，這是第一次遇到課程特別針對撰寫速度要求學生練習的，再結合社群分享，可以看到同學的各種騷操作，可以說速寫又是另一個世界了！</p>
-<p>如果看這篇文章的你，正打算轉職前端工程師，或是學習前端技能中卻找不到方向，都非常推薦來參加直播班，這不僅僅是一套學習課程，而是給你一個完整的學習環境。</p>
+    <title>[JS] 從 Event Loop 到 Callback function，一堆名詞講的是什麼？</title>
+    <url>/2022/04/17/JScallback/</url>
+    <content><![CDATA[<p><img data-src="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop/the_javascript_runtime_environment_example.svg"></p>
 <blockquote>
-<p>課程網站：<br><a href="https://www.hexschool.com/">六角學院</a></p>
+<p>圖片來源：<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop">MDN - 並行模型和事件循環</a></p>
+</blockquote>
+<span id="more"></span>
+
+<hr>
+<h2 id="事件循環（event-loop）"><a href="#事件循環（event-loop）" class="headerlink" title="事件循環（event loop）"></a>事件循環（event loop）</h2><p>JavaScript 是單執行緒的語言，一次只能做一件事，遇到需要花費大量時間的程式時，後面的程式就會全部卡住。</p>
+<p>舉例來說，去超商提款機領錢，前面的人換了無數張卡片，一陣操作十幾分鐘過去，但是超商就只有一台提款機，只能在後面慢慢等他用完。</p>
+<p>為了減少這種排隊窘境，瀏覽器執行時會讓順順跑的排一列、費時的移到另一列等待，順跑的一列出現空檔時，再把另一列排隊的項目抓回來執行。</p>
+<p>我非常推薦先觀看下方影片來了解事件循環的運作，會比文字和圖片解釋更加容易理解：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/8aGhZQkoFbQ" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<blockquote>
+<p>影片講者的事件循環模擬器：<a href="http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4=">連結</a></p>
+</blockquote>
+<hr>
+<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><p>看完上面的影片，我們可以快速了解事件循環的流程，以下歸納幾個名詞代表的意思：</p>
+<ul>
+<li>同步的 JavaScript（Synchronous）：瀏覽器執行多數的程式碼都是同步的，收到就立刻執行。</li>
+<li>非同步的 JavaScript（Asynchronous）：許多無法立即完成的程式會交由瀏覽器的 Web APIs 來處理，最常見的情況就是取得外部資料。</li>
+<li>Web APIs：瀏覽器中提供的應用（例如：抓 api 資料、等待幾秒…等）。</li>
+<li>Stack (Call Stack）：同步執行的程式片段，會以堆疊方式執行（先進後出）。</li>
+<li>Queue（Callback Queue / Task Queue）：非同步執行的程式片段會交給 Web APIs 處理，完成後進入佇列中等待執行（先進先出）。</li>
+</ul>
+<hr>
+<h2 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h2><p>經過 Web APIs 處理完的非同步程式會進入 Queue 等待，當 Stack 沒有執行中的程式時，就會抓取 Queue 中等待執行的程式回來執行，這個回頭做的動作就是 Callback (回呼)，所以非同步執行後回頭做的函式就是 Callback Function ? 意思大概到了，但不完全是。</p>
+<p>在 MDN 中說明回呼函式（Callback Function）指的是<code>把函式作為參數，提供另一個函式使用</code>，用這種方式設計出來的函式可以是同步和非同步的，但通常都是用來處理非同步的程式。</p>
+<p>非同步的完成時間通常是難以預測的，舉例來說，要取得一個外部資源，會因為網路速度、檔案大小讓完成時間都不相同，當有多個非同步程式執行，我們無法知道哪一個會先完成，回呼函式的設計就是要<code>確保函式執行的先後順序</code>。</p>
+<hr>
+<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2><p>學習 JavaScript 時進入非同步的章節通常第一個學的就是 setTimeout，可以指定一段時間後再執行別的程式碼，在 <a href="https://www.w3schools.com/jsref/met_win_settimeout.asp">W3schools</a> 可以看到 setTimeout 傳入參數的格式：</p>
+<p><code>setTimeout(function, milliseconds, param1, param2, ...)</code></p>
+<p><strong>第一個參數是函式</strong>、第二個是間隔的時間、第三個以後是可以選擇要額外傳入的參數。</p>
+<p>第一個參數正好符合了「把函式作為參數，提供另一個函式使用」，也就是說這是一個 <code>Callback Function</code>，而 setTimeout 的功能正式讓傳入的回呼函式在指定的時間後再執行。</p>
+<p>接下來的段落，會透過設計情境來說明如何設計和應用 Callback Function。</p>
+<hr>
+<h2 id="設計情境"><a href="#設計情境" class="headerlink" title="設計情境"></a>設計情境</h2><p>有點年紀的朋友們（？應該都聽過企鵝的笑話，每天的活動是「吃飯、睡覺、打東東」，以此為題設計一個每日工作的程式碼會像下面這樣：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 吃飯</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 睡覺</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打東東</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每日工作：裡面執行每個活動的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  eat();</span><br><span class="line">  sleep();</span><br><span class="line">  hitDongDong();</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*---輸出結果---*/</span></span><br><span class="line"><span class="comment">/*------------*/</span></span><br><span class="line"><span class="comment">// 今日完成事項：</span></span><br><span class="line"><span class="comment">// 吃飽了</span></span><br><span class="line"><span class="comment">// 睡飽了</span></span><br><span class="line"><span class="comment">// 打爽了</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="同步回呼函式"><a href="#同步回呼函式" class="headerlink" title="同步回呼函式"></a>同步回呼函式</h2><p>上面的函式設計上沒有彈性，不同的企鵝除了打東東之外也會做其他的事情，我們增加一個參數來接收要做的事情（函式），改寫後如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 除了「吃飯、睡覺、打東東」外可以自由設計各種活動函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moreActivity</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">...activities</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  activities.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 執行前先檢查是否為函式</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">&#x27;function&#x27;</span>) fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks(eat, sleep, hitDongDong, moreActivity);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*---輸出結果---*/</span></span><br><span class="line"><span class="comment">/*------------*/</span></span><br><span class="line"><span class="comment">// 今日完成事項：</span></span><br><span class="line"><span class="comment">// 吃飽了</span></span><br><span class="line"><span class="comment">// 睡飽了</span></span><br><span class="line"><span class="comment">// 打爽了</span></span><br><span class="line"><span class="comment">// ( 自行加入的各種活動....)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>上面的程式碼中，在 dailyWorks 這個主要函式中增加 activities 參數（參數名稱可以自定），用來接收要執行的函式。</p>
+</li>
+<li><p>運用其餘運算符（…）來接收更多的函式，就可以在執行 dailyWorks 函式時自由的替換或傳入更多的函式。</p>
+</li>
+<li><p>因為傳入的函式都是同步執行，是「同步回呼函式」，哪個先傳入就先執行，沒有非同步的順序問題。</p>
+</li>
+</ul>
+<hr>
+<h2 id="非同步回呼函式"><a href="#非同步回呼函式" class="headerlink" title="非同步回呼函式"></a>非同步回呼函式</h2><p>問題又來了，企鵝哪有那麼神，可以一瞬間做那麼多事情？接著就讓每件工作加入一點執行時間。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>), <span class="number">2000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">...activities</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  activities.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">&#x27;function&#x27;</span>) fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks(eat, sleep, hitDongDong);</span><br></pre></td></tr></table></figure>
+
+<p>完成修改後，請問上面這段程式碼的執行結果？</p>
+<ul>
+<li>(A) 印出「今日完成事項：」、2 秒後印出「吃飽了」、第 3 秒印出「睡飽了」、第 4 秒印出「打爽了」</li>
+<li>(B) 印出「今日完成事項：」、1 秒後同時印出「睡飽了」和「打爽了」、 第 2 秒印出「吃飽了」</li>
+</ul>
+<p>如果你的答案是 (A)，請試著把這段程式碼的執行流程用 stack、WebAPIs、queue 的方式畫出來。</p>
+<p>雖然我們把傳入的函式修改成「非同步回呼函式」，但是傳入的函式都屬於主要函式（dailyWorks）的回呼函式，彼此間沒有 callback 的關係，整個程式的執行順序是：</p>
+<ol>
+<li>主要函式的 <code>console.log(&#39;今日完成事項：&#39;)</code></li>
+<li>傳入的三個函式都進入 WebAPIs 執行，「睡飽了」和「打爽了」都在一秒後執行完，回到 queue，再被取回 stack 執行，而「吃飽了」在兩秒後才完成進入 queue，再被取回 stack 執行。</li>
+</ol>
+<p>如果要讓這些非同步函式能夠一個完成再執行下一個（one by one），可以再做以下修改：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dailyWorks(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  eat(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    sleep(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      hitDongDong(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 繼續延伸下去............</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>修改後的程式碼，讓每個活動函式都可以傳入 callback function，這樣就可以讓依照順序逐個執行。</p>
+<p>為了確保執行的順序，必須以巢狀的方式撰寫，當程式碼變得複雜時，傳說中的 Callback Hell（回呼地獄）就會誕生，雖然這不是電腦執行程式的問題，但是對於人類閱讀會有很大的障礙。</p>
+<p><img data-src="https://miro.medium.com/max/1400/1*zxx4iQAG4HilOIQqDKpxJw.jpeg"></p>
+<blockquote>
+<p>圖片來源：<a href="https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997">Async Flow: From callback hell to promise to Async-Await</a></p>
+</blockquote>
+<hr>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>Callback function 歷史悠久，這也表示 Callback hell 荼毒了很長一段時間，直到 ES6（2015）的 Promise 和 ES8（2017）的 async/await 才有較簡潔的撰寫方法，儘管學習新方法可以縮短許多時間，但是 Event loop 的流程和 Callback function 的撰寫方式都是重要的基本功，花點時間弄清楚對於撰寫非同步程式會非常有幫助。</p>
+<blockquote>
+<p>參考資料：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Callback_function">MDN - 回呼函式</a> 、 <a href="https://ithelp.ithome.com.tw/articles/10192739">Kuro - 重新認識 JavaScript: Day 18 Callback Function 與 IIFE</a></p>
 </blockquote>
 ]]></content>
       <categories>
-        <category>Course Experience</category>
+        <category>JavaScript - Basic</category>
       </categories>
       <tags>
-        <tag>Experience</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 深入了解型別與轉型</title>
+    <url>/2021/11/19/JScoercion/</url>
+    <content><![CDATA[<p><img data-src="/images/js-coercion.png"></p>
+<span id="more"></span> 
+<p>JavaScript 不論遇到什麼奇形怪狀的資料運算，都會盡可能讓程式執行下去，這麼貼心的設計也是兩面刃，可能在不知不覺中程式正常運作，也可能突然就報錯了卻毫無頭緒，馬上來認識 JavaScript 的型別系統與轉型吧！</p>
+<hr>
+<h2 id="💎-型別（type）"><a href="#💎-型別（type）" class="headerlink" title="💎 型別（type）"></a>💎 型別（type）</h2><ul>
+<li><p>JavaScript 的型別可以分為『原始型別』和『物件型別』兩類，差異在於：</p>
+<ul>
+<li>原始型別<code>沒有</code>屬性和方法可以使用</li>
+<li>物件型別<code>可以任意存取</code>屬性和方法</li>
+</ul>
+</li>
+<li><p><strong>原始型別（Primitive types）</strong></p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol (ES 6 新定義)</li>
+</ul>
+</li>
+<li><p><strong>物件型別（Object types）</strong></p>
+<ul>
+<li>原生物件（Native）<ul>
+<li>Object, Array, Function, Date, Math, RegExp</li>
+<li>原始型別包裹物件（Primitive Wrapper）：Number, String, Boolean</li>
+</ul>
+</li>
+<li>寄宿物件（Host）<ul>
+<li>window</li>
+<li>DOM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>型別檢查（typeof)：<br>除了 null 有原生的 bug 會得到 object 的結果（此 bug 不會修正），其他型別都可以使用 <code>typeof</code> 來檢查。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof &#x27;a&#x27;); // string</span><br><span class="line">console.log(typeof 1); // number</span><br><span class="line">console.log(typeof true); // boolean</span><br><span class="line">console.log(typeof null); // object &lt;== 這是語言本身的bug</span><br><span class="line">console.log(typeof undefined); // undefined</span><br><span class="line">console.log(typeof Symbol()) // symbol</span><br><span class="line">console.log(typeof &#123;&#125;); // object</span><br><span class="line">console.log(typeof []); // object</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="💎-裝箱（boxing）和-拆箱（unboxing）"><a href="#💎-裝箱（boxing）和-拆箱（unboxing）" class="headerlink" title="💎 裝箱（boxing）和 拆箱（unboxing）"></a>💎 裝箱（boxing）和 拆箱（unboxing）</h2><ul>
+<li><p>前面提到原始型別是沒有屬性和方法可以使用的，但我們卻可以利用字串方法來修改原始型別的字串（如下方的程式碼），這是因為 JavaScript 有 裝箱（boxing）和 拆箱（unboxing）機制來處理這些操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;123.45&#x27;.split(&#x27;.&#x27;));</span><br><span class="line">// [&#x27;123&#x27;, &#x27;45&#x27;]</span><br></pre></td></tr></table></figure></li>
+<li><p>上個段落的物件型別中有一項 <code>原始型別包裹物件（Primitive Wrapper）</code>，使用這個方式來建立的字串（數字或布林值）會是物件的形式，並且有許多原生方法可以使用，JavaScript 便是利用這個物件型別來實作裝箱與拆箱。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &#x27;123&#x27;;</span><br><span class="line">let strObj = new String(&#x27;123&#x27;);</span><br><span class="line"></span><br><span class="line">console.log(typeof str); // string</span><br><span class="line">console.log(typeof strObj); // object</span><br></pre></td></tr></table></figure></li>
+<li><p>裝箱（boxing）：當 JS 執行方法發現資料是原始型別時，便會使用 <code>new</code> 把原始型別資料建立成物件型別的資料，就可以順利執行物件內的方法。</p>
+</li>
+<li><p>拆箱（unboxing）：當 JS 完成被裝箱的物件需要執行的方法後，就會把這個物件資料還原成原始型別的資料，這時會用到兩個重要的方法，這會在接下來介紹的『轉型』再次談到：</p>
+<ul>
+<li><code>valueOf()</code>：回傳 <code>Number</code> 原始型別。</li>
+<li><code>toString()</code>：回傳 <code>String</code> 原始型別。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="💎-強制轉型（coercion）"><a href="#💎-強制轉型（coercion）" class="headerlink" title="💎 強制轉型（coercion）"></a>💎 強制轉型（coercion）</h2><ul>
+<li>強制轉型分為兩種：<code>顯性轉型</code>（explicit coercion）、<code>隱性轉型</code>（implicit coercion）</li>
+</ul>
+<h3 id="🔸-顯性轉型（explicit-coercion）："><a href="#🔸-顯性轉型（explicit-coercion）：" class="headerlink" title="🔸 顯性轉型（explicit coercion）："></a>🔸 顯性轉型（explicit coercion）：</h3><ul>
+<li><p>顯性轉型指的是在程式碼中<code>直接撰寫</code>的型別轉換。</p>
+</li>
+<li><p><strong>轉數字</strong></p>
+<ul>
+<li><p><code>parseInt()</code>：</p>
+<ul>
+<li>轉整數。</li>
+<li>小數點以後無條件捨去。</li>
+<li>轉換方式：由左至右，遇到無法轉成數字的時候停止，回傳前面的數字。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseInt(&#x27;1.23&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;1.23a&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;a1.23&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>parseFloat()</code>：</p>
+<ul>
+<li>轉浮點數（包含小數點以後）。</li>
+<li>轉換方式與 parseInt() 相同。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseFloat(&#x27;1.23&#x27;)); // 1.23</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>Number()</code>：</p>
+<ul>
+<li>可以轉整數和浮點數。</li>
+<li>數字範圍在正負 2的53次方 -1 間。</li>
+<li>轉換方式：整筆字串都可以轉成數字才轉換，否則得到 NaN。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Number(&#x27;-1.23&#x27;)); // -1.23</span><br><span class="line">console.log(Number(&#x27;-1.23a&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>BigInt()</code>：</p>
+<ul>
+<li>轉整數</li>
+<li>範圍可以超過2的53次方（表示方式會在數字後面加上 <code>n</code>）</li>
+<li>轉換方式：非整數時直接報錯，不會得到 NaN。</li>
+<li>需注意瀏覽器支援度。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(BigInt(&quot;9007199254740991&quot;)); // 9007199254740991n</span><br><span class="line">console.log(typeof 1n); // bigint</span><br><span class="line">console.log(BigInt(&quot;900a&quot;)); // Cannot convert 900a to a BigInt</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>算數運算子</code>：</p>
+<ul>
+<li>前方加上<code>+</code>：可能會和 <code>++</code> 混淆。</li>
+<li>前方加上<code>-</code>：內容若是負數，會被轉成正數。</li>
+<li>後方加上<code>- 0</code>：較穩定寫法。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(+&#x27;-1&#x27;); // -1</span><br><span class="line">console.log(++&#x27;-1&#x27;); // Invalid left-hand side expression in prefix operation</span><br><span class="line">console.log(-&#x27;-1&#x27;); // 1</span><br><span class="line">console.log(&#x27;-1&#x27; - 0); // -1</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>轉字串</strong></p>
+<ul>
+<li><p><code>toString()</code>：不能轉換 null 和 undefined，可以設定進位制。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log((3).toString()); // 3</span><br><span class="line">console.log(undefined.toString()); // Cannot read properties of undefined</span><br><span class="line">console.log((3).toString(2)); // 11</span><br></pre></td></tr></table></figure></li>
+<li><p><code>String()</code>：可以轉換 null 和 undefined，不能設定進位制。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(String(3)); // 3</span><br><span class="line">console.log(String(undefined)); // undefined</span><br></pre></td></tr></table></figure></li>
+<li><p><code>算數運算子</code>：加上空字串 <code>+ &#39;&#39;</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof (3 + &#x27;&#x27;)); // string</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>轉布林值</strong></p>
+<ul>
+<li><p>布林值只有兩種值（true 或 false），轉型後會得到 true 的值稱為 truthy，得到 false 的則是 falsy，除了下列項目是 <code>falsy</code>，其他的都是 <code>truthy</code>：</p>
+<ul>
+<li><code>false</code></li>
+<li><code>0</code></li>
+<li><code>-0</code></li>
+<li><code>0n</code> (BigInt)</li>
+<li><code>“”</code> (空字串，包含 ``, ‘’)</li>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>NaN</code></li>
+<li><code>document.all</code> (正常情況下不會用到)</li>
+</ul>
+</li>
+<li><p>轉換方式：</p>
+<ul>
+<li><p><code>Boolean()</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Boolean([])); // true</span><br></pre></td></tr></table></figure></li>
+<li><p><code>邏輯運算子</code>：前方加上雙驚嘆號 <code>!!</code>，單驚嘆號 <code>!</code> 會是相反結果。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(!true); // false</span><br><span class="line">console.log(!!&#123;&#125;); // true</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="🔸-隱性轉型（implicit-coercion）"><a href="#🔸-隱性轉型（implicit-coercion）" class="headerlink" title="🔸 隱性轉型（implicit coercion）"></a>🔸 隱性轉型（implicit coercion）</h3><ul>
+<li><p>隱性轉型出現在使用運算子時，這在其他程式語言通常是不允許的（需要相同型別才可以運算），JavaScript 則會自動轉型讓程式繼續執行，也因為規則繁雜，容易疏忽出錯。</p>
+</li>
+<li><p>核心方法 <code>ToPrimitive</code><br>JavaScript 在執行運算時會使用 <code>ToPrimitive</code> 方法將運算元轉換成原始型別後就能繼續運算，<code>ToPrimitive</code> 帶有一個 <code>hint</code>(提示)，用來決定要轉成什麼型別，如果要了解詳細的運作順序可以參考 <strong><a href="https://zhuanlan.zhihu.com/p/29730094">深入理解Javascript中Object类型的转换</a></strong> 這篇文章，裡面引用了 ECMA 的規範詳細解說，非常值得一讀！</p>
+</li>
+<li><p><strong>原始型別</strong>的隱性轉型</p>
+<ul>
+<li><p><code>+</code> 算數運算子：加法運算中只要有一個值屬於字串型別，就會全部轉為 string，最高優先。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 有字串</span><br><span class="line">console.log(&#x27;&#x27; + 1 + null + true); // 1nulltrue</span><br><span class="line">// 無字串</span><br><span class="line">console.log(1 + null + true); // 2</span><br></pre></td></tr></table></figure></li>
+<li><p>其他算數運算子：<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code> 運算都會轉成 number。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;6&#x27; - undefined); // NaN</span><br><span class="line">console.log(9 * [9]); // 81</span><br><span class="line">console.log(&#x27;3&#x27; / &#123;&#125;); // NaN</span><br><span class="line">console.log(6 % true); // 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>物件型別</strong>的隱性轉型</p>
+<ul>
+<li><p><code>ｔoPrimitive</code> 執行物件型別的轉換時會使用到物件內的 <code>valueOf</code> 或 <code>toString</code> 方法來取得原始型別的回傳值，因為這是物件內的方法，我們可以透過覆蓋方法來改變回傳值：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 刻意改成 valueOf 回傳字串、toString 回傳數字</span><br><span class="line">let a = &#123;</span><br><span class="line">    valueOf: function() &#123;</span><br><span class="line">        return &#x27;1&#x27;;</span><br><span class="line">    &#125;,</span><br><span class="line">    toString: function() &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(a + 0); // &quot;10&quot;</span><br><span class="line">console.log(a.toString()); // 2</span><br></pre></td></tr></table></figure></li>
+<li><p><code>陣列</code>也是物件，ToPrimitive 會回傳陣列本身內容執行 <code>toString()</code> 方法後的字串。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 空陣列轉字串 &quot;&quot;，空物件轉字串 &quot;[object Object]&quot;</span><br><span class="line">console.log([] + &#123;&#125;); // &quot;[object Object]&quot;</span><br><span class="line"></span><br><span class="line">// 陣列轉字串 &quot;1,2,3&quot;，後方數字配合轉字串</span><br><span class="line">console.log([1,2,3] + 2 + 1); // &quot;1,2,321&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>&#123;&#125; + 任意值</code>：</p>
+<ol>
+<li><code>&#123;&#125;</code> 在運算元前方時會被視為<code>區塊語句</code>，而不是物件，所以實際執行的只有後面的 <code>+ x</code></li>
+<li><code>+ 任意值</code>是前一段落提到的<code>顯性轉型</code>轉數字的方法，所以後方的運算元轉為 number 型別。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 強制轉型</span><br><span class="line">console.log(+&#123;&#125;); // NaN</span><br><span class="line"></span><br><span class="line">// 看起來是物件加陣列，實際上是後方的陣列強制轉型為數字</span><br><span class="line">console.log(&#123;&#125; + []); // 0 </span><br><span class="line"></span><br><span class="line">// 上方程式實際執行時等同下面兩行：</span><br><span class="line">&#123;&#125;</span><br><span class="line">+[];</span><br><span class="line"></span><br><span class="line">// 宣告一個物件變數 x 來存放空物件，才能被當成物件來計算</span><br><span class="line">let x = &#123;&#125;;</span><br><span class="line">console.log(x + []); // &quot;[object Object]&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p><code>&#123;&#125; + &#123;&#125;</code>：這是一個特別狀況所以額外說明，不同的瀏覽器會有不同的執行結果：</p>
+<ol>
+<li>NaN - 第一個 {} 被視為區塊，</li>
+<li>“[object Object][object Object]” - 第一個 {} 被視為物件</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>邏輯運算</strong><br>邏輯運算中的運算元都會被轉為 boolean，差別在於其運算後回傳的結果。</p>
+<ul>
+<li><p>|| (or) 會回傳第一個結果為 true 的運算元，若無，則是最後一個。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(0 || false || null || undefined); // undefined</span><br><span class="line">console.log(0 || false || null || &#123;&#125; || undefined); // &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>&amp;&amp; (and) 若運算結果為 true，會回傳最後一個運算元，若運算結果為 false，回傳第一個結果為 false 的運算元。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(true &amp;&amp; &#123;&#125; &amp;&amp; -2 &amp;&amp; [&#x27;a&#x27;]); // [&#x27;a&#x27;]</span><br><span class="line">console.log(1 &amp;&amp; 0 &amp;&amp; true &amp; false); // 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>關於轉型的細節實在太多，族繁不及備載，一些極端的範例在實際撰寫時並不會用到，不求成為行走的 MDN，但求踩坑的時候能順利 debug 就好！</p>
+<blockquote>
+<p>參考文章<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/BigInt">MDN-BigInt</a><br><a href="https://medium.com/@sunnyhuang.sc/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98-javascript-%E4%BD%95%E8%AC%82%E5%BC%B7%E5%88%B6%E8%BD%89%E5%9E%8B-coercion-%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E4%BD%9C%E5%88%B0%E8%BD%89%E6%8F%9B%E5%9E%8B%E5%88%A5-d7e39e30083">sunnyhuang-何謂強制轉型（coercion）以及如何作到轉換型別</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString">MDN-Number.prototype.toString()</a><br><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/254123/">淺談JS中String()與.toString()的區別 - 程式前沿</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">MDN-Symbol.toPrimitive</a>。<br><a href="https://eddychang.me/js-object-plus-object">Eddy 思考與學習-JS中的 {} + {} 與 {} + [] 的結果是什麼？</a><br><a href="https://eddychang.me/js-object-plus-object"></a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -159,112 +359,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 物件與 JSON 格式操作技巧</title>
-    <url>/2021/11/22/JSobject/</url>
-    <content><![CDATA[<p><img data-src="/images/js-json.png"></p>
-<span id="more"></span> 
-<p>物件操作和串接 API 是 JavaScript 在現代網頁開發中的精華，這篇就來介紹物件取值的基本方法和小技巧。</p>
-<h2 id="💎-物件（Object）"><a href="#💎-物件（Object）" class="headerlink" title="💎 物件（Object）"></a>💎 物件（Object）</h2><h3 id="🔸-基本結構，使用-來存放資料："><a href="#🔸-基本結構，使用-來存放資料：" class="headerlink" title="🔸 基本結構，使用{}來存放資料："></a>🔸 基本結構，使用<code>&#123;&#125;</code>來存放資料：</h3><p>(本篇文章不討論使用 create、new 和 prototype 的操作)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;&#125; // 空物件</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-內容結構是-key-value-pair-的格式："><a href="#🔸-內容結構是-key-value-pair-的格式：" class="headerlink" title="🔸 內容結構是 key/value pair 的格式："></a>🔸 內容結構是 key/value pair 的格式：</h3><ul>
-<li>前方的 key 在 JavaScript 中為物件的屬性（property）。</li>
-<li>後方的 value 可以是各種型別的值。<br>以下為一個物件範例，接下來的段落都使用這個物件來示範操作。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  a: function()&#123;return &#x27;a&#x27;&#125;,</span><br><span class="line">  b: null,</span><br><span class="line">  c: &#123;</span><br><span class="line">    d: [&#123;e: 2&#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  1: &#x27;bad&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="🔸-物件取值"><a href="#🔸-物件取值" class="headerlink" title="🔸 物件取值"></a>🔸 物件取值</h3></li>
-<li>方法１：<code>objectName.propertyName</code>，使用<code>.</code>加上屬性名稱來取值，如果是多層級的物件，就繼續往下使用<code>.</code>加屬性名稱，使用<code>.</code>時需要遵守變數名稱規範，不然會報錯。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.a); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj.a()); // &#x27;a&#x27;</span><br><span class="line">console.log(obj.c.d[0].e); // 2</span><br><span class="line">console.log(obj.1); // Uncaught SyntaxError: Unexpected number</span><br></pre></td></tr></table></figure></li>
-<li>方法２：<code>objectName[propertyName or 變數]</code><br>這種方法不受物件屬性名稱限制，並且可以帶入變數，但使用時須注意<code>[]</code>內若不是帶入變數，需要加上<code>&#39;&#39;（引號）</code>，否則找不到變數會報錯。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj[&#x27;a&#x27;]]); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj[a]); // ReferenceError: a is not defined</span><br><span class="line">console.log(obj[&#x27;c&#x27;].d[0][&#x27;e&#x27;]); // 2  (方式１、2混用)</span><br><span class="line">console.log(obj[&#x27;1&#x27;]); // &#x27;bad&#x27;</span><br><span class="line">let num = 1;</span><br><span class="line">console.log(obj[num]); // &#x27;bad&#x27;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="🔸-物件賦值"><a href="#🔸-物件賦值" class="headerlink" title="🔸 物件賦值"></a>🔸 物件賦值</h3><p>方法同取值，只要加上 <code>=</code> 就能賦值，也可以用新的屬性名稱來新增物件屬性；同樣也能用 <code>.</code> 和 <code>[]</code> 兩種方式操作。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">obj.a = 1; // 變更原有屬性 a 的值</span><br><span class="line">obj[&#x27;a&#x27;] = 2; // 變更原有屬性 a 的值</span><br><span class="line">obj.f = 0; // 原本沒有屬性 f ，新增屬性 f 且值為 0</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-物件取所有屬性"><a href="#🔸-物件取所有屬性" class="headerlink" title="🔸 物件取所有屬性"></a>🔸 物件取所有屬性</h3><p><code>Object.keys()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性名稱，且這個陣列會由小至大排序。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.keys(obj); // [&#x27;1&#x27;, &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-物件取所有屬性的值"><a href="#🔸-物件取所有屬性的值" class="headerlink" title="🔸 物件取所有屬性的值"></a>🔸 物件取所有屬性的值</h3><p><code>Object.values()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性值，且這個陣列會依照屬性名稱由小至大排序。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.values(obj); // [&#x27;bad&#x27;, ƒ, null, &#123;…&#125;]</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-物件轉陣列"><a href="#🔸-物件轉陣列" class="headerlink" title="🔸 物件轉陣列"></a>🔸 物件轉陣列</h3><p><code>Object.entries()</code> 方法會回傳一個陣列，並以二維陣列的方式列出該物件第一層（直屬於物件）的所有屬性和值。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.entries(obj); </span><br><span class="line">// [[&#x27;1&#x27;, &#x27;bad&#x27;],[&#x27;a&#x27;, ƒ], [&#x27;b&#x27;, null], [&#x27;c&#x27;, &#123;…&#125;]]</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-物件屬性檢查"><a href="#🔸-物件屬性檢查" class="headerlink" title="🔸 物件屬性檢查"></a>🔸 物件屬性檢查</h3><p>物件陣列的操作很常遇到，當物件資料不完整時，可能會造成執行中斷，這時候就需要先檢查物件的屬性是否存在：</p>
-<ul>
-<li><p>方法１：檢查該屬性是否為<code>undefined</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.x === undefined); // true</span><br></pre></td></tr></table></figure></li>
-<li><p>方法２：使用<code>hasOwnProperty()</code>方法檢查有沒有該屬性</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.hasOwnProperty(&#x27;x&#x27;)); // false</span><br></pre></td></tr></table></figure></li>
-<li><p>方法３：<strong>推薦</strong>使用<code>Optional chaining operator</code>，只要一個<code>?</code>就能判斷，並且繼續往下取值。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj?.x)); // undefined</span><br><span class="line">console.log(obj?.c?.d[0]?.e); // 2</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="💎-JSON（JavaScript-Object-Notation）"><a href="#💎-JSON（JavaScript-Object-Notation）" class="headerlink" title="💎 JSON（JavaScript Object Notation）"></a>💎 JSON（JavaScript Object Notation）</h2><p>JSON 是一種通用資料交換格式，許多程式語言都能夠解析並被廣泛使用，通常在串接 api 時都是以 JSON 格式為主，和 JavaScript 的 Object 同樣是 key/value pair 的格式，但是屬性名稱會用引號包起來，範例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;John&quot;,</span><br><span class="line">  &quot;sex&quot;: &quot;male&quot;,</span><br><span class="line">  &quot;age&quot;: 20</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔸-解析-JSON-格式資料"><a href="#🔸-解析-JSON-格式資料" class="headerlink" title="🔸 解析 JSON 格式資料"></a>🔸 解析 JSON 格式資料</h3><ul>
-<li><code>JSON 的型別是字串</code>，所以需要轉換成物件才能使用，JavaScript 中提供了<code>JSON.parse()</code>的方法來轉換成可以操作的物件。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let data = ...json file...</span><br><span class="line">console.log(JSON.parse(data)); Object&#123;...&#125;</span><br></pre></td></tr></table></figure></li>
-<li>過去實作 ajax 功能時使用的 XMLHttpRequest 取得的 json 資料都需要經過轉換才能使用，而現在常用的 <code>Fetch</code>、<code>Axios</code> 已經包裝成物件格式，<code>不需要再轉換</code>。</li>
-<li>JavaScript 也提供了<code>JSON.stringify()</code>的方法，可以將物件轉成 JSON 字串格式。</li>
-<li>localStorage、sessionStorage 存放資料為字串格式，如果要存放物件時需要先使用<code>JSON.stringify()</code>轉換存入，取出後再使用<code>JSON.parse()</code>轉回物件格式。</li>
-</ul>
-<blockquote>
-<p>參考資料：<br><a href="https://zh.wikipedia.org/wiki/JSON">Wiki-JSON</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">MDN-Object</a><br><a href="https://pjchender.blogspot.com/2016/01/javascriptobjectjson.html">JavaScript中物件(object)和JSON格式的轉換</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
-    <url>/2022/01/04/JSscope/</url>
-    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
-<span id="more"></span> 
-
-<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
-<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
-<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
-<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
-<p>接著就來看 JavaScript 如何去實現這些功能。</p>
-<hr>
-<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
-<p>  不同的宣告方式產生的全域變數也有差異：</p>
-<ul>
-<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
-<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
-<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
-<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
-<blockquote>
-<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
-</blockquote>
-<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
-<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
-<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
-<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
-<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
-<blockquote>
-<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
-</blockquote>
-<ul>
-<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
-<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
-<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
-</ul>
-<blockquote>
-<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[JS] 提昇（Hoisting）機制</title>
     <url>/2021/11/23/JShoisting/</url>
     <content><![CDATA[<p><img data-src="/images/js-hoisting.png"></p>
@@ -314,29 +408,54 @@
       </tags>
   </entry>
   <entry>
-    <title>[JS] 非同步系列：Promise 簡介</title>
-    <url>/2022/04/17/JSpromise/</url>
-    <content><![CDATA[<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>Promise 是 ES6 眾多好用方法之一，能用簡潔的撰寫方式處理非同步事件，大幅優化 callback hell 造成閱讀困難的問題。</p>
-<p>Promise 是一個建構函式，帶有兩個參數：resolve、reject，分別是用來處理執行成功和失敗時的回傳資訊，格式如下：</p>
-<span id="more"></span>
+    <title>[JS] 物件與 JSON 格式操作技巧</title>
+    <url>/2021/11/22/JSobject/</url>
+    <content><![CDATA[<p><img data-src="/images/js-json.png"></p>
+<span id="more"></span> 
+<p>物件操作和串接 API 是 JavaScript 在現代網頁開發中的精華，這篇就來介紹物件取值的基本方法和小技巧。</p>
+<h2 id="💎-物件（Object）"><a href="#💎-物件（Object）" class="headerlink" title="💎 物件（Object）"></a>💎 物件（Object）</h2><h3 id="🔸-基本結構，使用-來存放資料："><a href="#🔸-基本結構，使用-來存放資料：" class="headerlink" title="🔸 基本結構，使用{}來存放資料："></a>🔸 基本結構，使用<code>&#123;&#125;</code>來存放資料：</h3><p>(本篇文章不討論使用 create、new 和 prototype 的操作)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;&#125; // 空物件</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> doSomething = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 使用 random 隨機產生 true 或 false 來回傳不同的結果</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="built_in">Boolean</span>(<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()));</span><br><span class="line">  <span class="keyword">if</span> (result) &#123;</span><br><span class="line">    <span class="comment">// 使用 resolve 回傳成功時的資料</span></span><br><span class="line">    resolve(<span class="string">`Success`</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 使用 reject 回傳失敗時的資料</span></span><br><span class="line">    reject(<span class="string">`Failed`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="🔸-內容結構是-key-value-pair-的格式："><a href="#🔸-內容結構是-key-value-pair-的格式：" class="headerlink" title="🔸 內容結構是 key/value pair 的格式："></a>🔸 內容結構是 key/value pair 的格式：</h3><ul>
+<li>前方的 key 在 JavaScript 中為物件的屬性（property）。</li>
+<li>後方的 value 可以是各種型別的值。<br>以下為一個物件範例，接下來的段落都使用這個物件來示範操作。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  a: function()&#123;return &#x27;a&#x27;&#125;,</span><br><span class="line">  b: null,</span><br><span class="line">  c: &#123;</span><br><span class="line">    d: [&#123;e: 2&#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  1: &#x27;bad&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="🔸-物件取值"><a href="#🔸-物件取值" class="headerlink" title="🔸 物件取值"></a>🔸 物件取值</h3></li>
+<li>方法１：<code>objectName.propertyName</code>，使用<code>.</code>加上屬性名稱來取值，如果是多層級的物件，就繼續往下使用<code>.</code>加屬性名稱，使用<code>.</code>時需要遵守變數名稱規範，不然會報錯。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.a); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj.a()); // &#x27;a&#x27;</span><br><span class="line">console.log(obj.c.d[0].e); // 2</span><br><span class="line">console.log(obj.1); // Uncaught SyntaxError: Unexpected number</span><br></pre></td></tr></table></figure></li>
+<li>方法２：<code>objectName[propertyName or 變數]</code><br>這種方法不受物件屬性名稱限制，並且可以帶入變數，但使用時須注意<code>[]</code>內若不是帶入變數，需要加上<code>&#39;&#39;（引號）</code>，否則找不到變數會報錯。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj[&#x27;a&#x27;]]); // f ()&#123;return &#x27;a&#x27;&#125;</span><br><span class="line">console.log(obj[a]); // ReferenceError: a is not defined</span><br><span class="line">console.log(obj[&#x27;c&#x27;].d[0][&#x27;e&#x27;]); // 2  (方式１、2混用)</span><br><span class="line">console.log(obj[&#x27;1&#x27;]); // &#x27;bad&#x27;</span><br><span class="line">let num = 1;</span><br><span class="line">console.log(obj[num]); // &#x27;bad&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🔸-物件賦值"><a href="#🔸-物件賦值" class="headerlink" title="🔸 物件賦值"></a>🔸 物件賦值</h3><p>方法同取值，只要加上 <code>=</code> 就能賦值，也可以用新的屬性名稱來新增物件屬性；同樣也能用 <code>.</code> 和 <code>[]</code> 兩種方式操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">obj.a = 1; // 變更原有屬性 a 的值</span><br><span class="line">obj[&#x27;a&#x27;] = 2; // 變更原有屬性 a 的值</span><br><span class="line">obj.f = 0; // 原本沒有屬性 f ，新增屬性 f 且值為 0</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="Promise-then-catch"><a href="#Promise-then-catch" class="headerlink" title="Promise (.then .catch)"></a>Promise (.then .catch)</h2><p><code>new Promise()</code> 建立的 Promise 物件提供 .then 和 .catch 兩個方法來分別接收 resolve 和 reject 回傳的資料，撰寫格式如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">doSomething</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// .then 接收 成功(resolve) 的回傳值</span></span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// .catch 接收 失敗(reject) 的回傳值</span></span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="🔸-物件取所有屬性"><a href="#🔸-物件取所有屬性" class="headerlink" title="🔸 物件取所有屬性"></a>🔸 物件取所有屬性</h3><p><code>Object.keys()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性名稱，且這個陣列會由小至大排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.keys(obj); // [&#x27;1&#x27;, &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="Promise-自訂參數"><a href="#Promise-自訂參數" class="headerlink" title="Promise + 自訂參數"></a>Promise + 自訂參數</h2><p>Promise 不能直接傳入參數，但是可以使用函式建立參數的接口，再回傳 Promise 物件，就能加入其他的參數了。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> doSomething = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// return 一個 Promise 物件</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="built_in">Boolean</span>(<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()));</span><br><span class="line">    <span class="keyword">if</span> (result) &#123;</span><br><span class="line">      resolve(<span class="string">`<span class="subst">$&#123;name&#125;</span>, success!`</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      reject(<span class="string">`<span class="subst">$&#123;name&#125;</span>, failed!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">doSomething(<span class="string">&#x27;Peter&#x27;</span>)</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="built_in">console</span>.log(data))</span><br><span class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="built_in">console</span>.log(error));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功(resolve)時輸出：Peter, success!</span></span><br><span class="line"><span class="comment">// 失敗(reject)時輸出：Peter, failed!</span></span><br></pre></td></tr></table></figure>
+<h3 id="🔸-物件取所有屬性的值"><a href="#🔸-物件取所有屬性的值" class="headerlink" title="🔸 物件取所有屬性的值"></a>🔸 物件取所有屬性的值</h3><p><code>Object.values()</code> 方法會回傳一個陣列，並列出該物件第一層（直屬於物件）的所有屬性值，且這個陣列會依照屬性名稱由小至大排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.values(obj); // [&#x27;bad&#x27;, ƒ, null, &#123;…&#125;]</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="串接多個-Promise"><a href="#串接多個-Promise" class="headerlink" title="串接多個 Promise"></a>串接多個 Promise</h2><p>Promise 的 then 方法用串接的方式連接下個行為，不像 callback function 需要槽狀層層包覆。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 加入第二個會隨機決定成功或失敗的函式</span></span><br><span class="line"><span class="keyword">const</span> doSomethingElse = <span class="function">(<span class="params">str</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="built_in">Boolean</span>(<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()));</span><br><span class="line">    <span class="keyword">if</span> (result) &#123;</span><br><span class="line">      resolve(<span class="string">`Good job, <span class="subst">$&#123;str&#125;</span>`</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      reject(<span class="string">`Bad job, <span class="subst">$&#123;str&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 呼叫第一個函式</span></span><br><span class="line">doSomething(<span class="string">&#x27;Peter&#x27;</span>)</span><br><span class="line">  .then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 將第一個函式的執行結果傳入第二個函式</span></span><br><span class="line">    doSomethingElse(result);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 顯示第二個函式的執行結果</span></span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 不管是第幾個函式，出錯就會在這邊被捕捉</span></span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// doSomething 成功、doSomethingElse 成功時輸出：Good job, Peter, success!</span></span><br><span class="line"><span class="comment">// doSomething 失敗時輸出：Peter, failed!</span></span><br><span class="line"><span class="comment">// doSomething 成功、doSomethingElse 失敗時輸出：Bad job, Peter, failed!</span></span><br></pre></td></tr></table></figure>
+<h3 id="🔸-物件轉陣列"><a href="#🔸-物件轉陣列" class="headerlink" title="🔸 物件轉陣列"></a>🔸 物件轉陣列</h3><p><code>Object.entries()</code> 方法會回傳一個陣列，並以二維陣列的方式列出該物件第一層（直屬於物件）的所有屬性和值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.entries(obj); </span><br><span class="line">// [[&#x27;1&#x27;, &#x27;bad&#x27;],[&#x27;a&#x27;, ƒ], [&#x27;b&#x27;, null], [&#x27;c&#x27;, &#123;…&#125;]]</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h2><p>當有不同的資料需要合併處理時使用，只要其中一項失敗就會立刻回傳失敗，不會等其他的非同步跑完，成功時則是以陣列方式回傳資料。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> doSomething = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="built_in">Boolean</span>(<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()));</span><br><span class="line">    <span class="keyword">if</span> (result) &#123;</span><br><span class="line">      resolve(name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      reject(<span class="string">`<span class="subst">$&#123;name&#125;</span>, failed`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([</span><br><span class="line">  doSomething(<span class="string">&#x27;Peter&#x27;</span>),</span><br><span class="line">  doSomething(<span class="string">&#x27;Parker&#x27;</span>),</span><br><span class="line">  doSomething(<span class="string">&#x27;Porker&#x27;</span>),</span><br><span class="line">])</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`恭喜 <span class="subst">$&#123;data.join(<span class="string">&#x27;、&#x27;</span>)&#125;</span> 全部成功！`</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全部成功時顯示：恭喜 Peter、Parker、Porker 全部成功！</span></span><br><span class="line"><span class="comment">// 任一個失敗時顯示： 傳入的名稱, failed</span></span><br></pre></td></tr></table></figure>
+<h3 id="🔸-物件屬性檢查"><a href="#🔸-物件屬性檢查" class="headerlink" title="🔸 物件屬性檢查"></a>🔸 物件屬性檢查</h3><p>物件陣列的操作很常遇到，當物件資料不完整時，可能會造成執行中斷，這時候就需要先檢查物件的屬性是否存在：</p>
+<ul>
+<li><p>方法１：檢查該屬性是否為<code>undefined</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.x === undefined); // true</span><br></pre></td></tr></table></figure></li>
+<li><p>方法２：使用<code>hasOwnProperty()</code>方法檢查有沒有該屬性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj.hasOwnProperty(&#x27;x&#x27;)); // false</span><br></pre></td></tr></table></figure></li>
+<li><p>方法３：<strong>推薦</strong>使用<code>Optional chaining operator</code>，只要一個<code>?</code>就能判斷，並且繼續往下取值。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(obj?.x)); // undefined</span><br><span class="line">console.log(obj?.c?.d[0]?.e); // 2</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="💎-JSON（JavaScript-Object-Notation）"><a href="#💎-JSON（JavaScript-Object-Notation）" class="headerlink" title="💎 JSON（JavaScript Object Notation）"></a>💎 JSON（JavaScript Object Notation）</h2><p>JSON 是一種通用資料交換格式，許多程式語言都能夠解析並被廣泛使用，通常在串接 api 時都是以 JSON 格式為主，和 JavaScript 的 Object 同樣是 key/value pair 的格式，但是屬性名稱會用引號包起來，範例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;John&quot;,</span><br><span class="line">  &quot;sex&quot;: &quot;male&quot;,</span><br><span class="line">  &quot;age&quot;: 20</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔸-解析-JSON-格式資料"><a href="#🔸-解析-JSON-格式資料" class="headerlink" title="🔸 解析 JSON 格式資料"></a>🔸 解析 JSON 格式資料</h3><ul>
+<li><code>JSON 的型別是字串</code>，所以需要轉換成物件才能使用，JavaScript 中提供了<code>JSON.parse()</code>的方法來轉換成可以操作的物件。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let data = ...json file...</span><br><span class="line">console.log(JSON.parse(data)); Object&#123;...&#125;</span><br></pre></td></tr></table></figure></li>
+<li>過去實作 ajax 功能時使用的 XMLHttpRequest 取得的 json 資料都需要經過轉換才能使用，而現在常用的 <code>Fetch</code>、<code>Axios</code> 已經包裝成物件格式，<code>不需要再轉換</code>。</li>
+<li>JavaScript 也提供了<code>JSON.stringify()</code>的方法，可以將物件轉成 JSON 字串格式。</li>
+<li>localStorage、sessionStorage 存放資料為字串格式，如果要存放物件時需要先使用<code>JSON.stringify()</code>轉換存入，取出後再使用<code>JSON.parse()</code>轉回物件格式。</li>
+</ul>
+<blockquote>
+<p>參考資料：<br><a href="https://zh.wikipedia.org/wiki/JSON">Wiki-JSON</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">MDN-Object</a><br><a href="https://pjchender.blogspot.com/2016/01/javascriptobjectjson.html">JavaScript中物件(object)和JSON格式的轉換</a></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>JavaScript - Basic</category>
@@ -424,6 +543,38 @@
 <blockquote>
 <p>參考文章：<br><a href="https://wcc723.github.io/development/2020/09/17/js-expression/">卡斯柏 - JavaScript 表達式觀念及運用 - JS Expression</a></p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[JS] 非同步系列：Promise 簡介</title>
+    <url>/2022/04/17/JSpromise/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>Promise 是 ES6 眾多好用方法之一，能用簡潔的撰寫方式處理非同步事件，大幅優化 callback hell 造成閱讀困難的問題。</p>
+<p>Promise 是一個建構函式，帶有兩個參數：resolve、reject，分別是用來處理執行成功和失敗時的回傳資訊，格式如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> doSomething = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 使用 random 隨機產生 true 或 false 來回傳不同的結果</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="built_in">Boolean</span>(<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()));</span><br><span class="line">  <span class="keyword">if</span> (result) &#123;</span><br><span class="line">    <span class="comment">// 使用 resolve 回傳成功時的資料</span></span><br><span class="line">    resolve(<span class="string">`Success`</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 使用 reject 回傳失敗時的資料</span></span><br><span class="line">    reject(<span class="string">`Failed`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Promise-then-catch"><a href="#Promise-then-catch" class="headerlink" title="Promise (.then .catch)"></a>Promise (.then .catch)</h2><p><code>new Promise()</code> 建立的 Promise 物件提供 .then 和 .catch 兩個方法來分別接收 resolve 和 reject 回傳的資料，撰寫格式如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">doSomething</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// .then 接收 成功(resolve) 的回傳值</span></span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// .catch 接收 失敗(reject) 的回傳值</span></span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Promise-自訂參數"><a href="#Promise-自訂參數" class="headerlink" title="Promise + 自訂參數"></a>Promise + 自訂參數</h2><p>Promise 不能直接傳入參數，但是可以使用函式建立參數的接口，再回傳 Promise 物件，就能加入其他的參數了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> doSomething = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// return 一個 Promise 物件</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="built_in">Boolean</span>(<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()));</span><br><span class="line">    <span class="keyword">if</span> (result) &#123;</span><br><span class="line">      resolve(<span class="string">`<span class="subst">$&#123;name&#125;</span>, success!`</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      reject(<span class="string">`<span class="subst">$&#123;name&#125;</span>, failed!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">doSomething(<span class="string">&#x27;Peter&#x27;</span>)</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="built_in">console</span>.log(data))</span><br><span class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="built_in">console</span>.log(error));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功(resolve)時輸出：Peter, success!</span></span><br><span class="line"><span class="comment">// 失敗(reject)時輸出：Peter, failed!</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="串接多個-Promise"><a href="#串接多個-Promise" class="headerlink" title="串接多個 Promise"></a>串接多個 Promise</h2><p>Promise 的 then 方法用串接的方式連接下個行為，不像 callback function 需要槽狀層層包覆。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 加入第二個會隨機決定成功或失敗的函式</span></span><br><span class="line"><span class="keyword">const</span> doSomethingElse = <span class="function">(<span class="params">str</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="built_in">Boolean</span>(<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()));</span><br><span class="line">    <span class="keyword">if</span> (result) &#123;</span><br><span class="line">      resolve(<span class="string">`Good job, <span class="subst">$&#123;str&#125;</span>`</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      reject(<span class="string">`Bad job, <span class="subst">$&#123;str&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 呼叫第一個函式</span></span><br><span class="line">doSomething(<span class="string">&#x27;Peter&#x27;</span>)</span><br><span class="line">  .then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 將第一個函式的執行結果傳入第二個函式</span></span><br><span class="line">    doSomethingElse(result);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 顯示第二個函式的執行結果</span></span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 不管是第幾個函式，出錯就會在這邊被捕捉</span></span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// doSomething 成功、doSomethingElse 成功時輸出：Good job, Peter, success!</span></span><br><span class="line"><span class="comment">// doSomething 失敗時輸出：Peter, failed!</span></span><br><span class="line"><span class="comment">// doSomething 成功、doSomethingElse 失敗時輸出：Bad job, Peter, failed!</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h2><p>當有不同的資料需要合併處理時使用，只要其中一項失敗就會立刻回傳失敗，不會等其他的非同步跑完，成功時則是以陣列方式回傳資料。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> doSomething = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="built_in">Boolean</span>(<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()));</span><br><span class="line">    <span class="keyword">if</span> (result) &#123;</span><br><span class="line">      resolve(name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      reject(<span class="string">`<span class="subst">$&#123;name&#125;</span>, failed`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([</span><br><span class="line">  doSomething(<span class="string">&#x27;Peter&#x27;</span>),</span><br><span class="line">  doSomething(<span class="string">&#x27;Parker&#x27;</span>),</span><br><span class="line">  doSomething(<span class="string">&#x27;Porker&#x27;</span>),</span><br><span class="line">])</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`恭喜 <span class="subst">$&#123;data.join(<span class="string">&#x27;、&#x27;</span>)&#125;</span> 全部成功！`</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全部成功時顯示：恭喜 Peter、Parker、Porker 全部成功！</span></span><br><span class="line"><span class="comment">// 任一個失敗時顯示： 傳入的名稱, failed</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>JavaScript - Basic</category>
@@ -604,6 +755,153 @@
       </tags>
   </entry>
   <entry>
+    <title>[JS] 作用域（Scope）與範圍鏈（Scope Chain）</title>
+    <url>/2022/01/04/JSscope/</url>
+    <content><![CDATA[<p><img data-src="/images/js-scope.png"></p>
+<span id="more"></span> 
+
+<p><code>作用域(Scope)</code>是<code>變數可以被使用的區域</code>，區分作用域可以避免變數的衝突。</p>
+<p>舉例來說，甲、乙班各有一位同學叫小明，分別在兩個班上點名，點到小明都不會有問題，但若是全校廣播找小明，就會出現衝突，不知道要找哪一個小明。</p>
+<p>作用域也有上下（內外）層級關係，當自己的作用域不存在特定變數時，可以向上（外）層尋找。</p>
+<p>換個例子，雖然自己的班上找不到校長，但可以從自己的學校找到校長。</p>
+<p>接著就來看 JavaScript 如何去實現這些功能。</p>
+<hr>
+<h2 id="💎-作用域（Scope）"><a href="#💎-作用域（Scope）" class="headerlink" title="💎 作用域（Scope）"></a>💎 作用域（Scope）</h2><h3 id="🔸-1、全域作用域（Global-Scope）"><a href="#🔸-1、全域作用域（Global-Scope）" class="headerlink" title="🔸 1、全域作用域（Global Scope）"></a>🔸 1、全域作用域（Global Scope）</h3><p>  全域顧名思義就是全部的區域，網頁中的全域物件就是 <code>window</code>。<br>  在初學 JS 時，會先練習開啟一個空白檔案，並且撰寫變數宣告，這時的變數就屬於全域變數。</p>
+<p>  不同的宣告方式產生的全域變數也有差異：</p>
+<ul>
+<li>var：宣告後會成為 window 物件底下的一個屬性。</li>
+<li>let、const：宣告後不會放到 window 底下，而是一個區塊作用域。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">let b = 2;</span><br><span class="line">const c = 3;</span><br><span class="line"></span><br><span class="line">console.log(a); // 1</span><br><span class="line">console.log(window.a); // 1</span><br><span class="line"></span><br><span class="line">console.log(b); // 2</span><br><span class="line">console.log(window.b); // undefined</span><br><span class="line"></span><br><span class="line">console.log(c); // 3</span><br><span class="line">console.log(window.c); // undefined</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🔸-2、函式作用域-Function-Scope"><a href="#🔸-2、函式作用域-Function-Scope" class="headerlink" title="🔸 2、函式作用域(Function Scope)"></a>🔸 2、函式作用域(Function Scope)</h3><p>  用 <code>var</code> 宣告的變數會在<code>函式 (function)</code> 內區隔，先來看看下面的範例碼：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function f1() &#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  f2();</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"></span><br><span class="line">// 執行結果：</span><br><span class="line">// Uncaught ReferenceError: a is not defined</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以知道 f2 函式無法取得 f1 函式內宣告的變數。</p>
+<p>  再來看看另一個經典題目，當 var 遇到 call stack 時出現的詭異狀況。<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (var i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line"></span><br><span class="line">// 5  </span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br><span class="line">// 5</span><br></pre></td></tr></table></figure><br>  如果你覺得這個輸出結果非常奇怪，不要忘了 var 的作用域是在函式中，上面這段 for 迴圈並不是函式，所以 <code>var i</code> 是<code>宣告在全域</code>，迴圈總共執行了四次，但是每次都是覆蓋掉全域中的 i ，<code>最後只有一個全域變數 i </code>存放數值 <code>5</code>，接著 setTimeout 裡面的函式執行時因為作用域裡面沒有變數 i，向外找到全域的 i (此時迴圈已經執行完，值是5)，才會都印出一樣的結果；除此之外，印出的第一個 5 是來自程式碼最後一行全域的呼叫，也證實了這個變數存在全域。</p>
+<p>  函式的範圍較大，撰寫時常使用的邏輯判斷都沒辦法區隔作用域，為了區隔作用域，衍生出閉包、立即函式等各種應用技巧，這個問題在 ES6 的版本後才獲得改善。</p>
+<blockquote>
+<p>延伸閱讀<br>1、<a href="https://hsiangfeng.github.io/javascript/20201118/707576253/">JavaScript 核心觀念(36)-函式以及 This 的運作-立即函式</a><br>2、<a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/closure.html">閉包</a></p>
+</blockquote>
+<h3 id="🔸-3、區塊作用域-Block-Scope"><a href="#🔸-3、區塊作用域-Block-Scope" class="headerlink" title="🔸 3、區塊作用域(Block Scope)"></a>🔸 3、區塊作用域(Block Scope)</h3><p>  ES6 版本加入的 <code>let</code> 和 <code>const</code> 兩種變數宣告方式，作用域會在大括號 <code>&#123;&#125;</code> 內區隔：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  const a = 1;</span><br><span class="line">  &#123;</span><br><span class="line">    let b = 2;</span><br><span class="line">    var c = 3;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(a); // 1</span><br><span class="line">  console.log(b); // b is not defined</span><br><span class="line">  console.log(c); // 3   </span><br><span class="line">&#125;</span><br><span class="line">console.log(a); // a is not defined</span><br><span class="line">console.log(b); // b is not defined</span><br><span class="line">console.log(c); // 3</span><br></pre></td></tr></table></figure></p>
+<p>  上面的範例可以看到 <code>var</code> 無論在哪個大括號內都可以取用，但 <code>let</code> 和 <code>const</code> 無法在自己存在的大括號外被取用。</p>
+<p>  常用的 <code>if-else</code>、<code>for</code>等方法都會使用大括號，相對於 <code>function</code>，可以把作用域區分的更細。</p>
+<p>  前個段落 <code>setTimeout</code> 範例內的 <code>var</code> 改成 <code>let</code>：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 1; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(() =&gt; console.log(i), 500);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br><span class="line">// Uncaught ReferenceError: i is not defined</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br></pre></td></tr></table></figure></p>
+<p>  從結果可以發現，每次的 <code>let i</code> 都是獨立的作用域，所以 setTimeout 實際執行時能夠找到該次迴圈區塊內產生的變數 i，除此之外，全域環境中也不會找到在區塊作用域中的變數 i （出現未定義的錯誤）。</p>
+<blockquote>
+<p>參考資料<br><a href="https://ithelp.ithome.com.tw/articles/10217481">JS 原力覺醒 Day04 - Function Scope / Block Scope</a></p>
+</blockquote>
+<ul>
+<li>直接宣告(不加前綴詞)，無論放在 <code>區塊&#123;&#125;</code> 或 <code>函式</code> 內都會成為 window 物件底下的一個屬性。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dirtyA = 11;</span><br><span class="line">console.log(window.dirtyA); // 11</span><br><span class="line"></span><br><span class="line">function dirtyVariable() &#123;</span><br><span class="line">  dirtyB = 12;</span><br><span class="line">&#125;</span><br><span class="line">dirtyVariable();</span><br><span class="line">console.log(window.dirtyB); // 12</span><br></pre></td></tr></table></figure></li>
+<li>直接宣告在 <code>window</code> 底下的變數可以使用 <code>delete</code> 物件方法刪除；而使用 <code>var</code> 宣告的全域變數無法使用 <code>delete</code> 刪除(<del>介於屬性與非屬性之間</del>)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x = 1;</span><br><span class="line">delete window.x; // true</span><br><span class="line">console.log(x); // x is not defined</span><br><span class="line"></span><br><span class="line">var y = 2;</span><br><span class="line">delete window.y; // false</span><br><span class="line">console.log(y); // 2</span><br></pre></td></tr></table></figure></li>
+<li>在 ES5 時可以透過<code>&#39;use strict&#39;</code>（嚴格模式）來避免這些不好的操作，ES6 以後一律使用 <code>let</code> 和 <code>const</code>。</li>
+</ul>
+<blockquote>
+<p>延伸閱讀：<br>1、<a href="https://iter01.com/56454.html">深入JavaScript系列（一）：詞法環境</a><br>2、<a href="https://medium.com/itsems-frontend/javascript-strict-mode-d0a3aa74458b">Javascript 的嚴格模式 (Strict Mode)</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript - Basic</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[後端] 如何讓 Heroku 上的專案使用固定 IP 連接 MongoDB Atlas 服務？</title>
+    <url>/2022/04/23/heroku-ip/</url>
+    <content><![CDATA[<p><img data-src="https://i.imgur.com/h2c7vhC.png"></p>
+<span id="more"></span>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在閱讀以下內容前，請先確認你有一張<code>信用卡</code>可以註冊到 Heroku 的帳戶內，如果沒有，請嘗試使用其他免費網路空間服務。</p>
+<hr>
+<h2 id="基礎概念"><a href="#基礎概念" class="headerlink" title="基礎概念"></a>基礎概念</h2><p>隨著硬體技術越來越強，儲存空間的單位成本越來越低，於是有各種雲端空間服務可以使用，但是網路 IP 是有限的共享資源，由各地區的 ISP 業者分配使用（以台灣來說，需要申請中華電信線路，再申請固定 IP），雲端空間業者不會持有大量的 IP 讓用戶使用，通常是以內部固定 IP 加上動態分配外部 IP 來連線。</p>
+<p>資料庫用來儲存網站的各種資料，通常也會包含大量的客戶資訊（姓名、手機、信箱…等），這些個資或商業機密一旦外洩就會造成公司和客戶的嚴重損失，最基礎的第一道防線就是網路防火牆，只能允許網頁（App）伺服器對資料庫（DB）伺服器連線（設置白名單規則）。</p>
+<hr>
+<h2 id="設置-Heroku-連線-IP-的三種方法"><a href="#設置-Heroku-連線-IP-的三種方法" class="headerlink" title="設置 Heroku 連線 IP 的三種方法"></a>設置 Heroku 連線 IP 的三種方法</h2><p>MongoDB 的文件 <a href="https://www.mongodb.com/developer/how-to/use-atlas-on-heroku/#configuring-heroku-ip-addresses-in-mongodb-atlas">Configuring Heroku IP Addresses in MongoDB Atlas</a> 有介紹幾個方法讓 Heroku 使用固定 IP 連線：</p>
+<ol>
+<li>使用插件（add-on）來提供固定的對外 IP，也就是這篇文章要介紹的方法。</li>
+<li>使用 Heroku Private Spaces 來設置固定 IP，雖然不需要安裝插件（add-on），但是需要<code>$$$</code>，無課仔表示：下面一位！</li>
+<li>直接把所有 Heroku 會使用的動態 IP 加到白名單中，文章中沒有提供到底是哪些 IP，表示要自己找，而且這個方法非常不保險，萬一動態 IP 清單變了，服務突然就掛了。</li>
+</ol>
+<hr>
+<h2 id="Heroku-Addons-說明"><a href="#Heroku-Addons-說明" class="headerlink" title="Heroku Addons 說明"></a>Heroku Addons 說明</h2><p>我們可以到 Heroku 的 <a href="https://elements.heroku.com/addons/categories/network">Network Services Addons</a> 中看到有許多網路服務的插件可以選擇，這些插件並不是直接提供固定 IP，而是以代理的方式來達到固定 IP 的效果。</p>
+<p>了解 Addons 的運作方式，事情並沒有因此豁然開朗，這麼多的 Addons 根本不知道要選哪個！先講結論：我使用的是<code>QuotaGuard Static IP&#39;s</code><br><img data-src="https://i.imgur.com/gBa3Uie.png"></p>
+<p>每個 Addons 提供的應用不太一樣，有些使用他的函式庫來取代 Axios（或 fetch），透過 Addons 函式庫的方法設置好代理參數後發出 GET 請求，但這種方式提供的是 HTTP 代理，僅適用 HTTP/HTTPS 的連線，MongoDB 的連線就無法使用了（網路層級不同）。</p>
+<p>QuotaGuard Static IP’s 提供了 SOCKS 代理，他可以監聽 Heroku App 的連線請求，並且把對 MongoDB 的連線導向自己，再由 Addons 把請求送給 MongoDB，所以對 MongoDB 來說，收到的請求來源都會是 QuotaGuard Static IP’s 提供的固定 IP。</p>
+<p><code>原始連線模式</code><br><code>Heroku(IP: ??.??.??.??) -&gt; MongoDB Atlas(無法限制來源)</code></p>
+<p><code>代理連線模式</code><br><code>Heroku(IP: ??.??.??.??) -&gt; Proxy(某個固定 IP) -&gt; MongoDB Atlas(只接受 Proxy 的固定 IP)</code></p>
+<hr>
+<h2 id="實作開始"><a href="#實作開始" class="headerlink" title="實作開始"></a>實作開始</h2><p>整個實作過程，都是參考 QuotaGuard 的 <a href="https://quotaguard.github.io/qg-docs/mongo-start">How to Connect to MongoDB using QuotaGuard</a> 文件進行，雖然他寫的蠻詳細的，但是要弄清楚還是得費一番功夫。</p>
+<p>馬上進入實作步驟：</p>
+<ol>
+<li><p>請到 Heroku 的 <a href="https://elements.heroku.com/addons/categories/network">Network Services Addons</a> 選擇 QuotaGuard Static IP’s。<br><img data-src="https://i.imgur.com/WmOE7qr.png"></p>
+</li>
+<li><p>選擇 Addons 之後建議還是先往下拉看一下價錢，確認有免費的，才能為荷包把關。<br><img data-src="https://i.imgur.com/Jd6dqcr.png"></p>
+</li>
+<li><p>價錢確認後，可以回到最上方的右邊點選 install 按鈕安裝。<br><img data-src="https://i.imgur.com/uxqdLN1.png"></p>
+</li>
+<li><p>進入提交頁面後，請先確認收費方式，接著在下方輸入要設置代理的專案名稱（專案名稱可以到自己的 Heroku 頁面查看），選取好專案後就可以點擊按鈕進入下一步。<br><img data-src="https://i.imgur.com/5TE71dH.png"></p>
+</li>
+<li><p>如果帳號沒有綁定信用卡，就會跳出警告，不讓你安裝，請完成綁定才能進行下一步。<br><img data-src="https://i.imgur.com/r3sC9sX.png"></p>
+</li>
+<li><p>裝完後會進入 資源列表（Resources）畫面，點擊「<br>QuotaGuard Static IP’s」後會出現一些條款需要拉到最底下點擊同意。<br><img data-src="https://i.imgur.com/s2oPz4e.png"></p>
+</li>
+<li><p>接下來請回到 VScode，開啟佈署到這個 Heroku 專案的資料夾，接著在終端機輸入以下指令，執行完成後會多出一個 vender 資料夾和一些檔案。</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl https://s3.amazonaws.com/quotaguard/qgtunnel-latest.tar.gz | tar xz</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>接著再開啟瀏覽器進入操作頁面網址 <a href="https://www.quotaguard.com/dashboard">https://www.quotaguard.com/dashboard</a>，或是在終端機輸入以下指令，會開啟瀏覽器進入相同頁面。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">heroku addons:open quotaguardstatic</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li><p>點選操作面板右上方的「齒輪」圖案，再點選「QGTunnel Configuration」<br><img data-src="https://i.imgur.com/FGmOhRK.png"><br><img data-src="https://i.imgur.com/O96KcjE.png"></p>
+</li>
+<li><p>點擊右上方的綠色「＋」按鈕來新增 Tunnel。<br><img data-src="https://i.imgur.com/cHn7PPJ.png"></p>
+</li>
+<li><p>請開啟一個網頁分頁，並登入 MongoDB Atlas，請點選你的 cluster 名稱進入詳細資訊。<br><img data-src="https://i.imgur.com/XmGmsS6.png"></p>
+</li>
+<li><p>接著點進 region 區塊的每個 cluster 把完整的名稱複製下來。<br><img data-src="https://i.imgur.com/D7Z3UbA.png"></p>
+</li>
+<li><p>回到步驟 10 的 新增 Tunnel 頁面，把剛才 mongoDB 複製下來的字串建立起來，有幾個就建幾筆（有關 cluster 的連線字串在 <a href="https://quotaguard.github.io/qg-docs/mongo-expanding">QuotaGuard 的文件</a>也有說明），通常會有三筆，設定資訊如下：</p>
+</li>
+</ol>
+<ul>
+<li>Remote Destination：MongoDB Atlas 內 cluster region 的完整名稱，建立完成後系統會在前面自動加上 “tcp://“，這是正常的。<br>（名稱範例：xxxxxx-xxxx-00-00.xxxxx.mongodb.net:27017）</li>
+<li>Local Port：27017</li>
+<li>Transparent：透通模式請開啟</li>
+<li>Encrypted：加密模式可以不用開</li>
+<li>Optional Name：可以為這個 Tunnel 設定名稱，也可以空著。<br><img data-src="https://i.imgur.com/qovLACV.png"></li>
+</ul>
+<ol start="14">
+<li>回到 VScode，在專案的根目錄新增一個檔案，檔案名稱是 Procfile (請不要加入任何附檔名)，這是一個 Heroku 的設定檔，請在裡面撰寫 app 的啟動指令，撰寫格式如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">web: bin/qgtunnel 啟動程式名稱 啟動指令和參數</span><br></pre></td></tr></table></figure>
+
+<p>以 node.js 為例，我們的啟動指令是 <code>npm start</code>，Procfile 內撰寫的就是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">web: bin/qgtunnel npm start</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://i.imgur.com/MQ0zwPR.png" alt="範例圖片"></p>
+<ol start="15">
+<li><p>接下來就可以執行 commit 把修改好的專案 push 到 Heroku 上了，在 commit 前請用 git status 確認所有步驟新增的檔案都有加入。</p>
+</li>
+<li><p>推送完後先確認一下 app 會不會 crash，如果正常運行，就可以回到 QuoraGuard 的操作面板 <a href="https://www.quotaguard.com/dashboard">https://www.quotaguard.com/dashboard</a>，把左上方的兩個 IP 設定到 MongoDB Atlas 裡面的 Network Access 裡面，<code>IP 後面請加上 /32</code>，這個遮罩表示單一 IP，如果後面是 /0，不管前面打什麼 IP，都可以連的到！</p>
+</li>
+<li><p>設定完之後就可以測試，在本地用 Compass 和 Heroku 連線是否一個不能連，一個能連。</p>
+</li>
+</ol>
+<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><ul>
+<li>官方文件有建議把 Tunnel 的設定備份下來，可以自行考量需不需要。</li>
+<li>正常狀況下加入這個 Addons 不會影響原始 App 的運作，除非裡面有一些特定的連線，才要自行修改。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Node.js</tag>
+        <tag>MongoDB</tag>
+        <tag>Atlas</tag>
+        <tag>Heroku</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[JS] 變數宣告方式：let、const、var</title>
     <url>/2021/11/16/JSvariable/</url>
     <content><![CDATA[<p><img data-src="/images/js-variables.png"></p>
@@ -736,104 +1034,6 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何讓 Heroku 上的專案使用固定 IP 連接 MongoDB Atlas 服務？</title>
-    <url>/2022/04/23/heroku-ip/</url>
-    <content><![CDATA[<p><a href="https://i.imgur.com/h2c7vhC.png"></a></p>
-<span id="more"></span>
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在閱讀以下內容前，請先確認你有一張<code>信用卡</code>可以註冊到 Heroku 的帳戶內，如果沒有，請嘗試使用其他免費網路空間服務。</p>
-<hr>
-<h2 id="基礎概念"><a href="#基礎概念" class="headerlink" title="基礎概念"></a>基礎概念</h2><p>隨著硬體技術越來越強，儲存空間的單位成本越來越低，於是有各種雲端空間服務可以使用，但是網路 IP 是有限的共享資源，由各地區的 ISP 業者分配使用（以台灣來說，需要申請中華電信線路，再申請固定 IP），雲端空間業者不會持有大量的 IP 讓用戶使用，通常是以內部固定 IP 加上動態分配外部 IP 來連線。</p>
-<p>資料庫用來儲存網站的各種資料，通常也會包含大量的客戶資訊（姓名、手機、信箱…等），這些個資或商業機密一旦外洩就會造成公司和客戶的嚴重損失，最基礎的第一道防線就是網路防火牆，只能允許網頁（App）伺服器對資料庫（DB）伺服器連線（設置白名單規則）。</p>
-<hr>
-<h2 id="設置-Heroku-連線-IP-的三種方法"><a href="#設置-Heroku-連線-IP-的三種方法" class="headerlink" title="設置 Heroku 連線 IP 的三種方法"></a>設置 Heroku 連線 IP 的三種方法</h2><p>MongoDB 的文件 <a href="https://www.mongodb.com/developer/how-to/use-atlas-on-heroku/#configuring-heroku-ip-addresses-in-mongodb-atlas">Configuring Heroku IP Addresses in MongoDB Atlas</a> 有介紹幾個方法讓 Heroku 使用固定 IP 連線：</p>
-<ol>
-<li>使用插件（add-on）來提供固定的對外 IP，也就是這篇文章要介紹的方法。</li>
-<li>使用 Heroku Private Spaces 來設置固定 IP，雖然不需要安裝插件（add-on），但是需要<code>$$$</code>，無課仔表示：下面一位！</li>
-<li>直接把所有 Heroku 會使用的動態 IP 加到白名單中，文章中沒有提供到底是哪些 IP，表示要自己找，而且這個方法非常不保險，萬一動態 IP 清單變了，服務突然就掛了。</li>
-</ol>
-<hr>
-<h2 id="Heroku-Addons-說明"><a href="#Heroku-Addons-說明" class="headerlink" title="Heroku Addons 說明"></a>Heroku Addons 說明</h2><p>我們可以到 Heroku 的 <a href="https://elements.heroku.com/addons/categories/network">Network Services Addons</a> 中看到有許多網路服務的插件可以選擇，這些插件並不是直接提供固定 IP，而是以代理的方式來達到固定 IP 的效果。</p>
-<p>了解 Addons 的運作方式，事情並沒有因此豁然開朗，這麼多的 Addons 根本不知道要選哪個！先講結論：我使用的是<code>QuotaGuard Static IP&#39;s</code><br><img data-src="https://i.imgur.com/gBa3Uie.png"></p>
-<p>每個 Addons 提供的應用不太一樣，有些使用他的函式庫來取代 Axios（或 fetch），透過 Addons 函式庫的方法設置好代理參數後發出 GET 請求，但這種方式提供的是 HTTP 代理，僅適用 HTTP/HTTPS 的連線，MongoDB 的連線就無法使用了（網路層級不同）。</p>
-<p>QuotaGuard Static IP’s 提供了 SOCKS 代理，他可以監聽 Heroku App 的連線請求，並且把對 MongoDB 的連線導向自己，再由 Addons 把請求送給 MongoDB，所以對 MongoDB 來說，收到的請求來源都會是 QuotaGuard Static IP’s 提供的固定 IP。</p>
-<p><code>原始連線模式</code><br><code>Heroku(IP: ??.??.??.??) -&gt; MongoDB Atlas(無法限制來源)</code></p>
-<p><code>代理連線模式</code><br><code>Heroku(IP: ??.??.??.??) -&gt; Proxy(某個固定 IP) -&gt; MongoDB Atlas(只接受 Proxy 的固定 IP)</code></p>
-<hr>
-<h2 id="實作開始"><a href="#實作開始" class="headerlink" title="實作開始"></a>實作開始</h2><p>整個實作過程，都是參考 QuotaGuard 的 <a href="https://quotaguard.github.io/qg-docs/mongo-start">How to Connect to MongoDB using QuotaGuard</a> 文件進行，雖然他寫的蠻詳細的，但是要弄清楚還是得費一番功夫。</p>
-<p>馬上進入實作步驟：</p>
-<ol>
-<li><p>請到 Heroku 的 <a href="https://elements.heroku.com/addons/categories/network">Network Services Addons</a> 選擇 QuotaGuard Static IP’s。<br><img data-src="https://i.imgur.com/WmOE7qr.png"></p>
-</li>
-<li><p>選擇 Addons 之後建議還是先往下拉看一下價錢，確認有免費的，才能為荷包把關。<br><img data-src="https://i.imgur.com/Jd6dqcr.png"></p>
-</li>
-<li><p>價錢確認後，可以回到最上方的右邊點選 install 按鈕安裝。<br><img data-src="https://i.imgur.com/uxqdLN1.png"></p>
-</li>
-<li><p>進入提交頁面後，請先確認收費方式，接著在下方輸入要設置代理的專案名稱（專案名稱可以到自己的 Heroku 頁面查看），選取好專案後就可以點擊按鈕進入下一步。<br><img data-src="https://i.imgur.com/5TE71dH.png"></p>
-</li>
-<li><p>如果帳號沒有綁定信用卡，就會跳出警告，不讓你安裝，請完成綁定才能進行下一步。<br><img data-src="https://i.imgur.com/r3sC9sX.png"></p>
-</li>
-<li><p>裝完後會進入 資源列表（Resources）畫面，點擊「<br>QuotaGuard Static IP’s」後會出現一些條款需要拉到最底下點擊同意。<br><img data-src="https://i.imgur.com/s2oPz4e.png"></p>
-</li>
-<li><p>接下來請回到 VScode，開啟佈署到這個 Heroku 專案的資料夾，接著在終端機輸入以下指令，執行完成後會多出一個 vender 資料夾和一些檔案。</p>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl https://s3.amazonaws.com/quotaguard/qgtunnel-latest.tar.gz | tar xz</span><br></pre></td></tr></table></figure>
-
-<ol start="8">
-<li>接著再開啟瀏覽器進入操作頁面網址 <a href="https://www.quotaguard.com/dashboard">https://www.quotaguard.com/dashboard</a>，或是在終端機輸入以下指令，會開啟瀏覽器進入相同頁面。</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">heroku addons:open quotaguardstatic</span><br></pre></td></tr></table></figure>
-
-<ol start="9">
-<li><p>點選操作面板右上方的「齒輪」圖案，再點選「QGTunnel Configuration」<br><img data-src="https://i.imgur.com/FGmOhRK.png"><br><img data-src="https://i.imgur.com/O96KcjE.png"></p>
-</li>
-<li><p>點擊右上方的綠色「＋」按鈕來新增 Tunnel。<br><img data-src="https://i.imgur.com/cHn7PPJ.png"></p>
-</li>
-<li><p>請開啟一個網頁分頁，並登入 MongoDB Atlas，請點選你的 cluster 名稱進入詳細資訊。<br><img data-src="https://i.imgur.com/XmGmsS6.png"></p>
-</li>
-<li><p>接著點進 region 區塊的每個 cluster 把完整的名稱複製下來。<br><img data-src="https://i.imgur.com/D7Z3UbA.png"></p>
-</li>
-<li><p>回到步驟 10 的 新增 Tunnel 頁面，把剛才 mongoDB 複製下來的字串建立起來，有幾個就建幾筆（有關 cluster 的連線字串在 <a href="https://quotaguard.github.io/qg-docs/mongo-expanding">QuotaGuard 的文件</a>也有說明），通常會有三筆，設定資訊如下：</p>
-</li>
-</ol>
-<ul>
-<li>Remote Destination：MongoDB Atlas 內 cluster region 的完整名稱，建立完成後系統會在前面自動加上 “tcp://“，這是正常的。<br>（名稱範例：xxxxxx-xxxx-00-00.xxxxx.mongodb.net:27017）</li>
-<li>Local Port：27017</li>
-<li>Transparent：透通模式請開啟</li>
-<li>Encrypted：加密模式可以不用開</li>
-<li>Optional Name：可以為這個 Tunnel 設定名稱，也可以空著。<br><img data-src="https://i.imgur.com/qovLACV.png"></li>
-</ul>
-<ol start="14">
-<li>回到 VScode，在專案的根目錄新增一個檔案，檔案名稱是 Procfile (請不要加入任何附檔名)，這是一個 Heroku 的設定檔，請在裡面撰寫 app 的啟動指令，撰寫格式如下：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">web: bin/qgtunnel 啟動程式名稱 啟動指令和參數</span><br></pre></td></tr></table></figure>
-
-<p>以 node.js 為例，我們的啟動指令是 <code>npm start</code>，Procfile 內撰寫的就是</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">web: bin/qgtunnel npm start</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://i.imgur.com/MQ0zwPR.png" alt="範例圖片"></p>
-<ol start="15">
-<li><p>接下來就可以執行 commit 把修改好的專案 push 到 Heroku 上了，在 commit 前請用 git status 確認所有步驟新增的檔案都有加入。</p>
-</li>
-<li><p>推送完後先確認一下 app 會不會 crash，如果正常運行，就可以回到 QuoraGuard 的操作面板 <a href="https://www.quotaguard.com/dashboard">https://www.quotaguard.com/dashboard</a>，把左上方的兩個 IP 設定到 MongoDB Atlas 裡面的 Network Access 裡面，<code>IP 後面請加上 /32</code>，這個遮罩表示單一 IP，如果後面是 /0，不管前面打什麼 IP，都可以連的到！</p>
-</li>
-<li><p>設定完之後就可以測試，在本地用 Compass 和 Heroku 連線是否一個不能連，一個能連。</p>
-</li>
-</ol>
-<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><ul>
-<li>官方文件有建議把 Tunnel 的設定備份下來，可以自行考量需不需要。</li>
-<li>正常狀況下加入這個 Addons 不會影響原始 App 的運作，除非裡面有一些特定的連線，才要自行修改。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Node.js</tag>
-        <tag>MongoDB</tag>
-        <tag>Atlas</tag>
-        <tag>Heroku</tag>
       </tags>
   </entry>
   <entry>
@@ -977,6 +1177,84 @@
       </tags>
   </entry>
   <entry>
+    <title>[Node.JS] 打造 todolist api 3 - 完成所有功能</title>
+    <url>/2022/03/04/nodejs4/</url>
+    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span> 
+<p>前一篇已經把整個架構寫好，這次就直接照著架構補完所有功能！</p>
+<hr>
+<h2 id="💎-GET-取得待辦清單"><a href="#💎-GET-取得待辦清單" class="headerlink" title="💎 GET - 取得待辦清單"></a>💎 GET - 取得待辦清單</h2><p>在前端撰寫 todolist 的練習時，都會使用一個陣列變數來存放待辦資料，現在搭配後端，就由 Node.js 負責管理這個陣列變數。<br>GET 方法非常簡單，只要回傳這個存放待辦事項的變數即可。<br><code>目前的練習中，變數只是存放在伺服器執行環境的記憶體中，並沒有存成實體檔案（資料庫），當伺服器重啟時記憶體釋放，資料就會遺失</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 宣告用來存放待辦事項的陣列</span></span><br><span class="line"><span class="keyword">const</span> todos = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">            <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="comment">// 改成回傳待辦事項的變數 </span></span><br><span class="line">            <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>段落測試</strong><br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：GET（只要順利回傳空陣列就成功了）</p>
+</blockquote>
+<hr>
+<h2 id="💎-POST-新增一筆待辦"><a href="#💎-POST-新增一筆待辦" class="headerlink" title="💎 POST - 新增一筆待辦"></a>💎 POST - 新增一筆待辦</h2><p>在撰寫這段時，需要先規劃好一筆待辦事項會有哪些欄位，本次練習只放『標題』、『ID』就好，格式設計如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;吃飯&quot;</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;xxxxxxxxxxx&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>標題</strong><ul>
+<li>需要接收 <code>req</code> 傳來的資料，使用 node.js 的 req.on 方法來監聽資料接收的事件。</li>
+<li>封包大小有限，當傳送的資料大時就會被切成好幾個片段，接收端需要在收到所有的片段之後組合起來，才會取得完整可用的資料。</li>
+<li>要確保資料已經確實接收，分別使用 <code>req.on(&#39;data&#39;, function)</code> 來處理資料傳送中的行為，<code>req.on(&#39;end&#39;, function)</code> 處理接收完的行為。</li>
+<li>資料檢查：格式設計了使用 title 存放標題，如果傳入的資料不是 JSON 格式，或是沒有這個屬性都可能讓伺服器掛掉，所以需要先檢查是不是符合規範。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    <span class="comment">// 建立一個變數來接收傳入的資料</span></span><br><span class="line">    <span class="keyword">let</span> body = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="comment">// 當有資料傳入就加到 body 變數裡面</span></span><br><span class="line">    req.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">        body += chunk;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="comment">// 資料接收完才會執行</span></span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 取出 body 裡面的 title，如果沒有會得到 undefined</span></span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="comment">// 有 title 就加到陣列裡面，並且回傳全部待辦</span></span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title</span><br><span class="line">                &#125;);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            <span class="comment">// 沒 title 回傳錯誤</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>ID</strong><ul>
+<li>ID 需要是不會重複的數值，使用 UUID 套件來完成。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入 uuid 模組，請確認有無安裝該套件</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">v4</span>: uuidv4 &#125; = <span class="built_in">require</span>(<span class="string">&#x27;uuid&#x27;</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="comment">// 加入 ID</span></span><br><span class="line">                    <span class="attr">id</span>: uuidv4()</span><br><span class="line">                &#125;);</span><br><span class="line">            ...</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>防錯</strong><ul>
+<li>雖然前面已經針對 title 檢查，還是需要甚防有心人傳入奇怪的資料，可以使用 try…catch 來捕捉問題。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">    req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="string">&#x27;id&#x27;</span>: uuidv4()</span><br><span class="line">                &#125;)</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：POST（需要在 body 加入 JSON 資料）<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
+</blockquote>
+<hr>
+<h2 id="💎-DELETE-刪除全部待辦"><a href="#💎-DELETE-刪除全部待辦" class="headerlink" title="💎 DELETE - 刪除全部待辦"></a>💎 DELETE - 刪除全部待辦</h2><p>刪除全部非常簡單，只要把陣列清空就好，要注意的是陣列和物件都盡量避免賦值（=）操作，以方法操作為主，所以我在一開始宣告 todos 時是使用 const ，這樣就無法使用 <code>todos = []</code>，而是使用陣列方法 <code>todos.length = 0</code> 來清空陣列。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">    <span class="comment">// 陣列長度為 0 = 沒資料</span></span><br><span class="line">    todos.length = <span class="number">0</span>;</span><br><span class="line">    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：DELETE</p>
+</blockquote>
+<hr>
+<h2 id="💎-DELETE-刪除一筆待辦"><a href="#💎-DELETE-刪除一筆待辦" class="headerlink" title="💎 DELETE - 刪除一筆待辦"></a>💎 DELETE - 刪除一筆待辦</h2><ul>
+<li><strong>取得傳入的 ID</strong>：<br>前一篇文章有提到，把待辦的 ID 塞到網址後面的格式會是 <code>http://網域/路徑/參數</code>，使用 <code>req.url</code> 會得到 <code>/路徑/參數</code>，接著用字串方法 <code>split(&#39;/&#39;)</code> 切割成陣列，再使用 <code>pop()</code> 取得最後一筆資料就是參數了。</li>
+<li><strong>找出 ID 相符的資料</strong>：<br>使用 <code>findIndex</code> 方法來找出待辦事項的陣列中有沒有 ID 相符的資料，符合時會取得該筆資料的 <code>index</code>，沒有符合資料時會得到 <code>-1</code>。</li>
+<li><strong>刪除陣列資料</strong><br>成功取得指定資料在陣列中的 index 後就可以使用 <code>splice(index, 1)</code> 的方法刪除 1 筆資料，第一個參數是起始的索引位置，第二個參數是要往後刪除幾筆資料。</li>
+<li><strong>架構調整</strong><br>調整前：<code>確認網址開頭</code>(/todo/) &gt; <code>確認請求方法</code>（PATCH or DELETE）<br>調整後：<code>確認網址開頭</code>(/todo/) &gt; <code>確認 ID 是否存在</code> &gt; <code>確認請求方法</code>（PATCH or DELETE）<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">        <span class="comment">// 取得請求網址最後一段帶的 ID</span></span><br><span class="line">        <span class="keyword">let</span> id = req.url.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">        <span class="comment">// 找出 todos 裡面有沒有符合 id 的項目</span></span><br><span class="line">        <span class="keyword">let</span> index = todos.findIndex(<span class="function"><span class="params">el</span> =&gt;</span> el.id == id);</span><br><span class="line">        <span class="comment">// 先判斷有沒有指定 ID</span></span><br><span class="line">        <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method == <span class="string">&#x27;DELETE&#x27;</span>) &#123;</span><br><span class="line">                todos.splice(index, <span class="number">1</span>);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：DELETE</p>
+</blockquote>
+<hr>
+<h2 id="💎-PATCH-編輯一筆待辦"><a href="#💎-PATCH-編輯一筆待辦" class="headerlink" title="💎 PATCH - 編輯一筆待辦"></a>💎 PATCH - 編輯一筆待辦</h2><p>終於到了最後一步，也是集大成的一步，『路徑 ID』和『接收資料』都會用上，可以參考 <code>POST</code> 和 <code>DELETE(單筆)</code> 的寫法自行整合在一起，流程大致如下：</p>
+<ol>
+<li>檢查連結（url）</li>
+<li>檢查ID (url)</li>
+<li>檢查方法 (method)</li>
+<li>確認接收完資料 (req.on(end))</li>
+<li>偵錯 （try…catch）</li>
+<li>檢查接收的待辦資料（title）</li>
+<li>更新待辦資料（title）</li>
+<li>回傳待辦資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">                <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                    <span class="comment">// 修改對應 ID 的 title</span></span><br><span class="line">                    todos[index].title = title;</span><br><span class="line">                    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; </span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：PATCH<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
+</blockquote>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>寫到這邊，總算把所有功能完成，後續還有許多可以調整優化的（回傳詳細的錯誤訊息、模組化…等），就自行發揮吧！</p>
+]]></content>
+      <categories>
+        <category>Node.js</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[Node.JS] 打造 todolist api 4 - 部署上線</title>
     <url>/2022/03/04/nodejs5/</url>
     <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
@@ -1057,84 +1335,6 @@
 <blockquote>
 <p>我的 <a href="https://github.com/stark920/todolistDemo">GitHub - todolistDemo</a> 也存放了照著這些文章寫出來的成果，如果操作有問題也可以參考上面的檔案。</p>
 </blockquote>
-]]></content>
-      <categories>
-        <category>Node.js</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Node.JS] 打造 todolist api 3 - 完成所有功能</title>
-    <url>/2022/03/04/nodejs4/</url>
-    <content><![CDATA[<p><img data-src="/images/nodejs-logo.png"></p>
-<span id="more"></span> 
-<p>前一篇已經把整個架構寫好，這次就直接照著架構補完所有功能！</p>
-<hr>
-<h2 id="💎-GET-取得待辦清單"><a href="#💎-GET-取得待辦清單" class="headerlink" title="💎 GET - 取得待辦清單"></a>💎 GET - 取得待辦清單</h2><p>在前端撰寫 todolist 的練習時，都會使用一個陣列變數來存放待辦資料，現在搭配後端，就由 Node.js 負責管理這個陣列變數。<br>GET 方法非常簡單，只要回傳這個存放待辦事項的變數即可。<br><code>目前的練習中，變數只是存放在伺服器執行環境的記憶體中，並沒有存成實體檔案（資料庫），當伺服器重啟時記憶體釋放，資料就會遺失</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 宣告用來存放待辦事項的陣列</span></span><br><span class="line"><span class="keyword">const</span> todos = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">            <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="comment">// 改成回傳待辦事項的變數 </span></span><br><span class="line">            <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>段落測試</strong><br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：GET（只要順利回傳空陣列就成功了）</p>
-</blockquote>
-<hr>
-<h2 id="💎-POST-新增一筆待辦"><a href="#💎-POST-新增一筆待辦" class="headerlink" title="💎 POST - 新增一筆待辦"></a>💎 POST - 新增一筆待辦</h2><p>在撰寫這段時，需要先規劃好一筆待辦事項會有哪些欄位，本次練習只放『標題』、『ID』就好，格式設計如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;吃飯&quot;</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;xxxxxxxxxxx&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>標題</strong><ul>
-<li>需要接收 <code>req</code> 傳來的資料，使用 node.js 的 req.on 方法來監聽資料接收的事件。</li>
-<li>封包大小有限，當傳送的資料大時就會被切成好幾個片段，接收端需要在收到所有的片段之後組合起來，才會取得完整可用的資料。</li>
-<li>要確保資料已經確實接收，分別使用 <code>req.on(&#39;data&#39;, function)</code> 來處理資料傳送中的行為，<code>req.on(&#39;end&#39;, function)</code> 處理接收完的行為。</li>
-<li>資料檢查：格式設計了使用 title 存放標題，如果傳入的資料不是 JSON 格式，或是沒有這個屬性都可能讓伺服器掛掉，所以需要先檢查是不是符合規範。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    <span class="comment">// 建立一個變數來接收傳入的資料</span></span><br><span class="line">    <span class="keyword">let</span> body = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="comment">// 當有資料傳入就加到 body 變數裡面</span></span><br><span class="line">    req.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="params">chunk</span> =&gt;</span> &#123;</span><br><span class="line">        body += chunk;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="comment">// 資料接收完才會執行</span></span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 取出 body 裡面的 title，如果沒有會得到 undefined</span></span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="comment">// 有 title 就加到陣列裡面，並且回傳全部待辦</span></span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title</span><br><span class="line">                &#125;);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            <span class="comment">// 沒 title 回傳錯誤</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>ID</strong><ul>
-<li>ID 需要是不會重複的數值，使用 UUID 套件來完成。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入 uuid 模組，請確認有無安裝該套件</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">v4</span>: uuidv4 &#125; = <span class="built_in">require</span>(<span class="string">&#x27;uuid&#x27;</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123; </span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="comment">// 加入 ID</span></span><br><span class="line">                    <span class="attr">id</span>: uuidv4()</span><br><span class="line">                &#125;);</span><br><span class="line">            ...</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><strong>防錯</strong><ul>
-<li>雖然前面已經針對 title 檢查，還是需要甚防有心人傳入奇怪的資料，可以使用 try…catch 來捕捉問題。<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">    req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                todos.push(&#123;</span><br><span class="line">                    title,</span><br><span class="line">                    <span class="string">&#x27;id&#x27;</span>: uuidv4()</span><br><span class="line">                &#125;)</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：POST（需要在 body 加入 JSON 資料）<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
-</blockquote>
-<hr>
-<h2 id="💎-DELETE-刪除全部待辦"><a href="#💎-DELETE-刪除全部待辦" class="headerlink" title="💎 DELETE - 刪除全部待辦"></a>💎 DELETE - 刪除全部待辦</h2><p>刪除全部非常簡單，只要把陣列清空就好，要注意的是陣列和物件都盡量避免賦值（=）操作，以方法操作為主，所以我在一開始宣告 todos 時是使用 const ，這樣就無法使用 <code>todos = []</code>，而是使用陣列方法 <code>todos.length = 0</code> 來清空陣列。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">    <span class="comment">// 陣列長度為 0 = 沒資料</span></span><br><span class="line">    todos.length = <span class="number">0</span>;</span><br><span class="line">    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：DELETE</p>
-</blockquote>
-<hr>
-<h2 id="💎-DELETE-刪除一筆待辦"><a href="#💎-DELETE-刪除一筆待辦" class="headerlink" title="💎 DELETE - 刪除一筆待辦"></a>💎 DELETE - 刪除一筆待辦</h2><ul>
-<li><strong>取得傳入的 ID</strong>：<br>前一篇文章有提到，把待辦的 ID 塞到網址後面的格式會是 <code>http://網域/路徑/參數</code>，使用 <code>req.url</code> 會得到 <code>/路徑/參數</code>，接著用字串方法 <code>split(&#39;/&#39;)</code> 切割成陣列，再使用 <code>pop()</code> 取得最後一筆資料就是參數了。</li>
-<li><strong>找出 ID 相符的資料</strong>：<br>使用 <code>findIndex</code> 方法來找出待辦事項的陣列中有沒有 ID 相符的資料，符合時會取得該筆資料的 <code>index</code>，沒有符合資料時會得到 <code>-1</code>。</li>
-<li><strong>刪除陣列資料</strong><br>成功取得指定資料在陣列中的 index 後就可以使用 <code>splice(index, 1)</code> 的方法刪除 1 筆資料，第一個參數是起始的索引位置，第二個參數是要往後刪除幾筆資料。</li>
-<li><strong>架構調整</strong><br>調整前：<code>確認網址開頭</code>(/todo/) &gt; <code>確認請求方法</code>（PATCH or DELETE）<br>調整後：<code>確認網址開頭</code>(/todo/) &gt; <code>確認 ID 是否存在</code> &gt; <code>確認請求方法</code>（PATCH or DELETE）<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">        <span class="comment">// 取得請求網址最後一段帶的 ID</span></span><br><span class="line">        <span class="keyword">let</span> id = req.url.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">        <span class="comment">// 找出 todos 裡面有沒有符合 id 的項目</span></span><br><span class="line">        <span class="keyword">let</span> index = todos.findIndex(<span class="function"><span class="params">el</span> =&gt;</span> el.id == id);</span><br><span class="line">        <span class="comment">// 先判斷有沒有指定 ID</span></span><br><span class="line">        <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">                ...</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method == <span class="string">&#x27;DELETE&#x27;</span>) &#123;</span><br><span class="line">                todos.splice(index, <span class="number">1</span>);</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：DELETE</p>
-</blockquote>
-<hr>
-<h2 id="💎-PATCH-編輯一筆待辦"><a href="#💎-PATCH-編輯一筆待辦" class="headerlink" title="💎 PATCH - 編輯一筆待辦"></a>💎 PATCH - 編輯一筆待辦</h2><p>終於到了最後一步，也是集大成的一步，『路徑 ID』和『接收資料』都會用上，可以參考 <code>POST</code> 和 <code>DELETE(單筆)</code> 的寫法自行整合在一起，流程大致如下：</p>
-<ol>
-<li>檢查連結（url）</li>
-<li>檢查ID (url)</li>
-<li>檢查方法 (method)</li>
-<li>確認接收完資料 (req.on(end))</li>
-<li>偵錯 （try…catch）</li>
-<li>檢查接收的待辦資料（title）</li>
-<li>更新待辦資料（title）</li>
-<li>回傳待辦資料<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">        req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">                <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                    <span class="comment">// 修改對應 ID 的 title</span></span><br><span class="line">                    todos[index].title = title;</span><br><span class="line">                    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">                sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; </span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p><strong>段落測試</strong>（需要使用 POSTMAN）<br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一筆id)</code><br>（先用 POST 方法建立幾筆資料，才有 ID 可用）<br><strong>測試方法</strong>：PATCH<br><strong>測試資料</strong>： <code>&#123;&quot;title&quot;: &quot;test&quot;&#125;</code> or 各種奇怪資料</p>
-</blockquote>
-<hr>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>寫到這邊，總算把所有功能完成，後續還有許多可以調整優化的（回傳詳細的錯誤訊息、模組化…等），就自行發揮吧！</p>
 ]]></content>
       <categories>
         <category>Node.js</category>
@@ -1282,6 +1482,89 @@
       </categories>
       <tags>
         <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[心得] 六角學院 JS 工程師養成直播班 - 學習心得</title>
+    <url>/2021/12/21/EXPhexschoolJSlive/</url>
+    <content><![CDATA[<p><img data-src="/images/hexschool-livejs.png"></p>
+<span id="more"></span> 
+
+<p>過去參加過各種『ｏｏ電腦』的實體課程，也在各種平台買了很多線上課程，最近第一次參加了線上直播班課程，以下就來分享課程內容和學習心得。</p>
+<h2 id="💎-課程內容"><a href="#💎-課程內容" class="headerlink" title="💎 課程內容"></a>💎 課程內容</h2><ul>
+<li>課程名稱：JS 工程師養成直播班 - 2021秋季</li>
+<li>授課時間：每週直播一次約 2 小時，共 9 週</li>
+<li>授課內容：JavaScript 從零開始 -&gt; 串接 API 製作前、後台功能</li>
+<li>其他服務：<ul>
+<li>每日練習任務、每週主線任務，並有課程助教協助任務批改及建議</li>
+<li>週二加開主線任務講解直播</li>
+<li>週三、四不定期主題直播</li>
+<li>社群平台提供線上諮詢、履歷檢查…等，想問什麼就問什麼</li>
+</ul>
+</li>
+</ul>
+<h2 id="💎-課程比較"><a href="#💎-課程比較" class="headerlink" title="💎 課程比較"></a>💎 課程比較</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">實體課程</th>
+<th align="center">線上課程</th>
+<th align="center">直播班</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">價格</td>
+<td align="center">高</td>
+<td align="center">低</td>
+<td align="center">中</td>
+</tr>
+<tr>
+<td align="center">課程編排</td>
+<td align="center">緊湊</td>
+<td align="center">考驗自制力</td>
+<td align="center">每週搭配練習循序漸進</td>
+</tr>
+<tr>
+<td align="center">課後服務</td>
+<td align="center">大概就完課證書？</td>
+<td align="center">透過課程平台與開課導師互動</td>
+<td align="center">有專屬社群和助教團可詢問</td>
+</tr>
+<tr>
+<td align="center">學員交流</td>
+<td align="center">很少</td>
+<td align="center">趨近０</td>
+<td align="center">校長、助教團 + 一堆同學互助</td>
+</tr>
+<tr>
+<td align="center">學習效率</td>
+<td align="center">需要天份，跟不上進度就GG</td>
+<td align="center">考驗自制力與學習能力</td>
+<td align="center">只要有網路就可以問到懂為止</td>
+</tr>
+</tbody></table>
+<h2 id="💎-學習心得"><a href="#💎-學習心得" class="headerlink" title="💎 學習心得"></a>💎 學習心得</h2><h3 id="個人背景"><a href="#個人背景" class="headerlink" title="個人背景"></a>個人背景</h3><p>我是剛退伍的職業軍人，過去負責維護單位機房、伺服器和網站…等等，有開發 ASP.NET 內部網站也自學撰寫 HTML、CSS、JS 一段時間，會選擇上這門課是過去一直都使用較舊的技術開發網站（沒有API、框架…等），想透過這堂課強化基礎能力，並了解前端工程師在實務上的工作。</p>
+<h3 id="課程心得"><a href="#課程心得" class="headerlink" title="課程心得"></a>課程心得</h3><p>六角學院的這堂直播課雖然課程規劃是從０開始，但是不得不佩服他們的專業，考量到上課的同學程度不同，安排了課後筆記、學員分組討論２個內容，雖然直播課的內容對我來說已經熟悉，但是這兩個內容讓我學到了不少。</p>
+<ul>
+<li><p>課後筆記：題目都是許多 JavaScript 需要釐清的基本觀念，撰寫筆記的過程需要閱讀大量相關文章，再歸納出自己的脈絡，嘗試寫成別人也能理解的文章，這個學習過程會比看一些 JS tricky 的影片更加有效。</p>
+</li>
+<li><p>學員分組討論：分組的同學中大家的程度不一樣，可以透過小組討論互相學習，也可以在檢視同學的問題時，充當偽助教試著去了解別人的程式碼並給予建議，如果有好的寫法也可以藉機學習新招式。</p>
+</li>
+</ul>
+<p>過去上的一些實體課程，通常到上完後也不會和同學有任何互動，即使有熱心的同學開群組，也只是分享一些教材，完課後也成了廢群，更不用說線上課程就只是自己看看影片，哪來的同學？</p>
+<p>六角學院有龐大的社群服務，雖然一開始真的有點摸不著頭緒（有舊的 udemy 課程、新的課程網站、Discord、Slack、Email信件、HackMD…），但是有把 Slack 當 FB、IG 在滑的校長、<del>被迫</del>輪班的助教群和大量的同學可以諮詢交流，這絕對是 CP 爆表的超值服務。</p>
+<p>除此之外，每週主線任務的提交平台，可以看到其他同學的作品，不用再擔心卡住時找不到 Code 可以參考，相同的程式從每個人手中寫出來都是不同的樣貌，除了學習該怎麼寫出功能，還可以學習如何寫出讓人容易看懂的程式碼。</p>
+<p>最後，要特別提的就是老師大力推廣的 Kata 挑戰，這是第一次遇到課程特別針對撰寫速度要求學生練習的，再結合社群分享，可以看到同學的各種騷操作，可以說速寫又是另一個世界了！</p>
+<p>如果看這篇文章的你，正打算轉職前端工程師，或是學習前端技能中卻找不到方向，都非常推薦來參加直播班，這不僅僅是一套學習課程，而是給你一個完整的學習環境。</p>
+<blockquote>
+<p>課程網站：<br><a href="https://www.hexschool.com/">六角學院</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Course Experience</category>
+      </categories>
+      <tags>
+        <tag>Experience</tag>
       </tags>
   </entry>
   <entry>
@@ -1651,289 +1934,6 @@
       <tags>
         <tag>Node.js</tag>
         <tag>NPM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[JS] 從 Event Loop 到 Callback function，一堆名詞講的是什麼？</title>
-    <url>/2022/04/17/JScallback/</url>
-    <content><![CDATA[<p><img data-src="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop/the_javascript_runtime_environment_example.svg"></p>
-<blockquote>
-<p>圖片來源：<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/EventLoop">MDN - 並行模型和事件循環</a></p>
-</blockquote>
-<span id="more"></span>
-
-<hr>
-<h2 id="事件循環（event-loop）"><a href="#事件循環（event-loop）" class="headerlink" title="事件循環（event loop）"></a>事件循環（event loop）</h2><p>JavaScript 是單執行緒的語言，一次只能做一件事，遇到需要花費大量時間的程式時，後面的程式就會全部卡住。</p>
-<p>舉例來說，去超商提款機領錢，前面的人換了無數張卡片，一陣操作十幾分鐘過去，但是超商就只有一台提款機，只能在後面慢慢等他用完。</p>
-<p>為了減少這種排隊窘境，瀏覽器執行時會讓順順跑的排一列、費時的移到另一列等待，順跑的一列出現空檔時，再把另一列排隊的項目抓回來執行。</p>
-<p>我非常推薦先觀看下方影片來了解事件循環的運作，會比文字和圖片解釋更加容易理解：</p>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/8aGhZQkoFbQ" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-<blockquote>
-<p>影片講者的事件循環模擬器：<a href="http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4=">連結</a></p>
-</blockquote>
-<hr>
-<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><p>看完上面的影片，我們可以快速了解事件循環的流程，以下歸納幾個名詞代表的意思：</p>
-<ul>
-<li>同步的 JavaScript（Synchronous）：瀏覽器執行多數的程式碼都是同步的，收到就立刻執行。</li>
-<li>非同步的 JavaScript（Asynchronous）：許多無法立即完成的程式會交由瀏覽器的 Web APIs 來處理，最常見的情況就是取得外部資料。</li>
-<li>Web APIs：瀏覽器中提供的應用（例如：抓 api 資料、等待幾秒…等）。</li>
-<li>Stack (Call Stack）：同步執行的程式片段，會以堆疊方式執行（先進後出）。</li>
-<li>Queue（Callback Queue / Task Queue）：非同步執行的程式片段會交給 Web APIs 處理，完成後進入佇列中等待執行（先進先出）。</li>
-</ul>
-<hr>
-<h2 id="Callback-Function"><a href="#Callback-Function" class="headerlink" title="Callback Function"></a>Callback Function</h2><p>經過 Web APIs 處理完的非同步程式會進入 Queue 等待，當 Stack 沒有執行中的程式時，就會抓取 Queue 中等待執行的程式回來執行，這個回頭做的動作就是 Callback (回呼)，所以非同步執行後回頭做的函式就是 Callback Function ? 意思大概到了，但不完全是。</p>
-<p>在 MDN 中說明回呼函式（Callback Function）指的是<code>把函式作為參數，提供另一個函式使用</code>，用這種方式設計出來的函式可以是同步和非同步的，但通常都是用來處理非同步的程式。</p>
-<p>非同步的完成時間通常是難以預測的，舉例來說，要取得一個外部資源，會因為網路速度、檔案大小讓完成時間都不相同，當有多個非同步程式執行，我們無法知道哪一個會先完成，回呼函式的設計就是要<code>確保函式執行的先後順序</code>。</p>
-<hr>
-<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2><p>學習 JavaScript 時進入非同步的章節通常第一個學的就是 setTimeout，可以指定一段時間後再執行別的程式碼，在 <a href="https://www.w3schools.com/jsref/met_win_settimeout.asp">W3schools</a> 可以看到 setTimeout 傳入參數的格式：</p>
-<p><code>setTimeout(function, milliseconds, param1, param2, ...)</code></p>
-<p><strong>第一個參數是函式</strong>、第二個是間隔的時間、第三個以後是可以選擇要額外傳入的參數。</p>
-<p>第一個參數正好符合了「把函式作為參數，提供另一個函式使用」，也就是說這是一個 <code>Callback Function</code>，而 setTimeout 的功能正式讓傳入的回呼函式在指定的時間後再執行。</p>
-<p>接下來的段落，會透過設計情境來說明如何設計和應用 Callback Function。</p>
-<hr>
-<h2 id="設計情境"><a href="#設計情境" class="headerlink" title="設計情境"></a>設計情境</h2><p>有點年紀的朋友們（？應該都聽過企鵝的笑話，每天的活動是「吃飯、睡覺、打東東」，以此為題設計一個每日工作的程式碼會像下面這樣：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 吃飯</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 睡覺</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打東東</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每日工作：裡面執行每個活動的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  eat();</span><br><span class="line">  sleep();</span><br><span class="line">  hitDongDong();</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*---輸出結果---*/</span></span><br><span class="line"><span class="comment">/*------------*/</span></span><br><span class="line"><span class="comment">// 今日完成事項：</span></span><br><span class="line"><span class="comment">// 吃飽了</span></span><br><span class="line"><span class="comment">// 睡飽了</span></span><br><span class="line"><span class="comment">// 打爽了</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="同步回呼函式"><a href="#同步回呼函式" class="headerlink" title="同步回呼函式"></a>同步回呼函式</h2><p>上面的函式設計上沒有彈性，不同的企鵝除了打東東之外也會做其他的事情，我們增加一個參數來接收要做的事情（函式），改寫後如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 除了「吃飯、睡覺、打東東」外可以自由設計各種活動函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moreActivity</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">...activities</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  activities.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 執行前先檢查是否為函式</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">&#x27;function&#x27;</span>) fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks(eat, sleep, hitDongDong, moreActivity);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*---輸出結果---*/</span></span><br><span class="line"><span class="comment">/*------------*/</span></span><br><span class="line"><span class="comment">// 今日完成事項：</span></span><br><span class="line"><span class="comment">// 吃飽了</span></span><br><span class="line"><span class="comment">// 睡飽了</span></span><br><span class="line"><span class="comment">// 打爽了</span></span><br><span class="line"><span class="comment">// ( 自行加入的各種活動....)</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>上面的程式碼中，在 dailyWorks 這個主要函式中增加 activities 參數（參數名稱可以自定），用來接收要執行的函式。</p>
-</li>
-<li><p>運用其餘運算符（…）來接收更多的函式，就可以在執行 dailyWorks 函式時自由的替換或傳入更多的函式。</p>
-</li>
-<li><p>因為傳入的函式都是同步執行，是「同步回呼函式」，哪個先傳入就先執行，沒有非同步的順序問題。</p>
-</li>
-</ul>
-<hr>
-<h2 id="非同步回呼函式"><a href="#非同步回呼函式" class="headerlink" title="非同步回呼函式"></a>非同步回呼函式</h2><p>問題又來了，企鵝哪有那麼神，可以一瞬間做那麼多事情？接著就讓每件工作加入一點執行時間。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>), <span class="number">2000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">...activities</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  activities.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn === <span class="string">&#x27;function&#x27;</span>) fn();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">dailyWorks(eat, sleep, hitDongDong);</span><br></pre></td></tr></table></figure>
-
-<p>完成修改後，請問上面這段程式碼的執行結果？</p>
-<ul>
-<li>(A) 印出「今日完成事項：」、2 秒後印出「吃飽了」、第 3 秒印出「睡飽了」、第 4 秒印出「打爽了」</li>
-<li>(B) 印出「今日完成事項：」、1 秒後同時印出「睡飽了」和「打爽了」、 第 2 秒印出「吃飽了」</li>
-</ul>
-<p>如果你的答案是 (A)，請試著把這段程式碼的執行流程用 stack、WebAPIs、queue 的方式畫出來。</p>
-<p>雖然我們把傳入的函式修改成「非同步回呼函式」，但是傳入的函式都屬於主要函式（dailyWorks）的回呼函式，彼此間沒有 callback 的關係，整個程式的執行順序是：</p>
-<ol>
-<li>主要函式的 <code>console.log(&#39;今日完成事項：&#39;)</code></li>
-<li>傳入的三個函式都進入 WebAPIs 執行，「睡飽了」和「打爽了」都在一秒後執行完，回到 queue，再被取回 stack 執行，而「吃飽了」在兩秒後才完成進入 queue，再被取回 stack 執行。</li>
-</ol>
-<p>如果要讓這些非同步函式能夠一個完成再執行下一個（one by one），可以再做以下修改：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;吃飽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;睡飽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hitDongDong</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;打爽了&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dailyWorks</span>(<span class="params">activity</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;今日完成事項：&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> activity === <span class="string">&#x27;function&#x27;</span>) activity();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dailyWorks(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  eat(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    sleep(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      hitDongDong(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 繼續延伸下去............</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>修改後的程式碼，讓每個活動函式都可以傳入 callback function，這樣就可以讓依照順序逐個執行。</p>
-<p>為了確保執行的順序，必須以巢狀的方式撰寫，當程式碼變得複雜時，傳說中的 Callback Hell（回呼地獄）就會誕生，雖然這不是電腦執行程式的問題，但是對於人類閱讀會有很大的障礙。</p>
-<p><img data-src="https://miro.medium.com/max/1400/1*zxx4iQAG4HilOIQqDKpxJw.jpeg"></p>
-<blockquote>
-<p>圖片來源：<a href="https://medium.com/@quyetvv/async-flow-from-callback-hell-to-promise-to-async-await-2da3ecfff997">Async Flow: From callback hell to promise to Async-Await</a></p>
-</blockquote>
-<hr>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>Callback function 歷史悠久，這也表示 Callback hell 荼毒了很長一段時間，直到 ES6（2015）的 Promise 和 ES8（2017）的 async/await 才有較簡潔的撰寫方法，儘管學習新方法可以縮短許多時間，但是 Event loop 的流程和 Callback function 的撰寫方式都是重要的基本功，花點時間弄清楚對於撰寫非同步程式會非常有幫助。</p>
-<blockquote>
-<p>參考資料：<br><a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Callback_function">MDN - 回呼函式</a> 、 <a href="https://ithelp.ithome.com.tw/articles/10192739">Kuro - 重新認識 JavaScript: Day 18 Callback Function 與 IIFE</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[JS] 深入了解型別與轉型</title>
-    <url>/2021/11/19/JScoercion/</url>
-    <content><![CDATA[<p><img data-src="/images/js-coercion.png"></p>
-<span id="more"></span> 
-<p>JavaScript 不論遇到什麼奇形怪狀的資料運算，都會盡可能讓程式執行下去，這麼貼心的設計也是兩面刃，可能在不知不覺中程式正常運作，也可能突然就報錯了卻毫無頭緒，馬上來認識 JavaScript 的型別系統與轉型吧！</p>
-<hr>
-<h2 id="💎-型別（type）"><a href="#💎-型別（type）" class="headerlink" title="💎 型別（type）"></a>💎 型別（type）</h2><ul>
-<li><p>JavaScript 的型別可以分為『原始型別』和『物件型別』兩類，差異在於：</p>
-<ul>
-<li>原始型別<code>沒有</code>屬性和方法可以使用</li>
-<li>物件型別<code>可以任意存取</code>屬性和方法</li>
-</ul>
-</li>
-<li><p><strong>原始型別（Primitive types）</strong></p>
-<ul>
-<li>string</li>
-<li>number</li>
-<li>boolean</li>
-<li>null</li>
-<li>undefined</li>
-<li>symbol (ES 6 新定義)</li>
-</ul>
-</li>
-<li><p><strong>物件型別（Object types）</strong></p>
-<ul>
-<li>原生物件（Native）<ul>
-<li>Object, Array, Function, Date, Math, RegExp</li>
-<li>原始型別包裹物件（Primitive Wrapper）：Number, String, Boolean</li>
-</ul>
-</li>
-<li>寄宿物件（Host）<ul>
-<li>window</li>
-<li>DOM</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>型別檢查（typeof)：<br>除了 null 有原生的 bug 會得到 object 的結果（此 bug 不會修正），其他型別都可以使用 <code>typeof</code> 來檢查。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof &#x27;a&#x27;); // string</span><br><span class="line">console.log(typeof 1); // number</span><br><span class="line">console.log(typeof true); // boolean</span><br><span class="line">console.log(typeof null); // object &lt;== 這是語言本身的bug</span><br><span class="line">console.log(typeof undefined); // undefined</span><br><span class="line">console.log(typeof Symbol()) // symbol</span><br><span class="line">console.log(typeof &#123;&#125;); // object</span><br><span class="line">console.log(typeof []); // object</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h2 id="💎-裝箱（boxing）和-拆箱（unboxing）"><a href="#💎-裝箱（boxing）和-拆箱（unboxing）" class="headerlink" title="💎 裝箱（boxing）和 拆箱（unboxing）"></a>💎 裝箱（boxing）和 拆箱（unboxing）</h2><ul>
-<li><p>前面提到原始型別是沒有屬性和方法可以使用的，但我們卻可以利用字串方法來修改原始型別的字串（如下方的程式碼），這是因為 JavaScript 有 裝箱（boxing）和 拆箱（unboxing）機制來處理這些操作。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;123.45&#x27;.split(&#x27;.&#x27;));</span><br><span class="line">// [&#x27;123&#x27;, &#x27;45&#x27;]</span><br></pre></td></tr></table></figure></li>
-<li><p>上個段落的物件型別中有一項 <code>原始型別包裹物件（Primitive Wrapper）</code>，使用這個方式來建立的字串（數字或布林值）會是物件的形式，並且有許多原生方法可以使用，JavaScript 便是利用這個物件型別來實作裝箱與拆箱。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &#x27;123&#x27;;</span><br><span class="line">let strObj = new String(&#x27;123&#x27;);</span><br><span class="line"></span><br><span class="line">console.log(typeof str); // string</span><br><span class="line">console.log(typeof strObj); // object</span><br></pre></td></tr></table></figure></li>
-<li><p>裝箱（boxing）：當 JS 執行方法發現資料是原始型別時，便會使用 <code>new</code> 把原始型別資料建立成物件型別的資料，就可以順利執行物件內的方法。</p>
-</li>
-<li><p>拆箱（unboxing）：當 JS 完成被裝箱的物件需要執行的方法後，就會把這個物件資料還原成原始型別的資料，這時會用到兩個重要的方法，這會在接下來介紹的『轉型』再次談到：</p>
-<ul>
-<li><code>valueOf()</code>：回傳 <code>Number</code> 原始型別。</li>
-<li><code>toString()</code>：回傳 <code>String</code> 原始型別。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="💎-強制轉型（coercion）"><a href="#💎-強制轉型（coercion）" class="headerlink" title="💎 強制轉型（coercion）"></a>💎 強制轉型（coercion）</h2><ul>
-<li>強制轉型分為兩種：<code>顯性轉型</code>（explicit coercion）、<code>隱性轉型</code>（implicit coercion）</li>
-</ul>
-<h3 id="🔸-顯性轉型（explicit-coercion）："><a href="#🔸-顯性轉型（explicit-coercion）：" class="headerlink" title="🔸 顯性轉型（explicit coercion）："></a>🔸 顯性轉型（explicit coercion）：</h3><ul>
-<li><p>顯性轉型指的是在程式碼中<code>直接撰寫</code>的型別轉換。</p>
-</li>
-<li><p><strong>轉數字</strong></p>
-<ul>
-<li><p><code>parseInt()</code>：</p>
-<ul>
-<li>轉整數。</li>
-<li>小數點以後無條件捨去。</li>
-<li>轉換方式：由左至右，遇到無法轉成數字的時候停止，回傳前面的數字。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseInt(&#x27;1.23&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;1.23a&#x27;)); // 1</span><br><span class="line">console.log(parseInt(&#x27;a1.23&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>parseFloat()</code>：</p>
-<ul>
-<li>轉浮點數（包含小數點以後）。</li>
-<li>轉換方式與 parseInt() 相同。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(parseFloat(&#x27;1.23&#x27;)); // 1.23</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>Number()</code>：</p>
-<ul>
-<li>可以轉整數和浮點數。</li>
-<li>數字範圍在正負 2的53次方 -1 間。</li>
-<li>轉換方式：整筆字串都可以轉成數字才轉換，否則得到 NaN。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Number(&#x27;-1.23&#x27;)); // -1.23</span><br><span class="line">console.log(Number(&#x27;-1.23a&#x27;)); // NaN</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>BigInt()</code>：</p>
-<ul>
-<li>轉整數</li>
-<li>範圍可以超過2的53次方（表示方式會在數字後面加上 <code>n</code>）</li>
-<li>轉換方式：非整數時直接報錯，不會得到 NaN。</li>
-<li>需注意瀏覽器支援度。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(BigInt(&quot;9007199254740991&quot;)); // 9007199254740991n</span><br><span class="line">console.log(typeof 1n); // bigint</span><br><span class="line">console.log(BigInt(&quot;900a&quot;)); // Cannot convert 900a to a BigInt</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><code>算數運算子</code>：</p>
-<ul>
-<li>前方加上<code>+</code>：可能會和 <code>++</code> 混淆。</li>
-<li>前方加上<code>-</code>：內容若是負數，會被轉成正數。</li>
-<li>後方加上<code>- 0</code>：較穩定寫法。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(+&#x27;-1&#x27;); // -1</span><br><span class="line">console.log(++&#x27;-1&#x27;); // Invalid left-hand side expression in prefix operation</span><br><span class="line">console.log(-&#x27;-1&#x27;); // 1</span><br><span class="line">console.log(&#x27;-1&#x27; - 0); // -1</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>轉字串</strong></p>
-<ul>
-<li><p><code>toString()</code>：不能轉換 null 和 undefined，可以設定進位制。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log((3).toString()); // 3</span><br><span class="line">console.log(undefined.toString()); // Cannot read properties of undefined</span><br><span class="line">console.log((3).toString(2)); // 11</span><br></pre></td></tr></table></figure></li>
-<li><p><code>String()</code>：可以轉換 null 和 undefined，不能設定進位制。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(String(3)); // 3</span><br><span class="line">console.log(String(undefined)); // undefined</span><br></pre></td></tr></table></figure></li>
-<li><p><code>算數運算子</code>：加上空字串 <code>+ &#39;&#39;</code>。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(typeof (3 + &#x27;&#x27;)); // string</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>轉布林值</strong></p>
-<ul>
-<li><p>布林值只有兩種值（true 或 false），轉型後會得到 true 的值稱為 truthy，得到 false 的則是 falsy，除了下列項目是 <code>falsy</code>，其他的都是 <code>truthy</code>：</p>
-<ul>
-<li><code>false</code></li>
-<li><code>0</code></li>
-<li><code>-0</code></li>
-<li><code>0n</code> (BigInt)</li>
-<li><code>“”</code> (空字串，包含 ``, ‘’)</li>
-<li><code>null</code></li>
-<li><code>undefined</code></li>
-<li><code>NaN</code></li>
-<li><code>document.all</code> (正常情況下不會用到)</li>
-</ul>
-</li>
-<li><p>轉換方式：</p>
-<ul>
-<li><p><code>Boolean()</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(Boolean([])); // true</span><br></pre></td></tr></table></figure></li>
-<li><p><code>邏輯運算子</code>：前方加上雙驚嘆號 <code>!!</code>，單驚嘆號 <code>!</code> 會是相反結果。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(!true); // false</span><br><span class="line">console.log(!!&#123;&#125;); // true</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="🔸-隱性轉型（implicit-coercion）"><a href="#🔸-隱性轉型（implicit-coercion）" class="headerlink" title="🔸 隱性轉型（implicit coercion）"></a>🔸 隱性轉型（implicit coercion）</h3><ul>
-<li><p>隱性轉型出現在使用運算子時，這在其他程式語言通常是不允許的（需要相同型別才可以運算），JavaScript 則會自動轉型讓程式繼續執行，也因為規則繁雜，容易疏忽出錯。</p>
-</li>
-<li><p>核心方法 <code>ToPrimitive</code><br>JavaScript 在執行運算時會使用 <code>ToPrimitive</code> 方法將運算元轉換成原始型別後就能繼續運算，<code>ToPrimitive</code> 帶有一個 <code>hint</code>(提示)，用來決定要轉成什麼型別，如果要了解詳細的運作順序可以參考 <strong><a href="https://zhuanlan.zhihu.com/p/29730094">深入理解Javascript中Object类型的转换</a></strong> 這篇文章，裡面引用了 ECMA 的規範詳細解說，非常值得一讀！</p>
-</li>
-<li><p><strong>原始型別</strong>的隱性轉型</p>
-<ul>
-<li><p><code>+</code> 算數運算子：加法運算中只要有一個值屬於字串型別，就會全部轉為 string，最高優先。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 有字串</span><br><span class="line">console.log(&#x27;&#x27; + 1 + null + true); // 1nulltrue</span><br><span class="line">// 無字串</span><br><span class="line">console.log(1 + null + true); // 2</span><br></pre></td></tr></table></figure></li>
-<li><p>其他算數運算子：<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code> 運算都會轉成 number。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;6&#x27; - undefined); // NaN</span><br><span class="line">console.log(9 * [9]); // 81</span><br><span class="line">console.log(&#x27;3&#x27; / &#123;&#125;); // NaN</span><br><span class="line">console.log(6 % true); // 0</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>物件型別</strong>的隱性轉型</p>
-<ul>
-<li><p><code>ｔoPrimitive</code> 執行物件型別的轉換時會使用到物件內的 <code>valueOf</code> 或 <code>toString</code> 方法來取得原始型別的回傳值，因為這是物件內的方法，我們可以透過覆蓋方法來改變回傳值：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 刻意改成 valueOf 回傳字串、toString 回傳數字</span><br><span class="line">let a = &#123;</span><br><span class="line">    valueOf: function() &#123;</span><br><span class="line">        return &#x27;1&#x27;;</span><br><span class="line">    &#125;,</span><br><span class="line">    toString: function() &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(a + 0); // &quot;10&quot;</span><br><span class="line">console.log(a.toString()); // 2</span><br></pre></td></tr></table></figure></li>
-<li><p><code>陣列</code>也是物件，ToPrimitive 會回傳陣列本身內容執行 <code>toString()</code> 方法後的字串。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 空陣列轉字串 &quot;&quot;，空物件轉字串 &quot;[object Object]&quot;</span><br><span class="line">console.log([] + &#123;&#125;); // &quot;[object Object]&quot;</span><br><span class="line"></span><br><span class="line">// 陣列轉字串 &quot;1,2,3&quot;，後方數字配合轉字串</span><br><span class="line">console.log([1,2,3] + 2 + 1); // &quot;1,2,321&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p><code>&#123;&#125; + 任意值</code>：</p>
-<ol>
-<li><code>&#123;&#125;</code> 在運算元前方時會被視為<code>區塊語句</code>，而不是物件，所以實際執行的只有後面的 <code>+ x</code></li>
-<li><code>+ 任意值</code>是前一段落提到的<code>顯性轉型</code>轉數字的方法，所以後方的運算元轉為 number 型別。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 強制轉型</span><br><span class="line">console.log(+&#123;&#125;); // NaN</span><br><span class="line"></span><br><span class="line">// 看起來是物件加陣列，實際上是後方的陣列強制轉型為數字</span><br><span class="line">console.log(&#123;&#125; + []); // 0 </span><br><span class="line"></span><br><span class="line">// 上方程式實際執行時等同下面兩行：</span><br><span class="line">&#123;&#125;</span><br><span class="line">+[];</span><br><span class="line"></span><br><span class="line">// 宣告一個物件變數 x 來存放空物件，才能被當成物件來計算</span><br><span class="line">let x = &#123;&#125;;</span><br><span class="line">console.log(x + []); // &quot;[object Object]&quot;</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p><code>&#123;&#125; + &#123;&#125;</code>：這是一個特別狀況所以額外說明，不同的瀏覽器會有不同的執行結果：</p>
-<ol>
-<li>NaN - 第一個 {} 被視為區塊，</li>
-<li>“[object Object][object Object]” - 第一個 {} 被視為物件</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p><strong>邏輯運算</strong><br>邏輯運算中的運算元都會被轉為 boolean，差別在於其運算後回傳的結果。</p>
-<ul>
-<li><p>|| (or) 會回傳第一個結果為 true 的運算元，若無，則是最後一個。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(0 || false || null || undefined); // undefined</span><br><span class="line">console.log(0 || false || null || &#123;&#125; || undefined); // &#123;&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>&amp;&amp; (and) 若運算結果為 true，會回傳最後一個運算元，若運算結果為 false，回傳第一個結果為 false 的運算元。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(true &amp;&amp; &#123;&#125; &amp;&amp; -2 &amp;&amp; [&#x27;a&#x27;]); // [&#x27;a&#x27;]</span><br><span class="line">console.log(1 &amp;&amp; 0 &amp;&amp; true &amp; false); // 0</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>關於轉型的細節實在太多，族繁不及備載，一些極端的範例在實際撰寫時並不會用到，不求成為行走的 MDN，但求踩坑的時候能順利 debug 就好！</p>
-<blockquote>
-<p>參考文章<br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/BigInt">MDN-BigInt</a><br><a href="https://medium.com/@sunnyhuang.sc/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98-javascript-%E4%BD%95%E8%AC%82%E5%BC%B7%E5%88%B6%E8%BD%89%E5%9E%8B-coercion-%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E4%BD%9C%E5%88%B0%E8%BD%89%E6%8F%9B%E5%9E%8B%E5%88%A5-d7e39e30083">sunnyhuang-何謂強制轉型（coercion）以及如何作到轉換型別</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString">MDN-Number.prototype.toString()</a><br><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/254123/">淺談JS中String()與.toString()的區別 - 程式前沿</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive">MDN-Symbol.toPrimitive</a>。<br><a href="https://eddychang.me/js-object-plus-object">Eddy 思考與學習-JS中的 {} + {} 與 {} + [] 的結果是什麼？</a><br><a href="https://eddychang.me/js-object-plus-object"></a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript - Basic</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
       </tags>
   </entry>
 </search>
