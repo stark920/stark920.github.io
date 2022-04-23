@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://i.imgur.com/qovLACV.png">
 <meta property="og:image" content="https://i.imgur.com/MQ0zwPR.png">
 <meta property="article:published_time" content="2022-04-22T18:08:28.000Z">
-<meta property="article:modified_time" content="2022-04-23T09:56:51.440Z">
+<meta property="article:modified_time" content="2022-04-23T10:21:55.874Z">
 <meta property="article:author" content="Genos Huang">
 <meta property="article:tag" content="Node.js">
 <meta property="article:tag" content="MongoDB">
@@ -303,7 +303,7 @@
       <span class="post-meta-item-text">發表於</span>
       
 
-      <time title="創建時間：2022-04-23 02:08:28 / 修改時間：17:56:51" itemprop="dateCreated datePublished" datetime="2022-04-23T02:08:28+08:00">2022-04-23</time>
+      <time title="創建時間：2022-04-23 02:08:28 / 修改時間：18:21:55" itemprop="dateCreated datePublished" datetime="2022-04-23T02:08:28+08:00">2022-04-23</time>
     </span>
 
   
@@ -360,13 +360,13 @@
 </li>
 <li><p>裝完後會進入 資源列表（Resources）畫面，點擊「<br>QuotaGuard Static IP’s」後會出現一些條款需要拉到最底下點擊同意。<br><img data-src="https://i.imgur.com/s2oPz4e.png"></p>
 </li>
-<li><p>接下來請回到 VScode，開啟佈署到這個 Heroku 專案的資料夾，接著在終端機輸入以下指令，執行完成後會多出一個 vender 資料夾和一些檔案。</p>
+<li><p>接下來請回到 VScode，開啟佈署到這個 Heroku 專案的資料夾，接著在終端機輸入以下指令來安裝 QuotaGuard 的相關檔案，執行完成後會多出一個 vender 資料夾和一些檔案。</p>
 </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://s3.amazonaws.com/quotaguard/qgtunnel-latest.tar.gz | tar xz</span><br></pre></td></tr></table></figure>
 
 <ol start="8">
-<li>接著再開啟瀏覽器進入操作頁面網址 <a target="_blank" rel="noopener" href="https://www.quotaguard.com/dashboard">https://www.quotaguard.com/dashboard</a>，或是在終端機輸入以下指令，會開啟瀏覽器進入相同頁面。</li>
+<li>接著再開啟瀏覽器進入操作面板網址 <a target="_blank" rel="noopener" href="https://www.quotaguard.com/dashboard">https://www.quotaguard.com/dashboard</a>，或是在終端機輸入以下指令，會開啟瀏覽器進入相同頁面。</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku addons:open quotaguardstatic</span><br></pre></td></tr></table></figure>
 
@@ -384,31 +384,32 @@
 </ol>
 <ul>
 <li>Remote Destination：MongoDB Atlas 內 cluster region 的完整名稱，建立完成後系統會在前面自動加上 “tcp://“，這是正常的。<br>（名稱範例：xxxxxx-xxxx-00-00.xxxxx.mongodb.net:27017）</li>
-<li>Local Port：27017</li>
+<li>Local Port：27017（MongoDB 的 Port）</li>
 <li>Transparent：透通模式請開啟</li>
 <li>Encrypted：加密模式可以不用開</li>
 <li>Optional Name：可以為這個 Tunnel 設定名稱，也可以空著。<br><img data-src="https://i.imgur.com/qovLACV.png"></li>
 </ul>
 <ol start="14">
-<li>回到 VScode，在專案的根目錄新增一個檔案，檔案名稱是 Procfile (請不要加入任何附檔名)，這是一個 Heroku 的設定檔，請在裡面撰寫 app 的啟動指令，撰寫格式如下：</li>
+<li>回到 VScode，在專案的根目錄新增一個檔案，檔案名稱是 Procfile (請不要加入任何副檔名)，這是一個 Heroku 的設定檔，在裡面撰寫 app 的啟動指令，撰寫格式如下：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web: bin/qgtunnel 啟動程式名稱 啟動指令和參數</span><br></pre></td></tr></table></figure>
 
-<p>以 node.js 為例，我們的啟動指令是 <code>npm start</code>，Procfile 內撰寫的就是</p>
+<p>以 node.js 為例，啟動指令是 <code>npm start</code>，Procfile 內撰寫的就是</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web: bin/qgtunnel npm start</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://i.imgur.com/MQ0zwPR.png" alt="範例圖片"></p>
 <ol start="15">
-<li><p>接下來就可以執行 commit 把修改好的專案 push 到 Heroku 上了，在 commit 前請用 git status 確認所有步驟新增的檔案都有加入。</p>
+<li><p>接下來就可以執行 git add &amp; commit 把修改好的專案 push 到 Heroku 上，在 commit 前請用 git status 確認 vender 資料夾內的檔案和 Procfile 都有加入，一個都不能少！</p>
 </li>
-<li><p>推送完後先確認一下 app 會不會 crash，如果正常運行，就可以回到 QuoraGuard 的操作面板 <a target="_blank" rel="noopener" href="https://www.quotaguard.com/dashboard">https://www.quotaguard.com/dashboard</a>，把左上方的兩個 IP 設定到 MongoDB Atlas 裡面的 Network Access 裡面，<code>IP 後面請加上 /32</code>，這個遮罩表示單一 IP，如果後面是 /0，不管前面打什麼 IP，都可以連的到！</p>
+<li><p>推送完後先確認一下 app 會不會 crash，如果正常運行，就可以回到 QuotaGuard 的操作面板 <a target="_blank" rel="noopener" href="https://www.quotaguard.com/dashboard">https://www.quotaguard.com/dashboard</a>，把左上方的兩個 IP 設定到 MongoDB Atlas 裡面的 Network Access 裡面，<code>IP 後面請加上 /32</code>，這個遮罩表示單一 IP，如果後面是 /0，不管前面打什麼 IP，都可以連的到！</p>
 </li>
-<li><p>設定完之後就可以測試，在本地用 Compass 和 Heroku 連線是否一個不能連，一個能連。</p>
+<li><p>設定完之後就可以測試，在本地用 Compass 和 Heroku 連線是否一個不能連、一個能連，測試沒問題就大功告成啦！</p>
 </li>
 </ol>
 <h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><ul>
 <li>官方文件有建議把 Tunnel 的設定備份下來，可以自行考量需不需要。</li>
-<li>正常狀況下加入這個 Addons 不會影響原始 App 的運作，除非裡面有一些特定的連線，才要自行修改。</li>
+<li>Heroku 安裝 QuotaGuard Static IP’s 時會自動為該專案建立一條名稱為 <code>QUOTAGUARDSTATIC_URL</code> 的環境變數，如果連線失敗可以查看一下這個環境變數有沒有建立起來。</li>
+<li>正常狀況下加入 QuotaGuard Static IP’s 不會影響原始 App 的運作，因為他只是個封包傳輸的代理程式。</li>
 </ul>
 
     </div>
