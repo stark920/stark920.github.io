@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://stark920.github.io/2022/04/23/heroku-ip/</loc>
+    <loc>https://stark920.github.io/2022/04/17/JSpromise/</loc>
     
     <lastmod>2022-04-23</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://stark920.github.io/2022/04/17/JSpromise/</loc>
+    <loc>https://stark920.github.io/2022/04/23/heroku-ip/</loc>
     
     <lastmod>2022-04-23</lastmod>
     
@@ -227,6 +227,13 @@
 
   
   <url>
+    <loc>https://stark920.github.io/tags/Experience/</loc>
+    <lastmod>2022-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://stark920.github.io/tags/JavaScript/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -262,13 +269,6 @@
   </url>
   
   <url>
-    <loc>https://stark920.github.io/tags/Experience/</loc>
-    <lastmod>2022-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://stark920.github.io/tags/NPM/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -276,6 +276,13 @@
   </url>
   
 
+  
+  <url>
+    <loc>https://stark920.github.io/categories/Course-Experience/</loc>
+    <lastmod>2022-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>https://stark920.github.io/categories/JavaScript-Basic/</loc>
@@ -286,13 +293,6 @@
   
   <url>
     <loc>https://stark920.github.io/categories/Node-js/</loc>
-    <lastmod>2022-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://stark920.github.io/categories/Course-Experience/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
