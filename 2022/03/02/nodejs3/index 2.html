@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構">
+<meta property="og:url" content="https://stark920.github.io/2022/03/02/nodejs3/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://stark920.github.io/images/nodejs-logo.png">
+<meta property="article:published_time" content="2022-03-02T09:22:16.000Z">
+<meta property="article:modified_time" content="2022-03-08T06:00:36.914Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="Node.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stark920.github.io/images/nodejs-logo.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2022/03/02/nodejs3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2022/03/02/nodejs3/","path":"2022/03/02/nodejs3/","title":"[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Node.JS] 打造 todolist api 2 - 撰寫程式基本架構 | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">18</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">26</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%9F%BA%E7%A4%8E-route-%E6%92%B0%E5%AF%AB"><span class="nav-number">1.</span> <span class="nav-text">💎 基礎 route 撰寫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%BB%BA%E7%AB%8B%E5%9B%9E%E6%87%89%E5%87%BD%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">💎 建立回應函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%88%A4%E6%96%B7%E5%90%84%E7%A8%AE%E9%80%A3%E7%B7%9A%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">💎 判斷各種連線方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9A%A9-OPTIONS"><span class="nav-number">3.1.</span> <span class="nav-text">🚩 OPTIONS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9A%A9-%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">🚩 其他方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9A%A9-%E4%BF%AE%E6%94%B9%E3%80%81%E5%88%AA%E9%99%A4%E6%8C%87%E5%AE%9A%E8%B3%87%E6%96%99"><span class="nav-number">3.3.</span> <span class="nav-text">🚩 修改、刪除指定資料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%B5%90%E8%AA%9E"><span class="nav-number">4.</span> <span class="nav-text">💎 結語</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/04/27/whatTheCors2/" title="[CORS] POST 方法 Postman 可以過，但是 Axios 無法" target="_blank">[CORS] POST 方法 Postman 可以過，但是 Axios 無法</a>
+    </li>
+    <li>
+        <a href="/2022/04/27/vue3-2-eslint/" title="[Vue3] Vite + Vue3 的 ESlint 和 Prettier 基礎配置" target="_blank">[Vue3] Vite + Vue3 的 ESlint 和 Prettier 基礎配置</a>
+    </li>
+    <li>
+        <a href="/2022/04/25/whatTheCors1/" title="[CORS] 關閉瀏覽器的 CORS" target="_blank">[CORS] 關閉瀏覽器的 CORS</a>
+    </li>
+    <li>
+        <a href="/2022/04/23/JSforloop/" title="[JS] for、for...in、forEach、for...of 的差別" target="_blank">[JS] for、for...in、forEach、for...of 的差別</a>
+    </li>
+    <li>
+        <a href="/2022/04/23/usefultools/" title="[持續更新] Mac 軟體安裝清單" target="_blank">[持續更新] Mac 軟體安裝清單</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2022/03/02/nodejs3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Node.JS] 打造 todolist api 2 - 撰寫程式基本架構
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-03-02 17:22:16" itemprop="dateCreated datePublished" datetime="2022-03-02T17:22:16+08:00">2022-03-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-03-08 14:00:36" itemprop="dateModified" datetime="2022-03-08T14:00:36+08:00">2022-03-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span>
+<p>前一篇整理的資訊中共有 5 種請求方法和延伸的處理結果需要撰寫，在這篇文章中就要建立這些功能的結構。</p>
+<hr>
+<h2 id="💎-基礎-route-撰寫"><a href="#💎-基礎-route-撰寫" class="headerlink" title="💎 基礎 route 撰寫"></a>💎 基礎 route 撰寫</h2><p>前面練習的網址都是使用根目錄（/），在網址加上一個路徑名稱才能方便辨識這個 api 的用途，方法很簡單，加入一個 if…else 來判斷 <code>req.url</code> 即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 比對請求的網址後名的路徑是不是設定好的字串</span></span><br><span class="line">   <span class="keyword">if</span> (req.url == <span class="string">&#x27;/todo&#x27;</span>) &#123;</span><br><span class="line">      res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">      <span class="comment">// 調整回傳的內容</span></span><br><span class="line">      res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">         <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span></span><br><span class="line">      &#125;));</span><br><span class="line">      res.end();</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 不符合路徑就傳 404 錯誤</span></span><br><span class="line">      res.writeHead(<span class="number">404</span>, headers);</span><br><span class="line">      <span class="comment">// 調整回傳的內容</span></span><br><span class="line">      res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">         <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">      &#125;));</span><br><span class="line">      res.end();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>段落測試</strong>：使用瀏覽器連 <code>http://127.0.0.1:3000</code> 和 <code>http://127.0.0.1:3000/todo</code> 查看是否有不同結果。</p>
+</blockquote>
+<hr>
+<h2 id="💎-建立回應函式"><a href="#💎-建立回應函式" class="headerlink" title="💎 建立回應函式"></a>💎 建立回應函式</h2><p>前一個步驟中加入了第一個判斷，就可以發現 <code>res</code> 有許多程式碼重複，後續還有各種方法的判斷，可以先把它抽出來寫成函式避免後續產生大量重複程式碼。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sendResponse = <span class="function">(<span class="params">res, statusCode, data</span>) =&gt;</span> &#123;</span><br><span class="line">   res.writeHead(statusCode, headers);</span><br><span class="line">   res.write(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">   res.end();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">if</span> (req.url == <span class="string">&#x27;/todo&#x27;</span>) &#123;</span><br><span class="line">      sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">         <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span></span><br><span class="line">      &#125;);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      sendResponse(res, <span class="number">404</span>, &#123;</span><br><span class="line">         <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">      &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>段落測試</strong>：使用瀏覽器連 <code>http://127.0.0.1:3000</code> 和 <code>http://127.0.0.1:3000/todo</code> 查看是否運作正常。</p>
+</blockquote>
+<hr>
+<h2 id="💎-判斷各種連線方法"><a href="#💎-判斷各種連線方法" class="headerlink" title="💎 判斷各種連線方法"></a>💎 判斷各種連線方法</h2><p>用來判別各種狀況的基本寫法是 <code>if...else</code> 和 <code>switch...case</code>，這部份的判斷方式因人而異，可以自行思考設計，以下個人的寫法僅供參考，也歡迎大家提出改善建議。</p>
+<h3 id="🚩-OPTIONS"><a href="#🚩-OPTIONS" class="headerlink" title="🚩 OPTIONS"></a>🚩 OPTIONS</h3><p>本次練習中提供了 5 種連線方法，其中 <code>OPTIONS</code> 較為特別，這個方法像是打招呼一樣，只需要回傳 <code>狀態碼</code> 和 <code>headers</code> 即可（就像互相問候，不用說具體的內容），可以放在判斷條件的第一條處理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sendResponse = <span class="function">(<span class="params">statusCode, data</span>) =&gt;</span> &#123;</span><br><span class="line">   res.writeHead(statusCode, headers);</span><br><span class="line">   <span class="comment">// 增加判斷，有資料時才回傳</span></span><br><span class="line">   <span class="keyword">if</span> (data) &#123;</span><br><span class="line">      res.write(<span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">   &#125;</span><br><span class="line">   res.end();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改成使用變數</span></span><br><span class="line">   <span class="keyword">if</span> (req.method == <span class="string">&#x27;OPTIONS&#x27;</span>) &#123;</span><br><span class="line">      sendResponse(res, <span class="number">200</span>);</span><br><span class="line">   &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url == <span class="string">&#x27;/todo&#x27;</span>) &#123;</span><br><span class="line">      sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">         <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span></span><br><span class="line">      &#125;);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      sendResponse(res, <span class="number">404</span>, &#123;</span><br><span class="line">         <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">      &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>💡💡 重要 💡💡</code><br><strong>段落測試</strong>：此處開始（包含後續的步驟）需要使用 POSTMAN 軟體來模擬各種連線方法測試。<br><strong>測試內容</strong>：方法 <code>OPTIONS</code>、網址 <code>http://127.0.0.1:3000(後方可加任意字串來測試不同的回應)</code><br><strong>參考資料</strong>：<a target="_blank" rel="noopener" href="https://israynotarray.com/other/20211207/427026/">是 Ray 不是 Array - POSTMAN 教學</a></p>
+</blockquote>
+<h3 id="🚩-其他方法"><a href="#🚩-其他方法" class="headerlink" title="🚩 其他方法"></a>🚩 其他方法</h3><p>先把其他會用到的方法加到程式碼中，再針對每個項目補完功能，此處我使用的是 switch…case，也可以 elseif 到底。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">if</span> (req.method == <span class="string">&#x27;OPTIONS&#x27;</span>) &#123;</span><br><span class="line">      sendResponse(res, <span class="number">200</span>);</span><br><span class="line">   &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url == <span class="string">&#x27;/todo&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// 新增各種方法的判斷，並稍微調整回傳內容來測試</span></span><br><span class="line">      <span class="keyword">switch</span> (req.method) &#123;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">            sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">               <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">               <span class="string">&quot;method&quot;</span>: <span class="string">&quot;GET&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">            sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">               <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">               <span class="string">&quot;method&quot;</span>: <span class="string">&quot;POST&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">&#x27;PATCH&#x27;</span>:</span><br><span class="line">            sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">               <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">               <span class="string">&quot;method&quot;</span>: <span class="string">&quot;PATCH&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">            sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">               <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">               <span class="string">&quot;method&quot;</span>: <span class="string">&quot;DELETE&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         <span class="comment">// 不符合這些請求方式就回傳錯誤碼</span></span><br><span class="line">         <span class="keyword">default</span>:</span><br><span class="line">            sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">               <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      sendResponse(res, <span class="number">404</span>, &#123;</span><br><span class="line">         <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">      &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>段落測試</strong><br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo</code><br><strong>測試方法</strong>：GET、POST、PATCH、DELETE（使用 POSTMAN）</p>
+</blockquote>
+<h3 id="🚩-修改、刪除指定資料"><a href="#🚩-修改、刪除指定資料" class="headerlink" title="🚩 修改、刪除指定資料"></a>🚩 修改、刪除指定資料</h3><p>指定資料的修改（PATCH）、刪除（DELETE）在設計上會使用 <code>http://網域/路徑/參數 (例如：http://127.0.0.1:3000/todo/abcd12345)</code> 這個格式的網址，在參數內帶入指定資料的 ID，這時候就無法使用 <code>req.url == &#39;/todo&#39;</code> 來比對（結果會是 false），需要分開判斷。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">if</span> (req.method == <span class="string">&#x27;OPTIONS&#x27;</span>) &#123;</span><br><span class="line">      sendResponse(res, <span class="number">200</span>);</span><br><span class="line">   &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url == <span class="string">&#x27;/todo&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">switch</span> (req.method) &#123;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">            sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">               <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">               <span class="string">&quot;method&quot;</span>: <span class="string">&quot;GET&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">            sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">               <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">               <span class="string">&quot;method&quot;</span>: <span class="string">&quot;POST&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         <span class="comment">/* PATCH 方法調整到下一個判斷 */</span></span><br><span class="line">         <span class="comment">// case &#x27;PATCH&#x27;:</span></span><br><span class="line">         <span class="comment">//    sendResponse(res, 200, &#123;</span></span><br><span class="line">         <span class="comment">//       &quot;status&quot;: &quot;true&quot;,</span></span><br><span class="line">         <span class="comment">//       &quot;method&quot;: &quot;PATCH&quot;</span></span><br><span class="line">         <span class="comment">//    &#125;);</span></span><br><span class="line">         <span class="comment">//    break;</span></span><br><span class="line"></span><br><span class="line">         <span class="comment">// DELETE 方法有兩種操作（單筆或全部），這邊保留的用來刪除全部（不需要ID）</span></span><br><span class="line">         <span class="keyword">case</span> <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">            sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">               <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">               <span class="string">&quot;method&quot;</span>: <span class="string">&quot;DELETE&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">         <span class="comment">// 不符合這些請求方式就回傳錯誤碼</span></span><br><span class="line">         <span class="keyword">default</span>:</span><br><span class="line">            sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">               <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">   <span class="comment">// 使用 startsWith 方法來比對路徑開頭</span></span><br><span class="line">   &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">      <span class="comment">// 修改單筆資料</span></span><br><span class="line">      <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">         sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">            <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="string">&quot;method&quot;</span>: <span class="string">&quot;PATCH + id&quot;</span></span><br><span class="line">         &#125;);</span><br><span class="line">      <span class="comment">// 刪除單筆資料</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method == <span class="string">&#x27;DELETE&#x27;</span>) &#123;</span><br><span class="line">         sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">            <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">            <span class="string">&quot;method&quot;</span>: <span class="string">&quot;DELETE + id&quot;</span></span><br><span class="line">         &#125;);</span><br><span class="line">      <span class="comment">// 不符合上述兩種方法時回應錯誤</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">            <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">         &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      sendResponse(res, <span class="number">404</span>, &#123;</span><br><span class="line">         <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">      &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>段落測試</strong><br><strong>測試網址</strong>：<code>http://127.0.0.1:3000/todo/(任一字串)</code><br><strong>測試方法</strong>：PATCH、DELETE（使用 POSTMAN）</p>
+</blockquote>
+<hr>
+<h2 id="💎-結語"><a href="#💎-結語" class="headerlink" title="💎 結語"></a>💎 結語</h2><p>本篇的筆記已經完成所有方法的架構，下一篇完結篇就會補上所有的功能。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Node-js/" rel="tag"><i class="fa fa-tag"></i> Node.js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/24/nodejs2/" rel="prev" title="[Node.JS] 打造 todolist api 1 - 行前準備">
+                  <i class="fa fa-chevron-left"></i> [Node.JS] 打造 todolist api 1 - 行前準備
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/04/nodejs4/" rel="next" title="[Node.JS] 打造 todolist api 3 - 完成所有功能">
+                  [Node.JS] 打造 todolist api 3 - 完成所有功能 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"stark920","repo":"stark920.github.io","client_id":"17c678514e6d2b3f737e","client_secret":"f45472b9f38600e765e425f937b24c376c3922d0","admin_user":"stark920","distraction_free_mode":true,"proxy":"https://genos-cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","language":"zh-TW","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"08e737ace8427f1ce6cdee1d4511947b"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

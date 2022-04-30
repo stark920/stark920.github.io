@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）">
+<meta property="og:url" content="https://stark920.github.io/2022/03/06/nodejs6/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://stark920.github.io/images/nodejs-logo.png">
+<meta property="og:image" content="https://stark920.github.io/images/mongo1.png">
+<meta property="og:image" content="https://stark920.github.io/images/compass.png">
+<meta property="og:image" content="https://stark920.github.io/images/mongo2.png">
+<meta property="article:published_time" content="2022-03-06T15:35:42.000Z">
+<meta property="article:modified_time" content="2022-03-12T13:49:03.143Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="Node.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stark920.github.io/images/nodejs-logo.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2022/03/06/nodejs6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2022/03/06/nodejs6/","path":"2022/03/06/nodejs6/","title":"[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB） | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">18</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">26</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%AE%89%E8%A3%9D-MongoDB"><span class="nav-number">1.</span> <span class="nav-text">💎 安裝 MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D"><span class="nav-number">1.1.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%92%B0%E5%A2%83%E6%B8%AC%E8%A9%A6%E8%88%87%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">環境測試與操作指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E8%A8%BB%E5%86%8A-MongoDB-%E9%9B%B2%E7%AB%AF%E6%9C%8D%E5%8B%99"><span class="nav-number">2.</span> <span class="nav-text">💎 註冊 MongoDB 雲端服務</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E5%AE%89%E8%A3%9D-Compass"><span class="nav-number">3.</span> <span class="nav-text">💎 安裝 Compass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E8%B3%87%E6%96%99%E5%BA%AB%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">💎 資料庫操作指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-Create-%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">C (Create)：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R-Read"><span class="nav-number">4.2.</span> <span class="nav-text">R (Read)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%A9%A2%E5%8F%83%E6%95%B8"><span class="nav-number">4.2.1.</span> <span class="nav-text">查詢參數</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#U-Update"><span class="nav-number">4.3.</span> <span class="nav-text">U (Update)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-Delete"><span class="nav-number">4.4.</span> <span class="nav-text">D (Delete)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-Todolist-API-%E7%B5%90%E5%90%88-MongoDB"><span class="nav-number">5.</span> <span class="nav-text">💎 Todolist API 結合 MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-mongodb-driver-%E5%A5%97%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">安裝 mongodb driver 套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AA%8D%E8%AD%98%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">5.2.</span> <span class="nav-text">認識基本程式碼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E5%AF%AB%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">5.3.</span> <span class="nav-text">改寫程式碼</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%9B%9E%E5%82%B3%E5%87%BD%E5%BC%8F%EF%BC%9A"><span class="nav-number">5.3.1.</span> <span class="nav-text">修改回傳函式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%8F%96%E5%BE%97%E5%85%A8%E9%83%A8"><span class="nav-number">5.3.2.</span> <span class="nav-text">功能：取得全部</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%EF%BC%9A%E6%96%B0%E5%A2%9E%E4%B8%80%E7%AD%86"><span class="nav-number">5.3.3.</span> <span class="nav-text">功能：新增一筆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%88%AA%E9%99%A4%E4%B8%80%E7%AD%86"><span class="nav-number">5.3.4.</span> <span class="nav-text">功能：刪除一筆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%88%AA%E9%99%A4%E5%85%A8%E9%83%A8"><span class="nav-number">5.3.5.</span> <span class="nav-text">功能：刪除全部</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%EF%BC%9A%E6%9B%B4%E6%96%B0%E4%B8%80%E7%AD%86"><span class="nav-number">5.3.6.</span> <span class="nav-text">功能：更新一筆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%B5%82%E6%B8%AC%E8%A9%A6"><span class="nav-number">5.3.7.</span> <span class="nav-text">最終測試</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%8E-%E7%B8%BD%E7%B5%90"><span class="nav-number">6.</span> <span class="nav-text">💎 總結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/04/27/whatTheCors2/" title="[CORS] POST 方法 Postman 可以過，但是 Axios 無法" target="_blank">[CORS] POST 方法 Postman 可以過，但是 Axios 無法</a>
+    </li>
+    <li>
+        <a href="/2022/04/27/vue3-2-eslint/" title="[Vue3] Vite + Vue3 的 ESlint 和 Prettier 基礎配置" target="_blank">[Vue3] Vite + Vue3 的 ESlint 和 Prettier 基礎配置</a>
+    </li>
+    <li>
+        <a href="/2022/04/25/whatTheCors1/" title="[CORS] 關閉瀏覽器的 CORS" target="_blank">[CORS] 關閉瀏覽器的 CORS</a>
+    </li>
+    <li>
+        <a href="/2022/04/23/JSforloop/" title="[JS] for、for...in、forEach、for...of 的差別" target="_blank">[JS] for、for...in、forEach、for...of 的差別</a>
+    </li>
+    <li>
+        <a href="/2022/04/23/usefultools/" title="[持續更新] Mac 軟體安裝清單" target="_blank">[持續更新] Mac 軟體安裝清單</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2022/03/06/nodejs6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Node.JS] 打造 todolist api 5 - 加入資料庫（MongoDB）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-03-06 23:35:42" itemprop="dateCreated datePublished" datetime="2022-03-06T23:35:42+08:00">2022-03-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-03-12 21:49:03" itemprop="dateModified" datetime="2022-03-12T21:49:03+08:00">2022-03-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img data-src="/images/nodejs-logo.png"></p>
+<span id="more"></span>
+<p>todolist api 在前一篇文章雖然已經上線運行，但是待辦事項沒有存放到資料庫，只要閒置久了資料就會消失，這篇文章會介紹 MongoDB 的操作，並應用資料庫讓每筆待辦都能被儲存下來。<br>如果已經熟悉 MongoDB 的操作，可以直接跳到最後一個段落。</p>
+<hr>
+<h2 id="💎-安裝-MongoDB"><a href="#💎-安裝-MongoDB" class="headerlink" title="💎 安裝 MongoDB"></a>💎 安裝 MongoDB</h2><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><ul>
+<li><p>MacOS</p>
+<ul>
+<li>方法１：下載壓縮檔，解壓縮後的 bin 資料夾內有４個檔案（mongo、mongod…），透過終端機指令（<code>sudo cp 完整路徑/mongodb-directory/bin/* /usr/local/bin/</code>）或是 Finder 把這４個檔案移動到 <code>/usr/local/bin/</code> 路徑裡面。<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community">MongoDB官方下載頁</a>、<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x-tarball/">操作文件</a></p>
+</blockquote>
+</li>
+<li>方法２：使用 Homebrew 安裝，指令為 <code>brew install mongodb-community</code>，安裝的內容較多、較佔空間，但是安裝好後可以直接開始使用。<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/mongodb/homebrew-brew">操作文件 (GitHub)</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Windows：下載安裝檔執行安裝即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community">MongoDB官方下載頁</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="環境測試與操作指令"><a href="#環境測試與操作指令" class="headerlink" title="環境測試與操作指令"></a>環境測試與操作指令</h3><ol>
+<li><p>使用終端機執行 mongo 和 mongod 指令，成功執行時會顯示很多訊息（可先略過內容），失敗時則顯示找不到該指令。<br><code>使用 MacOS 解壓縮方式安裝，在首兩次執行時會跳出安全性提示，需要開啟相關設定才能執行指令（跳出的提示會有選項可以導向設定頁面）</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mongo</span><br><span class="line">mongod</span><br></pre></td></tr></table></figure></li>
+<li><p>建立本地資料庫所需的資料夾和檔案，結構如下：</p>
+</li>
+</ol>
+<ul>
+<li>MongoDB (目錄)<ul>
+<li>data (目錄)</li>
+<li>logs (目錄)<ul>
+<li>mongo.log (檔案)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><p>開啟終端機，輸入指令啟用資料庫，成功啟用後會發現指定為資料庫路徑的目錄裡面多了好幾個檔案。<br>（可以先 cd 到 MongoDB 目錄，指令內的路徑就能少打一些）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --dbpath 完整路徑/MongoDB/data --logpath 完整路徑/MongoDB/logs/mongo.log</span><br></pre></td></tr></table></figure>
+<p>指令說明：</p>
+<ul>
+<li>mongod：啟動資料庫</li>
+<li>–dbpath：參數，設定資料庫的路徑</li>
+<li>–logpath：參數，設定 log檔 的路徑</li>
+<li>Ctrl+C：關閉資料庫</li>
+</ul>
+</li>
+<li><p>開啟另一個終端機，輸入 mongo 指令連線資料庫，成功連線時會出現許多訊息，其中可以看到資料庫使用本機的 27017 port（127.0.0.1:27017），進入資料庫後可以執行一些指令來測試。<br><code>MongoDB 的結構是 db(資料庫) -&gt; Collection(集合) -&gt; document(文件/資料)，透過以下指令就會依這個順序看到每個層級的資訊</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mongo <span class="comment"># 連線資料庫</span></span><br><span class="line">show dbs  <span class="comment"># 顯示所有資料庫</span></span><br><span class="line">use <span class="built_in">local</span> <span class="comment"># 切換到 local 資料庫</span></span><br><span class="line">show collections <span class="comment"># 顯示所有集合</span></span><br><span class="line">db.startup_log.find() <span class="comment"># 顯示 startup_log 裡面的所有資料</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="💎-註冊-MongoDB-雲端服務"><a href="#💎-註冊-MongoDB-雲端服務" class="headerlink" title="💎 註冊 MongoDB 雲端服務"></a>💎 註冊 MongoDB 雲端服務</h2><ul>
+<li>前往 <a target="_blank" rel="noopener" href="https://www.mongodb.com/">MongoDB 首頁</a> 右上方區塊點擊註冊或登入，註冊帳號的過程也很簡單，選項大致選完就完成了。</li>
+<li>登入後會跳轉到 Create Cluster 頁面，只是練習的話就選擇免費的就好，雲端主機的種類也使用預設的，過程請<code>注意頁面底下顯示的收費金額</code>。</li>
+<li>接著會跳轉到『建立使用者名稱和密碼』、『網路存取』的設定，使用者名稱和密碼是連接資料庫時需要使用，網路存取因為是本地練習，可以選擇取得我的 ip 後加入。<br><code>如果自己連網的 ip 會浮動就需要再次來這邊更改</code><br><code>API 經常會設計開放給眾人戳，但是資料庫通常都是白名單開放，全開非常危險</code></li>
+<li>完成後就可以從左側選單的 Database 查看建立好的資料庫。<br><img data-src="/images/mongo1.png"></li>
+</ul>
+<hr>
+<h2 id="💎-安裝-Compass"><a href="#💎-安裝-Compass" class="headerlink" title="💎 安裝 Compass"></a>💎 安裝 Compass</h2><ul>
+<li>Compass 是 MongoDB 的 GUI 工具，使用 Windows 系統不需額外安裝（已經包含在 MongoDB 安裝裡），MacOS 需要到 <a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/compass">MongoDB 官方網站</a> 下載，安裝方式很簡單，不需要另行設定。</li>
+<li>連接本地資料庫：<br>Compass 主要操作介面有輸入資料庫連結的地方（如圖），只要空著直接點連線就會連接本地資料庫（請先確認有用 mongod 指令開啟本地資料庫）<br><img data-src="/images/compass.png"></li>
+<li>連接遠端資料庫：<ol>
+<li>回到上個步驟完成的 Mongo 雲端資料庫網頁</li>
+<li>點選『Connect』<img data-src="/images/mongo2.png"></li>
+<li>建立 IP，如果已經建立了就不會出現這個步驟)</li>
+<li>點選『Connect using MongoDB Compass』</li>
+<li>點選『I have MongoDB Compass』</li>
+<li>出現一串連結複製下來，長得像這樣：<br><code>mongodb+srv://xxxxx:&lt;password&gt;@cluster0.uklck.mongodb.net/xxxxx</code></li>
+<li>回到 Compass 介面輸入資料庫連結的地方貼上，把<code>&lt;password&gt;</code>的部份修改成先前建立的使用者密碼。</li>
+<li>連線成功就完成了！</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="💎-資料庫操作指令"><a href="#💎-資料庫操作指令" class="headerlink" title="💎 資料庫操作指令"></a>💎 資料庫操作指令</h2><p>MongoDB Shell 可以用來直接操作資料庫，在學習 Node.js、PHP、C#… 等後端語言操作方式之前，可以先熟悉 MongoDB Shell，因為除了不同的後端語言會有自己的起手勢、撰寫格式外，資料庫操作的方法名稱都是大同小異的，接下來就介紹 MongoDB 的 CRUD 使用哪些指令（只有記錄部分指令，完整可以參考 <a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/">官方文件</a>）。<br><code>以下都是在本地資料庫做練習</code></p>
+<h3 id="C-Create-："><a href="#C-Create-：" class="headerlink" title="C (Create)："></a>C (Create)：</h3><ul>
+<li><p><code>use &lt;dbName&gt;</code>：切換到指定資料庫。<br>初始環境中只有 admin、config、local 3個資料庫，可以透過 use 指令來切換到不同資料庫，CRUD 操作前也需要先用這個指令來切換到指定資料庫中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 資料庫名稱</span><br></pre></td></tr></table></figure></li>
+<li><p><code>db.&lt;collectionName&gt;.insertOne()</code>：在指定集合內新增一筆資料。<br><code>&lt;collectionName&gt;</code> 要換成集合的名稱，<code>()括弧</code>裡面帶入要新增的資料。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.集合名稱.insertOne(&#123;<span class="string">&quot;greeting&quot;</span>: <span class="string">&quot;Hello&quot;</span>&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>新增資料庫：<br>使用資料庫時不會在初始的資料庫裡操作，而是針對專案新增專用的資料庫，MongoDB 沒有新增資料庫的專用指令，需要兩個指令來完成：</p>
+<ol>
+<li><code>use 新資料庫名稱</code>：送出這個指令後就會切換到新的資料庫名稱中，此時只是暫時的狀態，尚未真正建立資料庫。</li>
+<li><code>db.&lt;collectionName&gt;.insertOne(...)</code>：利用新增資料的指令，設定了集合的名稱，並加入新的資料，資料庫也會同時建立起來。</li>
+</ol>
+<p>以 todolist 為例，環境設計和對應指令如下：</p>
+<ul>
+<li>資料庫名稱：todolist</li>
+<li>集合名稱：todos</li>
+<li>新增一筆資料：{“title”: “eat”}<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use todolist</span><br><span class="line">db.todos.insertOne(&#123;<span class="string">&quot;title&quot;</span>: <span class="string">&quot;eat&quot;</span>&#125;)</span><br><span class="line"><span class="comment"># 執行上面兩個指令後，資料庫、集合、資料都建立好了</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>官方文件：<a target="_blank" rel="noopener" href="https://www.mongodb.com/basics/create-database">How to Create a Database in MongoDB</a></p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><code>db./&lt;collectionName&gt;.insertMany()</code>：在指定集合內新增多筆資料。<br>和單筆新增差不多，括弧內改成陣列格式來存放多筆資料。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新增兩筆</span></span><br><span class="line">db.todos.insertMany([</span><br><span class="line">   &#123;<span class="string">&quot;title&quot;</span>: <span class="string">&quot;sleep&quot;</span>&#125;,</span><br><span class="line">   &#123;<span class="string">&quot;title&quot;</span>: <span class="string">&quot;walk&quot;</span>&#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>官方文件：<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/tutorial/insert-documents/">Insert</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="R-Read"><a href="#R-Read" class="headerlink" title="R (Read)"></a>R (Read)</h3><ul>
+<li><code>db.&lt;collectionName&gt;.find()</code>：取得指定集合內符合條件的所有資料。</li>
+</ul>
+<ol>
+<li>取得全部資料：不加任何參數，在練習新增、刪除、修改操作時，都可以使用這個指令檢查成果。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 找出 todos 集合內的所有資料</span></span><br><span class="line">db.todos.find()</span><br></pre></td></tr></table></figure></li>
+<li>條件查詢：括弧() 內加入篩選條件，取得所有符合的資料。<br>篩選條件有非常多種，以下大致列出一些用法。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 單一條件</span></span><br><span class="line">db.todos.find(&#123;</span><br><span class="line">  <span class="string">&quot;title&quot;</span>: <span class="string">&quot;sleep&quot;</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 多種條件</span></span><br><span class="line">db.todos.find(&#123;</span><br><span class="line">  <span class="string">&quot;title&quot;</span>: <span class="string">&quot;sleep&quot;</span>,</span><br><span class="line">  <span class="string">&quot;content&quot;</span>: <span class="string">&quot;...&quot;</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 數值區間</span></span><br><span class="line">db.todos.find(&#123;</span><br><span class="line">  <span class="string">&quot;price&quot;</span>: &#123;<span class="variable">$gt</span>:500&#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 關鍵字</span></span><br><span class="line">db.todos.find(&#123;</span><br><span class="line">  <span class="string">&quot;title&quot;</span>: /a/</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保護欄位：第二個參數指定的屬性不會被取出</span></span><br><span class="line">db.todos.find(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: /a/</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;_id&quot;</span>: 0</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜尋陣列裡面的值</span></span><br><span class="line">db.todos.find(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;tools&quot;</span>: &#123;<span class="variable">$in</span>:[<span class="string">&quot;vscode&quot;</span>]&#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="查詢參數"><a href="#查詢參數" class="headerlink" title="查詢參數"></a>查詢參數</h4><table>
+<thead>
+<tr>
+<th align="center">參數</th>
+<th align="center">功用</th>
+<th align="center">參數</th>
+<th align="center">功用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$eq</td>
+<td align="center">等於</td>
+<td align="center">$ne</td>
+<td align="center">不等於</td>
+</tr>
+<tr>
+<td align="center">$gt</td>
+<td align="center">大於</td>
+<td align="center">$lt</td>
+<td align="center">小於</td>
+</tr>
+<tr>
+<td align="center">$gte</td>
+<td align="center">大於等於</td>
+<td align="center">$lte</td>
+<td align="center">小於等於</td>
+</tr>
+<tr>
+<td align="center">$in</td>
+<td align="center">存在某個值</td>
+<td align="center">$nin</td>
+<td align="center">不存在某個值</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p><code>db.&lt;collectionName&gt;.findOne()</code>：取得指定集合內符合條件的一筆資料。<br>篩選條件通常用 id（建立時會自動產生），不會有重複的問題。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.todos.findOne(&#123;<span class="string">&quot;_id&quot;</span>: PbjectId(<span class="string">&quot;xxxxxxxx實際的IDxxxxxxxx&quot;</span>)&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>官方文件：<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/reference/method/db.collection.find/">Find</a>、<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/reference/method/db.collection.findOne/">FindeOne</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="U-Update"><a href="#U-Update" class="headerlink" title="U (Update)"></a>U (Update)</h3><ul>
+<li><p><code>db.&lt;collectionName&gt;.updateOne()</code>：修改指定集合內的一筆資料。<br>需要知道要改哪筆資料，所以放入兩個參數，<code>篩選條件</code> 和 <code>新的資料內容</code>。</p>
+<ul>
+<li>篩選條件通常用 id（建立時會自動產生），不會有重複的問題。</li>
+<li>新的資料<code>需要</code>放到 $set 屬性裡面。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">db.todos.updateOne(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;_id&quot;</span>: PbjectId(<span class="string">&quot;xxxxxxxx實際的IDxxxxxxxx&quot;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;<span class="variable">$set</span>&quot;</span>: &#123;</span><br><span class="line">      &#123;<span class="string">&quot;title&quot;</span>: <span class="string">&quot;run&quot;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>db.&lt;collectionName&gt;.updateMany()</code>：修改指定集合內的多筆資料。</p>
+<ul>
+<li>多筆資料不會使用 id（只能找到一筆），改用其他條件來篩選。</li>
+<li>新的資料<code>需要</code>放到 $set 屬性裡面，所有符合的結果都會被修改。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">db.todos.updateMany(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;walk&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;<span class="variable">$set</span>&quot;</span>: &#123;</span><br><span class="line">      &#123;<span class="string">&quot;title&quot;</span>: <span class="string">&quot;run&quot;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>官方文件：<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/tutorial/update-documents/">Update</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><code>db.&lt;collectionName&gt;.replaceOne()</code>：取代指定集合內的一筆資料。</p>
+<ul>
+<li>replace 和 update 的差異在於，update 只會更新對應屬性，replace 則是覆蓋全部。</li>
+<li>新的資料<code>不需要</code>放到 $set 屬性裡面。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假設原始資料長這樣</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;title&quot;</span>: <span class="string">&quot;run&quot;</span>,</span><br><span class="line">  <span class="string">&quot;distance&quot;</span>: <span class="string">&quot;2000m&quot;</span>,</span><br><span class="line">  <span class="string">&quot;time&quot;</span>: <span class="string">&quot;1700&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+使用 updateOne()<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">db.todos.updateOne(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;run&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;<span class="variable">$set</span>&quot;</span>: &#123;</span><br><span class="line">      &#123;<span class="string">&quot;title&quot;</span>: <span class="string">&quot;walk&quot;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 執行結果：</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;title&quot;</span>: <span class="string">&quot;walk&quot;</span>,</span><br><span class="line">  <span class="string">&quot;distance&quot;</span>: <span class="string">&quot;2000m&quot;</span>,</span><br><span class="line">  <span class="string">&quot;time&quot;</span>: <span class="string">&quot;1700&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+使用 replaceOne()<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.todos.replaceOne(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;run&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;walk&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 執行結果：</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;title&quot;</span>: <span class="string">&quot;walk&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>官方文件：<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/reference/method/db.collection.replaceOne/">ReplaceOne</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="D-Delete"><a href="#D-Delete" class="headerlink" title="D (Delete)"></a>D (Delete)</h3><ul>
+<li><p><code>db.&lt;collectionName&gt;.deleteOne()</code>：刪除指定集合內的一筆資料。<br>只需要傳入篩選條件就可以，刪除的對象會是整筆資料，不是單一屬性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.todos.deleteOne(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;walk&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li><p><code>db.&lt;collectionName&gt;.deleteMany()</code>：刪除指定集合內的多筆資料。<br>符合條件的都會被刪除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.todos.deleteMany(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;title&quot;</span>: <span class="string">&quot;walk&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li><p><code>db.dropDatabase()</code>：刪除指定資料庫。<br>需要兩個步驟，use 資料庫，再執行刪除指令，高風險操作請謹慎使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use DBname</span><br><span class="line">db.dropDatabase()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>官方文件：<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/tutorial/remove-documents/">Delete</a>、<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/reference/method/db.dropDatabase/">db.dropDatabase()</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="💎-Todolist-API-結合-MongoDB"><a href="#💎-Todolist-API-結合-MongoDB" class="headerlink" title="💎 Todolist API 結合 MongoDB"></a>💎 Todolist API 結合 MongoDB</h2><p>學會 MongoDB 後就可以迎來 todolist 的第二次進化！以下就是改造的步驟。</p>
+<h3 id="安裝-mongodb-driver-套件"><a href="#安裝-mongodb-driver-套件" class="headerlink" title="安裝 mongodb driver 套件"></a>安裝 mongodb driver 套件</h3><p>有了 driver 就可讓 node.js 和 MongoDB 交流了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i mongodb</span><br><span class="line"><span class="comment"># 也可以全域安裝</span></span><br><span class="line">npm i -g mongodb</span><br></pre></td></tr></table></figure>
+
+<h3 id="認識基本程式碼"><a href="#認識基本程式碼" class="headerlink" title="認識基本程式碼"></a>認識基本程式碼</h3><p>以下參考官方文件 <a target="_blank" rel="noopener" href="https://docs.mongodb.com/drivers/node/current/quick-start/">Quick Start</a> ，可以先試著放到專案測試，沒問題後再來改寫。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; MongoClient &#125; = <span class="built_in">require</span>(<span class="string">&quot;mongodb&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 這串改成自己的 mongodb 雲端服務連結</span></span><br><span class="line"><span class="keyword">const</span> uri =</span><br><span class="line">  <span class="string">&quot;mongodb+srv://&lt;user&gt;:&lt;password&gt;@&lt;cluster-url&gt;?retryWrites=true&amp;writeConcern=majority&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> MongoClient(uri);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> client.connect();</span><br><span class="line">    <span class="comment">// 改成自己的資料庫名稱</span></span><br><span class="line">    <span class="keyword">const</span> database = client.db(<span class="string">&#x27;sample_mflix&#x27;</span>);</span><br><span class="line">    <span class="comment">// 改成自己的集合名稱，變數名稱也順便調整</span></span><br><span class="line">    <span class="keyword">const</span> movies = database.collection(<span class="string">&#x27;movies&#x27;</span>);</span><br><span class="line">    <span class="comment">// 這是查詢字串</span></span><br><span class="line">    <span class="keyword">const</span> query = &#123; <span class="attr">title</span>: <span class="string">&#x27;Hello&#x27;</span> &#125;;</span><br><span class="line">    <span class="comment">// movie 和 movies 變數名稱請自行修改</span></span><br><span class="line">    <span class="comment">// query 可以拿掉，變成查詢所有資料</span></span><br><span class="line">    <span class="keyword">const</span> movie = <span class="keyword">await</span> movies.findOne(query);</span><br><span class="line">    <span class="comment">// 變數名稱自行修改，成功顯示資料就沒問題了</span></span><br><span class="line">    <span class="built_in">console</span>.log(movie);</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// 每次連線完成都要記得關閉，佔用滿了資料庫就掛了</span></span><br><span class="line">    <span class="keyword">await</span> client.close();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">run().catch(<span class="built_in">console</span>.dir);</span><br></pre></td></tr></table></figure>
+
+<h3 id="改寫程式碼"><a href="#改寫程式碼" class="headerlink" title="改寫程式碼"></a>改寫程式碼</h3><p>可以依照官方的程式碼自由改寫，以下寫法僅供參考：</p>
+<ol>
+<li><p>串連資料庫的目的是取代原本使用陣列存放 todolist，第一步就可以把原本寫的 <code>let todos = []</code> 拿掉。</p>
+</li>
+<li><p>把官方範例中的常數宣告放到 todolist 程式最上方，或是模組化寫到另一個檔案來引入。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; MongoClient &#125; = <span class="built_in">require</span>(<span class="string">&quot;mongodb&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> uri = <span class="string">&quot;mongodb+srv://自己的 mongodb 雲端服務連結&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> MongoClient(uri);</span><br></pre></td></tr></table></figure></li>
+<li><p>剩下的部份可以把「連接資料庫 -&gt; 關閉資料庫」抽出來寫成函式，此處我設計成可以傳入參數，讓 switch…case 判斷要執行哪個對應的 CRUD。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">connectDB</span>(<span class="params">res, method, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> client.connect();</span><br><span class="line">    <span class="keyword">const</span> database = client.db(<span class="string">&#x27;todolist&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> todos = database.collection(<span class="string">&#x27;todos&#x27;</span>);</span><br><span class="line">    <span class="comment">// 判斷傳入的參數</span></span><br><span class="line">    <span class="keyword">switch</span>(action) &#123;</span><br><span class="line">      <span class="attr">case</span> :</span><br><span class="line">        <span class="comment">//...先空著...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> client.close();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>函式的架構完成後，原本 todolist 的 5 隻 api 對應的陣列操作程式碼可以修改成呼叫連接資料庫的函式，傳入參數來執行對應行為，改寫的內容依序如下：</p>
+<h4 id="修改回傳函式："><a href="#修改回傳函式：" class="headerlink" title="修改回傳函式："></a>修改回傳函式：</h4><p>前面的文章原本只設計用一個函式來處理 response，為了方便，我拆成 sendRes 和 sendErr 兩個方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span>: <span class="string">&#x27;Content-Type, Authorization, Content-Length, X-Requested-With&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;PATCH, POST, GET, OPTIONS, DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> statusMsg = &#123;</span><br><span class="line">    <span class="string">&#x27;400&#x27;</span>: <span class="string">&#x27;Bad Request&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;401&#x27;</span>: <span class="string">&#x27;Unauthorized&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;403&#x27;</span>: <span class="string">&#x27;Forbidden&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;404&#x27;</span>: <span class="string">&#x27;Not Found&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;405&#x27;</span>: <span class="string">&#x27;Method Not Allowed&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> sendRes = <span class="function">(<span class="params">res, data</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, headers);</span><br><span class="line">    <span class="keyword">if</span> (data) &#123;</span><br><span class="line">        res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">            <span class="string">&#x27;status&#x27;</span>: <span class="string">&#x27;true&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;data&#x27;</span>: data</span><br><span class="line">        &#125;))</span><br><span class="line">    &#125;</span><br><span class="line">    res.end();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> sendErr = <span class="function">(<span class="params">res, statusCode</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(statusCode, headers);</span><br><span class="line">    res.write(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">        <span class="string">&#x27;status&#x27;</span>: <span class="string">&#x27;false&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;msg&#x27;</span>: statusMsg[statusCode]</span><br><span class="line">    &#125;))</span><br><span class="line">    res.end();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    sendRes,</span><br><span class="line">    sendErr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="功能：取得全部"><a href="#功能：取得全部" class="headerlink" title="功能：取得全部"></a>功能：取得全部</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的內容</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">        <span class="comment">// 改成回傳待辦事項的變數</span></span><br><span class="line">        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改寫成呼叫資料庫連結函式</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">    run(res, <span class="string">&#x27;getAll&#x27;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函式功能修改</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">res, method, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// 新增一個變數來存放資料庫回傳的訊息</span></span><br><span class="line">        <span class="keyword">let</span> result;</span><br><span class="line">        <span class="keyword">switch</span>(method) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;getAll&#x27;</span>:</span><br><span class="line">                <span class="comment">// find()查詢結果需要用 toArray() 方法轉換格式才能讀取</span></span><br><span class="line">                result = <span class="keyword">await</span> todos.find().toArray();</span><br><span class="line">                <span class="keyword">await</span> sendRes(res, result);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="功能：新增一筆"><a href="#功能：新增一筆" class="headerlink" title="功能：新增一筆"></a>功能：新增一筆</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的內容</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改寫成呼叫資料庫連結函式</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">    req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">        title ? run(res, <span class="string">&#x27;insertOne&#x27;</span>, &#123;title&#125;) : sendErr(res, <span class="number">400</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函式功能修改</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">res, method, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">let</span> result;</span><br><span class="line">        <span class="keyword">switch</span>(method) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;insertOne&#x27;</span>:</span><br><span class="line">                result = <span class="keyword">await</span> todos.insertOne(data);</span><br><span class="line">                <span class="keyword">await</span> sendRes(res, result);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="功能：刪除一筆"><a href="#功能：刪除一筆" class="headerlink" title="功能：刪除一筆"></a>功能：刪除一筆</h4><p>原本的 ID 檢查是透過陣列方法，連結資料庫後如果要這樣做會變成先送出查詢指令，確認有資料再送出一次刪除指令，所以這邊我改成檢查 ID 格式是否正確，確認正確後直接送出，讓資料庫回應刪除是否成功。<br>檢查 MongoDB 的 ID 可以安裝 <a target="_blank" rel="noopener" href="https://mongoosejs.com/docs/index.html">mongoose</a> 這個套件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i mongoose</span><br></pre></td></tr></table></figure>
+<p>除此之外，檢查通過後還需要生成帶有 ObjectId 的物件，可以從 mongodb 引用，套件都沒問題後在程式碼的最上方引入這些功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多引用了 ObjectId</span></span><br><span class="line"><span class="keyword">const</span> &#123; MongoClient, ObjectId &#125; = <span class="built_in">require</span>(<span class="string">&#x27;mongodb&#x27;</span>);</span><br><span class="line"><span class="comment">// 引用 mongoose 來驗證ID</span></span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>程式碼修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的內容</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">      <span class="keyword">let</span> id = req.url.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">      <span class="keyword">let</span> index = todos.findIndex(<span class="function"><span class="params">el</span> =&gt;</span> el.id == id);</span><br><span class="line">      <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">              ...</span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method == <span class="string">&#x27;DELETE&#x27;</span>) &#123;</span><br><span class="line">              todos.splice(index, <span class="number">1</span>);</span><br><span class="line">              sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                  <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">              &#125;);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          ...</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改寫成呼叫資料庫連結函式</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">    <span class="keyword">let</span> id = req.url.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">    <span class="comment">// 檢查 ID 格式是否正確</span></span><br><span class="line">    <span class="keyword">let</span> idIsValid = mongoose.Types.ObjectId.isValid(id);</span><br><span class="line">    <span class="keyword">if</span> (idIsValid) &#123;</span><br><span class="line">        <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.method == <span class="string">&#x27;DELETE&#x27;</span>) &#123;</span><br><span class="line">            <span class="comment">// 傳入第三個參數：ID 物件</span></span><br><span class="line">            run(res, <span class="string">&#x27;deleteOne&#x27;</span>, &#123;<span class="string">&quot;_id&quot;</span>: ObjectId(id)&#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendErr(res, <span class="number">405</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        sendErr(res, <span class="number">405</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函式功能修改</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">res, method, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">switch</span>(method) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;deleteOne&#x27;</span>:</span><br><span class="line">                result = <span class="keyword">await</span> todos.deleteOne(data);</span><br><span class="line">                <span class="keyword">await</span> sendRes(res, result);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="功能：刪除全部"><a href="#功能：刪除全部" class="headerlink" title="功能：刪除全部"></a>功能：刪除全部</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的內容</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">    todos.length = <span class="number">0</span>;</span><br><span class="line">    sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">        <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改寫成呼叫資料庫連結函式</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">    run(res, <span class="string">&#x27;deleteAll&#x27;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函式功能修改</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">res, method, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// 新增一個變數來存放資料庫回傳的訊息</span></span><br><span class="line">        <span class="keyword">let</span> result;</span><br><span class="line">        <span class="keyword">switch</span>(method) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;deleteAll&#x27;</span>:</span><br><span class="line">                result = <span class="keyword">await</span> todos.deleteMany();</span><br><span class="line">                <span class="keyword">await</span> sendRes(res, result);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="功能：更新一筆"><a href="#功能：更新一筆" class="headerlink" title="功能：更新一筆"></a>功能：更新一筆</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的內容</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">    req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">            <span class="keyword">if</span> (title) &#123;</span><br><span class="line">                <span class="comment">// 修改對應 ID 的 title</span></span><br><span class="line">                todos[index].title = title;</span><br><span class="line">                sendResponse(res, <span class="number">200</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;data&quot;</span>: todos</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sendResponse(res, <span class="number">400</span>, &#123;</span><br><span class="line">                    <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            sendResponse(res, <span class="number">405</span>, &#123;</span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;false&quot;</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改寫成呼叫資料庫連結函式</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (req.url.startsWith(<span class="string">&#x27;/todo/&#x27;</span>)) &#123;</span><br><span class="line">    <span class="keyword">let</span> id = req.url.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">    <span class="comment">// 檢查 ID 格式是否正確</span></span><br><span class="line">    <span class="keyword">let</span> idIsValid = mongoose.Types.ObjectId.isValid(id);</span><br><span class="line">    <span class="keyword">if</span> (idIsValid) &#123;</span><br><span class="line">        <span class="keyword">if</span> (req.method == <span class="string">&#x27;PATCH&#x27;</span>) &#123;</span><br><span class="line">          req.on(<span class="string">&#x27;end&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">              <span class="keyword">try</span> &#123;</span><br><span class="line">                  <span class="keyword">let</span> title = <span class="built_in">JSON</span>.parse(body)?.title;</span><br><span class="line">                  title ? run(res, <span class="string">&#x27;updateOne&#x27;</span>, [&#123;<span class="string">&quot;_id&quot;</span>: ObjectId(id)&#125;, &#123;title&#125;]) : sendErr(res, <span class="number">400</span>);</span><br><span class="line">              &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">                  sendErr(res, <span class="number">405</span>);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函式功能修改</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">res, method, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">switch</span>(method) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;updateOne&#x27;</span>:</span><br><span class="line">                <span class="comment">// 因為我只提供傳入一個 data 參數，這邊用陣列來放 id 跟 新資料，也可以用物件處理</span></span><br><span class="line">                result = <span class="keyword">await</span> todos.updateOne(data[<span class="number">0</span>], &#123;<span class="attr">$set</span>: data[<span class="number">1</span>]&#125;);</span><br><span class="line">                <span class="keyword">await</span> sendRes(res, result);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="最終測試"><a href="#最終測試" class="headerlink" title="最終測試"></a>最終測試</h4><p>其實改寫的過程中就會一直使用 POSTMAN 來測試，最後從頭到尾測試一遍也許會發現漏掉的 bug，像我就出現連不上雲端資料庫的問題，才發現是我的連線 IP 變更所以被阻擋掉了。</p>
+</li>
+</ol>
+<hr>
+<h2 id="💎-總結"><a href="#💎-總結" class="headerlink" title="💎 總結"></a>💎 總結</h2><p>API 大致的流程：<br>收到req -&gt; 檢查內容決定行為 -&gt; 連結資料庫（關閉連線）-&gt; 發送 Res(回應結束)<br>要做這樣基本功能的 API 要學不少新技能，但是完成後會對整個流程有進一步的認識，這系列文章的完成品 Code 我也放在 <a target="_blank" rel="noopener" href="https://github.com/stark920/TodolistApiFullVersion">GitHub</a> 上，希望能對同樣是新手的同學們有所幫助。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Node-js/" rel="tag"><i class="fa fa-tag"></i> Node.js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/04/nodejs5/" rel="prev" title="[Node.JS] 打造 todolist api 4 - 部署上線">
+                  <i class="fa fa-chevron-left"></i> [Node.JS] 打造 todolist api 4 - 部署上線
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/17/JScallback/" rel="next" title="[JS] 從 Event Loop 到 Callback function，一堆名詞講的是什麼？">
+                  [JS] 從 Event Loop 到 Callback function，一堆名詞講的是什麼？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"stark920","repo":"stark920.github.io","client_id":"17c678514e6d2b3f737e","client_secret":"f45472b9f38600e765e425f937b24c376c3922d0","admin_user":"stark920","distraction_free_mode":true,"proxy":"https://genos-cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","language":"zh-TW","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"3053729dd0c9a3837154481379721ad9"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
