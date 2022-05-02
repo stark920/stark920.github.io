@@ -29,7 +29,7 @@
 <meta property="og:description" content="Vite + Vue 的環境建置快速方便，執行 npm init vue@next 指令之後，可以選擇加入 ESlint 和 Prettier 來優化程式碼，這兩個優化套件是許多開發者的標配，對於已經熟悉配置設定的老手沒有什麼問題，但對於新手來說，不知道自動建立的 ESlint 設定檔配置了什麼，也不知道怎麼修改，這篇就來簡單了解一下究竟 Vite 幫我們做了什麼設定。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2022-04-27T07:28:09.000Z">
-<meta property="article:modified_time" content="2022-04-28T07:47:04.244Z">
+<meta property="article:modified_time" content="2022-05-02T13:49:15.194Z">
 <meta property="article:author" content="Genos Huang">
 <meta property="article:tag" content="Vite">
 <meta property="article:tag" content="Vue">
@@ -296,7 +296,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2022-04-28 15:47:04" itemprop="dateModified" datetime="2022-04-28T15:47:04+08:00">2022-04-28</time>
+        <time title="修改時間：2022-05-02 21:49:15" itemprop="dateModified" datetime="2022-05-02T21:49:15+08:00">2022-05-02</time>
       </span>
 
   
@@ -324,6 +324,8 @@
 <li>Node: v16</li>
 <li>Vue: 3.2.33</li>
 <li>Vite: 2.9.6</li>
+<li>ESlint: 8.5.0</li>
+<li>Prettier: 2.5.1</li>
 </ul>
 <hr>
 <h2 id="ESlint-配置檔"><a href="#ESlint-配置檔" class="headerlink" title="ESlint 配置檔"></a>ESlint 配置檔</h2><p>建立好的專案目錄中有一個 .eslintrc.cjs 檔案，初始配置如下：</p>
@@ -331,7 +333,7 @@
 
 <hr>
 <h2 id="基本配置說明"><a href="#基本配置說明" class="headerlink" title="基本配置說明"></a>基本配置說明</h2><h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><ol>
-<li><p>第一項 <code>plugin:vue/vue3-essential</code> 是 Vue 官方的撰寫規則 eslint-plugin-vue（<a target="_blank" rel="noopener" href="https://eslint.vuejs.org/rules/">https://eslint.vuejs.org/rules/</a>)，規範嚴格程度從低到高，可以用預設的 essential 就好：</p>
+<li><p>第一項 plugin:vue/vue3-essential 是 Vue 官方的撰寫風格 <a target="_blank" rel="noopener" href="https://eslint.vuejs.org/rules/">eslint-plugin-vue</a>，規範嚴格程度由 base（最低）到 recommended（最高），可以用 recommended 套用所有規範：</p>
 <ul>
 <li><p>plugin:vue/base</p>
 </li>
@@ -343,24 +345,22 @@
 </li>
 </ul>
 </li>
-<li><p>第二項 <code>eslint:recommended</code> 是 ESlint 的推薦設定，詳細內容在官方文件 (<a target="_blank" rel="noopener" href="https://eslint.org/docs/rules/">https://eslint.org/docs/rules/</a>) 有條列出來 。</p>
+<li><p>第二項 eslint:recommended 是 ESlint 的推薦設定，可以在 <a target="_blank" rel="noopener" href="https://eslint.org/docs/rules/">官方文件</a> 檢視詳細說明。</p>
 </li>
-<li><p>最後一項 <code>@vue/eslint-config-prettier</code>(<a target="_blank" rel="noopener" href="https://github.com/vuejs/eslint-config-prettier">https://github.com/vuejs/eslint-config-prettier</a>) 是用來關閉 ESlint 中沒有必要或是可能會和 Prettier 衝突的規則（ESlint 也包含部分格式檢查的項目），名稱前方加上 <code>@vue</code> 是專為 @vue-cli 和 create-vue setups 設計的版本，使用時需要照以下格式引用：</p>
+<li><p>最後一項 <a target="_blank" rel="noopener" href="https://github.com/vuejs/eslint-config-prettier">@vue/eslint-config-prettier</a> 用來關閉 ESlint 會跟 Prettier 衝突的規則，名稱前方加上 <code>@vue</code> 是專為 @vue-cli 和 create-vue setups 設計的版本，使用時需要照以下格式引用：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 這行需要放在最上面，引用此來源可以減少安裝許多 dependencies</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;@rushstack/eslint-patch/modern-module-resolution&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="comment">// 這個設定務必放在陣列的最後一項，確保不會被其他的設定覆蓋</span></span><br><span class="line">    <span class="string">&#x27;@vue/eslint-config-prettier&#x27;</span>,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="env"><a href="#env" class="headerlink" title="env"></a>env</h3><ul>
-<li><code>vue/setup-compiler-macros</code> 用來支援 Vue3 的 script setup。</li>
+<li>vue/setup-compiler-macros 用來支援 Vue3 的 script setup。</li>
 </ul>
 <hr>
 <h2 id="額外配置"><a href="#額外配置" class="headerlink" title="額外配置"></a>額外配置</h2><ol>
-<li><p>使用單引號<br>extends 中的 @vue/eslint-config-prettier 相依套件包含了 <a target="_blank" rel="noopener" href="https://github.com/prettier/eslint-plugin-prettier/#recommended-configuration">eslint-plugin-prettier</a>，這個套件把 prettier 整合進 eslint 中，修改方法有三種：</p>
+<li><p>使用單引號</p>
 <ul>
-<li><p>額外撰寫 prettier 的設定檔。</p>
+<li><p>方法 1：額外撰寫 prettier 的設定檔，設定檔的名稱非常多種，可以參考 <a target="_blank" rel="noopener" href="https://prettier.io/docs/en/configuration.html">官方文件</a>。</p>
 </li>
-<li><p>加入以下規則把預設的雙引號改成單引號，規則寫在 eslint 的設定檔時，可能會有一些 prettier 相關套件無法讀取到設定值。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rules: &#123;</span><br><span class="line"><span class="string">&#x27;prettier/prettier&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="attr">singleQuote</span>: <span class="literal">true</span> &#125;],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
-<li><p>如果沒有特別的 prettier 設置需要添加，也可以把 eslint-config-prettier 移除就好（ESlint 本身配置是單引號）。</p>
-</li>
+<li><p>方法 2：直接在 eslint 設定檔加入規則，要注意的是，有些 prettier 相關 extension 只會讀 prettier 的設定檔，寫在 eslint 就無效。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rules: &#123;</span><br><span class="line">  <span class="string">&#x27;prettier/prettier&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="attr">singleQuote</span>: <span class="literal">true</span> &#125;],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>支援 commonJS<br>許多套件的設定檔是使用 commonJS 格式撰寫（例如：tailwindcss），需要增加 node 環境，ESlint 才不會跳出錯誤。</p>
