@@ -22,28 +22,34 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="[CORS] POST 方法 Fetch 可以過，但是 Axios 無法">
-<meta property="og:url" content="https://stark920.github.io/2022/04/23/whatTheCors3/index.html">
+<meta property="og:title" content="[API] 串接 Imgur API 圖床服務，上傳到指定相簿">
+<meta property="og:url" content="https://stark920.github.io/2022/05/06/APIimgur/index.html">
 <meta property="og:site_name" content="Genos&#39;s Blog">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/Dp97mhq.png">
-<meta property="article:published_time" content="2022-04-23T12:50:12.000Z">
-<meta property="article:modified_time" content="2022-04-28T14:12:34.418Z">
+<meta property="og:image" content="https://i.imgur.com/T4vK1Yk.png">
+<meta property="og:image" content="https://i.imgur.com/jz8OoNv.png">
+<meta property="og:image" content="https://i.imgur.com/LdHoYo7.png">
+<meta property="og:image" content="https://i.imgur.com/Ied42En.png">
+<meta property="og:image" content="https://i.imgur.com/0dN8cyJ.png">
+<meta property="og:image" content="https://i.imgur.com/DaFV5ux.png">
+<meta property="og:image" content="https://i.imgur.com/7UiBxk4.png">
+<meta property="article:published_time" content="2022-05-06T01:47:07.000Z">
+<meta property="article:modified_time" content="2022-05-06T06:30:43.345Z">
 <meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="Imgur">
 <meta property="article:tag" content="API">
-<meta property="article:tag" content="CORS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/Dp97mhq.png">
+<meta name="twitter:image" content="https://i.imgur.com/T4vK1Yk.png">
 
 
-<link rel="canonical" href="https://stark920.github.io/2022/04/23/whatTheCors3/">
+<link rel="canonical" href="https://stark920.github.io/2022/05/06/APIimgur/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2022/04/23/whatTheCors3/","path":"2022/04/23/whatTheCors3/","title":"[CORS] POST 方法 Fetch 可以過，但是 Axios 無法"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2022/05/06/APIimgur/","path":"2022/05/06/APIimgur/","title":"[API] 串接 Imgur API 圖床服務，上傳到指定相簿"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[CORS] POST 方法 Fetch 可以過，但是 Axios 無法 | Genos's Blog</title>
+<title>[API] 串接 Imgur API 圖床服務，上傳到指定相簿 | Genos's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
@@ -152,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C%E8%AA%AA%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">問題說明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.</span> <span class="nav-text">可能原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AA%A2%E6%9F%A5%E6%B8%AC%E8%A9%A6"><span class="nav-number">3.</span> <span class="nav-text">檢查測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">解決方式</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Imgur-API-Doc"><span class="nav-number">1.</span> <span class="nav-text">Imgur API Doc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%BB%E5%86%8A-Imgur-API-%E5%8F%8A%E5%8F%96%E5%BE%97%E6%8E%88%E6%AC%8A"><span class="nav-number">2.</span> <span class="nav-text">註冊 Imgur API 及取得授權</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Imgur-API-%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">Imgur API 操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Headers-%E6%AC%8A%E9%99%90"><span class="nav-number">3.1.</span> <span class="nav-text">Headers 權限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87"><span class="nav-number">3.2.</span> <span class="nav-text">上傳圖片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E5%88%B0%E6%8C%87%E5%AE%9A%E7%9B%B8%E7%B0%BF"><span class="nav-number">3.3.</span> <span class="nav-text">上傳圖片到指定相簿</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -262,7 +268,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2022/04/23/whatTheCors3/">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2022/05/06/APIimgur/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -275,7 +281,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [CORS] POST 方法 Fetch 可以過，但是 Axios 無法
+          [API] 串接 Imgur API 圖床服務，上傳到指定相簿
         </h1>
 
         <div class="post-meta-container">
@@ -285,16 +291,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">發表於</span>
+      
 
-      <time title="創建時間：2022-04-23 20:50:12" itemprop="dateCreated datePublished" datetime="2022-04-23T20:50:12+08:00">2022-04-23</time>
+      <time title="創建時間：2022-05-06 09:47:07 / 修改時間：14:30:43" itemprop="dateCreated datePublished" datetime="2022-05-06T09:47:07+08:00">2022-05-06</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2022-04-28 22:12:34" itemprop="dateModified" datetime="2022-04-28T22:12:34+08:00">2022-04-28</time>
-      </span>
 
   
     <span class="post-meta-item" title="閱讀次數">
@@ -313,42 +313,83 @@
     
     
     <div class="post-body" itemprop="articleBody">
-         <img data-src="https://i.imgur.com/Dp97mhq.png" style="max-height: 200px" align=center />
+         <img data-src="https://i.imgur.com/T4vK1Yk.png" style="max-height: 200px" align=center />
 
 <span id="more"></span>
 
-<h2 id="問題說明"><a href="#問題說明" class="headerlink" title="問題說明"></a>問題說明</h2><p>「Fetch 可以過，但是 Axios 無法」的原因追根究底還是 CORS 造成的，只是 fetch 沒有帶上正確的參數，所以有不一樣的結果。</p>
-<p>fetch 傳送的第二個參數中若沒有設定 headers 標示內容為 json 格式（application/json），會以文字格式傳送（text/plain），這屬於「簡單請求」，不會觸發 preflight 機制。</p>
-<p>axios 傳入的資料如果是物件格式就會轉為 json，並且帶上對應的 header，所以會觸發 preflight 機制，當後端伺服器對 preflight 的回應沒有設置好時就會觸發瀏覽器的 cors 阻擋。</p>
+<p>圖片是網頁不可或缺的元素，Github pages 不適合放入大量圖片，放到自己的雲端空間也不方便使用，免費的圖床服務就是很好的解決方案，imgur 非常多人使用（也是迷因圖的量產地），一開始參考了網路上的中文教學，發現有些操作已經變了，才有了這篇記錄目前的作法。</p>
 <hr>
-<h2 id="可能原因"><a href="#可能原因" class="headerlink" title="可能原因"></a>可能原因</h2><ol>
-<li><p>後端沒有設置 cors header</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br></pre></td></tr></table></figure></li>
-<li><p>後端沒有設置 OPTIONS methods 或 response</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span>: <span class="string">&#x27;...(其他方法).., OPTIONS&#x27;</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment">// 除 header 之外還要設置 OPTIONS 的回傳內容，不然可能被 40x 錯誤捕捉到。</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<hr>
-<h2 id="檢查測試"><a href="#檢查測試" class="headerlink" title="檢查測試"></a>檢查測試</h2><ol>
-<li><p>確認瀏覽器錯誤訊息是否包含 preflight 的字眼。<br><code>Access ..... has been blocked by CORS policy: Response to preflight request doesn&#39;t pass access control check: It does not have HTTP ok status.</code></p>
-</li>
-<li><p>確認 fetch 的請求內容是否有加上 header 參數。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">headers: &#123;</span><br><span class="line">  <span class="string">&#x27;content-type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
-<li><p>使用 Postman 發出 OPTIONS 請求，查看回應資訊。</p>
-</li>
-</ol>
-<hr>
-<h2 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h2><ul>
-<li>正解：請後端加上 cors headers 或是確認 OPTIONS 的設置。</li>
-<li>暫時解：使用 CorsAnywhere、關閉瀏覽器 cors…等。</li>
-</ul>
-<hr>
-<blockquote>
-<p>參考文章：</p>
+<h2 id="Imgur-API-Doc"><a href="#Imgur-API-Doc" class="headerlink" title="Imgur API Doc"></a>Imgur API Doc</h2><p>Imgur API 的文件很詳細，是一個便利的操作介面，面板大致分四個區塊：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS">MDN - CORS</a></li>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/64793572/axios-fails-cors-but-fetch-works-fine">Stackoverflow - Axios fails CORS but fetch works fine</a></li>
+<li>上方 header：可以內容排版是單欄或雙欄，最重要的是選擇範例程式碼的語言種類。</li>
+<li>左側選單：選擇要查看的資訊類型，通常會用到的是 image。</li>
+<li>中間區塊：顯示文件資訊。</li>
+<li>右側區塊：顯示範例程式碼。</li>
 </ul>
-</blockquote>
+<p><img data-src="https://i.imgur.com/jz8OoNv.png" alt="Imgur"></p>
+<hr>
+<h2 id="註冊-Imgur-API-及取得授權"><a href="#註冊-Imgur-API-及取得授權" class="headerlink" title="註冊 Imgur API 及取得授權"></a>註冊 Imgur API 及取得授權</h2><p>以下步驟參考 <a target="_blank" rel="noopener" href="https://apidocs.imgur.com/#intro">官方文件</a> 簡略翻譯（圖片使用官方文件的）：</p>
+<ol>
+<li><p>事前準備</p>
+<ul>
+<li>安裝 <a target="_blank" rel="noopener" href="https://www.postman.com/">Postman</a></li>
+<li>點擊官方文件最右上角的按鈕（Run in Postman）下載寫好的 postman 檔案，執行並 import 至 Postman 中。<br><img data-src="https://i.imgur.com/LdHoYo7.png"></li>
+</ul>
+</li>
+<li><p>前往 <a target="_blank" rel="noopener" href="https://api.imgur.com/oauth2/addclient">註冊 API 頁面</a> 申請（要先有 Imgur 的帳號）</p>
+<ul>
+<li>Application name：自己取名</li>
+<li>Authorization type：選第一個</li>
+<li>Authorization callback URL：填入官方文件提供的網址<br><code>https://www.getpostman.com/oauth2/callback</code></li>
+<li>除了信箱，其他可以不填，點擊 submit 送出。</li>
+<li>送出後取得 Client ID 和 Client secret，<code>請務必把它記下來</code>。<br><img data-src="https://i.imgur.com/Ied42En.png"></li>
+</ul>
+</li>
+<li><p>開啟 Postman（<code>Postman 的介面隨著版本更新一直有變化，以下步驟都需要自行找到對應位置</code>）。</p>
+</li>
+<li><p>點擊步驟 1 匯入的 Imgur API，找到 Auth 頁面中的 Type 選單，選擇「OAuth 2.0」。</p>
+</li>
+<li><p>拉到最底下，點擊「Get New Access Token」。</p>
+</li>
+<li><p>接下來會進入登入畫面，登入之後很有可能拿到 429 錯誤，需要等一段時間再嘗試（這段很浪費時間）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;data&quot;</span>:&#123;<span class="string">&quot;error&quot;</span>:<span class="string">&quot;Too Many Requests&quot;</span>,<span class="string">&quot;request&quot;</span>:<span class="string">&quot;\/oauth2\/authorize&quot;</span>,<span class="string">&quot;method&quot;</span>:<span class="string">&quot;POST&quot;</span>&#125;,<span class="string">&quot;success&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;status&quot;</span>:<span class="number">429</span>&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>上個步驟如果成功，就會取得一個 refresh token，<code>這個 token 一定要記下來</code>，攸關你的 API 能用多久。<br><img data-src="https://i.imgur.com/0dN8cyJ.png"></p>
+</li>
+<li><p>Postman 選單切換到 Environment，新增一個 ImgurAPI 的環境變數集合，並且在裡面加入前面取得的 <code>refreshToken</code>、<code>clientId</code>、<code>clientSecret</code>。<br><img data-src="https://i.imgur.com/DaFV5ux.png"></p>
+</li>
+<li><p> 回到 API Collections，選擇 Imgur API &gt; Account &gt; Generate Access Token，並且設定環境變數使用上個步驟設定的 ImgurAPI 環境（選項應該會在介面右上方）。</p>
+</li>
+<li><p>送出後就會取得 Access Token 了，這個 Token 的有效時間大約是一個月，當 Access Token 過期時，需要重新執行一次「Generate Access Token」來取得新的 Access Token，所以 <code>refreshToken</code>、<code>clientId</code>、<code>clientSecret</code> 這三個千萬別弄丟了。</p>
+</li>
+<li><p>補充：取得 Access Token 時會自動加入到設定好的環境變數中，可以直接使用 Postman 測試其他的功能，不需要再額外設定 headers authentication。</p>
+</li>
+</ol>
+<hr>
+<h2 id="Imgur-API-操作"><a href="#Imgur-API-操作" class="headerlink" title="Imgur API 操作"></a>Imgur API 操作</h2><h3 id="Headers-權限"><a href="#Headers-權限" class="headerlink" title="Headers 權限"></a>Headers 權限</h3><p>使用 Imgur API 時需要傳入 Authorization Headers，分別有兩種不同模式：</p>
+<ul>
+<li>匿名用戶： <code>&#123;&quot;Authorization&quot;, &quot;Client-ID &#123;&#123;clientId&#125;&#125;&quot;&#125;</code></li>
+<li>登入用戶：<code>&#123;&quot;Authorization&quot;, &quot;Bearer &#123;&#123;Access Token&#125;&#125;&quot;&#125;</code></li>
+</ul>
+<p>使用匿名上傳的圖片不會出現在自己帳戶底下，一定得記住 response 給的網址，遺失了就找不到這張圖。</p>
+<p>使用登入用戶來上傳圖片較可靠，也可以指定自己帳戶內的相簿來分類。</p>
+<h3 id="上傳圖片"><a href="#上傳圖片" class="headerlink" title="上傳圖片"></a>上傳圖片</h3><p>上傳圖片的 API 可以參考 <a target="_blank" rel="noopener" href="https://apidocs.imgur.com/#de179b6a-3eda-4406-a8d7-1fb06c17cb9c">官方文件的 Image</a>。</p>
+<p>文件寫的路徑是 <code>https://api.imgur.com/3/upload</code><br>範例程式碼卻是 <code>https://api.imgur.com/3/image</code><br>實測目前兩個都可以用….</p>
+<p>官方範例程式 headers 都是使用匿名，建議替換成 Access Token。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// axios 的範例（官網也有 fetch、jquery 和 XMLHttpRequest 版本）</span></span><br><span class="line"><span class="keyword">const</span> data = <span class="keyword">new</span> FormData();</span><br><span class="line">data.append(<span class="string">&#x27;image&#x27;</span>, <span class="string">&#x27;R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;https://api.imgur.com/3/upload&#x27;</span>,</span><br><span class="line">  <span class="attr">headers</span>: &#123; </span><br><span class="line">     <span class="comment">// 具名 (2選1)</span></span><br><span class="line">    <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Bearer &#123;&#123;Access Token&#125;&#125;&#x27;</span>,</span><br><span class="line">     <span class="comment">// 匿名 (2選1)</span></span><br><span class="line">    <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Client-ID &#123;&#123;clientId&#125;&#125;&#x27;</span>, </span><br><span class="line">    ...data.getHeaders()</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">data</span> : data</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">axios(config)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(response.data));</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="上傳圖片到指定相簿"><a href="#上傳圖片到指定相簿" class="headerlink" title="上傳圖片到指定相簿"></a>上傳圖片到指定相簿</h3><p>上傳圖片到指定相簿需要有相簿的 Hash，可以透過 API 建立相簿（官方網站抓的那包 Postman collection 有所有的 API），或是用網頁操作，流程如下：</p>
+<ol>
+<li>登入 imgur 網頁。</li>
+<li>進入 images 頁面新增一個要上傳的相簿。</li>
+<li>點選右上選單，選擇 posts (或是直接點頭像也會到 posts)<br><img data-src="https://i.imgur.com/7UiBxk4.png"></li>
+<li>在 posts 列表中點選要上傳的相簿。</li>
+<li>網址會變成 <code>https://imgur.com/a/xxxxxxx</code>，其中 xxxxxxx 就是相簿的專屬 Hash</li>
+</ol>
+<p>取得 Hash 後使用在 FormData 裡面加入即可。<br>（Authentication 需要傳 Access Token 才有權限）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.append(<span class="string">&#x27;album&#x27;</span>, <span class="string">&#x27;xxxxxxx&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
 
     </div>
 
@@ -358,22 +399,19 @@
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/Imgur/" rel="tag"><i class="fa fa-tag"></i> Imgur</a>
               <a href="/tags/API/" rel="tag"><i class="fa fa-tag"></i> API</a>
-              <a href="/tags/CORS/" rel="tag"><i class="fa fa-tag"></i> CORS</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/04/23/heroku-ip/" rel="prev" title="[後端] 如何讓 Heroku 上的專案使用固定 IP 連接 MongoDB Atlas 服務？">
-                  <i class="fa fa-chevron-left"></i> [後端] 如何讓 Heroku 上的專案使用固定 IP 連接 MongoDB Atlas 服務？
+                <a href="/2022/04/28/whatTheCors4/" rel="prev" title="[CORS] 運用正向代理繞過 CORS 機制：Cors-Anywhere">
+                  <i class="fa fa-chevron-left"></i> [CORS] 運用正向代理繞過 CORS 機制：Cors-Anywhere
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/04/23/usefultools/" rel="next" title="[持續更新] Mac 軟體安裝清單">
-                  [持續更新] Mac 軟體安裝清單 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -433,7 +471,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"stark920","repo":"stark920.github.io","client_id":"17c678514e6d2b3f737e","client_secret":"f45472b9f38600e765e425f937b24c376c3922d0","admin_user":"stark920","distraction_free_mode":true,"proxy":"https://genos-cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","language":"zh-TW","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"66afb4c5bb762d2a0cc15342e5900077"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"stark920","repo":"stark920.github.io","client_id":"17c678514e6d2b3f737e","client_secret":"f45472b9f38600e765e425f937b24c376c3922d0","admin_user":"stark920","distraction_free_mode":true,"proxy":"https://genos-cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","language":"zh-TW","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"d1df8643333db3254c9489e57d545f9d"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
