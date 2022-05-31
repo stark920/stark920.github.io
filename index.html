@@ -89,9 +89,9 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">22</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">28</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">29</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
         </a>
@@ -162,7 +162,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -173,7 +173,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -210,19 +210,19 @@
 </div>
 <ul class="links-of-blogroll-list">
     <li>
+        <a href="/2022/05/30/nodejsThirdPartySignin1/" title="[nodejs] 使用 Passport 套件串接第三方登入完整心法" target="_blank">[nodejs] 使用 Passport 套件串接第三方登入完整心法</a>
+    </li>
+    <li>
         <a href="/2022/05/06/APIimgur/" title="[API] 串接 Imgur API 圖床服務，上傳到指定相簿" target="_blank">[API] 串接 Imgur API 圖床服務，上傳到指定相簿</a>
     </li>
     <li>
-        <a href="/2022/04/28/whatTheCors4/" title="[CORS] 運用正向代理繞過 CORS 機制：Cors-Anywhere" target="_blank">[CORS] 運用正向代理繞過 CORS 機制：Cors-Anywhere</a>
+        <a href="/2022/04/28/whatTheCors4/" title="[CORS] 運用代理工具繞過 CORS 機制：Cors-Anywhere" target="_blank">[CORS] 運用代理工具繞過 CORS 機制：Cors-Anywhere</a>
     </li>
     <li>
         <a href="/2022/04/27/whatTheCors2/" title="[CORS] POST 方法 Postman 可以過，但是 Axios 無法" target="_blank">[CORS] POST 方法 Postman 可以過，但是 Axios 無法</a>
     </li>
     <li>
         <a href="/2022/04/27/vue3-2-eslint/" title="[Vue3] Vite + Vue3 的 ESlint 和 Prettier 基礎配置" target="_blank">[Vue3] Vite + Vue3 的 ESlint 和 Prettier 基礎配置</a>
-    </li>
-    <li>
-        <a href="/2022/04/25/whatTheCors1/" title="[CORS] 關閉瀏覽器的 CORS" target="_blank">[CORS] 關閉瀏覽器的 CORS</a>
     </li>
 </ul>
 </div>
@@ -247,6 +247,91 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2022/05/30/nodejsThirdPartySignin1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/30/nodejsThirdPartySignin1/" class="post-title-link" itemprop="url">[nodejs] 使用 Passport 套件串接第三方登入完整心法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-05-30 12:53:37" itemprop="dateCreated datePublished" datetime="2022-05-30T12:53:37+08:00">2022-05-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-05-31 11:52:09" itemprop="dateModified" datetime="2022-05-31T11:52:09+08:00">2022-05-31</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img data-src="https://i.imgur.com/iz5V41j.png" style="max-height: 200px; align: center" />
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/05/30/nodejsThirdPartySignin1/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -348,7 +433,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/28/whatTheCors4/" class="post-title-link" itemprop="url">[CORS] 運用正向代理繞過 CORS 機制：Cors-Anywhere</a>
+          <a href="/2022/04/28/whatTheCors4/" class="post-title-link" itemprop="url">[CORS] 運用代理工具繞過 CORS 機制：Cors-Anywhere</a>
         </h2>
 
         <div class="post-meta-container">
@@ -366,7 +451,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2022-05-02 18:07:05" itemprop="dateModified" datetime="2022-05-02T18:07:05+08:00">2022-05-02</time>
+        <time title="修改時間：2022-05-30 12:50:46" itemprop="dateModified" datetime="2022-05-30T12:50:46+08:00">2022-05-30</time>
       </span>
 
   
@@ -800,7 +885,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2022-04-28 16:22:35" itemprop="dateModified" datetime="2022-04-28T16:22:35+08:00">2022-04-28</time>
+        <time title="修改時間：2022-05-30 12:47:42" itemprop="dateModified" datetime="2022-05-30T12:47:42+08:00">2022-05-30</time>
       </span>
 
   
@@ -820,7 +905,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Mac 使用者一定都有自己的小工具口袋清單，常常很多看了有趣的工具裝了實際也沒在用，以下就列出幾個自己比較有在用的工具。</p>
+          <p>Mac 使用者一定都有自己的小工具口袋清單，常常很多看了有趣的工具裝了實際也沒在用，原則上能少裝就盡量少裝，不要讓一堆少用的工具佔用資源，以下就列出幾個自己比較有在用的工具。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/23/usefultools/#more" rel="contents">
@@ -988,100 +1073,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/23/heroku-ip/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2022/04/17/JSpromise/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Genos Huang">
-      <meta itemprop="description" content="Front-end learning notes">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Genos's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/17/JSpromise/" class="post-title-link" itemprop="url">[JS] 非同步系列：Promise 簡介</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">發表於</span>
-
-      <time title="創建時間：2022-04-17 20:24:20" itemprop="dateCreated datePublished" datetime="2022-04-17T20:24:20+08:00">2022-04-17</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新於</span>
-        <time title="修改時間：2022-04-23 18:00:21" itemprop="dateModified" datetime="2022-04-23T18:00:21+08:00">2022-04-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分類於</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaScript-Basic/" itemprop="url" rel="index"><span itemprop="name">JavaScript - Basic</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="閱讀次數">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">閱讀次數：</span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Promise 是 ES6 眾多好用方法之一，能用簡潔的撰寫方式處理非同步事件，大幅優化 callback hell 造成閱讀困難的問題。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/17/JSpromise/#more" rel="contents">
                 閱讀全文 &raquo;
               </a>
             </div>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/apple-touch-icon.png" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"stark920.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="[nodejs] 使用 Passport 套件串接第三方登入完整心法">
+<meta property="og:url" content="https://stark920.github.io/2022/05/30/nodejsThirdPartySignin1/index.html">
+<meta property="og:site_name" content="Genos&#39;s Blog">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/iz5V41j.png">
+<meta property="og:image" content="https://imgur.com/Yv8K7Sa.png">
+<meta property="og:image" content="https://i.imgur.com/RrTHOsv.png">
+<meta property="og:image" content="https://i.imgur.com/xg1j9qO.png">
+<meta property="og:image" content="https://i.imgur.com/xRfduuw.png">
+<meta property="og:image" content="https://i.imgur.com/X55NV86.png">
+<meta property="og:image" content="https://i.imgur.com/YUa8Px5.png">
+<meta property="og:image" content="https://i.imgur.com/DnDOcM3.png">
+<meta property="og:image" content="https://i.imgur.com/yWSuDdf.png">
+<meta property="og:image" content="https://i.imgur.com/cLo8p8P.png">
+<meta property="article:published_time" content="2022-05-30T04:53:37.000Z">
+<meta property="article:modified_time" content="2022-05-31T03:52:09.679Z">
+<meta property="article:author" content="Genos Huang">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="Passport">
+<meta property="article:tag" content="Express">
+<meta property="article:tag" content="第三方登入">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/iz5V41j.png">
+
+
+<link rel="canonical" href="https://stark920.github.io/2022/05/30/nodejsThirdPartySignin1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://stark920.github.io/2022/05/30/nodejsThirdPartySignin1/","path":"2022/05/30/nodejsThirdPartySignin1/","title":"[nodejs] 使用 Passport 套件串接第三方登入完整心法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[nodejs] 使用 Passport 套件串接第三方登入完整心法 | Genos's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-215799790-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-215799790-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Genos's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">前端學習記錄</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔<span class="badge">29</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">實作方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">第三方登入流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%AF%E6%95%B5%E6%98%AF%E5%8F%8B%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">是敵是友？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%9F%E5%8F%8B"><span class="nav-number">3.1.</span> <span class="nav-text">盟友</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B5%E4%BA%BA"><span class="nav-number">3.2.</span> <span class="nav-text">敵人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A6%E6%95%B5%E4%BA%A6%E5%8F%8B"><span class="nav-number">3.3.</span> <span class="nav-text">亦敵亦友</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E4%BD%9C-%E5%BE%8C%E7%AB%AF%E7%92%B0%E5%A2%83%E3%80%81%E8%B7%AF%E7%94%B1%E5%BB%BA%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">實作 - 後端環境、路由建置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E4%BD%9C-%E7%94%B3%E8%AB%8B%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5%E6%9C%8D%E5%8B%99"><span class="nav-number">5.</span> <span class="nav-text">實作 - 申請第三方登入服務</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%9C%E9%8D%B5%E5%AD%97"><span class="nav-number">5.1.</span> <span class="nav-text">關鍵字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Google"><span class="nav-number">5.2.</span> <span class="nav-text">Google</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Facebook"><span class="nav-number">5.3.</span> <span class="nav-text">Facebook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Github"><span class="nav-number">5.4.</span> <span class="nav-text">Github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Discord"><span class="nav-number">5.5.</span> <span class="nav-text">Discord</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Genos Huang"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Genos Huang</p>
+  <div class="site-description" itemprop="description">Front-end learning notes</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stark920" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stark920" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hautang.huang" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;hautang.huang" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20129729" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20129729" rel="noopener" target="_blank">iThome 鐵人賽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://2021.thef2e.com/users/6296363294609375274" title="https:&#x2F;&#x2F;2021.thef2e.com&#x2F;users&#x2F;6296363294609375274" rel="noopener" target="_blank">The F2E Challenge</a>
+        </li>
+    </ul>
+  </div>
+
+<div class="links-of-blogroll motion-element links-of-blogroll-block">
+<div class="links-of-blogroll-title">
+    <!-- 設定你要的fa fa icon-->
+    <i class="fa fa-history fa-" aria-hidden="true" style="margin: 1rem 0.25rem 0.5rem 0"></i>
+    最新文章
+</div>
+<ul class="links-of-blogroll-list">
+    <li>
+        <a href="/2022/05/30/nodejsThirdPartySignin1/" title="[nodejs] 使用 Passport 套件串接第三方登入完整心法" target="_blank">[nodejs] 使用 Passport 套件串接第三方登入完整心法</a>
+    </li>
+    <li>
+        <a href="/2022/05/06/APIimgur/" title="[API] 串接 Imgur API 圖床服務，上傳到指定相簿" target="_blank">[API] 串接 Imgur API 圖床服務，上傳到指定相簿</a>
+    </li>
+    <li>
+        <a href="/2022/04/28/whatTheCors4/" title="[CORS] 運用代理工具繞過 CORS 機制：Cors-Anywhere" target="_blank">[CORS] 運用代理工具繞過 CORS 機制：Cors-Anywhere</a>
+    </li>
+    <li>
+        <a href="/2022/04/27/whatTheCors2/" title="[CORS] POST 方法 Postman 可以過，但是 Axios 無法" target="_blank">[CORS] POST 方法 Postman 可以過，但是 Axios 無法</a>
+    </li>
+    <li>
+        <a href="/2022/04/27/vue3-2-eslint/" title="[Vue3] Vite + Vue3 的 ESlint 和 Prettier 基礎配置" target="_blank">[Vue3] Vite + Vue3 的 ESlint 和 Prettier 基礎配置</a>
+    </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://stark920.github.io/2022/05/30/nodejsThirdPartySignin1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Genos Huang">
+      <meta itemprop="description" content="Front-end learning notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Genos's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [nodejs] 使用 Passport 套件串接第三方登入完整心法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-05-30 12:53:37" itemprop="dateCreated datePublished" datetime="2022-05-30T12:53:37+08:00">2022-05-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新於</span>
+        <time title="修改時間：2022-05-31 11:52:09" itemprop="dateModified" datetime="2022-05-31T11:52:09+08:00">2022-05-31</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="閱讀次數">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">閱讀次數：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+         <img data-src="https://i.imgur.com/iz5V41j.png" style="max-height: 200px; align: center" />
+
+<span id="more"></span>
+
+<p>許多人應該跟我一樣，進入一個新的網站發現要註冊會員，卻沒有提供第三方登入，如果不是真的很需要就按上一頁離開了，註冊新帳號真的很煩人（特別是奇怪的密碼複雜度設定），如果能為網站加上第三方登入就有機會留住更多的訪客。</p>
+<h2 id="實作方式"><a href="#實作方式" class="headerlink" title="實作方式"></a>實作方式</h2><p>第三方登入可以在前、後端實作，但有登入需求通常表示需要儲存一些用戶資訊，結合後端實作會是比較理想的狀況，前端實作方式只有少數主流平台提供（例如：Google、Facebook），前端實作方式在各平台間沒有太多共通性，就是照著官方文件做就好，本篇文章會介紹後端實作方式及幾個社群平台的申請方式（Google、Facebook、Github、Discord）。</p>
+<hr>
+<h2 id="第三方登入流程"><a href="#第三方登入流程" class="headerlink" title="第三方登入流程"></a>第三方登入流程</h2><p>這張圖是經過幾次實作後才總結出的流程（前端為 CSR），一開始看也許會看不太懂，但是先大致有個概念，做過一次後再回來看會更加清楚做了什麼事情。<br><img data-src="https://imgur.com/Yv8K7Sa.png" alt="第三方登入流程"></p>
+<hr>
+<h2 id="是敵是友？"><a href="#是敵是友？" class="headerlink" title="是敵是友？"></a>是敵是友？</h2><p>實作第三方登入時會因為各種奇怪問題卡關，以下先提供一點心理建設。</p>
+<h3 id="盟友"><a href="#盟友" class="headerlink" title="盟友"></a>盟友</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.passportjs.org/">Passport</a>：後端串第三方登入的好朋友，可以大幅省去自幹程式碼的時間。</li>
+</ul>
+<h3 id="敵人"><a href="#敵人" class="headerlink" title="敵人"></a>敵人</h3><ul>
+<li>第三方登入平台的申請流程：申請設定的流程可以說是越大咖越難搞，特別是 F 什麼、G 什麼的，因為提供的服務種類多元，還有安全性的要求，申請流程會複雜許多。</li>
+<li>scope：scope 是使用第三方登入時設定要取得哪些用戶的資訊，有些登入服務有完整的說明文件，有些藏很深不知道去哪找，當設定錯誤的 scope 時登入就會失敗，這時會誤以為是第三方平台上的設定錯誤，查了半天才發現是 scope 設定錯誤。</li>
+</ul>
+<h3 id="亦敵亦友"><a href="#亦敵亦友" class="headerlink" title="亦敵亦友"></a>亦敵亦友</h3><ul>
+<li>各種網路教學文章：第三方登入服務平台介面有時會改版，特別是越大間的越常改（沒錯，又是 F、G…)，而且不只是介面改了，scope 也可能會改，這種時候照著教學文章貼肯定會卡住。</li>
+</ul>
+<hr>
+<h2 id="實作-後端環境、路由建置"><a href="#實作-後端環境、路由建置" class="headerlink" title="實作 - 後端環境、路由建置"></a>實作 - 後端環境、路由建置</h2><p>★ 環境：Node.js<br>★ 使用套件：Express、Passport（請先在後端環境完成安裝）</p>
+<ol>
+<li>先想好自己要串接的社群平台，前往 <a target="_blank" rel="noopener" href="https://www.passportjs.org/">Passport</a> 搜尋對應的策略（Strategy），Passport 提供超過 500 種策略，基本上想的到的都會有。<br><img data-src="https://i.imgur.com/RrTHOsv.png"></li>
+<li>搜尋到策略後點擊進入，盡可能選下載量和星星數最高的，使用起來比較有保障。<br><img data-src="https://i.imgur.com/xg1j9qO.png"></li>
+<li>進入策略頁面後請先閱讀第一段落，這邊會提供許多實用的建議，以下圖（Discord）來說，作者說明他正在尋找接班人繼續維護這個策略（表示目前可能停更），另外提供了兩個連結，第二個連結就是 Discord 申請第三方登入的官方文件，這個連結的幫助非常大。<br><img data-src="https://i.imgur.com/xRfduuw.png"></li>
+<li>閱讀完第一段收集到有用資訊後先不急著申請，照著第二段（Usage) 建立好自己的 Node.js 專案環境：<ul>
+<li>使用 NPM 安裝策略套件。</li>
+<li>新增一個檔案 passport.js（名稱自訂），並且在專案主程式（express 是 app.js）中引入這個檔案。</li>
+<li>複製 Configure Strategy 內的程式碼到 passport.js 中。</li>
+<li>如果要實作多種第三方登入可以貼到同一個檔案內，不需要另外新增檔案來引入。<br><img data-src="https://i.imgur.com/X55NV86.png"></li>
+</ul>
+</li>
+<li>上個步驟貼上的程式碼有幾個地方需要調整<ul>
+<li>clientID、clientSecret：需要到第三方登入平台申請完之後才會取得，建議改成引用環境變數，不要直接將敏感資訊暴露在程式碼中。</li>
+<li>callbackURL：第三方登入認證後會將使用者資訊結合這個網址送出，我們可以先設計好這個路由名稱，例如：<code>http://127.0.0.1:3000/auth/discord/callback</code>（佈署上線後要將 127.0.0.1:3000 改為線上的域名）。</li>
+<li>scopes：設定第三方回傳的使用者資訊，建議可以先照貼策略裡面寫的，等串好沒問題之後再調整，也不建議參考時間較舊的網路教學文章來設定，很可能會因為無效的 scope 造成登入失敗。</li>
+<li>function：這個函式是接收到第三方登入回傳資料後要做的動作，裡面有 4 個參數，其中的 profile 是回傳的資料，範例程式碼中使用 findOrCreate 來取得/建立使用者資料，這段可以移除，直接撰寫<code>return cb(null, user)</code> 進入下一個 callback function 來自訂處理程式。</li>
+</ul>
+</li>
+<li>繼續往下閱讀 passport strategy 文章，在後端專案中加入兩個路由，第一個是讓前端傳送使用第三方登入的請求，第二個是前面說到的 callback 網址。<br><img data-src="https://i.imgur.com/YUa8Px5.png"></li>
+<li>callback 路由的範例程式碼中，有設定失敗回傳轉址行為，這部份可以拿掉，交由自己撰寫的 callback function 處理，除此之外，如果後端伺服器不使用 session 儲存資訊，可以在這邊加入設定來關閉，程式碼如下：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">&#x27;/auth/discord&#x27;</span>, passport.authenticate(<span class="string">&#x27;discord&#x27;</span>));</span><br><span class="line">app.get(<span class="string">&#x27;/auth/discord/callback&#x27;</span>, passport.authenticate(<span class="string">&#x27;discord&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">session</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;), callbackFunction);</span><br></pre></td></tr></table></figure></li>
+<li>後端環境基本設置到此已完成，Passport Strategy 網站中後續其他段落是針對不同使用情境設定，可以在串接成功後再視需求使用。</li>
+</ol>
+<hr>
+<h2 id="實作-申請第三方登入服務"><a href="#實作-申請第三方登入服務" class="headerlink" title="實作 - 申請第三方登入服務"></a>實作 - 申請第三方登入服務</h2><h3 id="關鍵字"><a href="#關鍵字" class="headerlink" title="關鍵字"></a>關鍵字</h3><p>每個平台的操作介面都不同，但是需要設定和取得的資訊幾乎都能在以下這些關鍵字中找到：</p>
+<ul>
+<li>OAuth、OAuth 2、OAuth 2.0</li>
+<li>ClientID</li>
+<li>ClientSecret</li>
+<li>Callback URL、Callback URI、Redirect</li>
+</ul>
+<p>因為操作介面可能會改來改去，以下流程不會有太多圖片說明，而是提供「按鈕名稱」，可以在操作面板上尋找這些按鈕關鍵字。</p>
+<h3 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h3><p>Google 最多人串，也最麻煩，步驟非常多：</p>
+<ol>
+<li>前往 <a target="_blank" rel="noopener" href="https://console.cloud.google.com/">Google Cloud Platform</a>。</li>
+<li>點擊按鈕「新增專案」（按鈕位置要找一下）。</li>
+<li>輸入「專案名稱」（可以用預設）後點擊按鈕「建立」，稍等一下就會完成新專案的建立。</li>
+<li>專案建立好後會跳轉到操作儀表板，左側選單項目非常的多，需要選擇「API 和服務」，如果找不到也可以直接在上方的搜尋列搜尋「API」就可以到設定頁面。<br><img data-src="https://i.imgur.com/DnDOcM3.png"></li>
+<li>進入 API 和服務頁面後，左側選單選擇「OAuth 同意畫面」。</li>
+<li>右側介面選擇「外部」，再點擊按鈕「建立」。</li>
+<li>把必填的欄位填好，應用程式名稱（網站名稱）、聯絡信箱…等填完後就可以點擊「儲存並繼續」。</li>
+<li>接著是設定授權範圍的頁面（也就是前面提到的 scopes），可以設定用戶點擊第三方登入時需要提供哪些資訊的授權，這邊可以不做設定，直接點擊「儲存並繼續」。</li>
+<li> 最後是測試者的設定頁面，請把自己的信箱加進去，就可以點擊「儲存並繼續」，同意畫面的設定到此完成。</li>
+<li>接著在左側選單選擇「憑證」，右側介面點擊按鈕「＋建立憑證 &gt; OAuth 用戶端 ID」。</li>
+<li>「應用程式類型」選擇「網頁應用程式」。</li>
+<li>「名稱」可以改成自己網站名稱。</li>
+<li>「已授權的重新導向 URI」填入在後端設定好的 callback url。</li>
+<li>完成設定後點擊按鈕「建立」，建立完成後就會彈出畫面，上面有 ClientID、ClientSecret（介面上是寫 您的用戶端 ID 和 您的用戶端密碼）</li>
+<li>完成啟用後將 ClientID、ClientSecret 設定到後端專案後就可以測試成果了。</li>
+</ol>
+<h3 id="Facebook"><a href="#Facebook" class="headerlink" title="Facebook"></a>Facebook</h3><p>Facebook 改名為 Meta，開發者介面也改變了，一些老文章的圖片無法參考，除此之外，Facebook 的 callback url 只允許設定 https 協定，所以要在本地測試的話得掛上 https（可以參考這篇文章配置 <a target="_blank" rel="noopener" href="https://w3c.hexschool.com/blog/cd7b449b">Mkcert - 在 localhost 掛 HTTPS 神器</a>)，以下是 Facebook 應用設定流程：</p>
+<ol>
+<li>前往 <a target="_blank" rel="noopener" href="https://developers.facebook.com/apps/">Meta for Developers</a>。</li>
+<li>點擊右上角的按鈕「Create App」，建立新的應用程式。</li>
+<li>選取應用程式類型（Select an app type），不同類型能取得的使用者資訊會不一樣，自己決定要用哪個類型後點擊按鈕「next」進入下一步。</li>
+<li>在「Display name」輸入名稱（網站名稱）後就可以點擊按鈕「Create app」完成建置，這時候會需要再次輸入自己 Facebook 的密碼，成功後就會跳轉到應用的介面。</li>
+<li>左側選單選擇「Settings &gt; Basic」就可以拿到 ClientID、ClientSecret（介面上是寫 AppID 和 App secret）。</li>
+<li>左側選單選擇「Dashboard」。</li>
+<li>右側介面找到「Facebook Login」的區塊，點擊按鈕「Set up」，就會跳轉到設定頁面（此時左側選單也會多出 Facebook Login 的選項）。</li>
+<li>左側選單選擇「Facebook Login &gt; Settings」。<br><img data-src="https://i.imgur.com/yWSuDdf.png"></li>
+<li> 在設定介面的「Valid OAuth Redirect URIs」中加入後端設定好的 callback url，完成後點擊右下方的按鈕「Save changes」。</li>
+<li>如果介面上方有「App Mode」按鈕，切換成 Live 狀態，如果無法切換可能是有一些基本資訊要補充設定，設定好就可以啟用了，我只有在新建的第一個 app 有出現這個開關，後續新增的都沒有。</li>
+<li>完成啟用後將 ClientID、ClientSecret 設定到後端專案後就可以測試成果了。</li>
+</ol>
+<h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h3><p>Github 的設定超簡單，幾個步驟迅速搞定：</p>
+<ol>
+<li>前往 Github 的個人設定頁面 <a target="_blank" rel="noopener" href="https://github.com/settings/developers">Settings / Developer settings</a>。</li>
+<li>左邊選單選取「OAuth Apps」。</li>
+<li>右方區塊點擊「New OAuth App」，建立新的應用程式。</li>
+<li>「Application name」填入應用名稱（網站名稱）、「Homepage URL」填入網站網址、「Authorization callback URL」填入在後端設定好的 callback url。</li>
+<li>點擊「Register application」。</li>
+<li>建置好之後進入剛剛設置的 App 就可以拿到 ClientID、ClientSecret。</li>
+<li>將 ClientID、ClientSecret 設定到後端專案後就可以測試成果了。</li>
+</ol>
+<h3 id="Discord"><a href="#Discord" class="headerlink" title="Discord"></a>Discord</h3><p>Discord 的步驟也很簡單，還有機器人的功能，有閒可以玩玩看：</p>
+<ol>
+<li>前往 <a target="_blank" rel="noopener" href="https://discord.com/developers/applications">Discord Developer Portal</a>。</li>
+<li>點擊右上方「New Application」按鈕，建立新的應用程式。</li>
+<li>輸入名稱（網站名稱）後，點擊「Create」建置應用後就會跳轉到應用的介面。</li>
+<li>左側選單選擇「OAuth2」。</li>
+<li>右側區塊會看到 ClientID，但是 ClientSecret 區塊是空的，點擊「Reset Secret」按鈕就會產生新的 ClientSecret。<br><img data-src="https://i.imgur.com/cLo8p8P.png"></li>
+<li>右側區塊點擊「Add Redirect」，加入在後端設定好的 callback url。</li>
+<li>偵測到設定變更之後下方會談出提醒對話框，點擊「Save Changes」儲存設定。</li>
+<li>將 ClientID、ClientSecret 設定到後端專案後就可以測試成果了。</li>
+<li> Discord 的 <a target="_blank" rel="noopener" href="https://discord.com/developers/docs/topics/oauth2">官方文件</a> 中可以查看有哪些 scopes 可以取得。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Node-js/" rel="tag"><i class="fa fa-tag"></i> Node.js</a>
+              <a href="/tags/Passport/" rel="tag"><i class="fa fa-tag"></i> Passport</a>
+              <a href="/tags/Express/" rel="tag"><i class="fa fa-tag"></i> Express</a>
+              <a href="/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5/" rel="tag"><i class="fa fa-tag"></i> 第三方登入</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/06/APIimgur/" rel="prev" title="[API] 串接 Imgur API 圖床服務，上傳到指定相簿">
+                  <i class="fa fa-chevron-left"></i> [API] 串接 Imgur API 圖床服務，上傳到指定相簿
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Genos</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyA2APBeqbn1SaNoAmlAzigaWF2eHQMzMsI","projectId":"hexo-blog-992cb"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"stark920","repo":"stark920.github.io","client_id":"17c678514e6d2b3f737e","client_secret":"f45472b9f38600e765e425f937b24c376c3922d0","admin_user":"stark920","distraction_free_mode":true,"proxy":"https://genos-cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token","language":"zh-TW","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"39b9dd091af6940ee671eb1de47009b5"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
